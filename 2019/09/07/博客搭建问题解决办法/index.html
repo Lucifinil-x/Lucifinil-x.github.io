@@ -65,7 +65,7 @@
 <meta property="og:site_name" content="Sanctuary">
 <meta property="og:description" content="404问题和网页加载出来没有框架的问题 删除blog主文件下的第一个xxx.git文件夹（可用360强力删除） 修改回上一步之前修改的内容： 比如在config里本来是有#隐藏的文件路径， 实际上next主题并没有生成这个路径。 那么把自己新建的文件删除 把#在config里加回去 blog主文件夹下右键打开 git bash here hexo clean,hexo g,hexo s 三部曲">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-09-29T06:45:37.988Z">
+<meta property="og:updated_time" content="2019-11-27T06:16:02.950Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="搭建博客">
 <meta name="twitter:description" content="404问题和网页加载出来没有框架的问题 删除blog主文件下的第一个xxx.git文件夹（可用360强力删除） 修改回上一步之前修改的内容： 比如在config里本来是有#隐藏的文件路径， 实际上next主题并没有生成这个路径。 那么把自己新建的文件删除 把#在config里加回去 blog主文件夹下右键打开 git bash here hexo clean,hexo g,hexo s 三部曲">
@@ -282,7 +282,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-09-29 14:45:37" itemprop="dateModified" datetime="2019-09-29T14:45:37+08:00">2019-09-29</time>
+                <time title="修改时间：2019-11-27 14:16:02" itemprop="dateModified" datetime="2019-11-27T14:16:02+08:00">2019-11-27</time>
               </span>
             
           
@@ -355,6 +355,10 @@
 <li>杀掉对应进程：taskkill /f /t /im node.exe</li>
 <li>然后关掉cmd会出现git bash hexo s虽然搭建成功 但是无法用ctrl+c退出</li>
 <li>右上角关闭之后再hexo s虽然报错端口占用 但是本地网页已经更新</li>
+</ul>
+<h2 id="本地页面更新，但部署的网页不更新？"><a href="#本地页面更新，但部署的网页不更新？" class="headerlink" title="本地页面更新，但部署的网页不更新？"></a>本地页面更新，但部署的网页不更新？</h2><ul>
+<li>可能原因1：4000 端口占用<br> localhost:4000 端口被占用，可执行 hexo s -p 5000 修改成5000 端口</li>
+<li>可能原因2： 刷新问题<br> 网页输入网址或f5刷新，hexo s, hexo g, hexo d多来几遍</li>
 </ul>
 
     </div>
@@ -478,7 +482,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#404问题和网页加载出来没有框架的问题"><span class="nav-number">1.</span> <span class="nav-text">404问题和网页加载出来没有框架的问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#c-Users-A-AppData-Roaming-npm-hexo-line-12-node-command-not-found"><span class="nav-number">2.</span> <span class="nav-text">/c/Users/A/AppData/Roaming/npm/hexo: line 12: node: command not found</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4000端口占用"><span class="nav-number">3.</span> <span class="nav-text">4000端口占用</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#404问题和网页加载出来没有框架的问题"><span class="nav-number">1.</span> <span class="nav-text">404问题和网页加载出来没有框架的问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#c-Users-A-AppData-Roaming-npm-hexo-line-12-node-command-not-found"><span class="nav-number">2.</span> <span class="nav-text">/c/Users/A/AppData/Roaming/npm/hexo: line 12: node: command not found</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4000端口占用"><span class="nav-number">3.</span> <span class="nav-text">4000端口占用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#本地页面更新，但部署的网页不更新？"><span class="nav-number">4.</span> <span class="nav-text">本地页面更新，但部署的网页不更新？</span></a></li></ol></div>
         
       </div>
       <!--/noindex-->
@@ -496,7 +500,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">8</span>
+          <span class="site-state-item-count">10</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

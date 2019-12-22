@@ -1,0 +1,846 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.9.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.4.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.4.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.4.0">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.4.0" color="#222">
+
+<link rel="stylesheet" href="/css/main.css?v=7.4.0">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-corner-indicator.min.css?v=1.0.2">
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.4.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":true,"scrollpercent":true},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
+    },
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="CSE101 Q and A 内容###计算机系统4层体系结构 代码，软件，操作系统，硬件 （前二为程序员，用户层面）">
+<meta property="og:type" content="article">
+<meta property="og:title" content="计算机系统">
+<meta property="og:url" content="https://lucifinil-x.github.io/2019/12/22/计算机系统/index.html">
+<meta property="og:site_name" content="Sanctuary">
+<meta property="og:description" content="CSE101 Q and A 内容###计算机系统4层体系结构 代码，软件，操作系统，硬件 （前二为程序员，用户层面）">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-12-22T16:30:12.278Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="计算机系统">
+<meta name="twitter:description" content="CSE101 Q and A 内容###计算机系统4层体系结构 代码，软件，操作系统，硬件 （前二为程序员，用户层面）">
+  <link rel="canonical" href="https://lucifinil-x.github.io/2019/12/22/计算机系统/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>计算机系统 | Sanctuary</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Sanctuary</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+      
+      
+      
+        
+        <li class="menu-item menu-item-home">
+      
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-tags">
+      
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-categories">
+      
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-archives">
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a href="javascript:;" class="popup-trigger">
+        
+          <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+      </li>
+    
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="搜索..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+            
+
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+      <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block post">
+    <link itemprop="mainEntityOfPage" href="https://lucifinil-x.github.io/2019/12/22/计算机系统/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Lucifinil">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/touxiang1.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Sanctuary">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">计算机系统
+
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2019-12-22 14:50:35" itemprop="dateCreated datePublished" datetime="2019-12-22T14:50:35+08:00">2019-12-22</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-12-23 00:30:12" itemprop="dateModified" datetime="2019-12-23T00:30:12+08:00">2019-12-23</time>
+              </span>
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/学习/" itemprop="url" rel="index"><span itemprop="name">学习</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            <span class="post-meta-item" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+        
+      
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2019/12/22/计算机系统/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2019/12/22/计算机系统/" itemprop="commentCount"></span></a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="CSE101-Q-and-A-内容"><a href="#CSE101-Q-and-A-内容" class="headerlink" title="CSE101 Q and A 内容"></a>CSE101 Q and A 内容</h2><p>###计算机系统</p><h4 id="4层体系结构"><a href="#4层体系结构" class="headerlink" title="4层体系结构"></a>4层体系结构</h4><ul>
+<li>代码，软件，操作系统，硬件</li>
+<li>（前二为程序员，用户层面）</li>
+</ul><a id="more"></a>
+
+<h4 id="硬件"><a href="#硬件" class="headerlink" title="硬件"></a>硬件</h4><ul>
+<li>硬件举例： CPU，内存，硬盘hard disk, 键盘， 屏幕display screen</li>
+</ul>
+<h4 id="操作系统"><a href="#操作系统" class="headerlink" title="操作系统"></a>操作系统</h4><ul>
+<li>将硬件系统的功能带出来</li>
+<li>操作系统包围住硬件系统的好处： 易于编程，保护系统，公平和效率使用系统</li>
+</ul>
+<h4 id="组成成分"><a href="#组成成分" class="headerlink" title="组成成分"></a>组成成分</h4><ul>
+<li>输入，输出，内存，CPU</li>
+</ul>
+<h5 id="CPU-ALU"><a href="#CPU-ALU" class="headerlink" title="CPU ALU"></a>CPU ALU</h5><ul>
+<li>中央处理器 central processing unit 进行计算和其他操作</li>
+<li>运算器 arithmetic logical unit </li>
+<li>ALU 和 control unit 是CPU两个主要元件</li>
+<li>处理器processor（CPU）遵循软件的指令处理数据</li>
+<li>CPU只能执行加载进内存的指令</li>
+</ul>
+<h5 id="内存"><a href="#内存" class="headerlink" title="内存"></a>内存</h5><ul>
+<li>系统内存 储存着CPU处理，存取的数据</li>
+<li>次要存储： 硬盘hard disk, CD, DVD</li>
+<li>系统内存中存储着 程序和数据 program and data ，由二进制表示的</li>
+<li>接上，其中计算机知道哪里读取指令，哪里读取数据，虽然指令和数据都是二进制</li>
+</ul>
+<h5 id="输入输出设备"><a href="#输入输出设备" class="headerlink" title="输入输出设备"></a>输入输出设备</h5><ul>
+<li>输入设备： 鼠标，键盘，扫描器Scanner     另：输入硬件设备将数据翻译成计算机能处理的形式</li>
+<li>输出设备： 显示器Monitor, 扬声器Speaker, 打印机Printer</li>
+</ul>
+<h4 id="WIMP-和-OS"><a href="#WIMP-和-OS" class="headerlink" title="WIMP 和 OS"></a>WIMP 和 OS</h4><ul>
+<li>主要是输入和输出设备： window, icon, menu, pointer （大概是电脑界面点击图标的意思）</li>
+<li>WIMP是操作系统OS在四十年中最重要的革新</li>
+<li>操作系统OS需要分配公平的被保护的资源： 因为多线程容易死结deadlock, 同时保护硬件（用户不合理操作时）</li>
+<li>OS支持多任务操作时的功能： 内存管理，安全，分配CPU给每个程序</li>
+<li>OS提供访问给网络设备facility: 通过API应用程序界面 ，例如socket interface</li>
+<li>普通用途机器有OS<br>特殊用途机器没有OS，只能高效率的做特定的事情 </li>
+</ul>
+<h4 id="学习层面"><a href="#学习层面" class="headerlink" title="学习层面"></a>学习层面</h4><ul>
+<li>程序运行时，计算机内部和程序底层–汇编</li>
+</ul>
+<h5 id="分层分区的好处"><a href="#分层分区的好处" class="headerlink" title="分层分区的好处"></a>分层分区的好处</h5><ul>
+<li>易于理解，易于设计，易于改变</li>
+</ul>
+<h3 id="服务器-Servers"><a href="#服务器-Servers" class="headerlink" title="服务器 Servers"></a>服务器 Servers</h3><ul>
+<li>通过 web-network-cloud</li>
+</ul>
+<h3 id="向下兼容-Downward-Compatibility"><a href="#向下兼容-Downward-Compatibility" class="headerlink" title="向下兼容 Downward Compatibility"></a>向下兼容 Downward Compatibility</h3><ul>
+<li>新软件能在旧硬件上运行</li>
+</ul>
+<h3 id="高速集成电路硬件描述语言-VHDL"><a href="#高速集成电路硬件描述语言-VHDL" class="headerlink" title="高速集成电路硬件描述语言- VHDL"></a>高速集成电路硬件描述语言- VHDL</h3><h3 id="摩尔律"><a href="#摩尔律" class="headerlink" title="摩尔律"></a>摩尔律</h3><ul>
+<li>电路大小缩减一半</li>
+</ul>
+<h3 id="几个不同的注重"><a href="#几个不同的注重" class="headerlink" title="几个不同的注重"></a>几个不同的注重</h3><ul>
+<li>科学计算—Computation 计算</li>
+<li>商业计算—Data 数据</li>
+<li>个人计算机—Interaction 交互</li>
+</ul>
+<h3 id="Input-Process-Output模型"><a href="#Input-Process-Output模型" class="headerlink" title="Input-Process-Output模型"></a>Input-Process-Output模型</h3><ul>
+<li>是数字电脑的基础结构</li>
+<li>软件编程控制着Process</li>
+<li>硬件，软件，（被操作的）数据 ，这三个原件实施Input-Process-Output模型 和 von Neumann 模型</li>
+<li>其中von Neumann 模型是 Input-Process-Output模型 中的Process部分<br>Process部分: Processor（应该是CPU） 和 Memory 互相连接传递数据interconnect</li>
+<li>CPU的读取速度快于主内存</li>
+<li>von Neumann的机器中 数据和指令 共享同一内存</li>
+<li>Harvard结构 将数据和程序分离开存储<br>提高了传输速率transfer rate 和生产力throughput<br>但是数据和指令需要单独的存储器single reservoir<br>像是指令缓存instruction cache 数据缓存data cache</li>
+</ul>
+<h3 id="指令集instruction-set"><a href="#指令集instruction-set" class="headerlink" title="指令集instruction set"></a>指令集instruction set</h3><ul>
+<li>没有指令标准 standard instruction</li>
+<li>对于特殊用途的机器，指令集instruction set通常是固定的</li>
+</ul>
+<h3 id="高级编程语言HLL"><a href="#高级编程语言HLL" class="headerlink" title="高级编程语言HLL"></a>高级编程语言HLL</h3><ul>
+<li>优势： 用户友好， 编程方便</li>
+<li>举例： java c c++ python</li>
+</ul>
+<h3 id="程序编译过程"><a href="#程序编译过程" class="headerlink" title="程序编译过程"></a>程序编译过程</h3><ul>
+<li><strong>Edit</strong> 变成HLL — <strong>Compile</strong>变成二进制对象文件 —-<strong>Link</strong> 变成可执行文件 —- <strong>Load</strong> 最后运行</li>
+<li>Compiler编译器: HLL变成机成机器码</li>
+<li>Assembler汇编器： 机器指令助记符变成二进制  另：汇编器将标签和内存地址链接在一起</li>
+<li>Interpreter解释器： HLL指令解码decode变成中间代码Intermediate code,还是会变成机器码<br>解释器在程序切换快，程序运行快，程序转移到另外平台上时比编译器更好用</li>
+<li>Inline assembler内联汇编器： 可以在汇编段中调用c程序库中的函数 </li>
+</ul>
+<h3 id="代码分享方法"><a href="#代码分享方法" class="headerlink" title="代码分享方法"></a>代码分享方法</h3><ul>
+<li>资源水平的子程序， 宏程序库macro libraries（问题： 谁维护，谁拥有）</li>
+<li>预先翻译，可再定址的二进制库</li>
+<li>动态库，动态link</li>
+</ul>
+<h3 id="库library"><a href="#库library" class="headerlink" title="库library"></a>库library</h3><ul>
+<li>库可以link到程序代码，但不能修改</li>
+<li>对于动态库，动态link有一个事实标准de-facto standard : Microsoft active</li>
+</ul>
+<h3 id="数据单位-bit"><a href="#数据单位-bit" class="headerlink" title="数据单位 bit"></a>数据单位 bit</h3><ul>
+<li>encode编码ASCII表用了7bit = 2的七次方大小，第一位表示正负</li>
+</ul>
+<h4 id="编码表"><a href="#编码表" class="headerlink" title="编码表"></a>编码表</h4><ul>
+<li>ASCII表最常用，EBCDIC现在已经不用了，被替代了</li>
+<li>ASCII表不能编码除了英语和一些欧洲国家语言之外的字符</li>
+<li>ASCII表分为字符和指令字符 printing and control characters</li>
+<li>对于不同的表，编码速度没有差异</li>
+<li>IEEE 754 标准是最广泛使用的浮点转换二进制计算的标准</li>
+</ul>
+<h3 id="octal-notation-是八进制"><a href="#octal-notation-是八进制" class="headerlink" title="octal notation 是八进制"></a>octal notation 是八进制</h3><h3 id="声明变量时"><a href="#声明变量时" class="headerlink" title="声明变量时"></a>声明变量时</h3><ul>
+<li><ol>
+<li>告诉编译器预留内存空间</li>
+</ol>
+</li>
+<li><ol start="2">
+<li>告诉编译器变量类型</li>
+</ol>
+</li>
+</ul>
+<h3 id="线-bus"><a href="#线-bus" class="headerlink" title="线 bus"></a>线 bus</h3><ul>
+<li>地址线，数据线，控制线</li>
+<li>bus线的速度达不到（不匹配）CPU和内存交换的速度</li>
+<li>bus一次一条线只能传一项item数据</li>
+</ul>
+<h3 id="协处理器coprocessor"><a href="#协处理器coprocessor" class="headerlink" title="协处理器coprocessor"></a>协处理器coprocessor</h3><ul>
+<li>math, graphic 数学和图像应用程序</li>
+</ul>
+<h3 id="机器循环machine-cycle"><a href="#机器循环machine-cycle" class="headerlink" title="机器循环machine cycle"></a>机器循环machine cycle</h3><ul>
+<li>过程： 获取指令–指令解码–执行–存储结果</li>
+</ul>
+<h3 id="RISE-CISE"><a href="#RISE-CISE" class="headerlink" title="RISE CISE"></a>RISE CISE</h3><ul>
+<li>RISE的指令描述简单， CISE指令描述字多</li>
+<li>processors that support fewer instructions than do SISC chips</li>
+</ul>
+<h3 id="指令执行寄存器"><a href="#指令执行寄存器" class="headerlink" title="指令执行寄存器"></a>指令执行寄存器</h3><ul>
+<li>IP,IR,MAR,MBR</li>
+<li>不同指令的获取fetch语句是相同的</li>
+<li>不同指令的执行execute语句不同</li>
+</ul>
+<h3 id="CPU状态标志符Flag"><a href="#CPU状态标志符Flag" class="headerlink" title="CPU状态标志符Flag"></a>CPU状态标志符Flag</h3><ul>
+<li>Zero flag： 为0，zf=1</li>
+<li>Sign flag: 为负数 首位1， sf=1</li>
+<li>Carry flag： 产生进位或退位为，cf=1</li>
+<li>Overflow flag: 溢出， of=1</li>
+<li>EFlage: CMP AL,BL  (AL-BL)</li>
+<li>D flag: direction of processing</li>
+<li>O flag: Arithmetic overflow error</li>
+<li>这些flag在指令执行之后才标记</li>
+<li>CMP 后会改变flag，不是check</li>
+</ul>
+<h3 id="指令"><a href="#指令" class="headerlink" title="指令"></a>指令</h3><ul>
+<li>Pentium奔腾指令集的指令从1到15字节的宽度（不确定），来加速指令解码</li>
+<li>指令包含三个： 操作指令，操作数的数据类型，操作数的地址和结果</li>
+<li>机器指令用不同的字段Distinct bit field来编码所需的操作内容</li>
+<li>寄存器和寄存器之间的运算是最快的</li>
+</ul>
+<h3 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h3><ul>
+<li>printf: 先进栈的最后打印出来</li>
+<li>push顺序：先数字-再占位符-最后句子</li>
+<li>call函数时：把EIP（指令指针）中的地址push到栈中， 再把函数地址放进EIP</li>
+<li>ret时： pop出最后存入栈的地址，放入EIP中</li>
+<li>栈的框架下储存的数据类型： 子程序的参数，ret地址，EBP栈指针，局部变量</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center;">
+  <img id="wechat_subscriber_qcode" src="/" alt="Lucifinil wechat" style="width: 200px; max-width: 100%;">
+  <div>扫码关注我噢~</div>
+</div>
+
+      
+        
+      
+        <div id="reward-container">
+  <div>我这么可爱不给我投个币嘛~~ 有帮助的话可以打赏路路噢~~</div>
+  <button id="reward-button" disable="enable" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+        
+      
+      <div style="display: inline-block">
+        <img src="/images/wechatpay.jpg" alt="Lucifinil 微信支付">
+        <p>微信支付</p>
+      </div>
+        
+      
+      <div style="display: inline-block">
+        <img src="/images/alipay.jpg" alt="Lucifinil 支付宝">
+        <p>支付宝</p>
+      </div>
+
+  </div>
+</div>
+
+      
+
+      <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+              
+                <a href="/2019/11/27/游戏和开源项目学习/" rel="next" title="游戏和开源项目学习">
+                  <i class="fa fa-chevron-left"></i> 游戏和开源项目学习
+                </a>
+              
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+              
+            </div>
+          </div>
+        
+      </footer>
+    
+  </div>
+  
+  
+  
+  </article>
+
+  </div>
+
+
+          </div>
+          
+    
+    <div class="comments" id="comments"></div>
+  
+
+        </div>
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+        
+        
+        
+        
+      
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#CSE101-Q-and-A-内容"><span class="nav-number">1.</span> <span class="nav-text">CSE101 Q and A 内容</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#4层体系结构"><span class="nav-number">1.0.1.</span> <span class="nav-text">4层体系结构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#硬件"><span class="nav-number">1.0.2.</span> <span class="nav-text">硬件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#操作系统"><span class="nav-number">1.0.3.</span> <span class="nav-text">操作系统</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#组成成分"><span class="nav-number">1.0.4.</span> <span class="nav-text">组成成分</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#CPU-ALU"><span class="nav-number">1.0.4.1.</span> <span class="nav-text">CPU ALU</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#内存"><span class="nav-number">1.0.4.2.</span> <span class="nav-text">内存</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#输入输出设备"><span class="nav-number">1.0.4.3.</span> <span class="nav-text">输入输出设备</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#WIMP-和-OS"><span class="nav-number">1.0.5.</span> <span class="nav-text">WIMP 和 OS</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#学习层面"><span class="nav-number">1.0.6.</span> <span class="nav-text">学习层面</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#分层分区的好处"><span class="nav-number">1.0.6.1.</span> <span class="nav-text">分层分区的好处</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#服务器-Servers"><span class="nav-number">1.1.</span> <span class="nav-text">服务器 Servers</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#向下兼容-Downward-Compatibility"><span class="nav-number">1.2.</span> <span class="nav-text">向下兼容 Downward Compatibility</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#高速集成电路硬件描述语言-VHDL"><span class="nav-number">1.3.</span> <span class="nav-text">高速集成电路硬件描述语言- VHDL</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#摩尔律"><span class="nav-number">1.4.</span> <span class="nav-text">摩尔律</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#几个不同的注重"><span class="nav-number">1.5.</span> <span class="nav-text">几个不同的注重</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Input-Process-Output模型"><span class="nav-number">1.6.</span> <span class="nav-text">Input-Process-Output模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#指令集instruction-set"><span class="nav-number">1.7.</span> <span class="nav-text">指令集instruction set</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#高级编程语言HLL"><span class="nav-number">1.8.</span> <span class="nav-text">高级编程语言HLL</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#程序编译过程"><span class="nav-number">1.9.</span> <span class="nav-text">程序编译过程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码分享方法"><span class="nav-number">1.10.</span> <span class="nav-text">代码分享方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#库library"><span class="nav-number">1.11.</span> <span class="nav-text">库library</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据单位-bit"><span class="nav-number">1.12.</span> <span class="nav-text">数据单位 bit</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#编码表"><span class="nav-number">1.12.1.</span> <span class="nav-text">编码表</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#octal-notation-是八进制"><span class="nav-number">1.13.</span> <span class="nav-text">octal notation 是八进制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#声明变量时"><span class="nav-number">1.14.</span> <span class="nav-text">声明变量时</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#线-bus"><span class="nav-number">1.15.</span> <span class="nav-text">线 bus</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#协处理器coprocessor"><span class="nav-number">1.16.</span> <span class="nav-text">协处理器coprocessor</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#机器循环machine-cycle"><span class="nav-number">1.17.</span> <span class="nav-text">机器循环machine cycle</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RISE-CISE"><span class="nav-number">1.18.</span> <span class="nav-text">RISE CISE</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#指令执行寄存器"><span class="nav-number">1.19.</span> <span class="nav-text">指令执行寄存器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CPU状态标志符Flag"><span class="nav-number">1.20.</span> <span class="nav-text">CPU状态标志符Flag</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#指令"><span class="nav-number">1.21.</span> <span class="nav-text">指令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#函数"><span class="nav-number">1.22.</span> <span class="nav-text">函数</span></a></li></ol></li></ol></div>
+        
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image"
+      src="/images/touxiang1.jpg"
+      alt="Lucifinil">
+  <p class="site-author-name" itemprop="name">Lucifinil</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+  <nav class="site-state motion-element">
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">10</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
+          
+            <a href="/categories/">
+          
+        
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">分类</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-tags">
+        
+          
+            <a href="/tags/">
+          
+        
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">标签</span>
+        </a>
+      </div>
+    
+  </nav>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="https://github.com/Lucifinil-x" title="GitHub &rarr; https://github.com/Lucifinil-x" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+    
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="https://weibo.com/2890499315/profile?rightmod=1&wvr=6&mod=personinfo&is_all=1" title="weibo &rarr; https://weibo.com/2890499315/profile?rightmod=1&wvr=6&mod=personinfo&is_all=1" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>weibo</a>
+      </span>
+    
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title">
+      <i class="fa fa-fw fa-link"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="http://Lucifinil.com/" title="http://Lucifinil.com/" rel="noopener" target="_blank">Lucifinil</a>
+        </li>
+      
+    </ul>
+  </div>
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+      
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Lucifinil</span>
+</div>
+
+<!--
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0</div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.4.0</div>-->
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-user"></i>
+    </span>
+    <span class="site-uv" title="总访客量">
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+    <span class="post-meta-divider">|</span>
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-eye"></i>
+    </span>
+    <span class="site-pv" title="总访问量">
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+
+
+  <script src="/lib/anime.min.js?v=3.1.0"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+<script src="/js/utils.js?v=7.4.0"></script><script src="/js/motion.js?v=7.4.0"></script>
+<script src="/js/schemes/pisces.js?v=7.4.0"></script>
+<script src="/js/next-boot.js?v=7.4.0"></script>
+
+    
+  
+    
+  
+
+  <script>
+  (function() {
+    window.addEventListener('DOMContentLoaded', () => {
+      let script = document.createElement('script');
+      script.src = '/lib/three/three.min.js';
+      document.body.appendChild(script);
+    });
+    let styles = ['/lib/three/three-waves.min.js', '', '/lib/three/canvas_sphere.min.js'];
+    window.addEventListener('load', () => {
+      styles.forEach(item => {
+        if (item !== '') {
+          let script = document.createElement('script');
+          script.src = item;
+          document.body.appendChild(script);
+        }
+      });
+    });
+  })();
+  </script>
+
+
+  
+
+
+
+
+
+
+
+
+  <script src="/js/local-search.js?v=7.4.0"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+
+<script>
+NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail,link';
+  guest = guest.split(',').filter(item => {
+    return GUEST.includes(item);
+  });
+  new Valine({
+    el: '#comments',
+    verify: false,
+    notify: false,
+    appId: 'oDY3PgVcs4KquzU5ExfpRIvL-gzGzoHsz',
+    appKey: 'TfeAqOOA3dvfY8DgjnBCdFUI',
+    placeholder: 'Just go go',
+    avatar: 'mm',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: false,
+    lang: '' || 'zh-cn',
+    path: location.pathname
+  });
+}, window.Valine);
+</script>
+
+</body>
+</html>
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/clicklove.js"></script>
