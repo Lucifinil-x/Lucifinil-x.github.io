@@ -57,17 +57,17 @@
   };
 </script>
 
-  <meta name="description" content="CSE108 抽象难学20%80% 期末考，没有选择，全是大题：概念复述和计算lecturesweek1">
+  <meta name="description" content="CSE108 抽象难学20% 10%是lab的全部assignment 和全部exercise ，没有提到quiz； 10%是四个homework80% 期末考，没有选择，全是大题：概念复述和计算">
 <meta property="og:type" content="article">
 <meta property="og:title" content="操作系统原理">
 <meta property="og:url" content="https://lucifinil-x.github.io/2020/02/24/操作系统原理/index.html">
 <meta property="og:site_name" content="Sanctuary">
-<meta property="og:description" content="CSE108 抽象难学20%80% 期末考，没有选择，全是大题：概念复述和计算lecturesweek1">
+<meta property="og:description" content="CSE108 抽象难学20% 10%是lab的全部assignment 和全部exercise ，没有提到quiz； 10%是四个homework80% 期末考，没有选择，全是大题：概念复述和计算">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-03-01T22:03:11.180Z">
+<meta property="og:updated_time" content="2020-03-23T21:53:49.122Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="操作系统原理">
-<meta name="twitter:description" content="CSE108 抽象难学20%80% 期末考，没有选择，全是大题：概念复述和计算lecturesweek1">
+<meta name="twitter:description" content="CSE108 抽象难学20% 10%是lab的全部assignment 和全部exercise ，没有提到quiz； 10%是四个homework80% 期末考，没有选择，全是大题：概念复述和计算">
   <link rel="canonical" href="https://lucifinil-x.github.io/2020/02/24/操作系统原理/">
 
 
@@ -281,7 +281,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-03-02 06:03:11" itemprop="dateModified" datetime="2020-03-02T06:03:11+08:00">2020-03-02</time>
+                <time title="修改时间：2020-03-24 05:53:49" itemprop="dateModified" datetime="2020-03-24T05:53:49+08:00">2020-03-24</time>
               </span>
             
           
@@ -332,8 +332,8 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>CSE108 抽象难学<br>20%<br>80% 期末考，没有选择，全是大题：概念复述和计算</p><h2 id="lectures"><a href="#lectures" class="headerlink" title="lectures"></a>lectures</h2><h3 id="week1"><a href="#week1" class="headerlink" title="week1"></a>week1</h3><a id="more"></a>
-<ul>
+        <p>CSE108 抽象难学<br>20% 10%是lab的全部assignment 和全部exercise ，没有提到quiz； 10%是四个homework<br>80% 期末考，没有选择，全是大题：概念复述和计算</p><a id="more"></a>
+<h2 id="lectures"><a href="#lectures" class="headerlink" title="lectures"></a>lectures</h2><h3 id="week1-Introduction-Operating-Systems-Structures"><a href="#week1-Introduction-Operating-Systems-Structures" class="headerlink" title="week1 Introduction. Operating Systems Structures."></a>week1 Introduction. Operating Systems Structures.</h3><ul>
 <li>操作系统做什么</li>
 <li>组织</li>
 <li>结构</li>
@@ -345,9 +345,111 @@
 <li>计算环境</li>
 <li>开发资源处理系统 open-source operating system</li>
 </ul>
-<h3 id="week2"><a href="#week2" class="headerlink" title="week2"></a>week2</h3><h2 id="网上资源"><a href="#网上资源" class="headerlink" title="网上资源"></a>网上资源</h2><h3 id="了解操作系统和作用"><a href="#了解操作系统和作用" class="headerlink" title="了解操作系统和作用"></a>了解操作系统和作用</h3><ul>
-<li>作用：1、控制硬件 2、把调用硬件的办法封装成系统调用，供人通过应用程序间接的操作硬件</li>
+<p>quiz:<br>1.Multiprogramming of computer system increases<br>  CPU utilization </p>
+<p>2.Main memory of computer system is known to be<br>  volatile</p>
+<p>3.Multiprocessor system have advantage of<br>  Increased Throughput</p>
+<p>4.Multi-processor systems of computer system has advantage of<br>  reliability</p>
+<p>5.To start an I/O operation device driver loads appropriate register into is said to be<br>  Device Controller</p>
+<p>6.Processor is often referred to<br>  Central Processing Unit</p>
+<p>7.Cache memory is intended to provide memory access<br>  Fastest</p>
+<p>8.Another type of multiple-CPU system is the<br>  Clustered System集群系统</p>
+<p>9.The systems which allows only one process execution at a time, are called<br>  uniprogramming systems 单程序设计系统</p>
+<p>10.What is operating system?</p>
+<p>b. link to interface the hardware and application programs</p>
+<p>c. system service provider to the application programs </p>
+<p>d. collection of programs that manages hardware resources </p>
+<p>11.OS is responsible for transferring data to<br>  I/O devices</p>
+<p>12.Symmetric multiprocessing architecture of computer system uses shared<br>  Buses &amp; Memory</p>
+<p>13.In a multi-programming environment :<br>  the processor executes more than one process at a time</p>
+<p>14.Environment for execution of programs is provided by<br>  operating system</p>
+<p>15.One that is not a type of multiprocessor of computer system is<br>  single core</p>
+<h3 id="week2-Process"><a href="#week2-Process" class="headerlink" title="week2 Process"></a>week2 Process</h3><h4 id="概念-concept"><a href="#概念-concept" class="headerlink" title="概念 concept"></a>概念 concept</h4><ul>
+<li><p>进程是什么，进程和程序的关系：<br>进程是正在执行的程序，必须按顺序执行<br>一个进程是一个活动的实体 active entity / 一个程序program是一个被动的实体 passive entity.<br>当可执行文件加载进内存的时候，程序就变成进程。</p>
+</li>
+<li><p>操作系统执行多种程序：<br>批处理系统 batch system – 批处理系统，又名批处理操作系统。批处理是指用户将一批作业提交给操作系统后就不再干预，由操作系统控制它们自动运行。这种采用批量处理作业技术的操作系统称为批处理操作系统。批处理操作系统分为单道批处理系统和多道批处理系统。批处理操作系统不具有交互性，它是为了提高CPU的利用率而提出的一种操作系统。</p>
+<p>分时系统 time-shared system – user programs/tasks<br>分时系统是指允许多个用户同时共享计算机资源的操作系统。系统必须通过CPU切换来执行多个任务</p>
+</li>
+<li><p>内核线程和用户线程<br>用户线程指不需要内核支持而在用户程序中实现的线程，其不依赖于操作系统核心，用户进程利用线程库提供创建、同步、调度和管理线程的函数来控制用户线程。用户线程不需要用户态/核心态切换，速度快，操作系统内核不知道多线程的存在，因此一个线程阻塞将使得整个进程（包括它的所有线程）阻塞。由于这里的处理器时间片分配是以进程为基本单位，所以每个线程执行的时间相对减少为了在操作系统中加入线程支持，采用了在用户空间增加运行库来实现线程，用户线程是不能被操作系统所感知的。<br>内核线程和用户线程都有自己的优势和缺点，一般配合使用</p>
+</li>
+<li><p>进程控制块PCB process control block 是什么：<br>PCB是一种存储数据的数据结构。又被称作 进程的上下文context。<br>每个进程都是由它自己的PCB控制。它自己的PCB都驻留在主内存中。<br>所有进程的PCB展示在一个链表中。<br>PCB在多程序环境中很重要，捕获同时运行程序的信息。</p>
+</li>
+<li><p>PCB关联的组件，PCB里存了些什么：<br>进程状态：<br>程序计数器： 指向（在任何）进程中执行的下一条指令的地址。<br>寄存器信息： 与进程相关的各种寄存器<br>调度信息： 是用于设置管理 进程的优先级的。<br>内存管理信息： 分配给进程的内存<br>记账accounting信息： 存储CPU的利用率，进程执行时间，启动的时钟时间，时间限制<br>IO状态信息： 分配给处理器的IO设备，打开文件的列表</p>
+</li>
 </ul>
+<h4 id="特征"><a href="#特征" class="headerlink" title="特征"></a>特征</h4><ul>
+<li><p>调度 scheduling（设置管理 进程的优先级）<br>进程调度器scheduler： 从内存中选择准备执行的进程，将CPU分配给它。<br>1.短期调度器：选择下一个执行的进程并分配CPU<br>2.长期（或job）调度器： 选择哪些放到准备队列中。控制内存中进程的数量。<br>3.中期调度器：程序多了，需要减少的时候。就从内存中删掉程序，存到硬盘上。从硬盘上返回继续执行swapping</p>
+<p>调度队列scheduling queues: 1.job队列–系统中所有进程的集合 2.ready队列： 准备，等待着被执行的进程的集合 3.设备对象：等待IO设备的进程的集合</p>
+<p>进程大概分为： I0-bound(多IO少计算) ； CPU-bound(多计算少IO)</p>
+</li>
+<li><p>context switch 上下文切换：CPU切换进程通过它。保存旧进程状态，加载新进程状态。</p>
+</li>
+</ul>
+<h4 id="操作"><a href="#操作" class="headerlink" title="操作"></a>操作</h4><ul>
+<li>系统必须提供一下机制mechanism:<br>process creation; process termination</li>
+<li>进程创造机制： 父进程创造子进程，形成进程树。<br>资源共享选项： 1.父子共享所有资源 2.子共享父资源的一个分支 3.父子不共享资源<br>执行选项： 1.父子同时执行 2. 子结束后父执行</li>
+<li>进程终止机制：进程执行最后一条语句，然后操作系统通过系统调用exit()删掉它。<br>父进程可以通过系统调用abort()关掉子进程。</li>
+</ul>
+<h4 id="进程间通信-interprocess-communication-IPC"><a href="#进程间通信-interprocess-communication-IPC" class="headerlink" title="进程间通信 interprocess communication IPC"></a>进程间通信 interprocess communication IPC</h4><ul>
+<li><p>进程分为：1.独立进程independent： 互不影响</p>
+<pre><code>2.合作进程cooperating： 可以互相影响. 进程之间需要交互 可以合作的原因：信息共享、计算加速、模块modularity、方便</code></pre></li>
+<li><p>共享内存 shared memory<br>一个内存区域region由合作进程共享，可以读写入数据。 例子：复制粘贴，由操作系统加密。<br>两种缓冲器区buffer可以使用：1.无界缓冲区unbounded-buffer：无大小限制 2.有界缓冲区bounded-buffer：有固定大小</p>
+</li>
+<li><p>消息传递（系统） message passing<br>各个进程之间通过操作系统完成传递。 进程1封装信息（格式化）给OS，OS再把它给进程2。<br>有两个操作：send(); operations().</p>
+<p>直接/间接communication: P-&gt;Q / P-&gt;mailbox-&gt;Q<br>同步/异步communication：blocking/ non-blocking</p>
+</li>
+</ul>
+<h3 id="week3-Threads"><a href="#week3-Threads" class="headerlink" title="week3 Threads"></a>week3 Threads</h3><p>quiz:<br>1.<strong><strong>__</strong></strong> is an entity corresponding to a user job or application that owns resources such as memory and open files.<br>process</p>
+<p>2.A process having multiple threads of control implies <strong><strong>___</strong></strong><br>a. it can do more than one task at a time </p>
+<p>3.If multiple threads are concurrently searching through a database and one thread returns the result then the remaining threads must be :<br>cancelled </p>
+<p>4.Because the kernel thread management is done by the Operating System itself :<br>kernel threads are slower to create than user threads内核线程的创建速度比用户线程慢</p>
+<p>5.Termination of the process terminates <strong><strong>___</strong></strong><br>all threads within the process</p>
+<p>6.If the kernel is single threaded, then any user level thread performing a blocking system call will:<br>cause the entire process to block even if the other threads are available to run<br>如果内核是单线程的，那么执行阻塞系统调用的任何用户级线程都将：</p>
+<p>使整个进程阻塞，即使其他线程可以运行</p>
+<p>7.The model in which one kernel thread is mapped to many user-level threads is called <strong><strong>___</strong></strong><br>Many to One model</p>
+<p>8.A thread is also called <strong><strong>___</strong></strong><br>Light Weight Process(LWP)</p>
+<p>9.A process can be <strong><strong>___</strong></strong><br>both single threaded and multithreaded 一个进程可以单或多线程</p>
+<p>10.The register context and stacks of a thread are deallocated when the thread:<br>terminated<br>当线程终止，线程的寄存器上下文和堆栈被释放</p>
+<p>11.Multithreading on a multi – CPU machine <strong><strong>___</strong></strong><br>increases concurrency 增加并发性</p>
+<p>12.Resource sharing helps:<br>a. share the memory and resources of the process to which the threads belong. </p>
+<p>b. reduce the address space that a process could potentially use </p>
+<p>c. an application have several different threads of activity all within the same address space<br>a、 共享线程所属进程的内存和资源。<br>b、 减少进程可能使用的地址空间<br>c、 一个应用程序有几个不同的活动线程，它们都在同一个地址空间内</p>
+<p>13.下面都是对的<br>b. Related kernel level threads can be scheduled on different processors in a multiprocessor system<br>c. Context switch time is longer for kernel level threads than for user level threads<br>d. User level threads do not need any hardware support</p>
+<p>14.When a web page is loading, and the user presses a button on the browser to stop loading the page :<br>the thread loading the page is cancelled </p>
+<p>15.A thread shares its resources (like data section, code section, open files) with <strong><strong>___</strong></strong><br>other threads that belong to the same process</p>
+<h3 id="week4-Process-Synchronization同步"><a href="#week4-Process-Synchronization同步" class="headerlink" title="week4 Process Synchronization同步"></a>week4 Process Synchronization同步</h3><p>quiz:<br>1.Select the correct statements regarding mutex lock to prevent race condition<br>a process must acquire the lock before entering a critical section;<br>it releases the lock when it exits the critical section</p>
+<p>2.Process synchronization can be done on <strong><strong>__</strong></strong><br>both hardware and software level </p>
+<p>3.Which of the following Multithreading model also allows multiple threads to run in parallel on multiprocessors<br>One to One model</p>
+<p>4.What state does Thread enter in when it has been created and started?<br>Running</p>
+<p>5.A semaphore is a shared integer variable <strong><strong>__</strong></strong><br>大于等于0</p>
+<p>6.Which of the following Multithreading model has action “creating a user thread requires creating the corresponding kernel thread”.<br>One to One model </p>
+<p>7.A Race condition refers to <strong><strong><strong><strong><strong>_____</strong></strong></strong></strong></strong><br>A situation where several processes access and manipulate the same data concurrently </p>
+<p>8.What is valid point about thread<br>Thread are subdivision of Process. </p>
+<p>One or more Threads runs in the context of process. </p>
+<p>Threads can execute any part of process. And same part of process can be executed by multiple Threads</p>
+<p>9.Peterson’s solution is restricted to <strong>____</strong> processes that alternate execution between their critical sections and remainder sections<br>两个</p>
+<p>10.<br>Mutual exclusion can be provided by the <strong><strong>__</strong></strong><br>both mutex locks and binary semaphores</p>
+<p>11.We use the mutex lock to protect critical regions and thus prevent race conditions. The term mutex is short for<br>mutual exclusion</p>
+<p>12.If a process is executing in its critical section, then no other processes can be executing in their critical section. This condition is called?<br>mutual exclusion</p>
+<p>13.A non-preemptive kernel is essentially free from race conditions<br>对的</p>
+<p>14.User threads<br>are supported above the kernel and are managed without kernel support</p>
+<p>15.Thread shares with other threads belonging to the same process its<br>code section and data section</p>
+<p>16.Which of the following condition stands true for Mutual Exclusion？<br>If process Pi is executing in its critical section, then no other processes can be executing in their critical sections </p>
+<p>17.Which of the following condition stands true for Mutual Exclusion?<br>Which of the following condition stands true for Mutual Exclusion?</p>
+<p>18.Which one of the following is a synchronization tool?<br>semaphore</p>
+<p>19.Each process has a segment of code, called a <strong><strong>____</strong></strong>, in which the process may be changing common variables, updating a table, writing a file, and so on<br>critical section</p>
+<p>20.Kernel level threads are not needed in which of the following situations<br>To make thread switching and scheduling fast and efficient</p>
+<h3 id="week5-CPU-Scheduling"><a href="#week5-CPU-Scheduling" class="headerlink" title="week5 CPU Scheduling"></a>week5 CPU Scheduling</h3><h3 id="week6-CPU-Scheduling-Deadlocks"><a href="#week6-CPU-Scheduling-Deadlocks" class="headerlink" title="week6 CPU Scheduling, Deadlocks"></a>week6 CPU Scheduling, Deadlocks</h3><h3 id="week8-考试"><a href="#week8-考试" class="headerlink" title="week8 考试"></a>week8 考试</h3><h3 id="week9-Memory"><a href="#week9-Memory" class="headerlink" title="week9 Memory"></a>week9 Memory</h3><h3 id="week10-Storage-IO"><a href="#week10-Storage-IO" class="headerlink" title="week10 Storage, IO"></a>week10 Storage, IO</h3><h3 id="week11-Virtual-Machines-Distributed-Systems"><a href="#week11-Virtual-Machines-Distributed-Systems" class="headerlink" title="week11 Virtual Machines, Distributed Systems"></a>week11 Virtual Machines, Distributed Systems</h3><h3 id="weekk12-Protection-Security"><a href="#weekk12-Protection-Security" class="headerlink" title="weekk12 Protection, Security"></a>weekk12 Protection, Security</h3><h3 id="week13-Compiler"><a href="#week13-Compiler" class="headerlink" title="week13 Compiler"></a>week13 Compiler</h3><h3 id="week14-考试"><a href="#week14-考试" class="headerlink" title="week14 考试"></a>week14 考试</h3><h3 id="大三上"><a href="#大三上" class="headerlink" title="大三上"></a>大三上</h3><p>CSE203 决策计算与语言 10+10ass 80期末 全是小问答题</p>
+<p>CSE205 网络 40ass 15考试 45期末 全是小问答题<br>CSE207 软件工程 10+10ass 80期末<br>选修 CSE209 计算机图形学 15+15courwork 70期末<br>     CSE201 数据库设计（非关系数据库，解决数据库并发性）10+10ass 80期末</p>
+<p>大三下<br>CSE214 以人为中心的计算 交互界面 GUI 10+15+15report 60期末<br>CSE204 复杂算法 5+5+10ass 80期末<br>CSE210 java进阶 50ass 50期末<br>CSE208 小组工程 100作业</p>
+<h2 id="网上资源"><a href="#网上资源" class="headerlink" title="网上资源"></a>网上资源</h2><h3 id="了解操作系统和作用"><a href="#了解操作系统和作用" class="headerlink" title="了解操作系统和作用"></a>了解操作系统和作用</h3><ul>
+<li>作用：1、控制硬件 2、把调用硬件的办法封装成系统调用，供人通过应用程序间接的操作硬件</li>
+<li>服务器操作系统：linux(安全稳定免费),windows server</li>
+<li>移动设备操作系统：ios,安卓（linux衍生出来的）</li>
+</ul>
+<h3 id="虚拟机"><a href="#虚拟机" class="headerlink" title="虚拟机"></a>虚拟机</h3><ul>
+<li>是一个软件，可以用来安装一个新的操作系统，如果玩坏了，删掉重新装就好了，不会对现有系统造成任何影响和破坏。</li>
+</ul>
+<h3 id="内核"><a href="#内核" class="headerlink" title="内核"></a>内核</h3><p>如内存管理，多任务，IO的输入输出处理</p>
 
     </div>
 
@@ -457,7 +559,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#lectures"><span class="nav-number">1.</span> <span class="nav-text">lectures</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#week1"><span class="nav-number">1.1.</span> <span class="nav-text">week1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#week2"><span class="nav-number">1.2.</span> <span class="nav-text">week2</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#网上资源"><span class="nav-number">2.</span> <span class="nav-text">网上资源</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#了解操作系统和作用"><span class="nav-number">2.1.</span> <span class="nav-text">了解操作系统和作用</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#lectures"><span class="nav-number">1.</span> <span class="nav-text">lectures</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#week1-Introduction-Operating-Systems-Structures"><span class="nav-number">1.1.</span> <span class="nav-text">week1 Introduction. Operating Systems Structures.</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#week2-Process"><span class="nav-number">1.2.</span> <span class="nav-text">week2 Process</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#概念-concept"><span class="nav-number">1.2.1.</span> <span class="nav-text">概念 concept</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#特征"><span class="nav-number">1.2.2.</span> <span class="nav-text">特征</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#操作"><span class="nav-number">1.2.3.</span> <span class="nav-text">操作</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#进程间通信-interprocess-communication-IPC"><span class="nav-number">1.2.4.</span> <span class="nav-text">进程间通信 interprocess communication IPC</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#week3-Threads"><span class="nav-number">1.3.</span> <span class="nav-text">week3 Threads</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#week4-Process-Synchronization同步"><span class="nav-number">1.4.</span> <span class="nav-text">week4 Process Synchronization同步</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#week5-CPU-Scheduling"><span class="nav-number">1.5.</span> <span class="nav-text">week5 CPU Scheduling</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#week6-CPU-Scheduling-Deadlocks"><span class="nav-number">1.6.</span> <span class="nav-text">week6 CPU Scheduling, Deadlocks</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#week8-考试"><span class="nav-number">1.7.</span> <span class="nav-text">week8 考试</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#week9-Memory"><span class="nav-number">1.8.</span> <span class="nav-text">week9 Memory</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#week10-Storage-IO"><span class="nav-number">1.9.</span> <span class="nav-text">week10 Storage, IO</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#week11-Virtual-Machines-Distributed-Systems"><span class="nav-number">1.10.</span> <span class="nav-text">week11 Virtual Machines, Distributed Systems</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#weekk12-Protection-Security"><span class="nav-number">1.11.</span> <span class="nav-text">weekk12 Protection, Security</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#week13-Compiler"><span class="nav-number">1.12.</span> <span class="nav-text">week13 Compiler</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#week14-考试"><span class="nav-number">1.13.</span> <span class="nav-text">week14 考试</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#大三上"><span class="nav-number">1.14.</span> <span class="nav-text">大三上</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#网上资源"><span class="nav-number">2.</span> <span class="nav-text">网上资源</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#了解操作系统和作用"><span class="nav-number">2.1.</span> <span class="nav-text">了解操作系统和作用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#虚拟机"><span class="nav-number">2.2.</span> <span class="nav-text">虚拟机</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#内核"><span class="nav-number">2.3.</span> <span class="nav-text">内核</span></a></li></ol></li></ol></div>
         
       </div>
       <!--/noindex-->
@@ -475,7 +577,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">17</span>
+          <span class="site-state-item-count">18</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
