@@ -64,7 +64,7 @@
 <meta property="og:site_name" content="Sanctuary">
 <meta property="og:description" content="CSE112 鸡肋，过时，繁杂，背书30% 两次课上考试，80%是以前原题，一个 个人assignment，去年是prolog解决算法问题70% 期末，概念和大题，背书只有这个文件夹里有题的资料，概念总结和当堂测试题目">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-04-07T10:38:52.655Z">
+<meta property="og:updated_time" content="2020-04-15T21:15:25.202Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="人工智能入门学习">
 <meta name="twitter:description" content="CSE112 鸡肋，过时，繁杂，背书30% 两次课上考试，80%是以前原题，一个 个人assignment，去年是prolog解决算法问题70% 期末，概念和大题，背书只有这个文件夹里有题的资料，概念总结和当堂测试题目">
@@ -281,7 +281,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-04-07 18:38:52" itemprop="dateModified" datetime="2020-04-07T18:38:52+08:00">2020-04-07</time>
+                <time title="修改时间：2020-04-16 05:15:25" itemprop="dateModified" datetime="2020-04-16T05:15:25+08:00">2020-04-16</time>
               </span>
             
           
@@ -291,7 +291,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/学习/" itemprop="url" rel="index"><span itemprop="name">学习</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/记忆性学习/" itemprop="url" rel="index"><span itemprop="name">记忆性学习</span></a></span>
 
                 
                 
@@ -353,26 +353,102 @@
 </li>
 </ul>
 <h3 id="week2"><a href="#week2" class="headerlink" title="week2"></a>week2</h3><ul>
-<li>week AI &amp; strong AI<br>simulation of a cognitive process / actually be a mind</li>
-<li>4 research perspectives<br>acting、thinking humanly: dulicate what human brain does<br>acting、thinking rationally: 取得最大化好处</li>
-<li>intelligent agent 智能代理 智能主体<br>agent is an entity that perceives and act OR is a function from percept to act.<br>通过感应器sensor感知perceives环境，通过执行器actuator做出动作action，最大化的达成目标<br>agent= architecture + program 硬件加代码</li>
-<li>agent rationality:<br>task environment(PEAS)<br>P: performance measure评判标准 - an objective criterion for success of an agent’s behavior 比如最少的能量干最多的事情<br>E: environment 环境中有什么东西 比如固定的面积 不定的分布量distribution unkown 动作确定的deterministic<br>A: actuators 执行的动作 比如 左转右转 suck吮吸 noOp<br>S: sensors 比如 感知到所在位置和目标在的位置</li>
-<li>environment type环境类型<br>真实世界的领域一般都是只能部分观察，不确定性，不静止，不连续</li>
-<li>agent type 主体（机器人）类型</li>
-<li>解决问题的考虑<br>state<br>initial state<br>actions<br>goal test<br>path cost</li>
+<li><p>week AI &amp; strong AI<br>simulation of a cognitive process / actually be a mind</p>
+</li>
+<li><p>4 research perspectives<br>acting、thinking humanly: dulicate what human brain does<br>acting、thinking rationally: 取得最大化好处</p>
+</li>
+<li><p>intelligent agent 智能代理 智能主体<br>agent is an entity that perceives and act OR is a function from percept to act.<br>通过感应器sensor感知perceives环境，通过执行器actuator做出动作action，最大化的达成目标<br>agent= architecture + program 硬件加代码</p>
+</li>
+<li><p>agent rationality:<br>task environment(PEAS)<br>P: performance measure评判标准 - an objective criterion for success of an agent’s behavior 比如最少的能量干最多的事情<br>E: environment 环境中有什么东西 比如固定的面积 不定的分布量distribution unkown 动作确定的deterministic<br>A: actuators 执行的动作 比如 左转右转 suck吮吸 noOp<br>S: sensors 比如 感知到所在位置和目标在的位置</p>
+</li>
+<li><p>environment type环境类型<br>真实世界的领域一般都是只能部分观察，不确定性，不静止，不连续</p>
+</li>
+<li><p>agent type 主体（机器人）类型</p>
+</li>
+<li><p>解决问题的考虑<br>state<br>initial state<br>actions<br>goal test<br>path cost</p>
+</li>
 </ul>
 <h3 id="week3-搜索和prolog-对应北大视频p22"><a href="#week3-搜索和prolog-对应北大视频p22" class="headerlink" title="week3 搜索和prolog 对应北大视频p22"></a>week3 搜索和prolog 对应北大视频p22</h3><ul>
-<li>8数码难题：<br>状态：9x9棋盘，8个数字滑块占据一个方块，空格占据最后一个方块<br>初始状态：任意状态<br>动作：空格的移动：上下左右<br>模型转换：空格向左移动=棋子向右移动<br>目标检测：八个棋子在目标位置<br>路径代价：路径的步数，每一步为1代价</li>
-<li>8皇后问题：8x8棋盘上放八个皇后，两两不能在同一行同一列同一斜角线上。<br>两种解决办法：1.一个一个放上去 2.任意放再调整位置</li>
-<li>图搜索最短路径问题<br>结点扩展</li>
-<li>树搜索最短路径问题</li>
-<li>通用的树搜索算法<br>结点存储在list，扩展结点，直到找到目标结点</li>
-<li>图的宽度优先搜索算法 Breadth Firth：不能解决 指数复杂性问题，内存是很大问题。<br>扩展最浅（上面）的扩展结点，同级扩展结点<br>因为先从最上层判断没有就删除，所以用的队列，先进先出</li>
-<li>一致代价搜索算法 Uniform cost：</li>
-<li>深度优先搜索 Depth First：时间长，空间（需要的内存）小<br>向下扩展结点，没有找到的话就从内存中删除<br>因为最下面的是新加入判断的，没有就删除，所以用的堆栈，后进先出</li>
-<li>prolog:描述性语言</li>
+<li><p>8数码难题：<br>状态：9x9棋盘，8个数字滑块占据一个方块，空格占据最后一个方块<br>初始状态：任意状态<br>动作：空格的移动：上下左右<br>模型转换：空格向左移动=棋子向右移动<br>目标检测：八个棋子在目标位置<br>路径代价：路径的步数，每一步为1代价</p>
+</li>
+<li><p>8皇后问题：8x8棋盘上放八个皇后，两两不能在同一行同一列同一斜角线上。<br>两种解决办法：1.一个一个放上去 2.任意放再调整位置</p>
+</li>
+<li><p>图搜索最短路径问题<br>结点扩展</p>
+</li>
+<li><p>树搜索最短路径问题</p>
+</li>
+<li><p>通用的树搜索算法<br>结点存储在list，扩展结点，直到找到目标结点</p>
+</li>
+<li><p>图的宽度优先搜索算法 Breadth Firth：算法complete but 内存expensive<br>算法完整complete:保证算法在有限时间内找到一个解; 需要的时间短<br>不能解决 指数复杂性问题，内存是很大问题。<br>先找完兄弟节点<br>扩展最浅（上面）的扩展结点，同级扩展结点<br>因为先从最上层判断没有就删除，所以用的队列，先进先出</p>
+</li>
+<li><p>深度优先搜索 Depth first search  ：内存cheap but 算法incomplete<br>时间长，空间（需要的内存）小<br>有兄弟结点和子节点时，完全搜索完子节点再回头搜索兄弟节点<br>向下扩展结点，没有找到的话就从内存中删除<br>因为最下面的是新加入判断的，没有就删除，所以用的堆栈，后进先出</p>
+</li>
+<li><p>一致代价搜索算法 Uniform Cost Search = Dijkstra算法<br>(UCS)：当路径代价单调增长的前提下，找当前结点需要内存最小的解<br> 启发函数f： f（n）= g（n）<br>  Uniform Cost Search是a* 搜索的特例</p>
+<p> 怎么算长度： 一致代价的长度就等于出发点和某点的可以走通的直线距离（实际线段长度）</p>
+</li>
+<li><p>prolog:描述性语言</p>
+</li>
 </ul>
-<h2 id="prolog语言"><a href="#prolog语言" class="headerlink" title="prolog语言"></a>prolog语言</h2>
+<h2 id="week4-几个信息搜索算法"><a href="#week4-几个信息搜索算法" class="headerlink" title="week4 几个信息搜索算法"></a>week4 几个信息搜索算法</h2><p>总结：A* search最优最有效</p>
+<ul>
+<li><p>DFS : 深度优先</p>
+</li>
+<li><p>BFD : 宽度优先</p>
+</li>
+<li><p>Depth limited search (DLS) 深度限制搜索：<br>解释： 在进行深度优先搜索时，每条路径上在到达指定的步数后停止此条路径的搜索。<br>术语： 深度 = d ; 宽度 = b<br>适用情况： 已知解的最大深度； 解有深度范围<br>代码表示： if (depth(node) &lt; depth limit) 才能执行搜索代码</p>
+</li>
+<li><p>Iterative deepening search (IDS) 迭代深化搜索：<br>解释： 当宽度很大和深度未知时，不断的进行(DLS) 深度限制搜索，深度限制从0一直向上增加。<br>特点：时间换空间Trade off time for memory 需要多一点的时间，但可以节约很多内存<br>算法完整和最优</p>
+</li>
+<li><p>DLS 和 IDS 对比：<br>Nodes expanded with depth-limited search:<br>  1+b+b2+b3+…+bd-1+bd<br>Nodes expanded with iterative deepening search:<br>  (d+1)1+(d)b+(d-1)b2+(d-2)b3+…+(2)bd-1+(1)bd</p>
+</li>
+</ul>
+<p>IDS is complete and optimal  IDS 算法完整和最优<br>DLS 和 IDS 改进了基础的宽度优先和深度优先搜索技术</p>
+<ul>
+<li><p>Avoiding repeated states 避免重复状态<br>Do not return to the state you have just come from<br>Do not create paths with cycles in them (do not create a node the same as any ancestor)<br>Do not generate any state that was ever generated before</p>
+</li>
+<li><p>Heuristic search启发式 h(n)<br>解释：基于问题考虑，选择最有可能的路径；一致代价搜索USC是当前结点的路径，启发式搜索是计算剩余路径<br>特点：启发式搜索是信息搜索的核心方法</p>
+</li>
+<li><p>Greedy search贪婪<br>比如八滑块问题：直接计算需要调整的滑块个数；或者替换错位滑块需要走的直线距离<br>启发函数f：f（n）= h（n）<br>特点：快速；可能找不到解；可能第一步错误；只从当前结点计算，忽略之前的结点<br>重点：未能远谋，不一定是最优长度（最短路径）； 只看期望长度（走横着竖着的格子，曼哈顿距离）；只选择下一个h最小的结点</p>
+</li>
+<li><p>A* search<br>解释：结合了一致代价和贪婪搜索；注重于已用的成本和到目标的成本；为了最小化代价minimize the overall cost</p>
+<p>启发函数f： f（n）=g（n）+h（n）= 开始到n结点的路径成本 + 从n 到目标的最短的解 = 一致代价+贪婪搜索<br>比如8滑块问题， g(n)是空白滑块移动步数， h(n)是要调整的滑块个数</p>
+</li>
+<li><p>曼哈顿距离 h 预估距离 某点到终点的 横着走几格，竖着走几格，加起来的距离 可以穿墙<br>斜边长度表示为直角两边的和a+b;不再用根号表示（虽然有误差，但是如果大家都这么算那么就变得比较好比较）<br>算横着走几格，竖着走几格，加起来</p>
+</li>
+<li><p>实际距离 g 出发点和某点的可以走通的直线距离 斜着14 横着10，有拐点的要算两条直线和</p>
+</li>
+<li><p>启发式函数h(n)在A* 中的作用<br>  启发式函数可以用来控制A<em>的行为。一种极端情况，如果h(n)是0，则只有g(n)起作用，此时A</em> 算法演变成Dijkstra算法，就能保证找到最短路径。</p>
+<p>  如果h(n)总是比从n移动到目标的代价小（或相等），那么A* 保证能找到一条最短路径。h(n)越小，A* 需要扩展的点越多，运行速度越慢。</p>
+<p>  如果h(n)正好等于从n移动到目标的代价，那么A* 将只遵循最佳路径而不会扩展到其他任何结点，能够运行地很快。尽管这不可能在所有情况下发生，但你仍可以在某些特                殊情况下让h(n)正好等于实际代价值。只要所给的信息完善，A* 将运行得很完美。</p>
+<p>  如果h(n)比从n移动到目标的代价高，则A* 不能保证找到一条最短路径，但它可以运行得更快。</p>
+<p>  另一种极端情况，如果h(n)比g(n)大很多，则只有h(n)起作用，同时A* 算法演变成贪婪最佳优先搜索算法（Greedy Best-First-Search）。</p>
+</li>
+</ul>
+<h2 id="week5-KR-陈述性知识表示，Rule-based-Systems"><a href="#week5-KR-陈述性知识表示，Rule-based-Systems" class="headerlink" title="week5 KR 陈述性知识表示，Rule-based Systems"></a>week5 KR 陈述性知识表示，Rule-based Systems</h2><h3 id="rule-based-system"><a href="#rule-based-system" class="headerlink" title="rule-based system"></a>rule-based system</h3><ul>
+<li>知识 = 规则（rule）的集合</li>
+<li>Rule-Based System的结构：rule的集合，fact的集合</li>
+<li>Rule-Based System的应用例子expert system：帮助医生用rule来推断诊断</li>
+<li>Expert system = inference engine推理机器 + knowledge base + data；<br>传统程序Program = algorithm + data；两者区别很大</li>
+<li>knowledge base知识库: 存rule规则（条件）</li>
+<li>database ： 存fact</li>
+<li>inference engine推理机器： 将知识库和数据库中的rule和fact联系起来</li>
+<li>explanation facilities解释工具： 从rule推理得出结论的过程解释</li>
+<li>user interface 用户界面： 用户和专家系统之间交流通信</li>
+</ul>
+<h3 id="control-scheme"><a href="#control-scheme" class="headerlink" title="control scheme"></a>control scheme</h3><p>已知一些规则，用他们去产生新知识，有前向链接和反向链接两种方法</p>
+<ul>
+<li><p>Forward chaining 前向链接：从fact开始，以fact来找需要用到的rule.<br>(Data-driven search)<br>适用情况：所有fact已知，goal的信息困难，一小部分初始状态，但有大量结论。</p>
+</li>
+<li><p>Backward chaining 反向链接:从要查找的结论开始，来找需要用到的rule.<br>(Goal-driven search)<br>适用情况： 需要时获取数据（当数据采集成本很高时），容易形成假设/目标（比如医学诊断），少量初始假设/目标</p>
+</li>
+<li><p>二者区别：前向链接从已知事实开始，然后应用推理规则提取更多数据，然后继续向前移动直到到达目标；然后前向链接从目标开始，并使用推理规则确定后向链接满足目标的事实。<br>前向链接称为数据驱动推理技术，后向链接称为目标驱动推理技术。<br>正向链接称为向下搜索方法，而反向链接称为自上而下搜索方法。<br>前向链采用广度优先搜索策略，后向链采用深度优先搜索策略。<br>正向链接可用于规划、设计过程监控、诊断和分类任务，反向链接可用于分类和诊断任务。<br>前向链接可能类似于穷举搜索，而后向链接则试图避免不必要的推理。<br>在正向链接中，知识库中可能存在各种提问问题；在反向链接中，可能存在较少的提问问题。<br>前向链接检查所有规则，因此速度较慢，而前向链接只检查一些必要的规则，因此速度较快。</p>
+</li>
+</ul>
+<h2 id="prolog语言"><a href="#prolog语言" class="headerlink" title="prolog语言"></a>prolog语言</h2><h3 id="swing-prolog使用"><a href="#swing-prolog使用" class="headerlink" title="swing-prolog使用"></a>swing-prolog使用</h3><ul>
+<li>file-consult 之后一堆error不用管 然后打开xxx.pl文件 就加载上了；在里面输入命令就能用了</li>
+</ul>
+<h3 id="prolog语言是陈述性语言，用于描述陈述性知识。可以-表示事实与规则"><a href="#prolog语言是陈述性语言，用于描述陈述性知识。可以-表示事实与规则" class="headerlink" title="prolog语言是陈述性语言，用于描述陈述性知识。可以 表示事实与规则"></a>prolog语言是陈述性语言，用于描述陈述性知识。可以 表示事实与规则</h3><h2 id="离散数学相关"><a href="#离散数学相关" class="headerlink" title="离散数学相关"></a>离散数学相关</h2><h3 id="条件概率"><a href="#条件概率" class="headerlink" title="条件概率"></a>条件概率</h3><p>p = (已发生事件 和 未发生事件 同时发生的概率)/ 已发生事件的概率</p>
+
     </div>
 
     
@@ -481,7 +557,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#lectures"><span class="nav-number">1.</span> <span class="nav-text">lectures</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#week1-introduction"><span class="nav-number">1.1.</span> <span class="nav-text">week1 introduction</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#week2"><span class="nav-number">1.2.</span> <span class="nav-text">week2</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#week3-搜索和prolog-对应北大视频p22"><span class="nav-number">1.3.</span> <span class="nav-text">week3 搜索和prolog 对应北大视频p22</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#prolog语言"><span class="nav-number">2.</span> <span class="nav-text">prolog语言</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#lectures"><span class="nav-number">1.</span> <span class="nav-text">lectures</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#week1-introduction"><span class="nav-number">1.1.</span> <span class="nav-text">week1 introduction</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#week2"><span class="nav-number">1.2.</span> <span class="nav-text">week2</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#week3-搜索和prolog-对应北大视频p22"><span class="nav-number">1.3.</span> <span class="nav-text">week3 搜索和prolog 对应北大视频p22</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#week4-几个信息搜索算法"><span class="nav-number">2.</span> <span class="nav-text">week4 几个信息搜索算法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#week5-KR-陈述性知识表示，Rule-based-Systems"><span class="nav-number">3.</span> <span class="nav-text">week5 KR 陈述性知识表示，Rule-based Systems</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#rule-based-system"><span class="nav-number">3.1.</span> <span class="nav-text">rule-based system</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#control-scheme"><span class="nav-number">3.2.</span> <span class="nav-text">control scheme</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#prolog语言"><span class="nav-number">4.</span> <span class="nav-text">prolog语言</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#swing-prolog使用"><span class="nav-number">4.1.</span> <span class="nav-text">swing-prolog使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#prolog语言是陈述性语言，用于描述陈述性知识。可以-表示事实与规则"><span class="nav-number">4.2.</span> <span class="nav-text">prolog语言是陈述性语言，用于描述陈述性知识。可以 表示事实与规则</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#离散数学相关"><span class="nav-number">5.</span> <span class="nav-text">离散数学相关</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#条件概率"><span class="nav-number">5.1.</span> <span class="nav-text">条件概率</span></a></li></ol></li></ol></div>
         
       </div>
       <!--/noindex-->
@@ -499,7 +575,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">18</span>
+          <span class="site-state-item-count">19</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -512,7 +588,7 @@
             <a href="/categories/">
           
         
-        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-count">10</span>
         <span class="site-state-item-name">分类</span>
         </a>
       </div>
