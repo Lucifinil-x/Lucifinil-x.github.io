@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.9.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.4.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.4.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.4.0">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.4.0" color="#222">
+
+<link rel="stylesheet" href="/css/main.css?v=7.4.0">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-corner-indicator.min.css?v=1.0.2">
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.4.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":true,"scrollpercent":true},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
+    },
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="操作系统的特征1.并发（执行）： 多个事件交替发生，某一时刻最多发生一个事件2.共享（资源）： 互斥共享和同时共享">
+<meta property="og:type" content="article">
+<meta property="og:title" content="操作系统原理中文版">
+<meta property="og:url" content="https://lucifinil-x.github.io/2020/04/24/操作系统中文版/index.html">
+<meta property="og:site_name" content="Sanctuary">
+<meta property="og:description" content="操作系统的特征1.并发（执行）： 多个事件交替发生，某一时刻最多发生一个事件2.共享（资源）： 互斥共享和同时共享">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://lucifinil-x.github.io/images/CSE108%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/4-26-%E5%88%86%E7%B1%BB.png">
+<meta property="og:image" content="https://lucifinil-x.github.io/images/CSE108%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/4-16-%E5%86%85%E6%A0%B8.png">
+<meta property="og:image" content="https://lucifinil-x.github.io/images/CSE108%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/4-26-%E4%BD%93%E7%B3%BB.png">
+<meta property="og:image" content="https://lucifinil-x.github.io/images/CSE108%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/4-29-%E4%B8%AD%E6%96%AD.png">
+<meta property="og:image" content="https://lucifinil-x.github.io/images/CSE108%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/4-29-%E8%BF%9B%E7%A8%8B.png">
+<meta property="og:image" content="https://lucifinil-x.github.io/images/CSE108%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/4-29-%E8%BF%9B%E7%A8%8B%E7%8A%B6%E6%80%811.png">
+<meta property="og:image" content="https://lucifinil-x.github.io/images/CSE108%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/4-29-%E8%BF%9B%E7%A8%8B%E7%8A%B6%E6%80%812.png">
+<meta property="og:image" content="https://lucifinil-x.github.io/images/CSE108%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/4-29-%E9%80%9A%E4%BF%A1.png">
+<meta property="og:image" content="https://lucifinil-x.github.io/images/CSE108%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/4-30-%E7%BA%BF%E7%A8%8B1.png">
+<meta property="og:image" content="https://lucifinil-x.github.io/images/CSE108%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/4-30-%E5%87%A0%E5%AF%B9%E5%87%A0.png">
+<meta property="og:image" content="https://lucifinil-x.github.io/images/CSE108%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/4-30-%E8%B0%83%E5%BA%A6%E5%B1%82%E6%AC%A1.png">
+<meta property="og:image" content="https://lucifinil-x.github.io/images/CSE108%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/4-30-%E8%B0%83%E5%BA%A6%E6%80%BB%E8%A7%88.png">
+<meta property="og:updated_time" content="2020-04-30T09:49:55.005Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="操作系统原理中文版">
+<meta name="twitter:description" content="操作系统的特征1.并发（执行）： 多个事件交替发生，某一时刻最多发生一个事件2.共享（资源）： 互斥共享和同时共享">
+<meta name="twitter:image" content="https://lucifinil-x.github.io/images/CSE108%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/4-26-%E5%88%86%E7%B1%BB.png">
+  <link rel="canonical" href="https://lucifinil-x.github.io/2020/04/24/操作系统中文版/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>操作系统原理中文版 | Sanctuary</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Sanctuary</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+      
+      
+      
+        
+        <li class="menu-item menu-item-home">
+      
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-tags">
+      
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-categories">
+      
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-archives">
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a href="javascript:;" class="popup-trigger">
+        
+          <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+      </li>
+    
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="搜索..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+            
+
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+      <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block post">
+    <link itemprop="mainEntityOfPage" href="https://lucifinil-x.github.io/2020/04/24/操作系统中文版/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Lucifinil">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/touxiang1.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Sanctuary">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">操作系统原理中文版
+
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2020-04-24 21:30:27" itemprop="dateCreated datePublished" datetime="2020-04-24T21:30:27+08:00">2020-04-24</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-04-30 17:49:55" itemprop="dateModified" datetime="2020-04-30T17:49:55+08:00">2020-04-30</time>
+              </span>
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/记忆性学习/" itemprop="url" rel="index"><span itemprop="name">记忆性学习</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            <span class="post-meta-item" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+        
+      
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2020/04/24/操作系统中文版/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2020/04/24/操作系统中文版/" itemprop="commentCount"></span></a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="操作系统的特征"><a href="#操作系统的特征" class="headerlink" title="操作系统的特征"></a>操作系统的特征</h2><p>1.并发（执行）： 多个事件交替发生，某一时刻最多发生一个事件</p><p>2.共享（资源）： 互斥共享和同时共享</p><a id="more"></a>
+
+<p>  互斥共享：一个时间段内只允许一个进程访问该资源<br>    例子： 摄像头只能被qq或微信使用。</p>
+<p>  同时共享：一个时间段内允许多个进程访问该资源 （都是cpu交替访问）<br>    例子： qq和微信同时发送文件 ，这两个进程交替着访问硬盘资源。</p>
+<p>【特征之间的关系】 并发与共享互为存在条件，是最基本的两个特征</p>
+<p>3.虚拟：<br>  虚拟技术的空分复用技术（虚拟存储器技术）： 程序需要的内存远大于系统内存；内存不够分内存。<br>  虚拟技术的时分复用技术（虚拟处理器技术）： 实际上只有一个cpu,用户感觉有多个cpu在服务；处理器不够分处理器。</p>
+<p>【特征之间的关系】 没有并发性就谈不上虚拟性</p>
+<p>4.异步： 多个程序并发执行时，进程的执行走走停停，不可预知每次运行多久停，可能导致运行结果的不确定性。</p>
+<p>【特征之间的关系】 只有系统有并发性，才可能导致异步性</p>
+<h2 id="操作系统的发展和分类"><a href="#操作系统的发展和分类" class="headerlink" title="操作系统的发展和分类"></a>操作系统的发展和分类</h2><p><img src="/images/CSE108%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/4-26-%E5%88%86%E7%B1%BB.png" alt="分类"></p>
+<h3 id="操作系统的几个发展阶段"><a href="#操作系统的几个发展阶段" class="headerlink" title="操作系统的几个发展阶段"></a>操作系统的几个发展阶段</h3><p>1.手工操作阶段： 读纸带条； 缺点：人输入速度慢</p>
+<p>2.批处理阶段：<br>  单道批处理系统： 读纸带存到磁带上，计算机读取磁带，输出磁带，再到纸带。<br>  缺点：cpu大量时间是在等待输入输出。</p>
+<p>  多道批处理系统（操作系统正式诞生）： 每次往内存中输入多道程序，并发执行，共享计算机资源。资源利用率大幅提升。<br>  缺点：用户提交完作业后，只能等待计算机处理完成，中间用户不能控制自己的作业执行。<br>  资源利用率大幅提升原因： 输入、计算、输出都在流水线工作，不会等待。</p>
+<h2 id="内核态-用户态"><a href="#内核态-用户态" class="headerlink" title="内核态 用户态"></a>内核态 用户态</h2><p>两种处理器状态：(cpu是处理器)<br>1.用户态： cpu只能执行非特权指令<br>2.核心态： cpu可以执行特权指令，也可以执行非特权指令</p>
+<h2 id="PSW程序状态寄存器：标识cpu处理器状态—–-0为用户态，1为核心态"><a href="#PSW程序状态寄存器：标识cpu处理器状态—–-0为用户态，1为核心态" class="headerlink" title="PSW程序状态寄存器：标识cpu处理器状态—– 0为用户态，1为核心态"></a>PSW程序状态寄存器：标识cpu处理器状态—– 0为用户态，1为核心态</h2><p>两种程序：<br>1.应用程序： 只能执行非特权指令；程序在用户态运行</p>
+<h2 id="2-内核程序：-可以执行特权指令，也可以执行非特权指令；程序在核心态运行"><a href="#2-内核程序：-可以执行特权指令，也可以执行非特权指令；程序在核心态运行" class="headerlink" title="2.内核程序： 可以执行特权指令，也可以执行非特权指令；程序在核心态运行"></a>2.内核程序： 可以执行特权指令，也可以执行非特权指令；程序在核心态运行</h2><p>操作系统功能=内核功能+非内核功能<br>内核： 计算机上配备的底层软件<br>内核程序： 实现内核功能的程序，内核功能如下图：<br><img src="/images/CSE108%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/4-16-%E5%86%85%E6%A0%B8.png" alt="内核功能"></p>
+<h2 id="注：原语是一种特殊的程序，是最接近硬件的部分，原语这种程序的运行具有原子性（一旦执行就会执行完，不会中断）"><a href="#注：原语是一种特殊的程序，是最接近硬件的部分，原语这种程序的运行具有原子性（一旦执行就会执行完，不会中断）" class="headerlink" title="注：原语是一种特殊的程序，是最接近硬件的部分，原语这种程序的运行具有原子性（一旦执行就会执行完，不会中断）"></a>注：原语是一种特殊的程序，是最接近硬件的部分，原语这种程序的运行具有原子性（一旦执行就会执行完，不会中断）</h2><p>操作系统体系结构 = 企业管理<br>内核 = 企业管理层，负责重要工作（特权指令）； 普通员工只能执行非特权指令。<br>用户态与核心态之间的切换 = 普通员工和管理层之间的工作交接</p>
+<p>大内核：效率高，难维护； 比如小企业，管理层管大部分事情<br>       功能都放在内核，核心态运行<br>微内核：效率低，易维护； 比如大企业，管理层管最核心的工作<br>       只有基本功能放在内核，频繁的在核心态和用户态之间切换</p>
+<p><img src="/images/CSE108%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/4-26-%E4%BD%93%E7%B3%BB.png" alt="体系结构"></p>
+<h2 id="中断和异常"><a href="#中断和异常" class="headerlink" title="中断和异常"></a>中断和异常</h2><p>中断： 中断发生时，cpu立刻从用户态进入核心态，操作系统获得计算机的控制权；当前进程暂停，操作系统根据不同的中断信号进行不同的处理。<br>【有中断才有多道程序并发执行】<br>【中断是cpu从用户态到核心态的唯一途径】</p>
+<p>1.内中断：信号来自cpu内部，也称异常；比如指令中断，故障，软件报错<br>2.外中断：信号来自cpu外部；比如外设发出的信号，用户终止进程<br><img src="/images/CSE108%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/4-29-%E4%B8%AD%E6%96%AD.png" alt="中断"></p>
+<h2 id="系统调用"><a href="#系统调用" class="headerlink" title="系统调用"></a>系统调用</h2><p>把调用硬件的办法封装成系统调用，供人通过应用程序间接的操作硬件。</p>
+<p>系统调用发生在用户态；系统调用的处理发生在核心态。</p>
+<p>执行陷入指令会产生内中断，使cpu从用户态立即进入核心态</p>
+<h2 id="进程"><a href="#进程" class="headerlink" title="进程"></a>进程</h2><h3 id="进程的定义，组成，组织方式，特征"><a href="#进程的定义，组成，组织方式，特征" class="headerlink" title="进程的定义，组成，组织方式，特征"></a>进程的定义，组成，组织方式，特征</h3><p>进程：进程是资源分配、接受调度的基本单位，是进程实体的运行过程。</p>
+<p>PCB: 每个进程运行之前，操作系统会配置一个数据结构 PCB（进程控制块），来存储进程的各种信息（程序代码的存放位置，数据段的位置，见图）。和进程管理有关的数据肯定是放在PCB里面的。</p>
+<p>进程实体 = 程序段+数据段+PCB； 进程实体是进程需要的数据的集合，它是静态的；进程是进程实体运行的过程，它是动态的。</p>
+<p>创建进程 = 创建进程实体中的PCB；撤销进程 = 撤销进程实体中的PCB；PCB是进程存在的唯一标志！<br><img src="/images/CSE108%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/4-29-%E8%BF%9B%E7%A8%8B.png" alt="进程"></p>
+<p>进程组织方式：用队列或者索引表，下面是队列的<br>用几种指针组织进程（组织PCB）：<br>1.执行指针<br>2.就绪队列指针：优先级高的放在队列头<br>3.阻塞队列指针</p>
+<p>进程特征：动态性；并发性；独立性（进程是资源分配、接受调度的基本单位）；异步性（进程的执行走走停停，不可预知每次运行多久停，可能导致运行结果的不确定性。）；结构性。</p>
+<h3 id="进程状态"><a href="#进程状态" class="headerlink" title="进程状态"></a>进程状态</h3><p>为了方便操作系统进行进程的管理分成了五种状态。</p>
+<p>三种基本状态：<br>1.运行态running: 占用cpu资源，在cpu上运行<br>2.就绪态ready: 万事俱备，只差cpu.<br>具备运行条件，但没有空闲cpu。(有除了处理机之外的所有需要的资源，一旦获得处理机cpu，立即进入运行态)<br>3.阻塞态/等待态waiting/blocking: 因为某些事件而暂时不能运行</p>
+<p>另外两种状态：<br>1.创建态new: 创建进程，操作系统给进程分配资源，初始化PCB<br>2.终止态terminated: 进程从操作系统中撤销，回收资源，撤销PCB</p>
+<p>进程状态的转换：<br>主要注意只能是 运行态-&gt;阻塞态-&gt;就绪态<br><img src="/images/CSE108%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/4-29-%E8%BF%9B%E7%A8%8B%E7%8A%B6%E6%80%811.png" alt="进程状态"><br><img src="/images/CSE108%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/4-29-%E8%BF%9B%E7%A8%8B%E7%8A%B6%E6%80%812.png" alt="进程转换"></p>
+<h3 id="进程控制"><a href="#进程控制" class="headerlink" title="进程控制"></a>进程控制</h3><p>进程控制: 是实现进程状态之间的转换，用原语实现。</p>
+<p>需要做的事情：<br>1.更新PCB信息<br>2.将PCB插入对应的进程状态PCB队列<br>3.回收/分配资源</p>
+<p>怎么做上面的三件事情： 用几个原语实现进程控制：<br>原语是一种特殊的程序； 原语采用“关中断和开中断的特权指令”； 执行期间不会被中断，一气呵成；“关中断和开中断指令”的权限非常大，是只能在核心态执行的特权指令（原语在核心态运行）。</p>
+<p>相关原语（对进程操作的特权指令）：创建原语，终止原语，阻塞原语，唤醒原语，切换原语。<br>阻塞和唤醒要成对出现</p>
+<h3 id="进程通信"><a href="#进程通信" class="headerlink" title="进程通信"></a>进程通信</h3><p>进程通信： 进程之间的信息交换</p>
+<p>三种通信：<br><img src="/images/CSE108%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/4-29-%E9%80%9A%E4%BF%A1.png" alt="通信"></p>
+<h2 id="线程和多线程模型"><a href="#线程和多线程模型" class="headerlink" title="线程和多线程模型"></a>线程和多线程模型</h2><p>线程相当于轻量级进程，便于创建销毁。 线程增加了并发度，让qq应用（一个进程）中边聊天边发送文件得以实现。 cpu则服务于进程中的线程。</p>
+<p>同一线程中的线程切换不需要切换进程的运行环境，系统开销变小。</p>
+<p>计算机中的透明是看不见的意思。</p>
+<h2 id><a href="#" class="headerlink" title></a><img src="/images/CSE108%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/4-30-%E7%BA%BF%E7%A8%8B1.png" alt="线程"></h2><p>多线程模型：<br>1.多对一： 多个用户线程映射到一个内核级线程。<br>2.一对一： 一个用户线程映射到一个内核级线程。<br>2.多对多： n个用户线程映射到m个内核级线程。(n&gt;=m)<br><img src="/images/CSE108%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/4-30-%E5%87%A0%E5%AF%B9%E5%87%A0.png" alt="几对几"></p>
+<h2 id="处理机调度"><a href="#处理机调度" class="headerlink" title="处理机调度"></a>处理机调度</h2><h3 id="调度基础知识"><a href="#调度基础知识" class="headerlink" title="调度基础知识"></a>调度基础知识</h3><p>调度：选择哪个先调。</p>
+<p>作业： 程序、项目。<br>挂起状态：内存不够，不能获得cpu就先掉到外存去，与阻塞状态不同的是阻塞时还是在内存中。</p>
+<p>三种调度：<br>1.作业调度（高级调度）： 选择作业从外存调入内存并创建进程。<br>2.内存调度（中级调度）： 从挂起队列中选择进程调回内存。<br>3.进程调度（低级调度）： 从就绪队列中选择进程分配cpu。<br><img src="/images/CSE108%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/4-30-%E8%B0%83%E5%BA%A6%E5%B1%82%E6%AC%A1.png" alt="调度"><br><img src="/images/CSE108%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/4-30-%E8%B0%83%E5%BA%A6%E6%80%BB%E8%A7%88.png" alt="调度"></p>
+<h3 id="进程调度时机"><a href="#进程调度时机" class="headerlink" title="进程调度时机"></a>进程调度时机</h3>
+    </div>
+
+    
+    
+    
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center;">
+  <img id="wechat_subscriber_qcode" src="/" alt="Lucifinil wechat" style="width: 200px; max-width: 100%;">
+  <div>扫码关注我噢~</div>
+</div>
+
+      
+        
+      
+        <div id="reward-container">
+  <div>我这么可爱不给我投个币嘛~~ 有帮助的话可以打赏路路噢~~</div>
+  <button id="reward-button" disable="enable" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+        
+      
+      <div style="display: inline-block">
+        <img src="/images/wechatpay.jpg" alt="Lucifinil 微信支付">
+        <p>微信支付</p>
+      </div>
+        
+      
+      <div style="display: inline-block">
+        <img src="/images/alipay.jpg" alt="Lucifinil 支付宝">
+        <p>支付宝</p>
+      </div>
+
+  </div>
+</div>
+
+      
+
+      <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+              
+                <a href="/2020/04/14/spring-cloud-项目/" rel="next" title="spring cloud 项目">
+                  <i class="fa fa-chevron-left"></i> spring cloud 项目
+                </a>
+              
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+              
+            </div>
+          </div>
+        
+      </footer>
+    
+  </div>
+  
+  
+  
+  </article>
+
+  </div>
+
+
+          </div>
+          
+    
+    <div class="comments" id="comments"></div>
+  
+
+        </div>
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+        
+        
+        
+        
+      
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#操作系统的特征"><span class="nav-number">1.</span> <span class="nav-text">操作系统的特征</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#操作系统的发展和分类"><span class="nav-number">2.</span> <span class="nav-text">操作系统的发展和分类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#操作系统的几个发展阶段"><span class="nav-number">2.1.</span> <span class="nav-text">操作系统的几个发展阶段</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#内核态-用户态"><span class="nav-number">3.</span> <span class="nav-text">内核态 用户态</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PSW程序状态寄存器：标识cpu处理器状态—–-0为用户态，1为核心态"><span class="nav-number">4.</span> <span class="nav-text">PSW程序状态寄存器：标识cpu处理器状态—– 0为用户态，1为核心态</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-内核程序：-可以执行特权指令，也可以执行非特权指令；程序在核心态运行"><span class="nav-number">5.</span> <span class="nav-text">2.内核程序： 可以执行特权指令，也可以执行非特权指令；程序在核心态运行</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#注：原语是一种特殊的程序，是最接近硬件的部分，原语这种程序的运行具有原子性（一旦执行就会执行完，不会中断）"><span class="nav-number">6.</span> <span class="nav-text">注：原语是一种特殊的程序，是最接近硬件的部分，原语这种程序的运行具有原子性（一旦执行就会执行完，不会中断）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#中断和异常"><span class="nav-number">7.</span> <span class="nav-text">中断和异常</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#系统调用"><span class="nav-number">8.</span> <span class="nav-text">系统调用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#进程"><span class="nav-number">9.</span> <span class="nav-text">进程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#进程的定义，组成，组织方式，特征"><span class="nav-number">9.1.</span> <span class="nav-text">进程的定义，组成，组织方式，特征</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#进程状态"><span class="nav-number">9.2.</span> <span class="nav-text">进程状态</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#进程控制"><span class="nav-number">9.3.</span> <span class="nav-text">进程控制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#进程通信"><span class="nav-number">9.4.</span> <span class="nav-text">进程通信</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#线程和多线程模型"><span class="nav-number">10.</span> <span class="nav-text">线程和多线程模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#null"><span class="nav-number">11.</span> <span class="nav-text"></span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#处理机调度"><span class="nav-number">12.</span> <span class="nav-text">处理机调度</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#调度基础知识"><span class="nav-number">12.1.</span> <span class="nav-text">调度基础知识</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#进程调度时机"><span class="nav-number">12.2.</span> <span class="nav-text">进程调度时机</span></a></li></ol></li></ol></div>
+        
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image"
+      src="/images/touxiang1.jpg"
+      alt="Lucifinil">
+  <p class="site-author-name" itemprop="name">Lucifinil</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+  <nav class="site-state motion-element">
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">20</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
+          
+            <a href="/categories/">
+          
+        
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">分类</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-tags">
+        
+          
+            <a href="/tags/">
+          
+        
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">标签</span>
+        </a>
+      </div>
+    
+  </nav>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="https://github.com/Lucifinil-x" title="GitHub &rarr; https://github.com/Lucifinil-x" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+    
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="https://weibo.com/2890499315/profile?rightmod=1&wvr=6&mod=personinfo&is_all=1" title="weibo &rarr; https://weibo.com/2890499315/profile?rightmod=1&wvr=6&mod=personinfo&is_all=1" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>weibo</a>
+      </span>
+    
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title">
+      <i class="fa fa-fw fa-link"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="http://Lucifinil.com/" title="http://Lucifinil.com/" rel="noopener" target="_blank">Lucifinil</a>
+        </li>
+      
+    </ul>
+  </div>
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+      
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Lucifinil</span>
+</div>
+
+<!--
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0</div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.4.0</div>-->
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-user"></i>
+    </span>
+    <span class="site-uv" title="总访客量">
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+    <span class="post-meta-divider">|</span>
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-eye"></i>
+    </span>
+    <span class="site-pv" title="总访问量">
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+
+
+  <script src="/lib/anime.min.js?v=3.1.0"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+<script src="/js/utils.js?v=7.4.0"></script><script src="/js/motion.js?v=7.4.0"></script>
+<script src="/js/schemes/pisces.js?v=7.4.0"></script>
+<script src="/js/next-boot.js?v=7.4.0"></script>
+
+    
+  
+    
+  
+
+  <script>
+  (function() {
+    window.addEventListener('DOMContentLoaded', () => {
+      let script = document.createElement('script');
+      script.src = '/lib/three/three.min.js';
+      document.body.appendChild(script);
+    });
+    let styles = ['/lib/three/three-waves.min.js', '', '/lib/three/canvas_sphere.min.js'];
+    window.addEventListener('load', () => {
+      styles.forEach(item => {
+        if (item !== '') {
+          let script = document.createElement('script');
+          script.src = item;
+          document.body.appendChild(script);
+        }
+      });
+    });
+  })();
+  </script>
+
+
+  
+
+
+
+
+
+
+
+
+  <script src="/js/local-search.js?v=7.4.0"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+
+<script>
+NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail,link';
+  guest = guest.split(',').filter(item => {
+    return GUEST.includes(item);
+  });
+  new Valine({
+    el: '#comments',
+    verify: false,
+    notify: false,
+    appId: 'oDY3PgVcs4KquzU5ExfpRIvL-gzGzoHsz',
+    appKey: 'TfeAqOOA3dvfY8DgjnBCdFUI',
+    placeholder: 'Just go go',
+    avatar: 'mm',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: false,
+    lang: '' || 'zh-cn',
+    path: location.pathname
+  });
+}, window.Valine);
+</script>
+
+</body>
+</html>
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/clicklove.js"></script>

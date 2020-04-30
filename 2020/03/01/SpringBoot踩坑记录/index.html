@@ -65,10 +65,12 @@
 <meta property="og:site_name" content="Sanctuary">
 <meta property="og:description" content="代码对比完全一致，callback页面404，且控制台不打印 血的教训：所有java包和类放在启动类所在的包里，否则run不运行这些类，但控制台不报错。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-04-15T21:15:26.807Z">
+<meta property="og:image" content="https://lucifinil-x.github.io/images/%E5%A4%96%E5%8D%96%E7%82%B9%E9%A4%90%E7%B3%BB%E7%BB%9F/4-16-port1.png">
+<meta property="og:updated_time" content="2020-04-30T09:49:40.376Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SpringBoot踩坑记录">
 <meta name="twitter:description" content="代码对比完全一致，callback页面404，且控制台不打印 血的教训：所有java包和类放在启动类所在的包里，否则run不运行这些类，但控制台不报错。">
+<meta name="twitter:image" content="https://lucifinil-x.github.io/images/%E5%A4%96%E5%8D%96%E7%82%B9%E9%A4%90%E7%B3%BB%E7%BB%9F/4-16-port1.png">
   <link rel="canonical" href="https://lucifinil-x.github.io/2020/03/01/SpringBoot踩坑记录/">
 
 
@@ -282,7 +284,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-04-16 05:15:26" itemprop="dateModified" datetime="2020-04-16T05:15:26+08:00">2020-04-16</time>
+                <time title="修改时间：2020-04-30 17:49:40" itemprop="dateModified" datetime="2020-04-30T17:49:40+08:00">2020-04-30</time>
               </span>
             
           
@@ -292,7 +294,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/springboot-踩坑记录/" itemprop="url" rel="index"><span itemprop="name">springboot 踩坑记录</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/springboot-踩坑记录/" itemprop="url" rel="index"><span itemprop="name">springboot - 踩坑记录</span></a></span>
 
                 
                 
@@ -384,15 +386,29 @@
         //在登录后点击添加时，就会进入授权逻辑
         filterMap.put(&quot;/add&quot;, &quot;perms[user:add]&quot;);</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">修改为</span><br></pre></td></tr></table></figure>
 
-<p>filterMap.put(“/test”, “anon”);<br>            filterMap.put(“/login”, “anon”);<br>            //授权过滤器，登录过的user在add页面需要拿到add页面的授权才能访问<br>            //在登录后点击添加时，就会进入授权逻辑<br>            filterMap.put(“/add”, “perms[user:add]”);<br>            filterMap.put(“/*”, “authc”);<br>```</p>
-<h2 id="一直标红其他代码没有问题"><a href="#一直标红其他代码没有问题" class="headerlink" title="一直标红其他代码没有问题"></a>一直标红其他代码没有问题</h2><ul>
-<li>删掉，重新自动添加方法就不红了。</li>
-<li>还是爆红，运行了没报错，不报红了</li>
+<p>filterMap.put(“/test”, “anon”);<br>            filterMap.put(“/login”, “anon”);<br>            //授权过滤器，登录过的user在add页面需要拿到add页面的授权才能访问<br>            //在登录后点击添加时，就会进入授权逻辑<br>            filterMap.put(“/add”, “perms[user:add]”);<br>            filterMap.put(“/*”, “authc”);</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">## 一直标红其他代码没有问题</span><br><span class="line">- 删掉，重新自动添加方法就不红了。</span><br><span class="line">- 还是爆红，运行了没报错，不报红了</span><br><span class="line"></span><br><span class="line">## 报错 sql syntax error</span><br><span class="line">- sql语句 select xx from 中间没有逗号</span><br><span class="line">- 其他的部分大小写</span><br><span class="line">- 整数类型写int</span><br><span class="line"></span><br><span class="line">## 报错 server.port获取不到 ；还没有安全修改办法</span><br><span class="line">- 把server.port 改成 server:port</span><br></pre></td></tr></table></figure>
+
+<p>@Value(“${server:port}”)<br>    private String port;<br>```</p>
+<ul>
+<li>配置文件中 项目名大小写写错了一个</li>
+<li>但是就不是配的8080了，变成8080,而且这个页面获取不到端口号<br><img src="/images/%E5%A4%96%E5%8D%96%E7%82%B9%E9%A4%90%E7%B3%BB%E7%BB%9F/4-16-port1.png" alt="eureka"></li>
 </ul>
-<h2 id="报错-sql-syntax-error"><a href="#报错-sql-syntax-error" class="headerlink" title="报错 sql syntax error"></a>报错 sql syntax error</h2><ul>
-<li>sql语句 select xx from 中间没有逗号</li>
-<li>其他的部分大小写</li>
-<li>整数类型写int</li>
+<h2 id="mysql-mybities数据库连接报错"><a href="#mysql-mybities数据库连接报错" class="headerlink" title="mysql,mybities数据库连接报错"></a>mysql,mybities数据库连接报错</h2><ul>
+<li>控制台报错If you have database settings to be loaded from a particular profile you may need to activate it (no profiles are curren)</li>
+<li>项目启动类上加@SpringBootApplication(exclude={DataSourceAutoConfiguration.class})</li>
+<li>因为menu的数据库配置代码在configServer中，现在还没有连接成功 ，暂时不知道数据库的问题</li>
+</ul>
+<h2 id="Data-cannot-be-resolved-to-a-type-标红"><a href="#Data-cannot-be-resolved-to-a-type-标红" class="headerlink" title="@Data cannot be resolved to a type 标红"></a>@Data cannot be resolved to a type 标红</h2><ul>
+<li>因为没有lombok的包</li>
+<li>解决：鼠标移动到标红 选最下面fix project setup 选择lombok的包</li>
+<li>这样是在maven仓库中新加入lombok的包，就能在项目中导入包，就好了</li>
+</ul>
+<h2 id="报错Unsatisfied-dependency-expressed-through-field-‘menuRepo’"><a href="#报错Unsatisfied-dependency-expressed-through-field-‘menuRepo’" class="headerlink" title="报错Unsatisfied dependency expressed through field ‘menuRepo’"></a>报错Unsatisfied dependency expressed through field ‘menuRepo’</h2><ul>
+<li>这个是controller类中注入实现接口功能时的报错</li>
+<li>检查步奏：1.启动类@MapperScan(“com.xx.xx”)<pre><code>2.pom
+3.配置文件[这个不会标红，很多都是这里单词什么的写错了]
+还没解决。</code></pre></li>
 </ul>
 
     </div>
@@ -514,7 +530,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#代码对比完全一致，callback页面404，且控制台不打印"><span class="nav-number">1.</span> <span class="nav-text">代码对比完全一致，callback页面404，且控制台不打印</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#报错-BeanFactory"><span class="nav-number">2.</span> <span class="nav-text">报错 BeanFactory</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#local网页自动跳转到我印象中没有写的页面toLogin"><span class="nav-number">3.</span> <span class="nav-text">local网页自动跳转到我印象中没有写的页面toLogin</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#整合mybits实现用户登录，连接sql数据库。网页输入时控制台报错"><span class="nav-number">4.</span> <span class="nav-text">整合mybits实现用户登录，连接sql数据库。网页输入时控制台报错</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#报错-mysql-access-deny-for-找了很久的报错"><span class="nav-number">4.1.</span> <span class="nav-text">报错 mysql access deny for 找了很久的报错</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#测试mysql数据库密码：搜索mysql会出来mysql的命令行打开就是要输入password"><span class="nav-number">4.2.</span> <span class="nav-text">测试mysql数据库密码：搜索mysql会出来mysql的命令行打开就是要输入password</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#控制台提示：Loading-class-com-mysql-jdbc-Driver-39-This-is-deprecated-The-new-driver-class-iscom-mysql-cj-jdbc-Driver’"><span class="nav-number">4.3.</span> <span class="nav-text">控制台提示：Loading class com.mysql.jdbc.Driver&#39;. This is deprecated. The new driver class iscom.mysql.cj.jdbc.Driver’.</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#报错com-alibaba-druid-pool-DruidDataSource-create-connection-error"><span class="nav-number">4.4.</span> <span class="nav-text">报错com.alibaba.druid.pool.DruidDataSource: create connection error</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#一直标红其他代码没有问题"><span class="nav-number">5.</span> <span class="nav-text">一直标红其他代码没有问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#报错-sql-syntax-error"><span class="nav-number">6.</span> <span class="nav-text">报错 sql syntax error</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#代码对比完全一致，callback页面404，且控制台不打印"><span class="nav-number">1.</span> <span class="nav-text">代码对比完全一致，callback页面404，且控制台不打印</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#报错-BeanFactory"><span class="nav-number">2.</span> <span class="nav-text">报错 BeanFactory</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#local网页自动跳转到我印象中没有写的页面toLogin"><span class="nav-number">3.</span> <span class="nav-text">local网页自动跳转到我印象中没有写的页面toLogin</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#整合mybits实现用户登录，连接sql数据库。网页输入时控制台报错"><span class="nav-number">4.</span> <span class="nav-text">整合mybits实现用户登录，连接sql数据库。网页输入时控制台报错</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#报错-mysql-access-deny-for-找了很久的报错"><span class="nav-number">4.1.</span> <span class="nav-text">报错 mysql access deny for 找了很久的报错</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#测试mysql数据库密码：搜索mysql会出来mysql的命令行打开就是要输入password"><span class="nav-number">4.2.</span> <span class="nav-text">测试mysql数据库密码：搜索mysql会出来mysql的命令行打开就是要输入password</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#控制台提示：Loading-class-com-mysql-jdbc-Driver-39-This-is-deprecated-The-new-driver-class-iscom-mysql-cj-jdbc-Driver’"><span class="nav-number">4.3.</span> <span class="nav-text">控制台提示：Loading class com.mysql.jdbc.Driver&#39;. This is deprecated. The new driver class iscom.mysql.cj.jdbc.Driver’.</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#报错com-alibaba-druid-pool-DruidDataSource-create-connection-error"><span class="nav-number">4.4.</span> <span class="nav-text">报错com.alibaba.druid.pool.DruidDataSource: create connection error</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#mysql-mybities数据库连接报错"><span class="nav-number">5.</span> <span class="nav-text">mysql,mybities数据库连接报错</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Data-cannot-be-resolved-to-a-type-标红"><span class="nav-number">6.</span> <span class="nav-text">@Data cannot be resolved to a type 标红</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#报错Unsatisfied-dependency-expressed-through-field-‘menuRepo’"><span class="nav-number">7.</span> <span class="nav-text">报错Unsatisfied dependency expressed through field ‘menuRepo’</span></a></li></ol></div>
         
       </div>
       <!--/noindex-->
@@ -532,7 +548,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">19</span>
+          <span class="site-state-item-count">20</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -545,7 +561,7 @@
             <a href="/categories/">
           
         
-        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-count">12</span>
         <span class="site-state-item-name">分类</span>
         </a>
       </div>

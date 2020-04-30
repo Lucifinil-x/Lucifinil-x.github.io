@@ -65,7 +65,7 @@
 <meta property="og:description" content="外面点餐系统项目需求 客户端： 针对普通用户，用户登录，用户退出，菜品订购，我的订单 后台管理系统：针对管理员，管理员登录，管理员退出，添加菜品，查询菜品，修改菜品，删除菜品，订单处理，添加用户，查询用户，删除用户">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://lucifinil-x.github.io/images/%E5%A4%96%E5%8D%96%E7%82%B9%E9%A4%90%E7%B3%BB%E7%BB%9F/4-16-%E9%80%BB%E8%BE%91%E5%9B%BE.png">
-<meta property="og:updated_time" content="2020-04-15T21:15:30.051Z">
+<meta property="og:updated_time" content="2020-04-30T09:49:37.728Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="spring cloud 项目">
 <meta name="twitter:description" content="外面点餐系统项目需求 客户端： 针对普通用户，用户登录，用户退出，菜品订购，我的订单 后台管理系统：针对管理员，管理员登录，管理员退出，添加菜品，查询菜品，修改菜品，删除菜品，订单处理，添加用户，查询用户，删除用户">
@@ -283,7 +283,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-04-16 05:15:30" itemprop="dateModified" datetime="2020-04-16T05:15:30+08:00">2020-04-16</time>
+                <time title="修改时间：2020-04-30 17:49:37" itemprop="dateModified" datetime="2020-04-30T17:49:37+08:00">2020-04-30</time>
               </span>
             
           
@@ -355,7 +355,8 @@
 
 </li>
 </ul>
-<h4 id="以下为未能启动的子项目，现在已经新建了starter项目才能启动，内容添加和下面一致"><a href="#以下为未能启动的子项目，现在已经新建了starter项目才能启动，内容添加和下面一致" class="headerlink" title="以下为未能启动的子项目，现在已经新建了starter项目才能启动，内容添加和下面一致"></a>以下为未能启动的子项目，现在已经新建了starter项目才能启动，内容添加和下面一致</h4><ul>
+<h4 id="写eurekaserver配置"><a href="#写eurekaserver配置" class="headerlink" title="写eurekaserver配置"></a>写eurekaserver配置</h4><p>以下为未能启动的子项目，现在已经新建了starter项目才能启动，内容添加和下面一致</p>
+<ul>
 <li><p>在总项目中创建maven module，他会出来一个文件夹和一个同名并列的项目，右键文件夹有一个go to project “registration”<br>以下编辑在下面的项目中添加, 会同步到总项目中的同名文件夹（所有文件都同步了，只是文件夹有点多）</p>
 </li>
 <li><p>registration子项目中添加依赖： pom.xml</p>
@@ -369,7 +370,45 @@
 
 </li>
 </ul>
-<h3 id="第三步-子项目configServer"><a href="#第三步-子项目configServer" class="headerlink" title="第三步 子项目configServer"></a>第三步 子项目configServer</h3><h3 id="第四步-子项目order"><a href="#第四步-子项目order" class="headerlink" title="第四步 子项目order"></a>第四步 子项目order</h3><p>pom.xml 中有一个视频上是config 我的自动加的的config-server</p>
+<h3 id="第三步-子项目configServer"><a href="#第三步-子项目configServer" class="headerlink" title="第三步 子项目configServer"></a>第三步 子项目configServer</h3><h3 id="第四步-创建服务提供者-子项目order"><a href="#第四步-创建服务提供者-子项目order" class="headerlink" title="第四步 创建服务提供者 子项目order"></a>第四步 创建服务提供者 子项目order</h3><p>pom.xml 中有一个视频上是config 我的自动加的的config-server</p>
+<h3 id="第五步-测试启动"><a href="#第五步-测试启动" class="headerlink" title="第五步 测试启动"></a>第五步 测试启动</h3><p>先启动注册中心eureka,配置中心comfig,服务提供者order menu</p>
+<h2 id="第二章-创建服务提供者-menu子项目"><a href="#第二章-创建服务提供者-menu子项目" class="headerlink" title="第二章 创建服务提供者 menu子项目"></a>第二章 创建服务提供者 menu子项目</h2><h3 id="第一步-创建-配置pom"><a href="#第一步-创建-配置pom" class="headerlink" title="第一步 创建+配置pom"></a>第一步 创建+配置pom</h3><ul>
+<li><p>创建时添加依赖：mybatis-spring-boot-starter；spring-boot-starter-web；spring-cloud-starter-config（让他读取配置中心的配置文件）；mysql-connector-java（mysql版本可以写最新的，能兼容老版本）；spring-cloud-starter-netflix-eureka-client（让他在注册中心进行注册，让他成为一个服务）</p>
+</li>
+<li><p>有mysql mybatis的依赖，需要在配置文件中加入数据库的连接信息<br>在configServer子项目中的menu-dev.yml加mydql信息</p>
+</li>
+</ul>
+<h3 id="第二步-复制order里的bootstrap-yml配置文件-改name"><a href="#第二步-复制order里的bootstrap-yml配置文件-改name" class="headerlink" title="第二步 复制order里的bootstrap.yml配置文件 改name"></a>第二步 复制order里的bootstrap.yml配置文件 改name</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">spring:</span><br><span class="line">  application:</span><br><span class="line">    name: menu</span><br><span class="line">  profiles:</span><br><span class="line">    active: dev #这里是整合到在configServer里面的order-dev.yml</span><br><span class="line">  cloud:</span><br><span class="line">    config:</span><br><span class="line">      uri: http://localhost:8762   #configServer的端口号 注意是uri不是url</span><br><span class="line">      fail-fast: true</span><br></pre></td></tr></table></figure>
+
+<h3 id="第三步-configServer中添加menu的配置文件"><a href="#第三步-configServer中添加menu的配置文件" class="headerlink" title="第三步 configServer中添加menu的配置文件"></a>第三步 configServer中添加menu的配置文件</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">server:</span><br><span class="line">  port: 8020</span><br><span class="line">spring:</span><br><span class="line">  application:</span><br><span class="line">    name: menu</span><br><span class="line">  datasource:</span><br><span class="line">    name: orderingsystem</span><br><span class="line">    url: jdbc:mysql://localhost/orderingsystem?serverTimezone=UTC</span><br><span class="line">    username: root</span><br><span class="line">    password: zhangcaiyun</span><br><span class="line">    driver-class-name: com.mysql.cj.jdbc.Driver</span><br><span class="line">    type: com.alibaba.druid.pool.DruidDataSource</span><br><span class="line">eureka:</span><br><span class="line">  client:</span><br><span class="line">    server-url:</span><br><span class="line">      defaultZone: http://localhost:8761/eureka/</span><br><span class="line">  instance:</span><br><span class="line">    prefer-ip-address: true</span><br></pre></td></tr></table></figure>
+
+<h3 id="目前问题"><a href="#目前问题" class="headerlink" title="目前问题"></a>目前问题</h3><ul>
+<li><a href="http://localhost:8020/menu/index访问不到" target="_blank" rel="noopener">http://localhost:8020/menu/index访问不到</a></li>
+<li><a href="http://localhost:8020/访问不到" target="_blank" rel="noopener">http://localhost:8020/访问不到</a></li>
+<li>configServer中配置文件没有连接上</li>
+</ul>
+<h3 id="第四步-复制sql语句去数据库中创建-更新表格"><a href="#第四步-复制sql语句去数据库中创建-更新表格" class="headerlink" title="第四步 复制sql语句去数据库中创建+更新表格"></a>第四步 复制sql语句去数据库中创建+更新表格</h3><h3 id="第五步-menu中关联数据库中的那几张表"><a href="#第五步-menu中关联数据库中的那几张表" class="headerlink" title="第五步 menu中关联数据库中的那几张表"></a>第五步 menu中关联数据库中的那几张表</h3><h4 id="Menu表"><a href="#Menu表" class="headerlink" title="Menu表"></a>Menu表</h4><h5 id="entity包中写Menu表格的实体类：Menu"><a href="#entity包中写Menu表格的实体类：Menu" class="headerlink" title="entity包中写Menu表格的实体类：Menu"></a>entity包中写Menu表格的实体类：Menu</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">import lombok.Data;</span><br><span class="line"></span><br><span class="line">@Data</span><br><span class="line">public class Menu &#123;</span><br><span class="line"></span><br><span class="line">	private long id;</span><br><span class="line">	private String name;</span><br><span class="line">	private double price;</span><br><span class="line">	private String flavor;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="repository包中写Menu的接口（dao层）：MenuRepo"><a href="#repository包中写Menu的接口（dao层）：MenuRepo" class="headerlink" title="repository包中写Menu的接口（dao层）：MenuRepo"></a>repository包中写Menu的接口（dao层）：MenuRepo</h5><ul>
+<li>作用：定义操作数据库Menu表格的java方法<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">public interface MenuRepo &#123;</span><br><span class="line"></span><br><span class="line">	public List&lt;Menu&gt; findAll(); //查询全部数据</span><br><span class="line">	public int count(); //查询记录条数</span><br><span class="line">	public Menu findById(long id); //用主键id查找记录，返回Menu对象，记录都成为Menu对象中的属性值</span><br><span class="line">	public void save(Menu menu);</span><br><span class="line">	public void update(Menu menu);</span><br><span class="line">	public void delectById(long id);//用主键删掉记录</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h5 id="用mybtis的Mapper写MenuRepo接口的实现类：-Mapper-xml-包括MenuRepo-xml-TypeRepo-xml"><a href="#用mybtis的Mapper写MenuRepo接口的实现类：-Mapper-xml-包括MenuRepo-xml-TypeRepo-xml" class="headerlink" title="用mybtis的Mapper写MenuRepo接口的实现类： Mapper.xml(包括MenuRepo.xml,TypeRepo.xml)"></a>用mybtis的Mapper写MenuRepo接口的实现类： Mapper.xml(包括MenuRepo.xml,TypeRepo.xml)</h5><ul>
+<li><p>作用：实现作数据库Menu的接口方法的sql语句</p>
+</li>
+<li><p>resources路径下创建mapping文件夹：在同级文件夹上点击创建folder file</p>
+</li>
+<li><p>configServer中menu-dev配置文件中添加mybtis</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">mybatis:</span><br><span class="line">  mapper-locations: classpath:/mapping/*.xml</span><br><span class="line">  type-aliases-package: com.example.demo.entity </span><br><span class="line">  #提出menu下的entity包; 在mapping的xml文件中就不用再写包名</span><br></pre></td></tr></table></figure>
+</li>
+<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; ?&gt;</span><br><span class="line">&lt;!DOCTYPE mapper PUBLIC &quot;-//mybatis.org//DTD Mapper 3.0//EN&quot; &quot;http://mybatis.org/dtd/mybatis-3-mapper.dtd&quot;&gt;</span><br><span class="line">&lt;mapper namespace=&quot;com.southwind.repository.MenuRepository&quot;&gt;</span><br><span class="line"></span><br><span class="line">  &lt;resultMap id=&quot;menuMap&quot; type=&quot;Menu&quot;&gt;</span><br><span class="line">    &lt;id property=&quot;id&quot; column=&quot;mid&quot;/&gt;</span><br><span class="line">    &lt;result property=&quot;name&quot; column=&quot;mname&quot;/&gt;</span><br><span class="line">    &lt;result property=&quot;author&quot; column=&quot;author&quot;/&gt;</span><br><span class="line">    &lt;result property=&quot;price&quot; column=&quot;price&quot;/&gt;</span><br><span class="line">    &lt;result property=&quot;flavor&quot; column=&quot;flavor&quot;/&gt;</span><br><span class="line">    &lt;!-- 映射type --&gt;</span><br><span class="line">    &lt;association property=&quot;type&quot; javaType=&quot;Type&quot;&gt;</span><br><span class="line">      &lt;id property=&quot;id&quot; column=&quot;tid&quot;/&gt;</span><br><span class="line">      &lt;result property=&quot;name&quot; column=&quot;tname&quot;/&gt;</span><br><span class="line">    &lt;/association&gt;</span><br><span class="line">  &lt;/resultMap&gt;</span><br><span class="line"></span><br><span class="line">    &lt;select id=&quot;findAll&quot; resultMap=&quot;menuMap&quot;&gt;</span><br><span class="line">    select m.id mid,m.name mname,m.price,m.flavor,t.id tid,t.name tname from t_menu m,t_type t where m.tid = t.id order by mid limit #&#123;param1&#125;,#&#123;param2&#125;</span><br><span class="line">  &lt;/select&gt;</span><br><span class="line"></span><br><span class="line">  &lt;select id=&quot;count&quot; resultType=&quot;int&quot;&gt;</span><br><span class="line">    select count(*) from t_menu;</span><br><span class="line">  &lt;/select&gt;</span><br><span class="line"></span><br><span class="line">  &lt;insert id=&quot;save&quot; parameterType=&quot;Menu&quot;&gt;</span><br><span class="line">    insert into t_menu(name,price,flavor,tid) values(#&#123;name&#125;,#&#123;price&#125;,#&#123;flavor&#125;,#&#123;type.id&#125;)</span><br><span class="line">  &lt;/insert&gt;</span><br><span class="line"></span><br><span class="line">  &lt;select id=&quot;findById&quot; resultMap=&quot;menuMap&quot;&gt;</span><br><span class="line">    select id mid,name mname,price,flavor,tid from t_menu where id = #&#123;id&#125;</span><br><span class="line">  &lt;/select&gt;</span><br><span class="line"></span><br><span class="line">  &lt;update id=&quot;update&quot; parameterType=&quot;Menu&quot;&gt;</span><br><span class="line">    update t_menu set name = #&#123;name&#125;,price = #&#123;price&#125;,flavor = #&#123;flavor&#125;,tid = #&#123;type.id&#125; where id = #&#123;id&#125;</span><br><span class="line">  &lt;/update&gt;</span><br><span class="line"></span><br><span class="line">  &lt;delete id=&quot;deleteById&quot; parameterType=&quot;long&quot;&gt;</span><br><span class="line">    delete from t_menu where id = #&#123;id&#125;</span><br><span class="line">  &lt;/delete&gt;</span><br><span class="line">&lt;/mapper&gt;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h5 id="启动类添加注解-MapperScan-“com-example-demo-repository”"><a href="#启动类添加注解-MapperScan-“com-example-demo-repository”" class="headerlink" title="启动类添加注解@MapperScan(“com.example.demo.repository”)"></a>启动类添加注解@MapperScan(“com.example.demo.repository”)</h5><ul>
+<li>这是mybits的功能，在启动时把mapper.xml文件扫描进容器。容器中注入后就会有MenuRepo接口对象</li>
+</ul>
 
     </div>
 
@@ -425,6 +464,10 @@
 
             <div class="post-nav-prev post-nav-item">
               
+                <a href="/2020/04/24/操作系统中文版/" rel="prev" title="操作系统原理中文版">
+                  操作系统原理中文版 <i class="fa fa-chevron-right"></i>
+                </a>
+              
             </div>
           </div>
         
@@ -475,7 +518,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#外面点餐系统项目需求"><span class="nav-number">1.</span> <span class="nav-text">外面点餐系统项目需求</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#功能拆分"><span class="nav-number">1.1.</span> <span class="nav-text">功能拆分</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第一章微服务环境搭建"><span class="nav-number">2.</span> <span class="nav-text">第一章微服务环境搭建</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#第一步-写pom-xml-添加依赖"><span class="nav-number">2.1.</span> <span class="nav-text">第一步 写pom.xml 添加依赖</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第二步-项目中创建注册中心模块-一个子项目-：-eurekaserver"><span class="nav-number">2.2.</span> <span class="nav-text">第二步 项目中创建注册中心模块(一个子项目)： eurekaserver</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#以下为未能启动的子项目，现在已经新建了starter项目才能启动，内容添加和下面一致"><span class="nav-number">2.2.1.</span> <span class="nav-text">以下为未能启动的子项目，现在已经新建了starter项目才能启动，内容添加和下面一致</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第三步-子项目configServer"><span class="nav-number">2.3.</span> <span class="nav-text">第三步 子项目configServer</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第四步-子项目order"><span class="nav-number">2.4.</span> <span class="nav-text">第四步 子项目order</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#外面点餐系统项目需求"><span class="nav-number">1.</span> <span class="nav-text">外面点餐系统项目需求</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#功能拆分"><span class="nav-number">1.1.</span> <span class="nav-text">功能拆分</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第一章微服务环境搭建"><span class="nav-number">2.</span> <span class="nav-text">第一章微服务环境搭建</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#第一步-写pom-xml-添加依赖"><span class="nav-number">2.1.</span> <span class="nav-text">第一步 写pom.xml 添加依赖</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第二步-项目中创建注册中心模块-一个子项目-：-eurekaserver"><span class="nav-number">2.2.</span> <span class="nav-text">第二步 项目中创建注册中心模块(一个子项目)： eurekaserver</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#写eurekaserver配置"><span class="nav-number">2.2.1.</span> <span class="nav-text">写eurekaserver配置</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第三步-子项目configServer"><span class="nav-number">2.3.</span> <span class="nav-text">第三步 子项目configServer</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第四步-创建服务提供者-子项目order"><span class="nav-number">2.4.</span> <span class="nav-text">第四步 创建服务提供者 子项目order</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第五步-测试启动"><span class="nav-number">2.5.</span> <span class="nav-text">第五步 测试启动</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第二章-创建服务提供者-menu子项目"><span class="nav-number">3.</span> <span class="nav-text">第二章 创建服务提供者 menu子项目</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#第一步-创建-配置pom"><span class="nav-number">3.1.</span> <span class="nav-text">第一步 创建+配置pom</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第二步-复制order里的bootstrap-yml配置文件-改name"><span class="nav-number">3.2.</span> <span class="nav-text">第二步 复制order里的bootstrap.yml配置文件 改name</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第三步-configServer中添加menu的配置文件"><span class="nav-number">3.3.</span> <span class="nav-text">第三步 configServer中添加menu的配置文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#目前问题"><span class="nav-number">3.4.</span> <span class="nav-text">目前问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第四步-复制sql语句去数据库中创建-更新表格"><span class="nav-number">3.5.</span> <span class="nav-text">第四步 复制sql语句去数据库中创建+更新表格</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第五步-menu中关联数据库中的那几张表"><span class="nav-number">3.6.</span> <span class="nav-text">第五步 menu中关联数据库中的那几张表</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Menu表"><span class="nav-number">3.6.1.</span> <span class="nav-text">Menu表</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#entity包中写Menu表格的实体类：Menu"><span class="nav-number">3.6.1.1.</span> <span class="nav-text">entity包中写Menu表格的实体类：Menu</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#repository包中写Menu的接口（dao层）：MenuRepo"><span class="nav-number">3.6.1.2.</span> <span class="nav-text">repository包中写Menu的接口（dao层）：MenuRepo</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#用mybtis的Mapper写MenuRepo接口的实现类：-Mapper-xml-包括MenuRepo-xml-TypeRepo-xml"><span class="nav-number">3.6.1.3.</span> <span class="nav-text">用mybtis的Mapper写MenuRepo接口的实现类： Mapper.xml(包括MenuRepo.xml,TypeRepo.xml)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#启动类添加注解-MapperScan-“com-example-demo-repository”"><span class="nav-number">3.6.1.4.</span> <span class="nav-text">启动类添加注解@MapperScan(“com.example.demo.repository”)</span></a></li></ol></li></ol></li></ol></li></ol></div>
         
       </div>
       <!--/noindex-->
@@ -493,7 +536,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">19</span>
+          <span class="site-state-item-count">20</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -506,7 +549,7 @@
             <a href="/categories/">
           
         
-        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-count">12</span>
         <span class="site-state-item-name">分类</span>
         </a>
       </div>
