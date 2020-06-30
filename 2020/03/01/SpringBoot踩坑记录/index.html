@@ -66,7 +66,7 @@
 <meta property="og:description" content="代码对比完全一致，callback页面404，且控制台不打印 血的教训：所有java包和类放在启动类所在的包里，否则run不运行这些类，但控制台不报错。">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://lucifinil-x.github.io/images/%E5%A4%96%E5%8D%96%E7%82%B9%E9%A4%90%E7%B3%BB%E7%BB%9F/4-16-port1.png">
-<meta property="og:updated_time" content="2020-04-30T09:55:02.061Z">
+<meta property="og:updated_time" content="2020-06-24T20:16:12.157Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SpringBoot踩坑记录">
 <meta name="twitter:description" content="代码对比完全一致，callback页面404，且控制台不打印 血的教训：所有java包和类放在启动类所在的包里，否则run不运行这些类，但控制台不报错。">
@@ -284,7 +284,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-04-30 17:55:02" itemprop="dateModified" datetime="2020-04-30T17:55:02+08:00">2020-04-30</time>
+                <time title="修改时间：2020-06-25 04:16:12" itemprop="dateModified" datetime="2020-06-25T04:16:12+08:00">2020-06-25</time>
               </span>
             
           
@@ -408,7 +408,17 @@
 <li>这个是controller类中注入实现接口功能时的报错</li>
 <li>检查步奏：1.启动类@MapperScan(“com.xx.xx”)<pre><code>2.pom
 3.配置文件[这个不会标红，很多都是这里单词什么的写错了]
-还没解决。</code></pre></li>
+还没解决</code></pre></li>
+</ul>
+<h2 id="代码生成器运行报错：Access-denied-for-user-‘root’-’localhost’-using-password-YES"><a href="#代码生成器运行报错：Access-denied-for-user-‘root’-’localhost’-using-password-YES" class="headerlink" title="代码生成器运行报错：Access denied for user ‘root’@’localhost’ (using password: YES)"></a>代码生成器运行报错：Access denied for user ‘root’@’localhost’ (using password: YES)</h2><ul>
+<li>一定是密码错误</li>
+<li>原因：代码生成器中没有改mysql的密码。只改了用户名和数据库名。</li>
+</ul>
+<h2 id="Error-creating-bean-with-name-‘xxxxxController’"><a href="#Error-creating-bean-with-name-‘xxxxxController’" class="headerlink" title="Error creating bean with name ‘xxxxxController’"></a>Error creating bean with name ‘xxxxxController’</h2><p><a href="https://blog.csdn.net/qq_38701478/article/details/88808628?utm_medium=distribute.pc_relevant_t0.none-task-blog-BlogCommendFromMachineLearnPai2-1.nonecase&amp;depth_1-utm_source=distribute.pc_relevant_t0.none-task-blog-BlogCommendFromMachineLearnPai2-1.nonecase" target="_blank" rel="noopener">https://blog.csdn.net/qq_38701478/article/details/88808628?utm_medium=distribute.pc_relevant_t0.none-task-blog-BlogCommendFromMachineLearnPai2-1.nonecase&amp;depth_1-utm_source=distribute.pc_relevant_t0.none-task-blog-BlogCommendFromMachineLearnPai2-1.nonecase</a></p>
+<ul>
+<li>我的问题是/vueblog/src/main/java/com/example/demo/config/MybatisPlusConfig.java复制过来没有改@MapperScan(“com.example.demo.mapper”)</li>
+<li>教训：不要质疑代码生成器给的类的注解。</li>
+<li>另外注意：UserService类上不加注解；UserServiceImpl类上加@Service注解</li>
 </ul>
 
     </div>
@@ -530,7 +540,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#代码对比完全一致，callback页面404，且控制台不打印"><span class="nav-number">1.</span> <span class="nav-text">代码对比完全一致，callback页面404，且控制台不打印</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#报错-BeanFactory"><span class="nav-number">2.</span> <span class="nav-text">报错 BeanFactory</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#local网页自动跳转到我印象中没有写的页面toLogin"><span class="nav-number">3.</span> <span class="nav-text">local网页自动跳转到我印象中没有写的页面toLogin</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#整合mybits实现用户登录，连接sql数据库。网页输入时控制台报错"><span class="nav-number">4.</span> <span class="nav-text">整合mybits实现用户登录，连接sql数据库。网页输入时控制台报错</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#报错-mysql-access-deny-for-找了很久的报错"><span class="nav-number">4.1.</span> <span class="nav-text">报错 mysql access deny for 找了很久的报错</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#测试mysql数据库密码：搜索mysql会出来mysql的命令行打开就是要输入password"><span class="nav-number">4.2.</span> <span class="nav-text">测试mysql数据库密码：搜索mysql会出来mysql的命令行打开就是要输入password</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#控制台提示：Loading-class-com-mysql-jdbc-Driver-39-This-is-deprecated-The-new-driver-class-iscom-mysql-cj-jdbc-Driver’"><span class="nav-number">4.3.</span> <span class="nav-text">控制台提示：Loading class com.mysql.jdbc.Driver&#39;. This is deprecated. The new driver class iscom.mysql.cj.jdbc.Driver’.</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#报错com-alibaba-druid-pool-DruidDataSource-create-connection-error"><span class="nav-number">4.4.</span> <span class="nav-text">报错com.alibaba.druid.pool.DruidDataSource: create connection error</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#mysql-mybities数据库连接报错"><span class="nav-number">5.</span> <span class="nav-text">mysql,mybities数据库连接报错</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Data-cannot-be-resolved-to-a-type-标红"><span class="nav-number">6.</span> <span class="nav-text">@Data cannot be resolved to a type 标红</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#报错Unsatisfied-dependency-expressed-through-field-‘menuRepo’"><span class="nav-number">7.</span> <span class="nav-text">报错Unsatisfied dependency expressed through field ‘menuRepo’</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#代码对比完全一致，callback页面404，且控制台不打印"><span class="nav-number">1.</span> <span class="nav-text">代码对比完全一致，callback页面404，且控制台不打印</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#报错-BeanFactory"><span class="nav-number">2.</span> <span class="nav-text">报错 BeanFactory</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#local网页自动跳转到我印象中没有写的页面toLogin"><span class="nav-number">3.</span> <span class="nav-text">local网页自动跳转到我印象中没有写的页面toLogin</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#整合mybits实现用户登录，连接sql数据库。网页输入时控制台报错"><span class="nav-number">4.</span> <span class="nav-text">整合mybits实现用户登录，连接sql数据库。网页输入时控制台报错</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#报错-mysql-access-deny-for-找了很久的报错"><span class="nav-number">4.1.</span> <span class="nav-text">报错 mysql access deny for 找了很久的报错</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#测试mysql数据库密码：搜索mysql会出来mysql的命令行打开就是要输入password"><span class="nav-number">4.2.</span> <span class="nav-text">测试mysql数据库密码：搜索mysql会出来mysql的命令行打开就是要输入password</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#控制台提示：Loading-class-com-mysql-jdbc-Driver-39-This-is-deprecated-The-new-driver-class-iscom-mysql-cj-jdbc-Driver’"><span class="nav-number">4.3.</span> <span class="nav-text">控制台提示：Loading class com.mysql.jdbc.Driver&#39;. This is deprecated. The new driver class iscom.mysql.cj.jdbc.Driver’.</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#报错com-alibaba-druid-pool-DruidDataSource-create-connection-error"><span class="nav-number">4.4.</span> <span class="nav-text">报错com.alibaba.druid.pool.DruidDataSource: create connection error</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#mysql-mybities数据库连接报错"><span class="nav-number">5.</span> <span class="nav-text">mysql,mybities数据库连接报错</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Data-cannot-be-resolved-to-a-type-标红"><span class="nav-number">6.</span> <span class="nav-text">@Data cannot be resolved to a type 标红</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#报错Unsatisfied-dependency-expressed-through-field-‘menuRepo’"><span class="nav-number">7.</span> <span class="nav-text">报错Unsatisfied dependency expressed through field ‘menuRepo’</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码生成器运行报错：Access-denied-for-user-‘root’-’localhost’-using-password-YES"><span class="nav-number">8.</span> <span class="nav-text">代码生成器运行报错：Access denied for user ‘root’@’localhost’ (using password: YES)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Error-creating-bean-with-name-‘xxxxxController’"><span class="nav-number">9.</span> <span class="nav-text">Error creating bean with name ‘xxxxxController’</span></a></li></ol></div>
         
       </div>
       <!--/noindex-->
@@ -548,7 +558,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">22</span>
+          <span class="site-state-item-count">26</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -561,7 +571,7 @@
             <a href="/categories/">
           
         
-        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-count">9</span>
         <span class="site-state-item-name">分类</span>
         </a>
       </div>
