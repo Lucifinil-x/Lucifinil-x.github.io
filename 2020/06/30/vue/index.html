@@ -57,17 +57,17 @@
   };
 </script>
 
-  <meta name="description" content="前期准备当前文件夹中打开windows powershellc窗口 注意 只是邮件是看不到这个的，要用shift+右键 但是直接这样就报错：无法加载文件 C:\Users\A\AppData\Roaming\npm\vue.ps1，因为在此系统上禁止运行脚本 需要修改权限。搜素powershell,然后执行：set-ExecutionPolicy RemoteSigned；查看执行策略：get-E">
+  <meta name="description" content="启动vue项目 cmd到项目路径 d: cd D:\vue博客项目\vueblog然后 npm run serve">
 <meta property="og:type" content="article">
 <meta property="og:title" content="vue">
 <meta property="og:url" content="https://lucifinil-x.github.io/2020/06/30/vue/index.html">
 <meta property="og:site_name" content="Sanctuary">
-<meta property="og:description" content="前期准备当前文件夹中打开windows powershellc窗口 注意 只是邮件是看不到这个的，要用shift+右键 但是直接这样就报错：无法加载文件 C:\Users\A\AppData\Roaming\npm\vue.ps1，因为在此系统上禁止运行脚本 需要修改权限。搜素powershell,然后执行：set-ExecutionPolicy RemoteSigned；查看执行策略：get-E">
+<meta property="og:description" content="启动vue项目 cmd到项目路径 d: cd D:\vue博客项目\vueblog然后 npm run serve">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-06-29T21:13:53.022Z">
+<meta property="og:updated_time" content="2020-07-01T18:58:16.877Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="vue">
-<meta name="twitter:description" content="前期准备当前文件夹中打开windows powershellc窗口 注意 只是邮件是看不到这个的，要用shift+右键 但是直接这样就报错：无法加载文件 C:\Users\A\AppData\Roaming\npm\vue.ps1，因为在此系统上禁止运行脚本 需要修改权限。搜素powershell,然后执行：set-ExecutionPolicy RemoteSigned；查看执行策略：get-E">
+<meta name="twitter:description" content="启动vue项目 cmd到项目路径 d: cd D:\vue博客项目\vueblog然后 npm run serve">
   <link rel="canonical" href="https://lucifinil-x.github.io/2020/06/30/vue/">
 
 
@@ -270,11 +270,19 @@
                 
               
 
-              <time title="创建时间：2020-06-30 01:32:18 / 修改时间：05:13:53" itemprop="dateCreated datePublished" datetime="2020-06-30T01:32:18+08:00">2020-06-30</time>
+              <time title="创建时间：2020-06-30 01:32:18" itemprop="dateCreated datePublished" datetime="2020-06-30T01:32:18+08:00">2020-06-30</time>
             </span>
           
             
 
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-07-02 02:58:16" itemprop="dateModified" datetime="2020-07-02T02:58:16+08:00">2020-07-02</time>
+              </span>
             
           
 
@@ -311,7 +319,16 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="前期准备"><a href="#前期准备" class="headerlink" title="前期准备"></a>前期准备</h2><h3 id="当前文件夹中打开windows-powershellc窗口"><a href="#当前文件夹中打开windows-powershellc窗口" class="headerlink" title="当前文件夹中打开windows powershellc窗口"></a>当前文件夹中打开windows powershellc窗口</h3><ul>
+        <h2 id="启动vue项目"><a href="#启动vue项目" class="headerlink" title="启动vue项目"></a>启动vue项目</h2><ul>
+<li>cmd到项目路径 d: cd D:\vue博客项目\vueblog<br>然后 npm run serve</li>
+</ul><a id="more"></a>
+<h2 id="启动顺序"><a href="#启动顺序" class="headerlink" title="启动顺序"></a>启动顺序</h2><ol>
+<li>vueblog后端springbootapp</li>
+<li>cmd1命令行启动vue前端项目</li>
+<li>cmd2命令行cd到 C:\redis 然后运行 redis-server.exe redis.windows.conf</li>
+<li>cmd3命令行cd到 C:\redis 然后运行 redis-cli.exe -h 127.0.0.1 -p 6379 就能连接到redis远程服务端127.0.0.1:6379<br>(注意cmd23要一起打开)</li>
+</ol>
+<h2 id="前期准备"><a href="#前期准备" class="headerlink" title="前期准备"></a>前期准备</h2><h3 id="当前文件夹中打开windows-powershellc窗口"><a href="#当前文件夹中打开windows-powershellc窗口" class="headerlink" title="当前文件夹中打开windows powershellc窗口"></a>当前文件夹中打开windows powershellc窗口</h3><ul>
 <li>注意 只是邮件是看不到这个的，要用shift+右键</li>
 <li>但是直接这样就报错：无法加载文件 C:\Users\A\AppData\Roaming\npm\vue.ps1，因为在此系统上禁止运行脚本</li>
 <li>需要修改权限。搜素powershell,然后执行：set-ExecutionPolicy RemoteSigned；查看执行策略：get-ExecutionPolicy</li>
@@ -319,7 +336,7 @@
 <li>查看vue的命令列表中没有ui这个命令 vue -h 必须要安装3.0以上的，老师给的代码安装的是2.9</li>
 <li>1.$npm uninstall vue-cli -g      //卸载vue-cli旧版本<br>2.$npm install -g @vue/cli      //安装新版本<br>3.$npm vue -V                   //查看版本<br>3.vue -h //查看vue cli安装的版本中有什么命令</li>
 <li>解决博客<a href="https://blog.csdn.net/Demo__/article/details/89404235" target="_blank" rel="noopener">https://blog.csdn.net/Demo__/article/details/89404235</a></li>
-</ul><a id="more"></a>
+</ul>
 <h3 id="eclipse中加入vue插件"><a href="#eclipse中加入vue插件" class="headerlink" title="eclipse中加入vue插件"></a>eclipse中加入vue插件</h3><ul>
 <li>安装报错Unable to read repository at <a href="http://downloads.genuitec.com/downloads/products/codemix/updates/cm20200407/plugins/pack.core.win_3.6.0.202001241725.jar" target="_blank" rel="noopener">http://downloads.genuitec.com/downloads/products/codemix/updates/cm20200407/plugins/pack.core.win_3.6.0.202001241725.jar</a></li>
 <li>原因：网络不稳定</li>
@@ -333,9 +350,6 @@
 <h3 id="element-ui安装"><a href="#element-ui安装" class="headerlink" title="element-ui安装"></a>element-ui安装</h3><ul>
 <li>控制台vue项目文件夹路径下cnpm install element-ui –save</li>
 <li>项目中main.js 导入依赖之后就可以在项目中全局复制使用elementui的组件代码</li>
-</ul>
-<h2 id="启动vue项目"><a href="#启动vue项目" class="headerlink" title="启动vue项目"></a>启动vue项目</h2><ul>
-<li>cmd到项目路径 D:\vue博客项目\vueblog 然后 npm run serve</li>
 </ul>
 <h2 id="vue主要写的东西是些什么"><a href="#vue主要写的东西是些什么" class="headerlink" title="vue主要写的东西是些什么"></a>vue主要写的东西是些什么</h2><ul>
 <li><p>components 页面html 公共区域需要抽取出来的</p>
@@ -388,6 +402,25 @@
 <li><p>3.Form表单和验证规则(如果不填名字密码，在下方会有提示)<br>  只要用户名 密码 提交框(登录 重置)</p>
 </li>
 </ul>
+<h2 id="Header-vue"><a href="#Header-vue" class="headerlink" title="Header.vue"></a>Header.vue</h2><ul>
+<li>Header: 头部栏，写在这个vue里的都是头部栏里能看能点的东西</li>
+</ul>
+<h3 id="最上面"><a href="#最上面" class="headerlink" title="最上面"></a>最上面</h3><ul>
+<li>h3: 最上面的标题</li>
+<li>div-block: 标题下面的那个图片<br>参数：size:图片大小；src：user里的图片信息；div标签：图片下面的一行字(用户名)</li>
+</ul>
+<h3 id="头像下面的三个能跳转的链接"><a href="#头像下面的三个能跳转的链接" class="headerlink" title="头像下面的三个能跳转的链接"></a>头像下面的三个能跳转的链接</h3><ul>
+<li>主标签div class=”maction”</li>
+<li>主页<br>el-link:超链接标签； herf：跳转到的路径<br>el-divider:分开主页、发布文章、登录/退出的分割线； direction:分割线的方向(这里用的垂直)</li>
+<li>发表文章<br>span: 状态标签，这里没东西 可以不写<br>el-link:超链接标签； 链接的属性(名称-会对应不同的颜色)； herf：跳转到的路径 : disabled: 不能跳转的情况；<br>el-divider:分开主页、发布文章、登录/退出的分割线； direction:分割线的方向(这里用的垂直)</li>
+<li>登录/退出<br>span v-show:展示登录还是退出的条件<br>登录： el-link:超链接标签； type:链接的属性(名称-会对应不同的颜色)； herf：跳转到的路径<br>退出： el-link:超链接标签； type:链接的属性(名称-会对应不同的颜色)； @clink:这里是对应一个方法(写在下面的script标签里)</li>
+</ul>
+<h3 id="script"><a href="#script" class="headerlink" title="script"></a>script</h3><h4 id="methods"><a href="#methods" class="headerlink" title="methods"></a>methods</h4><ul>
+<li>这里写的是退出里的@clink=”logout”的方法。<br>简而言之：删掉用户信息，再回写除了密码之外的信息。<br>这里我们用的是jwt,后端的jwt是无状态的，没有存到redis里进行状态的处理。所有这里的退出可以直接把localstore里的信息删掉就行了，可以不请求后端。<br>如果后端的jwt token信息是有状态的，就需要去请求后端(用axios发起请求)。而且后端的Logout是需要授权的，这里就需要对headers进行配置，添加token信息(通过localstore获取)<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">heards:&#123;&quot;Authorization&quot;: Localstoreage.getItem(&quot;token&quot;) &#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<p>后端需要删除token信息和清除state状态信息，调用后端的REMOVE_INFO方法。然后用router跳转到/login界面。<br>清除之后要创建新的用户信息，写方法created():如果用户名不为空的时候，进行用户名、头像、登录状态的回写。</p>
 
     </div>
 
@@ -443,8 +476,8 @@
 
             <div class="post-nav-prev post-nav-item">
               
-                <a href="/2020/07/01/15-2vue-login提交404notfound解决/" rel="prev" title="15-2vue login提交404notfound解决">
-                  15-2vue login提交404notfound解决 <i class="fa fa-chevron-right"></i>
+                <a href="/2020/07/01/15-2vue-login提交404notfound解决/" rel="prev" title="15-2login提交404 15-3退出400不能到login页面">
+                  15-2login提交404 15-3退出400不能到login页面 <i class="fa fa-chevron-right"></i>
                 </a>
               
             </div>
@@ -497,7 +530,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前期准备"><span class="nav-number">1.</span> <span class="nav-text">前期准备</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#当前文件夹中打开windows-powershellc窗口"><span class="nav-number">1.1.</span> <span class="nav-text">当前文件夹中打开windows powershellc窗口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#eclipse中加入vue插件"><span class="nav-number">1.2.</span> <span class="nav-text">eclipse中加入vue插件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#eclipse导入已经创建好的vue项目"><span class="nav-number">1.3.</span> <span class="nav-text">eclipse导入已经创建好的vue项目</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#element-ui安装"><span class="nav-number">1.4.</span> <span class="nav-text">element-ui安装</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#启动vue项目"><span class="nav-number">2.</span> <span class="nav-text">启动vue项目</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#vue主要写的东西是些什么"><span class="nav-number">3.</span> <span class="nav-text">vue主要写的东西是些什么</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#vue文件"><span class="nav-number">4.</span> <span class="nav-text">.vue文件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#标签-直接写标签显示不出来"><span class="nav-number">4.1.</span> <span class="nav-text">标签(直接写标签显示不出来)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#注释"><span class="nav-number">4.2.</span> <span class="nav-text">注释</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#router"><span class="nav-number">5.</span> <span class="nav-text">router</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#import-所有页面组件"><span class="nav-number">5.1.</span> <span class="nav-text">import 所有页面组件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#path细节"><span class="nav-number">5.2.</span> <span class="nav-text">path细节</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#写-vue页面"><span class="nav-number">6.</span> <span class="nav-text">写.vue页面</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Login-vue"><span class="nav-number">6.1.</span> <span class="nav-text">Login.vue</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#启动vue项目"><span class="nav-number">1.</span> <span class="nav-text">启动vue项目</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#启动顺序"><span class="nav-number">2.</span> <span class="nav-text">启动顺序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#前期准备"><span class="nav-number">3.</span> <span class="nav-text">前期准备</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#当前文件夹中打开windows-powershellc窗口"><span class="nav-number">3.1.</span> <span class="nav-text">当前文件夹中打开windows powershellc窗口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#eclipse中加入vue插件"><span class="nav-number">3.2.</span> <span class="nav-text">eclipse中加入vue插件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#eclipse导入已经创建好的vue项目"><span class="nav-number">3.3.</span> <span class="nav-text">eclipse导入已经创建好的vue项目</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#element-ui安装"><span class="nav-number">3.4.</span> <span class="nav-text">element-ui安装</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#vue主要写的东西是些什么"><span class="nav-number">4.</span> <span class="nav-text">vue主要写的东西是些什么</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#vue文件"><span class="nav-number">5.</span> <span class="nav-text">.vue文件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#标签-直接写标签显示不出来"><span class="nav-number">5.1.</span> <span class="nav-text">标签(直接写标签显示不出来)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#注释"><span class="nav-number">5.2.</span> <span class="nav-text">注释</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#router"><span class="nav-number">6.</span> <span class="nav-text">router</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#import-所有页面组件"><span class="nav-number">6.1.</span> <span class="nav-text">import 所有页面组件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#path细节"><span class="nav-number">6.2.</span> <span class="nav-text">path细节</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#写-vue页面"><span class="nav-number">7.</span> <span class="nav-text">写.vue页面</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Login-vue"><span class="nav-number">7.1.</span> <span class="nav-text">Login.vue</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Header-vue"><span class="nav-number">8.</span> <span class="nav-text">Header.vue</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#最上面"><span class="nav-number">8.1.</span> <span class="nav-text">最上面</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#头像下面的三个能跳转的链接"><span class="nav-number">8.2.</span> <span class="nav-text">头像下面的三个能跳转的链接</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#script"><span class="nav-number">8.3.</span> <span class="nav-text">script</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#methods"><span class="nav-number">8.3.1.</span> <span class="nav-text">methods</span></a></li></ol></li></ol></li></ol></div>
         
       </div>
       <!--/noindex-->
