@@ -71,7 +71,7 @@
 <meta property="og:image" content="https://lucifinil-x.github.io/images/2020-2-28-01.png">
 <meta property="og:image" content="https://lucifinil-x.github.io/images/2020-2-28-02.png">
 <meta property="og:image" content="https://lucifinil-x.github.io/images/2020-3-2-01.png">
-<meta property="og:updated_time" content="2020-07-03T17:18:00.417Z">
+<meta property="og:updated_time" content="2020-07-04T17:41:24.354Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="springboot学习&#x2F;项目">
 <meta name="twitter:description" content="注解@XXX的理解 spring引入注解，让注解与java bean紧密结合，减少了配置文件（.xml文件）的体积，增加了java bean的可读性和内聚性。">
@@ -289,7 +289,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-07-04 01:18:00" itemprop="dateModified" datetime="2020-07-04T01:18:00+08:00">2020-07-04</time>
+                <time title="修改时间：2020-07-05 01:41:24" itemprop="dateModified" datetime="2020-07-05T01:41:24+08:00">2020-07-05</time>
               </span>
             
           
@@ -824,7 +824,7 @@ public String toString()
 <li>上面代码created()中初始化用户的信息，通过hasLogin的状态来控制登录和退出按钮的切换，以及发表文章链接的disabled，这样用户的信息就能展示出来了。</li>
 <li>退出逻辑：在methods中有个logout()方法，逻辑比较简单，直接访问/logout，因为之前axios.js中我们已经设置axios请求的baseURL，所以这里我们不再需要链接的前缀了哈。因为是登录之后才能访问的受限资源，所以在header中带上了Authorization。返回结果清除store中的用户信息和token信息，跳转到登录页面。</li>
 </ol>
-<h2 id="项目综述"><a href="#项目综述" class="headerlink" title="项目综述"></a>项目综述</h2><p>SpringBoot+vue的博客项目<br>基本功能：用户登录页面，用户退出，blog主页列表(element-ui样式)， blog详情页(markdown格式展示)，blog编辑/发表(markdown格式mavon-editor编辑器)<br>使用技术：SpringBoot作为基础框架，Mybatis Plus：让项目能完成基本的增删改查操作，省去自己写mapper、service, Shiro：权限校验、登录认证，Redis: 储存shiro的权限数据和会话信，jwt: 作为前后端分离的用户身份凭证；<br>vue项目使用：element-ui，axios，mavon-editor，markdown-it，github-markdown-css<br>功能逻辑：使用用户名密码登录axios发起请求，后端进行密码校验，如果正常，生成jwt，返回给用户。从返回的结果请求头中获取并提交token的信息跳转到blog主页列表。如果异常，全局异常捕获，页面弹窗异常信息。Blog主页做了页面头部将用户的信息展示出来，element-ui时间线样式做列表，还有分页。Blog详情页使用插件markdown-it将markdown格式的内容渲染展示出来。使用mavon-editor编辑器进行blog的编辑，点击按钮提交表单。</p>
+<h2 id="项目综述"><a href="#项目综述" class="headerlink" title="项目综述"></a>项目综述</h2><p>SpringBoot+vue的博客项目<br>基本功能：用户登录页面，用户退出，blog主页列表(element-ui样式)， blog详情页(markdown格式展示)，blog编辑/发表(markdown格式mavon-editor编辑器)<br>使用技术：SpringBoot作为基础框架，Mybatis Plus：让项目能完成基本的增删改查操作，省去自己写mapper、service, Shiro：权限校验、登录认证，Redis: 储存shiro的权限数据和会话信息，jwt: 作为前后端分离的用户身份凭证；<br>vue项目使用：element-ui，axios，mavon-editor，markdown-it，github-markdown-css<br>功能逻辑：使用用户名密码登录axios发起请求，后端进行密码校验，如果正常，生成jwt，返回给用户。从返回的结果请求头中获取并提交token的信息跳转到blog主页列表。如果异常，全局异常捕获，页面弹窗异常信息。Blog主页做了页面头部将用户的信息展示出来，element-ui时间线样式做列表，还有分页。Blog详情页使用插件markdown-it将markdown格式的内容渲染展示出来。使用mavon-editor编辑器进行blog的编辑，点击按钮提交表单。</p>
 
     </div>
 
@@ -946,7 +946,7 @@ public String toString()
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">27</span>
+          <span class="site-state-item-count">28</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
