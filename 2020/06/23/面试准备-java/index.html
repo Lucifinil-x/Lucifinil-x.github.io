@@ -64,7 +64,7 @@
 <meta property="og:site_name" content="Sanctuary">
 <meta property="og:description" content="String判断指向地址or值 只要记住一点！编译期决定 -&amp;gt; 一定指向常量池运行时决定(且不是intern()) -&amp;gt; 一定指向堆  编译期进入常量池： String a = “123”; “1”+”2”+”3”;运行期堆上分配： String b = new String(“123”); a+a+a;a==b判断的是指向的对象的地址，虽然a b对象的值相同，但是a指向常量池中对象的">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-07-04T21:59:30.814Z">
+<meta property="og:updated_time" content="2020-07-06T20:25:02.598Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="一些准备-java">
 <meta name="twitter:description" content="String判断指向地址or值 只要记住一点！编译期决定 -&amp;gt; 一定指向常量池运行时决定(且不是intern()) -&amp;gt; 一定指向堆  编译期进入常量池： String a = “123”; “1”+”2”+”3”;运行期堆上分配： String b = new String(“123”); a+a+a;a==b判断的是指向的对象的地址，虽然a b对象的值相同，但是a指向常量池中对象的">
@@ -281,7 +281,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-07-05 05:59:30" itemprop="dateModified" datetime="2020-07-05T05:59:30+08:00">2020-07-05</time>
+                <time title="修改时间：2020-07-07 04:25:02" itemprop="dateModified" datetime="2020-07-07T04:25:02+08:00">2020-07-07</time>
               </span>
             
           
@@ -346,8 +346,76 @@
 
 </li>
 </ul><a id="more"></a>
-<h2 id="Validate验证器"><a href="#Validate验证器" class="headerlink" title="Validate验证器"></a>Validate验证器</h2><h2 id="redis"><a href="#redis" class="headerlink" title="redis"></a>redis</h2><ol>
-<li><p>redis是什么？<br>redis是内存数据库，存放经常被访问的数据(热数据)。缓存中间件(有redisCacheManager)</p>
+<h2 id="Validate验证器"><a href="#Validate验证器" class="headerlink" title="Validate验证器"></a>Validate验证器</h2><h2 id="闲话"><a href="#闲话" class="headerlink" title="闲话"></a>闲话</h2><ol>
+<li>我认为我现在面对的是各个主体之间错综复杂的关系。我需要用逻辑去找到各个主体之间的联系与怎样联系。再找到主体之间的起始通路与终点。<br>就像是容器中的组件，一个连接另一个，一个注入另一个。<br>好的文章通过(作者的逻辑)带着我们从始到终，解释个体之间的联系。</li>
+</ol>
+<h2 id="HashMap"><a href="#HashMap" class="headerlink" title="HashMap"></a>HashMap</h2><ol>
+<li>hashmap在jdk1.7和jdk1.8版本的区别</li>
+</ol>
+<ul>
+<li>数据结构不同：</li>
+</ul>
+<p>1.7中的HashMap是数组+链表的结构 1.8中的HashMap是数组+链表+红黑树的结构</p>
+<ul>
+<li>链表插入方式不同：</li>
+</ul>
+<p>1.7使用的是头插法,头插法在进行扩容时存在线程安全问题导致链表死循环</p>
+<p>1.8使用的是尾插法</p>
+<ul>
+<li>扩容后重新计算索引的方式不同：</li>
+</ul>
+<p>1.7将会使用扩容后的大小重新与hash计算索引</p>
+<p>1.8会判断之前hash中需要加入计算索引位置是0还是1，是0则保持原位，1则在现在索引的基础上加上新增的容量则是计算后的索引</p>
+<ol start="2">
+<li><p>什么时候创建数组？为什么？<br>数组是在map.put(key,value )的时候创建的。<br>数组并不是在new HashMap对象的时候创建的,因为创建对象就会在堆内存里占用连续的内存空间</p>
+</li>
+<li><p>数组+链表的结构怎么存放键值对数据？<br>Put进键值对时，是在hashmap的16格(0-15)中加入键值对，当新加入的键值对所在的数组格子位置里有值的时候，就会和格子里的键值对形成链表，这个叫做hash冲突。<br>数组查询时间复杂度是O(1),链表查询复杂度是O(n).<br>所以要提高查询效率，就要减少链表的长度，当数组容量使用超过16x0.75时，就会进行数组扩容，减少hash冲突，提高查询效率。</p>
+</li>
+</ol>
+<ol start="4">
+<li><p>什么时候引入红黑树？是为了什么？<br>当链表长度大于8时，如果数组容量超过64，数组格子里的链表结构转换为红黑树<br>如果数组容量小于64，只会进行数组扩容<br>引入红黑树为了增加查询效率<br>时间复杂度变成对数阶O(log2n)</p>
+</li>
+<li><p>怎么确定键值对在数组中的位置？<br>key的hash值与数组最大索引进行与运算</p>
+</li>
+<li><p>hashmap存储过程=hashmap的工作原理？</p>
+</li>
+</ol>
+<ul>
+<li>根据key计算一个hash值</li>
+<li>在put时判断数组是否存在，如果不存在调用resize()创建默认容量为16的数组</li>
+<li>key的hash值与数组最大索引进行位运算(与运算)，确定node在数组中的位置</li>
+<li>判断该位置是否有元素，如果没有元素，会新建一个node放在该位置；如果有元素，判断key是否完全相同，吧原来的node赋值给一个变量</li>
+<li>此时再判断该node的位置是红黑树还是链表</li>
+<li>如果是红黑树，以红黑树的方式将node放在红黑树上(特别的二叉树)</li>
+<li>如果是链表，尾插法：遍历链表，将node放在最后一位</li>
+<li>放完以后，就要判断当链表长度大于8时，如果数组容量超过64，数组格子里的链表结构转换为红黑树；如果数组容量小于64，只会进行数组扩容</li>
+<li>返回被覆盖的值</li>
+<li>判断整个数组是否需要扩容</li>
+</ul>
+<ol start="7">
+<li><p>hashmap的扩容为什么每次都是2次幂？<br>减少hash碰撞</p>
+</li>
+<li><p>hashmap的线程安全问题发生在哪个阶段？<br>线程安全问题产生的原因：多个线程访问同一个资源。<br>发生在put放值(链表/红黑树放结点)进行判断的时候，p.next=newNode().<br>多个线程都进来了，newNode()在赋值的时候就会漏点。</p>
+</li>
+<li><p>如何解决线程安全问题？<br>concurrentHashMap就是使用锁分段技术专门用来实现线程安全的<br>底层采用分段的数组+链表实现，线程安全。<br>ConcurrentHashMap是使用了锁分段技术来保证线程安全的。</p>
+</li>
+</ol>
+<p>锁分段技术：首先将数据分成一段一段的存储，然后给每一段数据配一把锁，当一个线程占用锁访问其中一个段数据的时候，其他段的数据也能被其他线程访问。</p>
+<ol start="10">
+<li>位运算有哪些？<br>左移 0011-&gt;0110<br>右移 0110-&gt;0011<br>或运算 一真则真<br>与运算 一假则假<br>按位取反 1变0<br>异或运算 相同为0 不同为1</li>
+</ol>
+<h2 id="同步"><a href="#同步" class="headerlink" title="同步"></a>同步</h2><ol>
+<li>cynchronized关键字保证同步，同步代码块和同步函数的区别？<br>同步函数: 用this作锁，因为函数必须被对象调用；线程任务只需要一个同步时可以用。<br>同步代码块： 任意对象作锁；线程任务需要多个同步 时，必须用不同的锁来区分。</li>
+</ol>
+<p>所以同步代码块比较常用。</p>
+<ol start="2">
+<li><p>饿汉式和懒汉式<br>饿汉式不会有多线程并发问题，在类创建的同时就已经创建好一个静态的对象供系统使用,以后不在改变。<br>懒汉式在线程任务中new对象，并发访问就有安全隐患，应该加入同步机制解决安全问题。</p>
+</li>
+<li><p>一个线程不能多次start，会报错.IllegalThreadStateException</p>
+</li>
+</ol>
+<h2 id="redis"><a href="#redis" class="headerlink" title="redis"></a>redis</h2><ol>
+<li><p>redis是什么？<br>redis是内存数据库(key-value 非关系型 没有SQL)，存放经常被访问的数据(热数据)。缓存中间件(有redisCacheManager)<br>单进程单线程模型的KV数据库。<br>value的类型：string,list,hash,set,sorted set.<br>但是规避set操作，会影响性能</p>
 </li>
 <li><p>在你的项目中redis是如何运用的？</p>
 </li>
@@ -358,8 +426,11 @@
 <li><p>现在是用redis来存储shiro的权限数据和会话信息(Session会话管理是shiro的作用之一，体现在ShiroConfig中的SessionManager函数)。</p>
 </li>
 </ul>
-<h2 id="闲话"><a href="#闲话" class="headerlink" title="闲话"></a>闲话</h2><ol>
-<li>我认为我现在面对的是各个主体之间错综复杂的关系。我需要用逻辑去找到各个主体之间的联系与怎样联系。再找到主体之间的起始通路与终点。<br>就像是容器中的组件，一个连接另一个，一个注入另一个。<br>好的文章通过(作者的逻辑)带着我们从始到终，解释个体之间的联系。</li>
+<ol start="3">
+<li><p>磁盘寻址：毫秒级别，慢<br>内存寻址：纳秒级别，快<br>文件存储是线性的，文件读取就要把文件从头开始全部读一遍。<br>文件读取是全量IO,磁盘IO. 磁盘IO:百兆级别100mb</p>
+</li>
+<li><p>缓存穿透<br>用户一直发起请求查找缓存(redis)和数据库中都没有的数据,导致每次请求都要mysql数据库中查找，流量大的时候mysql数据库就挂了</p>
+</li>
 </ol>
 <h2 id="apache-shiro"><a href="#apache-shiro" class="headerlink" title="apache shiro"></a>apache shiro</h2><ol>
 <li><p>shiro是什么？<br>shiro是强大且易用的java安全框架，执行 身份验证(登录)、授权、会话管理、密码学。</p>
@@ -401,7 +472,10 @@
 </li>
 <li>写shiro进行登录或者权限校验的逻辑类AccountRealm：<br>重写3个方法，分别是：<br>supports：为了让realm支持jwt的凭证校验<br>doGetAuthorizationInfo：权限校验<br>doGetAuthenticationInfo：登录认证校验 -拿到需要验证的token，解析token拿到用户id,根据id去拿到用户对象，判断用户状态。将登陆成功的用户对象中的信息复制到profile对象中，然后返回一个登录成功(已认证)的用户信息载体对象SimpleAuthenticationInfo)(shiro里的)</li>
 </ul>
-<h2 id="用户登录信息-Session-shiro-redis"><a href="#用户登录信息-Session-shiro-redis" class="headerlink" title="用户登录信息-Session-shiro-redis"></a>用户登录信息-Session-shiro-redis</h2><p>小小总结：用户登录信息存放在Session中；Session被shiro管理；shiro的信息(权限数据、会话管理信息)存放在redis中。</p>
+<ol start="6">
+<li><h2 id="用户登录信息-Session-shiro-redis"><a href="#用户登录信息-Session-shiro-redis" class="headerlink" title="用户登录信息-Session-shiro-redis"></a>用户登录信息-Session-shiro-redis</h2><p>小小总结：用户登录信息存放在Session中；Session被shiro管理；shiro的信息(权限数据、会话管理信息)存放在redis中。</p>
+</li>
+</ol>
 <p>将shiro内部构建展示出来，上面这些连接变成了：<br>用户登录信息-Session-subject-securitymanager-redis-realm-mysql</p>
 <h2 id="jwt"><a href="#jwt" class="headerlink" title="jwt"></a>jwt</h2><ol>
 <li>jwt的构成 = 加密header+加密payload+加密signature 这三个拼在一起的字符串</li>
@@ -456,6 +530,8 @@
 </li>
 <li><p>session在服务器端由谁来管理？存在哪里？<br>session由shiro来管理，shiro六大作用之一就是Session会话管理。在ShiroConfig(shiro配置类)中就有会话管理对应的函数-SessionManager.</p>
 </li>
+<li><p>现在用cookie和session吗？<br>前后端没分离的时候用cookie和session来验证用户的真实性；<br>现在前后端分离了，我们使用shiro这个安全框架来规定用户的操作，使用token和jwt来验证用户的真实性。</p>
+</li>
 </ol>
 <h2 id="MySQL"><a href="#MySQL" class="headerlink" title="MySQL"></a>MySQL</h2><ol>
 <li><p>分布式数据库是什么？<br>分布式数据库是指数据在物理上分布而逻辑上集中管理的数据库系统。</p>
@@ -472,6 +548,18 @@
 <li>数据结点：存数据。</li>
 <li>SQL结点： 对外提供SQL功能。</li>
 </ul>
+<ol start="5">
+<li><p>mysql的索引是什么？<br>索引是数据结构。<br>MySQL数据库支持多种索引类型，如BTree索引，哈希索引，全文索引等等。</p>
+</li>
+<li><p>mysql怎么提高速度的？<br>用分治和索引。<br>分治:将数据分成一格一格的。<br>索引是一个排序的列表，在这个列表中存储着索引的值和包含这个值的数据所在行的物理地址。</p>
+</li>
+<li><p>mysql的索引类型？<br>1、主键索引：即主索引，根据主键pk_clolum（length）建立索引，不允许重复，不允许空值；<br>ALTER TABLE ‘table_name’ ADD PRIMARY KEY pk_index(‘col’)；</p>
+</li>
+</ol>
+<p>2、唯一索引：用来建立索引的列的值必须是唯一的，允许空值<br>ALTER TABLE ‘table_name’ ADD UNIQUE index_name(‘col’)；</p>
+<p>3、普通索引：用表中的普通列构建的索引，没有任何限制<br>ALTER TABLE ‘table_name’ ADD INDEX index_name(‘col’)；</p>
+<p>4、全文索引：用大文本对象的列构建的索引<br>ALTER TABLE ‘table_name’ ADD FULLTEXT INDEX ft_index(‘col’)；</p>
+<p>5、组合索引：用多个列组合构建的索引，这多个列中的值不允许有空值<br>ALTER TABLE ‘table_name’ ADD INDEX index_name(‘col1’,’col2’,’col3’)；</p>
 
     </div>
 
@@ -575,7 +663,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#String"><span class="nav-number">1.</span> <span class="nav-text">String</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#判断指向地址or值"><span class="nav-number">1.1.</span> <span class="nav-text">判断指向地址or值</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Validate验证器"><span class="nav-number">2.</span> <span class="nav-text">Validate验证器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#redis"><span class="nav-number">3.</span> <span class="nav-text">redis</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#闲话"><span class="nav-number">4.</span> <span class="nav-text">闲话</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#apache-shiro"><span class="nav-number">5.</span> <span class="nav-text">apache shiro</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#用户登录信息-Session-shiro-redis"><span class="nav-number">6.</span> <span class="nav-text">用户登录信息-Session-shiro-redis</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#jwt"><span class="nav-number">7.</span> <span class="nav-text">jwt</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Cookie和Session"><span class="nav-number">8.</span> <span class="nav-text">Cookie和Session</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MySQL"><span class="nav-number">9.</span> <span class="nav-text">MySQL</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#String"><span class="nav-number">1.</span> <span class="nav-text">String</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#判断指向地址or值"><span class="nav-number">1.1.</span> <span class="nav-text">判断指向地址or值</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Validate验证器"><span class="nav-number">2.</span> <span class="nav-text">Validate验证器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#闲话"><span class="nav-number">3.</span> <span class="nav-text">闲话</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HashMap"><span class="nav-number">4.</span> <span class="nav-text">HashMap</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#同步"><span class="nav-number">5.</span> <span class="nav-text">同步</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#redis"><span class="nav-number">6.</span> <span class="nav-text">redis</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#apache-shiro"><span class="nav-number">7.</span> <span class="nav-text">apache shiro</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#用户登录信息-Session-shiro-redis"><span class="nav-number">8.</span> <span class="nav-text">用户登录信息-Session-shiro-redis</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#jwt"><span class="nav-number">9.</span> <span class="nav-text">jwt</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Cookie和Session"><span class="nav-number">10.</span> <span class="nav-text">Cookie和Session</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MySQL"><span class="nav-number">11.</span> <span class="nav-text">MySQL</span></a></li></ol></div>
         
       </div>
       <!--/noindex-->

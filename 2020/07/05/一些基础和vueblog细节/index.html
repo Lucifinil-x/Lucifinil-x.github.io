@@ -57,17 +57,17 @@
   };
 </script>
 
-  <meta name="description" content="apache shiro shiro是什么？shiro是强大且易用的java安全框架，执行 身份验证(登录)、授权、会话管理、密码学。  shiro的六大作用是什么？">
+  <meta name="description" content="HashMap hashmap在jdk1.7和jdk1.8版本的区别  数据结构不同： 1.7中的HashMap是数组+链表的结构 1.8中的HashMap是数组+链表+红黑树的结构">
 <meta property="og:type" content="article">
 <meta property="og:title" content="一些基础和vueblog细节">
 <meta property="og:url" content="https://lucifinil-x.github.io/2020/07/05/一些基础和vueblog细节/index.html">
 <meta property="og:site_name" content="Sanctuary">
-<meta property="og:description" content="apache shiro shiro是什么？shiro是强大且易用的java安全框架，执行 身份验证(登录)、授权、会话管理、密码学。  shiro的六大作用是什么？">
+<meta property="og:description" content="HashMap hashmap在jdk1.7和jdk1.8版本的区别  数据结构不同： 1.7中的HashMap是数组+链表的结构 1.8中的HashMap是数组+链表+红黑树的结构">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-07-04T21:59:19.163Z">
+<meta property="og:updated_time" content="2020-07-06T20:26:00.611Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="一些基础和vueblog细节">
-<meta name="twitter:description" content="apache shiro shiro是什么？shiro是强大且易用的java安全框架，执行 身份验证(登录)、授权、会话管理、密码学。  shiro的六大作用是什么？">
+<meta name="twitter:description" content="HashMap hashmap在jdk1.7和jdk1.8版本的区别  数据结构不同： 1.7中的HashMap是数组+链表的结构 1.8中的HashMap是数组+链表+红黑树的结构">
   <link rel="canonical" href="https://lucifinil-x.github.io/2020/07/05/一些基础和vueblog细节/">
 
 
@@ -270,11 +270,19 @@
                 
               
 
-              <time title="创建时间：2020-07-05 05:11:07 / 修改时间：05:59:19" itemprop="dateCreated datePublished" datetime="2020-07-05T05:11:07+08:00">2020-07-05</time>
+              <time title="创建时间：2020-07-05 05:11:07" itemprop="dateCreated datePublished" datetime="2020-07-05T05:11:07+08:00">2020-07-05</time>
             </span>
           
             
 
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-07-07 04:26:00" itemprop="dateModified" datetime="2020-07-07T04:26:00+08:00">2020-07-07</time>
+              </span>
             
           
 
@@ -311,12 +319,67 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="apache-shiro"><a href="#apache-shiro" class="headerlink" title="apache shiro"></a>apache shiro</h2><ol>
+        <h2 id="HashMap"><a href="#HashMap" class="headerlink" title="HashMap"></a>HashMap</h2><ol>
+<li>hashmap在jdk1.7和jdk1.8版本的区别</li>
+</ol><ul>
+<li>数据结构不同：</li>
+</ul><p>1.7中的HashMap是数组+链表的结构 1.8中的HashMap是数组+链表+红黑树的结构</p><a id="more"></a>
+
+
+<ul>
+<li>链表插入方式不同：</li>
+</ul>
+<p>1.7使用的是头插法,头插法在进行扩容时存在线程安全问题导致链表死循环</p>
+<p>1.8使用的是尾插法</p>
+<ul>
+<li>扩容后重新计算索引的方式不同：</li>
+</ul>
+<p>1.7将会使用扩容后的大小重新与hash计算索引</p>
+<p>1.8会判断之前hash中需要加入计算索引位置是0还是1，是0则保持原位，1则在现在索引的基础上加上新增的容量则是计算后的索引</p>
+<ol start="2">
+<li><p>什么时候创建数组？为什么？<br>数组是在map.put(key,value )的时候创建的。<br>数组并不是在new HashMap对象的时候创建的,因为创建对象就会在堆内存里占用连续的内存空间</p>
+</li>
+<li><p>数组+链表的结构怎么存放键值对数据？<br>Put进键值对时，是在hashmap的16格(0-15)中加入键值对，当新加入的键值对所在的数组格子位置里有值的时候，就会和格子里的键值对形成链表，这个叫做hash冲突。<br>数组查询时间复杂度是O(1),链表查询复杂度是O(n).<br>所以要提高查询效率，就要减少链表的长度，当数组容量使用超过16x0.75时，就会进行数组扩容，减少hash冲突，提高查询效率。</p>
+</li>
+</ol>
+<ol start="4">
+<li><p>什么时候引入红黑树？是为了什么？<br>当链表长度大于8时，如果数组容量超过64，数组格子里的链表结构转换为红黑树<br>如果数组容量小于64，只会进行数组扩容<br>引入红黑树为了增加查询效率<br>时间复杂度变成对数阶O(log2n)</p>
+</li>
+<li><p>怎么确定键值对在数组中的位置？<br>key的hash值与数组最大索引进行与运算</p>
+</li>
+<li><p>hashmap存储过程=hashmap的工作原理？</p>
+</li>
+</ol>
+<ul>
+<li>根据key计算一个hash值</li>
+<li>在put时判断数组是否存在，如果不存在调用resize()创建默认容量为16的数组</li>
+<li>key的hash值与数组最大索引进行位运算(与运算)，确定node在数组中的位置</li>
+<li>判断该位置是否有元素，如果没有元素，会新建一个node放在该位置；如果有元素，判断key是否完全相同，吧原来的node赋值给一个变量</li>
+<li>此时再判断该node的位置是红黑树还是链表</li>
+<li>如果是红黑树，以红黑树的方式将node放在红黑树上(特别的二叉树)</li>
+<li>如果是链表，尾插法：遍历链表，将node放在最后一位</li>
+<li>放完以后，就要判断当链表长度大于8时，如果数组容量超过64，数组格子里的链表结构转换为红黑树；如果数组容量小于64，只会进行数组扩容</li>
+<li>返回被覆盖的值</li>
+<li>判断整个数组是否需要扩容</li>
+</ul>
+<ol start="7">
+<li><p>hashmap的扩容为什么每次都是2次幂？<br>减少hash碰撞</p>
+</li>
+<li><p>hashmap的线程安全问题发生在哪个阶段？<br>线程安全问题产生的原因：多个线程访问同一个资源。<br>发生在put放值(链表/红黑树放结点)进行判断的时候，p.next=newNode().<br>多个线程都进来了，newNode()在赋值的时候就会漏点。</p>
+</li>
+<li><p>如何解决线程安全问题？<br>concurrentHashMap就是使用锁分段技术专门用来实现线程安全的<br>底层采用分段的数组+链表实现，线程安全。<br>ConcurrentHashMap是使用了锁分段技术来保证线程安全的。</p>
+</li>
+</ol>
+<p>锁分段技术：首先将数据分成一段一段的存储，然后给每一段数据配一把锁，当一个线程占用锁访问其中一个段数据的时候，其他段的数据也能被其他线程访问。</p>
+<ol start="10">
+<li>位运算有哪些？<br>左移 0011-&gt;0110<br>右移 0110-&gt;0011<br>或运算 一真则真<br>与运算 一假则假<br>按位取反 1变0<br>异或运算 相同为0 不同为1</li>
+</ol>
+<h2 id="apache-shiro"><a href="#apache-shiro" class="headerlink" title="apache shiro"></a>apache shiro</h2><ol>
 <li><p>shiro是什么？<br>shiro是强大且易用的java安全框架，执行 身份验证(登录)、授权、会话管理、密码学。</p>
 </li>
 <li><p>shiro的六大作用是什么？</p>
 </li>
-</ol><a id="more"></a>
+</ol>
 <ul>
 <li>Authentication 认证 -用户登录</li>
 <li>Authorization 授权 -给用户哪些权限</li>
@@ -521,7 +584,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#apache-shiro"><span class="nav-number">1.</span> <span class="nav-text">apache shiro</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#用户登录信息-Session-shiro-redis"><span class="nav-number">2.</span> <span class="nav-text">用户登录信息-Session-shiro-redis</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#jwt"><span class="nav-number">3.</span> <span class="nav-text">jwt</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Cookie和Session"><span class="nav-number">4.</span> <span class="nav-text">Cookie和Session</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MySQL"><span class="nav-number">5.</span> <span class="nav-text">MySQL</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#HashMap"><span class="nav-number">1.</span> <span class="nav-text">HashMap</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#apache-shiro"><span class="nav-number">2.</span> <span class="nav-text">apache shiro</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#用户登录信息-Session-shiro-redis"><span class="nav-number">3.</span> <span class="nav-text">用户登录信息-Session-shiro-redis</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#jwt"><span class="nav-number">4.</span> <span class="nav-text">jwt</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Cookie和Session"><span class="nav-number">5.</span> <span class="nav-text">Cookie和Session</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MySQL"><span class="nav-number">6.</span> <span class="nav-text">MySQL</span></a></li></ol></div>
         
       </div>
       <!--/noindex-->
