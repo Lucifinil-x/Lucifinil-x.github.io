@@ -64,7 +64,7 @@
 <meta property="og:site_name" content="Sanctuary">
 <meta property="og:description" content="String判断指向地址or值 只要记住一点！编译期决定 -&amp;gt; 一定指向常量池运行时决定(且不是intern()) -&amp;gt; 一定指向堆  编译期进入常量池： String a = “123”; “1”+”2”+”3”;运行期堆上分配： String b = new String(“123”); a+a+a;a==b判断的是指向的对象的地址，虽然a b对象的值相同，但是a指向常量池中对象的">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-07-06T20:25:02.598Z">
+<meta property="og:updated_time" content="2020-07-07T17:09:31.330Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="一些准备-java">
 <meta name="twitter:description" content="String判断指向地址or值 只要记住一点！编译期决定 -&amp;gt; 一定指向常量池运行时决定(且不是intern()) -&amp;gt; 一定指向堆  编译期进入常量池： String a = “123”; “1”+”2”+”3”;运行期堆上分配： String b = new String(“123”); a+a+a;a==b判断的是指向的对象的地址，虽然a b对象的值相同，但是a指向常量池中对象的">
@@ -281,7 +281,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-07-07 04:25:02" itemprop="dateModified" datetime="2020-07-07T04:25:02+08:00">2020-07-07</time>
+                <time title="修改时间：2020-07-08 01:09:31" itemprop="dateModified" datetime="2020-07-08T01:09:31+08:00">2020-07-08</time>
               </span>
             
           
@@ -415,10 +415,11 @@
 </li>
 </ol>
 <h2 id="redis"><a href="#redis" class="headerlink" title="redis"></a>redis</h2><ol>
-<li><p>redis是什么？<br>redis是内存数据库(key-value 非关系型 没有SQL)，存放经常被访问的数据(热数据)。缓存中间件(有redisCacheManager)<br>单进程单线程模型的KV数据库。<br>value的类型：string,list,hash,set,sorted set.<br>但是规避set操作，会影响性能</p>
-</li>
-<li><p>在你的项目中redis是如何运用的？</p>
-</li>
+<li>redis是什么？<br>redis是内存数据库(key-value 非关系型 没有SQL)，存放经常被访问的数据(热数据)。缓存中间件(有redisCacheManager)<br>单进程单线程模型的KV数据库。<br>value的类型：string,list,hash,set,sorted set.<br>但是规避set操作，会影响性能</li>
+</ol>
+<p>redis可以拦截一部分请求，降低接触mysql的频率</p>
+<ol start="2">
+<li>在你的项目中redis是如何运用的？</li>
 </ol>
 <ul>
 <li><p>目前我的项目里整合了shiro-redis，为之后的集群和负载均衡(mysql数据库系统不会因为单个崩溃而崩溃)做准备。但是目前项目很简单，数据量也比较少，还没有做集群和负载均衡。</p>
@@ -429,7 +430,11 @@
 <ol start="3">
 <li><p>磁盘寻址：毫秒级别，慢<br>内存寻址：纳秒级别，快<br>文件存储是线性的，文件读取就要把文件从头开始全部读一遍。<br>文件读取是全量IO,磁盘IO. 磁盘IO:百兆级别100mb</p>
 </li>
-<li><p>缓存穿透<br>用户一直发起请求查找缓存(redis)和数据库中都没有的数据,导致每次请求都要mysql数据库中查找，流量大的时候mysql数据库就挂了</p>
+<li><p>缓存击穿<br>请求缓存中没有但数据库中有的同一条数据（一般是缓存时间到期），这时由于并发用户特别多，同时读缓存没读到数据，又同时去数据库去取数据<br>解决：一般不解决</p>
+</li>
+<li><p>缓存穿透(击穿和雪崩的本质)<br>用户一直发起请求查找缓存(redis)和数据库中都没有的数据,导致每次请求都要mysql数据库中查找，流量大的时候mysql数据库就挂了<br>解决1：布隆过滤器，用一定的(拦截)错误率换取空间<br>解决2：查询的value返回null,存在redis中</p>
+</li>
+<li><p>缓存雪崩<br>redis缓存中不同数据大批量到过期时间，去数据库中查询，就崩了<br>解决：<br>缓存数据的过期时间设置随机，防止同一时间大量数据过期现象发生。<br>如果缓存数据库是分布式部署，将热点数据均匀分布在不同搞得缓存数据库中。<br>设置热点数据永远不过期。<br>二级缓存</p>
 </li>
 </ol>
 <h2 id="apache-shiro"><a href="#apache-shiro" class="headerlink" title="apache shiro"></a>apache shiro</h2><ol>
@@ -533,6 +538,9 @@
 <li><p>现在用cookie和session吗？<br>前后端没分离的时候用cookie和session来验证用户的真实性；<br>现在前后端分离了，我们使用shiro这个安全框架来规定用户的操作，使用token和jwt来验证用户的真实性。</p>
 </li>
 </ol>
+<h2 id="mybatis-mybatisplus"><a href="#mybatis-mybatisplus" class="headerlink" title="mybatis mybatisplus"></a>mybatis mybatisplus</h2><ol>
+<li>xml文件如何和接口进行绑定？<br>mapper.xml和mapper.java绑定通过xml中的namespace=”xxxx.xxxmapper”mapper.java的路径名</li>
+</ol>
 <h2 id="MySQL"><a href="#MySQL" class="headerlink" title="MySQL"></a>MySQL</h2><ol>
 <li><p>分布式数据库是什么？<br>分布式数据库是指数据在物理上分布而逻辑上集中管理的数据库系统。</p>
 </li>
@@ -549,7 +557,13 @@
 <li>SQL结点： 对外提供SQL功能。</li>
 </ul>
 <ol start="5">
-<li><p>mysql的索引是什么？<br>索引是数据结构。<br>MySQL数据库支持多种索引类型，如BTree索引，哈希索引，全文索引等等。</p>
+<li><p>mysql的索引是什么？索引的数据结构是什么？<br>索引是数据结构，帮助数据库高效获取数据。<br>数据结构主要支持hash和B+tree.<br>hash不支持范围查询，B+tree支持范围查询。<br>MyISAM和InnoDB两种数据存储引擎都支持hash和B+tree.<br>(MySQL数据库支持多种索引类型，如BTree索引，哈希索引，全文索引等等。)</p>
+</li>
+<li><p>什么时候简历索引？<br>对应唯一性较高，经常作为查询或者过滤条件或者排序条件的字段，建立索引。<br>对应唯一性较差，频繁更改的字段，不建立索引。</p>
+</li>
+<li><p>每张表的建立索引的限制？<br>单张表最多对16个字段建立索引</p>
+</li>
+<li><p>sql语句使得索引失效的情况(索引无法使用)？<br>SARG (Searchable Arguments)操作，因为它通常是指一个特定的匹配，一个值得范围内的匹配或者两个以上条件的AND连接。<br>1、Like语句是否属于SARG取决于所使用的通配符的类型<br>如：name like ‘张%’ ，这就属于SARG<br>而：name like ‘%张’ ,就不属于SARG。<br>原因是通配符%在字符串的开通使得索引无法使用。<br>2、or 会引起全表扫描<br>　　Name=’张三’ and 价格&gt;5000 符号SARG，而：Name=’张三’ or 价格&gt;5000 则不符合SARG。使用or会引起全表扫描。<br>3、非操作符、函数引起的不满足SARG形式的语句<br>　　不满足SARG形式的语句最典型的情况就是包括非操作符的语句，如：NOT、!=、&lt;&gt;、!&lt;、!&gt;、NOT EXISTS、NOT IN、NOT LIKE等，另外还有函数。下面就是几个不满足SARG形式的例子：<br>ABS(价格)&lt;5000<br>Name like ‘%三’<br>有些表达式，如：<br>WHERE 价格*2&gt;5000<br>sql server也会认为是SARG，SQL SERVER会将此式转化为：<br>WHERE 价格&gt;2500/2<br>但我们不推荐这样使用，因为有时sql server不能保证这种转化与原始表达式是完全等价的。<br>4、IN 的作用相当与OR<br>语句：<br>Select * from table1 where tid in (2,3)<br>和<br>Select * from table1 where tid=2 or tid=3<br>是一样的，都会引起全表扫描，如果tid上有索引，其索引也会失效。<br>5、尽量少用NOT<br>6、exists 和 in 的执行效率是一样的</p>
 </li>
 <li><p>mysql怎么提高速度的？<br>用分治和索引。<br>分治:将数据分成一格一格的。<br>索引是一个排序的列表，在这个列表中存储着索引的值和包含这个值的数据所在行的物理地址。</p>
 </li>
@@ -560,6 +574,15 @@
 <p>3、普通索引：用表中的普通列构建的索引，没有任何限制<br>ALTER TABLE ‘table_name’ ADD INDEX index_name(‘col’)；</p>
 <p>4、全文索引：用大文本对象的列构建的索引<br>ALTER TABLE ‘table_name’ ADD FULLTEXT INDEX ft_index(‘col’)；</p>
 <p>5、组合索引：用多个列组合构建的索引，这多个列中的值不允许有空值<br>ALTER TABLE ‘table_name’ ADD INDEX index_name(‘col1’,’col2’,’col3’)；</p>
+<ol start="8">
+<li>mysql用的存储引擎？<br>MyISAM和InnoDB数据存储引擎</li>
+</ol>
+<h2 id="网络"><a href="#网络" class="headerlink" title="网络"></a>网络</h2><ol>
+<li><p>get和post的区别<br>get是从服务器上获取数据，post是向服务器传送数据。<br>get的参数可以在url上面看到，post看不到<br>get安全性非常低，post安全性较高。</p>
+</li>
+<li><p>@Getmapping<br>该注解将HTTP Get 映射到 特定的处理方法上</p>
+</li>
+</ol>
 
     </div>
 
@@ -663,7 +686,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#String"><span class="nav-number">1.</span> <span class="nav-text">String</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#判断指向地址or值"><span class="nav-number">1.1.</span> <span class="nav-text">判断指向地址or值</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Validate验证器"><span class="nav-number">2.</span> <span class="nav-text">Validate验证器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#闲话"><span class="nav-number">3.</span> <span class="nav-text">闲话</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HashMap"><span class="nav-number">4.</span> <span class="nav-text">HashMap</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#同步"><span class="nav-number">5.</span> <span class="nav-text">同步</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#redis"><span class="nav-number">6.</span> <span class="nav-text">redis</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#apache-shiro"><span class="nav-number">7.</span> <span class="nav-text">apache shiro</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#用户登录信息-Session-shiro-redis"><span class="nav-number">8.</span> <span class="nav-text">用户登录信息-Session-shiro-redis</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#jwt"><span class="nav-number">9.</span> <span class="nav-text">jwt</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Cookie和Session"><span class="nav-number">10.</span> <span class="nav-text">Cookie和Session</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MySQL"><span class="nav-number">11.</span> <span class="nav-text">MySQL</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#String"><span class="nav-number">1.</span> <span class="nav-text">String</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#判断指向地址or值"><span class="nav-number">1.1.</span> <span class="nav-text">判断指向地址or值</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Validate验证器"><span class="nav-number">2.</span> <span class="nav-text">Validate验证器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#闲话"><span class="nav-number">3.</span> <span class="nav-text">闲话</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HashMap"><span class="nav-number">4.</span> <span class="nav-text">HashMap</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#同步"><span class="nav-number">5.</span> <span class="nav-text">同步</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#redis"><span class="nav-number">6.</span> <span class="nav-text">redis</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#apache-shiro"><span class="nav-number">7.</span> <span class="nav-text">apache shiro</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#用户登录信息-Session-shiro-redis"><span class="nav-number">8.</span> <span class="nav-text">用户登录信息-Session-shiro-redis</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#jwt"><span class="nav-number">9.</span> <span class="nav-text">jwt</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Cookie和Session"><span class="nav-number">10.</span> <span class="nav-text">Cookie和Session</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#mybatis-mybatisplus"><span class="nav-number">11.</span> <span class="nav-text">mybatis mybatisplus</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MySQL"><span class="nav-number">12.</span> <span class="nav-text">MySQL</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#网络"><span class="nav-number">13.</span> <span class="nav-text">网络</span></a></li></ol></div>
         
       </div>
       <!--/noindex-->
