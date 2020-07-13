@@ -64,7 +64,7 @@
 <meta property="og:site_name" content="Sanctuary">
 <meta property="og:description" content="String判断指向地址or值 只要记住一点！编译期决定 -&amp;gt; 一定指向常量池运行时决定(且不是intern()) -&amp;gt; 一定指向堆  编译期进入常量池： String a = “123”; “1”+”2”+”3”;运行期堆上分配： String b = new String(“123”); a+a+a;a==b判断的是指向的对象的地址，虽然a b对象的值相同，但是a指向常量池中对象的">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-07-07T17:09:31.330Z">
+<meta property="og:updated_time" content="2020-07-13T16:36:43.670Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="一些准备-java">
 <meta name="twitter:description" content="String判断指向地址or值 只要记住一点！编译期决定 -&amp;gt; 一定指向常量池运行时决定(且不是intern()) -&amp;gt; 一定指向堆  编译期进入常量池： String a = “123”; “1”+”2”+”3”;运行期堆上分配： String b = new String(“123”); a+a+a;a==b判断的是指向的对象的地址，虽然a b对象的值相同，但是a指向常量池中对象的">
@@ -281,7 +281,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-07-08 01:09:31" itemprop="dateModified" datetime="2020-07-08T01:09:31+08:00">2020-07-08</time>
+                <time title="修改时间：2020-07-14 00:36:43" itemprop="dateModified" datetime="2020-07-14T00:36:43+08:00">2020-07-14</time>
               </span>
             
           
@@ -577,12 +577,79 @@
 <ol start="8">
 <li>mysql用的存储引擎？<br>MyISAM和InnoDB数据存储引擎</li>
 </ol>
+<h2 id="java"><a href="#java" class="headerlink" title="java"></a>java</h2><ol>
+<li>面向过程和面向对象</li>
+</ol>
+<ul>
+<li><p>面向过程就是不断的使用函数。</p>
+</li>
+<li><p>现在将所有的功能/函数进行封装，我们面对的就是封装了功能的对象，这就是面向对象。<br>只要找到了对象，就可以使用对象中的功能。</p>
+</li>
+<li><p>所有我们在实践的时候，先找到对象以及对象的功能。 如果没有，就自己创建对象并将所需的功能定义到该对象中。</p>
+</li>
+</ul>
+<ol start="2">
+<li>面向对象的好处</li>
+</ol>
+<ul>
+<li>面向对象更符合人们思考的习惯。</li>
+<li>面向对象就像是指挥者，指挥对象做事情。</li>
+<li>面向对象将复杂的问题简单化。</li>
+<li>举例： 面试官您就是用面向对象的思想在思考问题。您本身就可以开发项目，但是如果项目比较大，开发周期长。为了提高效率，就需要更多具备能力的人帮助您做事情。这个人就是您需要的对象。您作为指挥者，只需要调用这个对象的开发功能就可以完成项目。</li>
+</ul>
+<ol start="3">
+<li>jvm回收机制<br>使用引用计数算法判断对象是否死亡是否应该对这个对象进行回收。(没有引用指向该对象时，对象死亡，计数器为0)<br>垃圾回收算法：标记清除，标记整理，复制算法，分代收集。</li>
+</ol>
+<p>标记清除/整理： 每个对象有一个标记位，标记对象存活或者死亡。 清除：清除死亡对象。 整理：整理存活对象，放到另一处空间，清除剩下对象。</p>
+<p>复制：内存分为两半，一半内存满了的时候，将存活的对象复制到另外一半内存，清空当前内存。</p>
+<ol start="4">
+<li><p>final<br>final关键字作用【修饰类不可继承，修饰方法不可重写，修饰对象无法重新赋值】</p>
+</li>
+<li><p>RuntimeException有哪些<br>1， ClassCastException类型强制转换异常<br>Object x = new Integer(0);<br>  System.out.println((String)x);<br>当试图将对象强制转换为不是实例的子类时，抛出该异常</p>
+</li>
+</ol>
+<p>2，ArithmeticException算术异常类<br>int a=5/0;<br>一个整数“除以零”时，抛出异常</p>
+<p>3, NullPointerException空指针异常类<br>String s=null;<br>int size=s.size();<br>当应用程序试图在需要对象的地方使用 null 时，抛出异常</p>
+<p>4, StringIndexOutOfBoundsException<br>“hello”.indexOf(-1);<br>指示索引或者为负，或者超出字符串的大小，抛出异常</p>
+<p>5，NegativeArraySizeException数组负下标异常<br>数组大小为负值异常。当使用负数大小值创建数组时抛出该异常<br>String[] ss=new String[-1];<br>如应用程序试图创建大小为负的数组，则抛出异常</p>
+<p>6，IllegalArgumentException参数异常<br>抛出的异常表明向方法传递了一个不合法或不正确的参数</p>
+<p>7，NumberFormatException数字格式异常<br>当试图将一个String转换为指定的数字类型，而该字符串确不满足数字类型要求的格式时，抛出该异常</p>
+<p>8，ArrayIndexOutOfBoundsException数组下标越界异常<br>当使用的数组下标超出数组允许范围时，抛出该异常</p>
+<p>9,ClassNotFoundException找不到类异常<br>当应用试图根据字符串形式的类名构造类，而在遍历CLASSPAH之后找不到对应名称的class文件时，抛出该异常</p>
+<p>10,ArrayStoreException数组存储异常<br>当向数组中存放非数组声明类型对象时抛出</p>
+<p>11，NoSuchMethodException 方法未找到异常</p>
+<p>12，FileNotFoundException 文件未找到异常</p>
+<h2 id="操作系统"><a href="#操作系统" class="headerlink" title="操作系统"></a>操作系统</h2><ol>
+<li>线程和进程的区别<br>进程是系统资源分配的基本单位，线程是cpu调度的基本单位。</li>
+</ol>
+<p>进程有独立的代码和数据空间，进程之间切换开销较大；<br>同一进程中的线程共享代码和数据空间，线程之间切换较小。</p>
+<p>系统在运行的时候会为每个进程分配不同的内存空间；<br>系统不会为线程分配内存，线程之间只能共享资源。</p>
+<p>线程是进程的一部分，线程被称为轻量级进程。</p>
+<ol start="2">
+<li><p>线程池是什么<br>线程池，其实就是一个容纳多个线程的容器，其中的线程可以反复使用，省去了频繁创建线程对象的操作，无需反复创建线程而消耗过多资源</p>
+</li>
+<li><p>乐观锁/悲观锁<br>乐观锁：总是假设最好的情况，每次去拿数据的时候都认为别人不会修改，所以不会上锁，但是在更新的时候会判断一下在此期间别人有没有去更新这个数据，可以使用版本号机制和CAS算法实现。<br>乐观锁适用于多读的应用类型，这样可以提高吞吐量，像数据库提供的类似于write_condition机制，其实都是提供的乐观锁。</p>
+</li>
+</ol>
+<p>悲观锁：总是假设最坏的情况，每次去拿数据的时候都认为别人会修改，所以每次在拿数据的时候都会上锁，这样别人想拿这个数据就会阻塞直到它拿到锁（共享资源每次只给一个线程使用，其它线程阻塞，用完后再把资源转让给其它线程）。<br>传统的关系型数据库里边就用到了很多这种锁机制，比如行锁，表锁等，读锁，写锁等，都是在做操作之前先上锁。</p>
+<p>CAS：即compare and swap（比较与交换），是一种有名的无锁算法。无锁编程，即不使用锁的情况下实现多线程之间的变量同步，也就是在没有线程被阻塞的情况下实现变量的同步，所以也叫非阻塞同步（Non-blocking Synchronization）。</p>
 <h2 id="网络"><a href="#网络" class="headerlink" title="网络"></a>网络</h2><ol>
-<li><p>get和post的区别<br>get是从服务器上获取数据，post是向服务器传送数据。<br>get的参数可以在url上面看到，post看不到<br>get安全性非常低，post安全性较高。</p>
+<li><p>get和post的区别<br>get是从服务器上获取数据，post是向服务器传送数据。<br>get的参数可以在url上面看到，post看不到<br>get安全性非常低，post安全性较高。<br>get请求比Post请求效率高，Post请求需要服务器返回100再发送数据处理，Get请求直接是通过URL。</p>
 </li>
 <li><p>@Getmapping<br>该注解将HTTP Get 映射到 特定的处理方法上</p>
 </li>
+<li><p>java实现HTTP请求的三种方式<br>java原生HttpURLConnection<br>apache HttpClient3.1<br>apache  httpClient4.5</p>
+</li>
+<li><p>TCP和UDP<br>TCP：面向连接的安全可靠的传输层协议。<br>客户和服务器交换数据前，必须现在双方之间建立一个TCP连接，之后才能传输数据。<br>并且提供超时重发，丢弃重复数据，检验数据，流量控制等功能，保证数据能从一端传到另一端。<br>在数据传递时，有确认、窗口、重传、拥塞控制机制，在数据传完后，还会断开连接用来节约系统资源。<br>慢，效率低。<br>UDP: 面向数据报的不可靠的传输层协议。<br>UDP在传输数据报前不用在客户端和服务器之间建立一个连接，且没有超时重发等机制，所以传输速度很快。只是把数据发送出去，不保证能够到达目的地。<br>快，效率高。</p>
+</li>
 </ol>
+<h2 id="spring"><a href="#spring" class="headerlink" title="spring"></a>spring</h2><ol>
+<li>IOC AOP<br>Spring拥有两大特性：IoC和AOP。IoC，英文全称Inversion of Control，意为控制反转。AOP，英文全称Aspect-Oriented Programming，意为面向切面编程。</li>
+</ol>
+<p>Spring核心容器的主要组件是Bean工厂（BeanFactory），Bean工厂使用控制反转（IoC）模式来降低程序代码之间的耦合度，并提供了面向切面编程（AOP）的实现。</p>
+<p>简单来说，Spring是一个轻量级的控制反转（IoC）和面向切面编程（AOP）的容器框架</p>
+<p>IOC:控制反转，简单点说，就是创建对象的控制权，被反转到了Spring框架上。<br>通常，我们实例化一个对象时，都是使用类的构造方法来new一个对象，这个过程是由我们自己来控制的，而控制反转就把new对象的工作交给了Spring容器。</p>
+<p>AOP:AOP把所有共用代码都剥离出来，单独放置到某个类中进行集中管理，在具体运行时，由容器进行动态织入这些公共代码。</p>
 
     </div>
 
@@ -686,7 +753,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#String"><span class="nav-number">1.</span> <span class="nav-text">String</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#判断指向地址or值"><span class="nav-number">1.1.</span> <span class="nav-text">判断指向地址or值</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Validate验证器"><span class="nav-number">2.</span> <span class="nav-text">Validate验证器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#闲话"><span class="nav-number">3.</span> <span class="nav-text">闲话</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HashMap"><span class="nav-number">4.</span> <span class="nav-text">HashMap</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#同步"><span class="nav-number">5.</span> <span class="nav-text">同步</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#redis"><span class="nav-number">6.</span> <span class="nav-text">redis</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#apache-shiro"><span class="nav-number">7.</span> <span class="nav-text">apache shiro</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#用户登录信息-Session-shiro-redis"><span class="nav-number">8.</span> <span class="nav-text">用户登录信息-Session-shiro-redis</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#jwt"><span class="nav-number">9.</span> <span class="nav-text">jwt</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Cookie和Session"><span class="nav-number">10.</span> <span class="nav-text">Cookie和Session</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#mybatis-mybatisplus"><span class="nav-number">11.</span> <span class="nav-text">mybatis mybatisplus</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MySQL"><span class="nav-number">12.</span> <span class="nav-text">MySQL</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#网络"><span class="nav-number">13.</span> <span class="nav-text">网络</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#String"><span class="nav-number">1.</span> <span class="nav-text">String</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#判断指向地址or值"><span class="nav-number">1.1.</span> <span class="nav-text">判断指向地址or值</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Validate验证器"><span class="nav-number">2.</span> <span class="nav-text">Validate验证器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#闲话"><span class="nav-number">3.</span> <span class="nav-text">闲话</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HashMap"><span class="nav-number">4.</span> <span class="nav-text">HashMap</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#同步"><span class="nav-number">5.</span> <span class="nav-text">同步</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#redis"><span class="nav-number">6.</span> <span class="nav-text">redis</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#apache-shiro"><span class="nav-number">7.</span> <span class="nav-text">apache shiro</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#用户登录信息-Session-shiro-redis"><span class="nav-number">8.</span> <span class="nav-text">用户登录信息-Session-shiro-redis</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#jwt"><span class="nav-number">9.</span> <span class="nav-text">jwt</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Cookie和Session"><span class="nav-number">10.</span> <span class="nav-text">Cookie和Session</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#mybatis-mybatisplus"><span class="nav-number">11.</span> <span class="nav-text">mybatis mybatisplus</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MySQL"><span class="nav-number">12.</span> <span class="nav-text">MySQL</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#java"><span class="nav-number">13.</span> <span class="nav-text">java</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#操作系统"><span class="nav-number">14.</span> <span class="nav-text">操作系统</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#网络"><span class="nav-number">15.</span> <span class="nav-text">网络</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#spring"><span class="nav-number">16.</span> <span class="nav-text">spring</span></a></li></ol></div>
         
       </div>
       <!--/noindex-->
