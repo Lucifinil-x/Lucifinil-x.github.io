@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.9.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.4.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.4.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.4.0">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.4.0" color="#222">
+
+<link rel="stylesheet" href="/css/main.css?v=7.4.0">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-corner-indicator.min.css?v=1.0.2">
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.4.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":true,"scrollpercent":true},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
+    },
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="初识html1.什么是html？  超文本标记语言 Hyper Text Markerup Language">
+<meta property="og:type" content="article">
+<meta property="og:title" content="html">
+<meta property="og:url" content="https://lucifinil-x.github.io/2020/07/18/html/index.html">
+<meta property="og:site_name" content="Sanctuary">
+<meta property="og:description" content="初识html1.什么是html？  超文本标记语言 Hyper Text Markerup Language">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://s1.ax1x.com/2020/08/06/a6bsyR.png">
+<meta property="og:updated_time" content="2020-08-30T17:49:14.993Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="html">
+<meta name="twitter:description" content="初识html1.什么是html？  超文本标记语言 Hyper Text Markerup Language">
+<meta name="twitter:image" content="https://s1.ax1x.com/2020/08/06/a6bsyR.png">
+  <link rel="canonical" href="https://lucifinil-x.github.io/2020/07/18/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>html | Sanctuary</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Sanctuary</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+      
+      
+      
+        
+        <li class="menu-item menu-item-home">
+      
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-tags">
+      
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-categories">
+      
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-archives">
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a href="javascript:;" class="popup-trigger">
+        
+          <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+      </li>
+    
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="搜索..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+            
+
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+      <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block post">
+    <link itemprop="mainEntityOfPage" href="https://lucifinil-x.github.io/2020/07/18/html/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Lucifinil">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/touxiang1.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Sanctuary">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">html
+
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2020-07-18 00:00:50" itemprop="dateCreated datePublished" datetime="2020-07-18T00:00:50+08:00">2020-07-18</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-08-31 01:49:14" itemprop="dateModified" datetime="2020-08-31T01:49:14+08:00">2020-08-31</time>
+              </span>
+            
+          
+
+          
+            <span class="post-meta-item" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+        
+      
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2020/07/18/html/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2020/07/18/html/" itemprop="commentCount"></span></a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="初识"><a href="#初识" class="headerlink" title="初识"></a>初识</h2><h3 id="html"><a href="#html" class="headerlink" title="html"></a>html</h3><p>1.什么是html？<br>  超文本标记语言 Hyper Text Markerup Language</p><a id="more"></a>
+<p>2.超文本包括：文字、图片、音频、视频、动画。</p>
+<p>3.现在用的版本<br>html5+css3</p>
+<p>4.html5特性<br>提供新的网页功能，不需要安装插件就能用网页播放视频，使用网页动态渲染图标、图形、图形动画</p>
+<p>5.html5的优势<br>各个浏览器都支持html5,相当于天然的依靠浏览器就能跨平台<br>(java跨平台用的是jvm)</p>
+<p>6.浏览器<br>浏览器就是智能的IDE,它会智能的解析html代码</p>
+<h3 id="W3C标准"><a href="#W3C标准" class="headerlink" title="W3C标准"></a>W3C标准</h3><p>1.W3C<br>World Wide Web Consortium(万维网联盟)<br>Web技术领域的国际中立性技术标准机构</p>
+<p>2.W3C标准<br>结构化标准语言(html,xml)<br>表现性标准语言(css)<br>行为标准(dom文档对象模型,ecmascript JS的规范)</p>
+<h2 id="网页基本信息-html结构"><a href="#网页基本信息-html结构" class="headerlink" title="网页基本信息,html结构"></a>网页基本信息,html结构</h2><p>1.DOCTYPE</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- DOCTYPE:告诉浏览器，我们使用的是html规范 --&gt;</span><br><span class="line"></span><br><span class="line">&lt;!DOCTYPE html&gt;</span><br></pre></td></tr></table></figure>
+
+<p>2.html 总标签<br>html代码写在html标签内部</p>
+<p>3.head 头部标签<br>head代表网页头部</p>
+<p>3.1 meta标签<br>meta描述性标签，它用来描述我们网站的一些信息<br>meta一般用来做SEO(搜索引擎优化,对网站进行内部及外部的调整优化，改进网站在搜索引擎中的关键词自然排名)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--meta描述性标签，它用来描述我们网站的一些信息--&gt;</span><br><span class="line">    &lt;meta charset=&quot;UTF-8&quot;&gt;</span><br><span class="line">    &lt;meta name=&quot;keywords&quot; content=&quot;学习网站&quot;&gt;</span><br><span class="line">    &lt;meta name=&quot;description&quot; content=&quot;每日学习打卡&quot;&gt;</span><br></pre></td></tr></table></figure>
+
+<p>3.2 title标签<br>title网页标题</p>
+<p>4.body标签<br>body代表网页主体，我们写的东西都在body里</p>
+<h2 id="网页基本标签"><a href="#网页基本标签" class="headerlink" title="网页基本标签"></a>网页基本标签</h2><p>h1     h2 h3 几级标题<br>p     分段，展示一行内容<br>br/ 换行，段落无间距，单标签<br>hr/ 水平线标签，单标签<br>strong 粗体，标签内文字变成粗体</p>
+<h2 id="em-斜体，标签内文字变成斜体"><a href="#em-斜体，标签内文字变成斜体" class="headerlink" title="em     斜体，标签内文字变成斜体     "></a>em     斜体，标签内文字变成斜体     </h2><p>特殊符号： &amp;  ;</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&amp;nbsp; 空格</span><br><span class="line">&amp;gt; 大于</span><br><span class="line">&amp;lt; 小于</span><br><span class="line">&amp;copy;版权所有xxx 版权符号</span><br></pre></td></tr></table></figure>
+
+<h2 id="图像标签-img"><a href="#图像标签-img" class="headerlink" title="图像标签 img"></a>图像标签 img</h2><p>1.常见的图像格式<br>JPG<br>GIF<br>PNG<br>BMP</p>
+<p>2.img标签参数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;img src=&quot;路径&quot; alt=&quot;失败文字&quot; title=&quot;悬停文字&quot; width=&quot;宽度&quot; height=&quot;高度&quot;&gt;</span><br></pre></td></tr></table></figure>
+
+<p>src必填: 图片地址<br>    相对路径/绝对路径<br>    相对路径：相对于当前html文件的路径，../ 返回上一级的文件夹 ../../返回两级文件夹</p>
+<p>alt必填: 图片加载失败时显示的文字</p>
+<p>title 鼠标悬停显示的文字</p>
+<p>width 图片宽度，可以加变量参数</p>
+<p>hight 图片高度</p>
+<p>其他的图片属性空格之后idea有提示</p>
+<h2 id="超链接标签-a"><a href="#超链接标签-a" class="headerlink" title="超链接标签 a"></a>超链接标签 a</h2><h3 id="1-普通链接-通过文字-图片跳转页面"><a href="#1-普通链接-通过文字-图片跳转页面" class="headerlink" title="1.普通链接-通过文字/图片跳转页面"></a>1.普通链接-通过文字/图片跳转页面</h3><p>1.跳转页面超链接标签参数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;a href=&quot;链接路径&quot; target=&quot;链接在哪个窗口打开&quot;&gt;链接文本或图像&lt;/a&gt;</span><br></pre></td></tr></table></figure>
+
+<p>href必填</p>
+<p>target:<br>_ blank 链接在新标签页打开<br>_ self 链接在当前页面打开(不写target,默认为self)</p>
+<p>2.文字超链接</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;a href=&quot;https://bns.qq.com/&quot; target=&quot;_blank&quot;&gt;跳转剑灵&lt;/a&gt;</span><br></pre></td></tr></table></figure>
+
+<p>3.图片超链接(内置图片标签)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;a href=&quot;https://bns.qq.com/&quot;&gt;</span><br><span class="line">    &lt;img src=&quot;../../source/image/&#123;0CD3A208-38C5-D227-DB52-F9A1DB0C7D73&#125;.png&quot; alt=&quot;龙族幻想&quot; title=&quot;零&quot;&gt;</span><br><span class="line">&lt;/a&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-锚链接-通过页面中的超链接定位到页面的具体位置"><a href="#2-锚链接-通过页面中的超链接定位到页面的具体位置" class="headerlink" title="2.锚链接-通过页面中的超链接定位到页面的具体位置"></a>2.锚链接-通过页面中的超链接定位到页面的具体位置</h3><p>锚链接实现页面中跳转定位的两个要素：<br>1.锚标记</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--name的属性TOP作为锚链接的标记，顶部是在页面显示的文字--&gt;</span><br><span class="line">&lt;a name=&quot;TOP&quot;&gt;顶部&lt;/a&gt;</span><br></pre></td></tr></table></figure>
+
+<p>2.跳转链接</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--链接处为#+锚标记--&gt;</span><br><span class="line">&lt;a href=&quot;#TOP&quot;&gt;回到顶部&lt;/a&gt;</span><br></pre></td></tr></table></figure>
+
+<p>使用场景：<br>1.本页面内部定位<br>2.定位到另外页面的具体位置(锚标记位置)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--    超链接+#+链接页面的锚标记--&gt;</span><br><span class="line">&lt;a href=&quot;链接标签.html#DOWN&quot; target=&quot;_blank&quot;&gt;跳转链接&lt;/a&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-功能性链接-打开邮箱-添加qq之类"><a href="#3-功能性链接-打开邮箱-添加qq之类" class="headerlink" title="3.功能性链接-打开邮箱/添加qq之类"></a>3.功能性链接-打开邮箱/添加qq之类</h3><p>邮件链接 href=”mailto:邮箱名字”</p>
+<p>添加qq qq推广官网复制代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;a target=&quot;_blank&quot; href=&quot;http://wpa.qq.com/msgrd?v=3&amp;uin=&amp;site=qq&amp;menu=yes&quot;&gt;</span><br><span class="line">    &lt;img border=&quot;0&quot; src=&quot;http://wpa.qq.com/pa?p=2::53&quot; alt=&quot;点击联系我qq&quot; title=&quot;点击联系我qq&quot;/&gt;</span><br><span class="line">&lt;/a&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="行内元素和块元素"><a href="#行内元素和块元素" class="headerlink" title="行内元素和块元素"></a>行内元素和块元素</h2><p>1.行内元素<br>元素都在一行中显示<br>2.块元素<br>每个元素分行显示</p>
+<h2 id="列表"><a href="#列表" class="headerlink" title="列表"></a>列表</h2><p>1.有序列表(1 2 3 4) ol</p>
+<p>2.无序列表(点) ul</p>
+<p>3.自定义列表(无序号和点，有列表名称) dl</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--有序标签,应用：试卷，问答--&gt;</span><br><span class="line">&lt;ol&gt;</span><br><span class="line">    &lt;li&gt;c&lt;/li&gt;</span><br><span class="line">    &lt;li&gt;运维&lt;/li&gt;</span><br><span class="line">    &lt;li&gt;前端&lt;/li&gt;</span><br><span class="line">&lt;/ol&gt;</span><br><span class="line">&lt;hr/&gt;</span><br><span class="line">&lt;!--无序列表,应用：导航，侧边栏--&gt;</span><br><span class="line">&lt;ul&gt;</span><br><span class="line">    &lt;li&gt;c&lt;/li&gt;</span><br><span class="line">    &lt;li&gt;java&lt;/li&gt;</span><br><span class="line">    &lt;li&gt;前端&lt;/li&gt;</span><br><span class="line">&lt;/ul&gt;</span><br><span class="line">&lt;hr/&gt;</span><br><span class="line">&lt;!--自定义列表,dl标签，dt列表名称，dd列表选项。应用：网站底部--&gt;</span><br><span class="line">&lt;dl&gt;</span><br><span class="line">    &lt;dt&gt;自定义列表&lt;/dt&gt;</span><br><span class="line">    &lt;dd&gt;java&lt;/dd&gt;</span><br><span class="line">    &lt;dd&gt;python&lt;/dd&gt;</span><br><span class="line">    &lt;dd&gt;运维&lt;/dd&gt;</span><br><span class="line"></span><br><span class="line">    &lt;dt&gt;位置&lt;/dt&gt;</span><br><span class="line">    &lt;dd&gt;成都&lt;/dd&gt;</span><br><span class="line"></span><br><span class="line">&lt;/dl&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="表格-table"><a href="#表格-table" class="headerlink" title="表格 table"></a>表格 table</h2><ul>
+<li>table标签：<br>单元格 table； 边框 border</li>
+</ul>
+<hr>
+<p>行 tr<br>列 td； td标签中跨行 rowspan； td标签中跨列 colspan</p>
+<p><a href="https://imgchr.com/i/a6bsyR" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2020/08/06/a6bsyR.png" alt="表格例子"></a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">&lt;table border=&quot;1px&quot; &gt;</span><br><span class="line">    &lt;tr&gt;</span><br><span class="line">        &lt;td colspan=&quot;3&quot;&gt;学生成绩&lt;/td&gt;</span><br><span class="line">    &lt;/tr&gt;</span><br><span class="line">    &lt;tr&gt;</span><br><span class="line">        &lt;td rowspan=&quot;2&quot;&gt;狂神&lt;/td&gt;</span><br><span class="line">        &lt;td&gt;语文&lt;/td&gt;</span><br><span class="line">        &lt;td&gt;100&lt;/td&gt;</span><br><span class="line">    &lt;/tr&gt;</span><br><span class="line">    &lt;tr&gt;</span><br><span class="line">        &lt;td&gt;数学&lt;/td&gt;</span><br><span class="line">        &lt;td&gt;100&lt;/td&gt;</span><br><span class="line">    &lt;/tr&gt;</span><br><span class="line">    &lt;tr&gt;</span><br><span class="line">        &lt;td rowspan=&quot;2&quot;&gt;秦涫&lt;/td&gt;</span><br><span class="line">        &lt;td&gt;语文&lt;/td&gt;</span><br><span class="line">        &lt;td&gt;100&lt;/td&gt;</span><br><span class="line">    &lt;/tr&gt;</span><br><span class="line">    &lt;tr&gt;</span><br><span class="line">        &lt;td&gt;数学&lt;/td&gt;</span><br><span class="line">        &lt;td&gt;100&lt;/td&gt;</span><br><span class="line">    &lt;/tr&gt;</span><br><span class="line">&lt;/table&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="媒体元素"><a href="#媒体元素" class="headerlink" title="媒体元素"></a>媒体元素</h2><ul>
+<li>标签：音频 audio 视频 video</li>
+</ul>
+<p>src:资源路径<br>controls:控制条<br>autoplay:自动播放</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;video src=&quot;../../source/video/xxx.mp4&quot; controls autoplay&gt;&lt;/video&gt;</span><br><span class="line">&lt;audio src=&quot;../../source/video/xxx.mp3&quot; controls autoplay&gt;&lt;/audio&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="网页结构"><a href="#网页结构" class="headerlink" title="网页结构"></a>网页结构</h2><p>header 标题头部区域内容(页面中一块区域)<br>footer 标记脚部区域内容(页面中一块区域)</p>
+<p>section web页面中一块独立区域<br>article 独立的文章内容<br>aside 相关内容或应用(侧边栏)</p>
+<p>nav 导航类辅助内容</p>
+<h2 id="iframe内联框架"><a href="#iframe内联框架" class="headerlink" title="iframe内联框架"></a>iframe内联框架</h2><p>在一个网页里面嵌套另外一个成形的页面</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--内联框架标签iframe可以作为容器，下面锚链接打开的页面就会出现在 锚标记的位置；本来是放置的百度的页面，点击跳转 新页面会覆盖百度--&gt;</span><br><span class="line">&lt;iframe src=&quot;https://www.baidu.com/?tn=62095104_28_oem_dg&quot; name=&quot;baidu&quot; frameborder=&quot;0&quot; width=&quot;1000px&quot; height=&quot;3000px&quot;&gt;&lt;/iframe&gt;</span><br><span class="line">&lt;a href=&quot;我的第一个网页.html&quot; target=&quot;baidu&quot;&gt;点击跳转&lt;/a&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="表单post和get提交"><a href="#表单post和get提交" class="headerlink" title="表单post和get提交"></a>表单post和get提交</h2><h3 id="表单-form"><a href="#表单-form" class="headerlink" title="表单 form"></a>表单 form</h3><ul>
+<li><p>form标签<br>action: 表单提交的位置，可以是网站，也可以是一个请求处理地址<br>method: post,get 两种提交方式</p>
+</li>
+<li><p>input标签：文本输入框<br>type: 框内输入的类型(比如text,password，submit,reset),会根据类型显示不同，默认为text<br>name: 自定义文本框控件的名字<br>value: 初始值，type为radio时必须指定一个值<br>size: 表单元素(文本框)的初始长度<br>maxlength: type为text或password时，输入的最大字符数<br>checked: type为radio或checkbox时，指定按钮是否被选中</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;form action=&quot;我的第一个网页.html&quot; method=&quot;post&quot;&gt;</span><br><span class="line">    &lt;h2&gt;注册&lt;/h2&gt;</span><br><span class="line">    &lt;p&gt;</span><br><span class="line">        名字：&lt;input type=&quot;text&quot; name=&quot;username&quot;&gt;</span><br><span class="line">    &lt;/p&gt;</span><br><span class="line">    &lt;p&gt;</span><br><span class="line">        密码：&lt;input type=&quot;password&quot; name=&quot;passw&quot;&gt;</span><br><span class="line">    &lt;/p&gt;</span><br><span class="line">    &lt;input type=&quot;submit&quot;&gt;</span><br><span class="line">    &lt;input type=&quot;reset&quot;&gt;</span><br><span class="line">&lt;/form&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="提交方式-get-post"><a href="#提交方式-get-post" class="headerlink" title="提交方式 get post"></a>提交方式 get post</h3><ul>
+<li><p>get方式提交：<br>我们可以在表单提交位置的那个网页url中看到我们提交的信息。<br>不安全，高效。</p>
+</li>
+<li><p>post方式提交：<br>url中没有参数信息。<br>比较安全，传输大文件。<br>post的信息在 右键审查元素-network-点击name下的码-headers-from data-这里能看到提交的名字和密码。</p>
+</li>
+<li><p>键值对提交：<br>name=”” + value=””/标签中间的内容；</p>
+</li>
+</ul>
+<h2 id="form表单内容"><a href="#form表单内容" class="headerlink" title="form表单内容"></a>form表单内容</h2><h3 id="单选框，多选框，按钮"><a href="#单选框，多选框，按钮" class="headerlink" title="单选框，多选框，按钮"></a>单选框，多选框，按钮</h3><ul>
+<li>radio单选框标签<br>是input type=”radio” 的一个单选标签，<br>需要写type,value(单选框的值),name(name相同的进行分组，可以进行单选,提交的信息只会交一组中的一个)，标签后的文字<br>checked默认选择<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;p&gt;</span><br><span class="line">    性别：&lt;input type=&quot;radio&quot; value=&quot;boy&quot; name=&quot;gender&quot; checked&gt; 男</span><br><span class="line">    &lt;input type=&quot;radio&quot; value=&quot;girl&quot; name=&quot;gender&quot;&gt;女</span><br><span class="line">&lt;/p&gt;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<hr>
+<ul>
+<li>checkbox多选框标签<br>type=”checkbox”<br>需要写value,name,后面的文字<br>用name进行分组<br>checked默认选择<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;p&gt;爱好：</span><br><span class="line">    &lt;input type=&quot;checkbox&quot; value=&quot;sleep&quot; name=&quot;hobby&quot; checked&gt;睡觉</span><br><span class="line">    &lt;input type=&quot;checkbox&quot; value=&quot;sleep&quot; name=&quot;hobby&quot;&gt;写代码</span><br><span class="line">    &lt;input type=&quot;checkbox&quot; value=&quot;sleep&quot; name=&quot;hobby&quot;&gt;聊天</span><br><span class="line">    &lt;input type=&quot;checkbox&quot; value=&quot;sleep&quot; name=&quot;hobby&quot;&gt;游戏</span><br><span class="line">&lt;/p&gt;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<hr>
+<p>按钮和图片<br>点击有个提交效果，因为input标签是写在form表单标签中的，有一个提交给网页的动作。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;p&gt;</span><br><span class="line">    &lt;input type=&quot;button&quot; name=&quot;anniu&quot; value=&quot;点击变长&quot;&gt;</span><br><span class="line">    &lt;input type=&quot;image&quot; src=&quot;../../source/image/&#123;0CD3A208-38C5-D227-DB52-F9A1DB0C7D73&#125;.png&quot;&gt;</span><br><span class="line">&lt;/p&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="下拉框"><a href="#下拉框" class="headerlink" title="下拉框"></a>下拉框</h3><ul>
+<li><p>select 下拉框标签<br>option 下拉框元素选择标签</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">    &lt;p&gt;下拉框：</span><br><span class="line">        &lt;select name=&quot;列表名称&quot;&gt;</span><br><span class="line">            &lt;option value=&quot;china&quot;&gt;中国&lt;/option&gt;</span><br><span class="line">            &lt;option value=&quot;America&quot;&gt;美国&lt;/option&gt;</span><br><span class="line">            &lt;option value=&quot;rth&quot; selected&gt;瑞士&lt;/option&gt;</span><br><span class="line">&lt;!--            selected默认选择--&gt;</span><br><span class="line">            &lt;option value=&quot;india&quot;&gt;印度&lt;/option&gt;</span><br><span class="line">        &lt;/select&gt;</span><br><span class="line">    &lt;/p&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>textarea 可填写文本域标签</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;p&gt;可填写文本域：</span><br><span class="line">    &lt;textarea name=&quot;文本域&quot; id=&quot;&quot; cols=&quot;50&quot; rows=&quot;30&quot;&gt;填文本，可拉动&lt;/textarea&gt;</span><br><span class="line">&lt;/p&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>input type=”file”提交选择文件域</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">    &lt;p&gt;提交选择文件域</span><br><span class="line">        &lt;input type=&quot;file&quot; name=&quot;文件域&quot;&gt;</span><br><span class="line">&lt;!--        &lt;input type=&quot;button&quot; name=&quot;长传&quot; value=&quot;上传&quot;&gt;--&gt;</span><br><span class="line">    &lt;/p&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>input标签 邮箱、url、数字的自动验证、滑块、搜索框</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;p&gt;邮箱自动验证</span><br><span class="line">    &lt;input type=&quot;email&quot; name=&quot;邮件&quot;&gt;</span><br><span class="line">&lt;/p&gt;</span><br><span class="line">&lt;p&gt;url自动验证</span><br><span class="line">    &lt;input type=&quot;url&quot; name=&quot;网址&quot;&gt;</span><br><span class="line">&lt;/p&gt;</span><br><span class="line">&lt;p&gt;数字验证/商品数量：</span><br><span class="line">    &lt;input type=&quot;number&quot; name=&quot;num&quot; max=&quot;100&quot; min=&quot;0&quot; step=&quot;10&quot;&gt;</span><br><span class="line">&lt;/p&gt;</span><br><span class="line">&lt;p&gt;滑块/音量大小</span><br><span class="line">    &lt;input type=&quot;range&quot; name=&quot;voice&quot; min=&quot;0&quot; max=&quot;100&quot; step=&quot;1&quot;&gt;</span><br><span class="line">&lt;/p&gt;</span><br><span class="line">&lt;p&gt;搜索框：</span><br><span class="line">    &lt;input type=&quot;search&quot; name=&quot;搜索&quot; &gt;</span><br><span class="line">&lt;/p&gt;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h2 id="表单的应用"><a href="#表单的应用" class="headerlink" title="表单的应用"></a>表单的应用</h2><p>标签中的权限：</p>
+<ol>
+<li>readonly 只读，无法修改(文本框)</li>
+<li>checked 默认勾选(单/多选)</li>
+<li>disabled 禁用</li>
+<li>hidden 隐藏域(隐藏框)，虽然框还在那个位置但是不能输入value,但是可以默认写value,也可以提交</li>
+</ol>
+<hr>
+<p>label标签:<br>label标签用id指向文本框，增强鼠标可用性/鼠标移动到前面的文字就可以落到文本框中</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;p&gt;label标签用id指向文本框，增强鼠标可用性/鼠标移动到前面的文字就可以落到文本框中</span><br><span class="line">    &lt;label for=&quot;mark&quot;&gt;你点我试试&lt;/label&gt;</span><br><span class="line">    &lt;input type=&quot;text&quot; id=&quot;mark&quot;&gt;</span><br><span class="line">&lt;/p&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="表单初级验证"><a href="#表单初级验证" class="headerlink" title="表单初级验证"></a>表单初级验证</h2><p>验证作用：在前端进行验证，减轻压力，保证数据的安全性</p>
+<p>常用方式(写在标签中)：</p>
+<ol>
+<li>placeholder=”xxx” 提示信息xxx(用在文本框中)</li>
+<li>required 表单不能为空，提交时候会提示(用在文本框中)</li>
+<li>pattern 正则表达式，正确格式</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">正则表达式去百度：常用的正则表达式</span><br><span class="line">    &lt;p&gt;正则表达式判断邮箱正确</span><br><span class="line">        &lt;input type=&quot;text&quot; name=&quot;自定义邮箱&quot; pattern=&quot;：^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$&quot;&gt;</span><br><span class="line">    &lt;/p&gt;</span><br></pre></td></tr></table></figure>
+    </div>
+
+    
+    
+    
+        
+      
+        <div id="reward-container">
+  <div>我这么可爱不给我投个币嘛~~ 有帮助的话可以打赏路路噢~~</div>
+  <button id="reward-button" disable="enable" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+        
+      
+      <div style="display: inline-block">
+        <img src="/images/wechatpay.jpg" alt="Lucifinil 微信支付">
+        <p>微信支付</p>
+      </div>
+        
+      
+      <div style="display: inline-block">
+        <img src="/images/alipay.jpg" alt="Lucifinil 支付宝">
+        <p>支付宝</p>
+      </div>
+
+  </div>
+</div>
+
+      
+
+      <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+              
+                <a href="/2020/07/18/背单词/" rel="next" title="背单词">
+                  <i class="fa fa-chevron-left"></i> 背单词
+                </a>
+              
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+              
+                <a href="/2020/08/03/idea使用/" rel="prev" title="idea使用">
+                  idea使用 <i class="fa fa-chevron-right"></i>
+                </a>
+              
+            </div>
+          </div>
+        
+      </footer>
+    
+  </div>
+  
+  
+  
+  </article>
+
+  </div>
+
+
+          </div>
+          
+    
+    <div class="comments" id="comments"></div>
+  
+
+        </div>
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+        
+        
+        
+        
+      
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#初识"><span class="nav-number">1.</span> <span class="nav-text">初识</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#html"><span class="nav-number">1.1.</span> <span class="nav-text">html</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#W3C标准"><span class="nav-number">1.2.</span> <span class="nav-text">W3C标准</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#网页基本信息-html结构"><span class="nav-number">2.</span> <span class="nav-text">网页基本信息,html结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#网页基本标签"><span class="nav-number">3.</span> <span class="nav-text">网页基本标签</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#em-斜体，标签内文字变成斜体"><span class="nav-number">4.</span> <span class="nav-text">em     斜体，标签内文字变成斜体     </span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#图像标签-img"><span class="nav-number">5.</span> <span class="nav-text">图像标签 img</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#超链接标签-a"><span class="nav-number">6.</span> <span class="nav-text">超链接标签 a</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-普通链接-通过文字-图片跳转页面"><span class="nav-number">6.1.</span> <span class="nav-text">1.普通链接-通过文字/图片跳转页面</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-锚链接-通过页面中的超链接定位到页面的具体位置"><span class="nav-number">6.2.</span> <span class="nav-text">2.锚链接-通过页面中的超链接定位到页面的具体位置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-功能性链接-打开邮箱-添加qq之类"><span class="nav-number">6.3.</span> <span class="nav-text">3.功能性链接-打开邮箱/添加qq之类</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#行内元素和块元素"><span class="nav-number">7.</span> <span class="nav-text">行内元素和块元素</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#列表"><span class="nav-number">8.</span> <span class="nav-text">列表</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#表格-table"><span class="nav-number">9.</span> <span class="nav-text">表格 table</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#媒体元素"><span class="nav-number">10.</span> <span class="nav-text">媒体元素</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#网页结构"><span class="nav-number">11.</span> <span class="nav-text">网页结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#iframe内联框架"><span class="nav-number">12.</span> <span class="nav-text">iframe内联框架</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#表单post和get提交"><span class="nav-number">13.</span> <span class="nav-text">表单post和get提交</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#表单-form"><span class="nav-number">13.1.</span> <span class="nav-text">表单 form</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#提交方式-get-post"><span class="nav-number">13.2.</span> <span class="nav-text">提交方式 get post</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#form表单内容"><span class="nav-number">14.</span> <span class="nav-text">form表单内容</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#单选框，多选框，按钮"><span class="nav-number">14.1.</span> <span class="nav-text">单选框，多选框，按钮</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#下拉框"><span class="nav-number">14.2.</span> <span class="nav-text">下拉框</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#表单的应用"><span class="nav-number">15.</span> <span class="nav-text">表单的应用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#表单初级验证"><span class="nav-number">16.</span> <span class="nav-text">表单初级验证</span></a></li></ol></div>
+        
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image"
+      src="/images/touxiang1.jpg"
+      alt="Lucifinil">
+  <p class="site-author-name" itemprop="name">Lucifinil</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+  <nav class="site-state motion-element">
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">34</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
+          
+            <a href="/categories/">
+          
+        
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">分类</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-tags">
+        
+          
+            <a href="/tags/">
+          
+        
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">标签</span>
+        </a>
+      </div>
+    
+  </nav>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="https://github.com/Lucifinil-x" title="GitHub &rarr; https://github.com/Lucifinil-x" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+    
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="https://weibo.com/2890499315/profile?rightmod=1&wvr=6&mod=personinfo&is_all=1" title="weibo &rarr; https://weibo.com/2890499315/profile?rightmod=1&wvr=6&mod=personinfo&is_all=1" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>weibo</a>
+      </span>
+    
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title">
+      <i class="fa fa-fw fa-link"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="http://Lucifinil.com/" title="http://Lucifinil.com/" rel="noopener" target="_blank">Lucifinil</a>
+        </li>
+      
+    </ul>
+  </div>
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+      
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Lucifinil</span>
+</div>
+
+<!--
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0</div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.4.0</div>-->
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-user"></i>
+    </span>
+    <span class="site-uv" title="总访客量">
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+    <span class="post-meta-divider">|</span>
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-eye"></i>
+    </span>
+    <span class="site-pv" title="总访问量">
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+
+
+  <script src="/lib/anime.min.js?v=3.1.0"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+<script src="/js/utils.js?v=7.4.0"></script><script src="/js/motion.js?v=7.4.0"></script>
+<script src="/js/schemes/pisces.js?v=7.4.0"></script>
+<script src="/js/next-boot.js?v=7.4.0"></script>
+
+    
+  
+    
+  
+
+  <script>
+  (function() {
+    window.addEventListener('DOMContentLoaded', () => {
+      let script = document.createElement('script');
+      script.src = '/lib/three/three.min.js';
+      document.body.appendChild(script);
+    });
+    let styles = ['/lib/three/three-waves.min.js', '', '/lib/three/canvas_sphere.min.js'];
+    window.addEventListener('load', () => {
+      styles.forEach(item => {
+        if (item !== '') {
+          let script = document.createElement('script');
+          script.src = item;
+          document.body.appendChild(script);
+        }
+      });
+    });
+  })();
+  </script>
+
+
+  
+
+
+
+
+
+
+
+
+  <script src="/js/local-search.js?v=7.4.0"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+
+<script>
+NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail,link';
+  guest = guest.split(',').filter(item => {
+    return GUEST.includes(item);
+  });
+  new Valine({
+    el: '#comments',
+    verify: false,
+    notify: false,
+    appId: 'oDY3PgVcs4KquzU5ExfpRIvL-gzGzoHsz',
+    appKey: 'TfeAqOOA3dvfY8DgjnBCdFUI',
+    placeholder: 'Just go go',
+    avatar: 'mm',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: false,
+    lang: '' || 'zh-cn',
+    path: location.pathname
+  });
+}, window.Valine);
+</script>
+
+</body>
+</html>
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/clicklove.js"></script>
