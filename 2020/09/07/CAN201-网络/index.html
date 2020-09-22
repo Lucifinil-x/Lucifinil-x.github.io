@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.9.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.4.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.4.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.4.0">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.4.0" color="#222">
+
+<link rel="stylesheet" href="/css/main.css?v=7.4.0">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-corner-indicator.min.css?v=1.0.2">
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.4.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":true,"scrollpercent":true},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
+    },
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="作业CAN201 网络  icequiz x2 + 两部分CW = 15分x2 + 70分w10和w14 quiz ; 程序项目，用python3">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CAN201 网络">
+<meta property="og:url" content="https://lucifinil-x.github.io/2020/09/07/CAN201-网络/index.html">
+<meta property="og:site_name" content="Sanctuary">
+<meta property="og:description" content="作业CAN201 网络  icequiz x2 + 两部分CW = 15分x2 + 70分w10和w14 quiz ; 程序项目，用python3">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2020-09-08T13:37:48.441Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="CAN201 网络">
+<meta name="twitter:description" content="作业CAN201 网络  icequiz x2 + 两部分CW = 15分x2 + 70分w10和w14 quiz ; 程序项目，用python3">
+  <link rel="canonical" href="https://lucifinil-x.github.io/2020/09/07/CAN201-网络/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>CAN201 网络 | Sanctuary</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Sanctuary</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+      
+      
+      
+        
+        <li class="menu-item menu-item-home">
+      
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-tags">
+      
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-categories">
+      
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-archives">
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a href="javascript:;" class="popup-trigger">
+        
+          <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+      </li>
+    
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="搜索..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+            
+
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+      <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block post">
+    <link itemprop="mainEntityOfPage" href="https://lucifinil-x.github.io/2020/09/07/CAN201-网络/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Lucifinil">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/touxiang1.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Sanctuary">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">CAN201 网络
+
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2020-09-07 11:10:14" itemprop="dateCreated datePublished" datetime="2020-09-07T11:10:14+08:00">2020-09-07</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-09-08 21:37:48" itemprop="dateModified" datetime="2020-09-08T21:37:48+08:00">2020-09-08</time>
+              </span>
+            
+          
+
+          
+            <span class="post-meta-item" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+        
+      
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2020/09/07/CAN201-网络/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2020/09/07/CAN201-网络/" itemprop="commentCount"></span></a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="作业"><a href="#作业" class="headerlink" title="作业"></a>作业</h2><p>CAN201 网络  icequiz x2 + 两部分CW = 15分x2 + 70分<br>w10和w14 quiz ; 程序项目，用python3</p><a id="more"></a>
+<h2 id="handbook"><a href="#handbook" class="headerlink" title="handbook"></a>handbook</h2><p>管理他们的操作，成功的计算机网络的设计和组织原则，以及当代互联网中使用的关键协议和技术。<br>[A] 计算基本网络性能统计数据（例如平均吞吐量），给定<br>网络配置和参数。<br>[B] 应用标准网络算法，如（距离向量、ARP发现，<br>虚拟电路设置）针对具体问题，演示中间和最终<br>州。<br>[C] 分析并实现标准网络协议的简单版本。<br>[D] 在给定一组期望的网络参数的基础上，设计新的协议来解决<br>该网络的具体目标<br>[E] 为给定问题选择并使用现有的网络安全协议 </p>
+<h2 id="lab"><a href="#lab" class="headerlink" title="lab"></a>lab</h2><p>每周二上午11点 SC464<br>做python和networking, 有签到</p>
+<h2 id="syllabus课程安排"><a href="#syllabus课程安排" class="headerlink" title="syllabus课程安排"></a>syllabus课程安排</h2><p>w1: networking基础理论<br>    编译器<br>w2: application layer应用层 principles,web,http<br>    基本语法<br>w3: application layer应用层 email,dns,p2p,多媒体协议protocols<br>    数据结构：列表和字典<br>w4: 传输层 multiplexing,udp,可靠数据传输<br>    文件操作，网络编程<br>w5: 传输层 tcp,堵塞<br>    协议，解析包<br>w6: 网络层 router,internet,IPv4,IPv6<br>    模块，PIP<br>w8: 网络层 routing算法，control plane<br>    OOP<br>w9: 连接层 error correction,ethernet<br>    平行计算<br>w10: 连接层 link visualization 课上test<br>     应用<br>w11: 物理层 硬件交流媒体<br>      intro,switch setup<br>w12: 网络安全 公钥，授权<br>     配置switch接口<br>w13: 网络安全 公钥，授权<br>     VLAN 配置<br>w14: 复习和quiz<br>     router setup</p>
+<h2 id="lecture"><a href="#lecture" class="headerlink" title="lecture"></a>lecture</h2><h3 id="w1-networking基础理论"><a href="#w1-networking基础理论" class="headerlink" title="w1 networking基础理论"></a>w1 networking基础理论</h3><h4 id="学校lecture"><a href="#学校lecture" class="headerlink" title="学校lecture"></a>学校lecture</h4><p>1.什么是internet<br>2.什么是协议<br>3.看不下去了<br>4.网络安全</p>
+<h4 id="王道考研-第一章"><a href="#王道考研-第一章" class="headerlink" title="王道考研 第一章"></a>王道考研 第一章</h4><ul>
+<li>计算机网络的功能：</li>
+</ul>
+<p>1.数据共享<br>2.资源共享<br>3.分布式处理 多台计算机共同承担同一工作任务的不同部分 hadoop平台<br>4.提高可靠性 一台崩了有替代机<br>5.负载均衡 分布式处理达到的效果，工作任务均衡的分配给各台计算机</p>
+<ul>
+<li>计算机网络的组成</li>
+</ul>
+<p>1.组成部分 硬件，软件，协议<br>2.工作方式<br>    边缘部分(用户直接使用)：c/s方式-客户端服务器；p2p对等方式<br>    核心部分： 为边缘部分服务<br>3.通信子网，资源子网</p>
+<ul>
+<li>计算机网络的分类</li>
+</ul>
+<p>1.分布范围分类： 广域网WAN(跨国)，城域网MAN(跨城)，局域网LAN(千米)，个人区域网PAN<br>2.按照使用者分：共用网，专用网<br>3.按交换结构分：电路，报文，分组交换<br>4.按拓扑结构分</p>
+<h2 id="5-按传输技术分"><a href="#5-按传输技术分" class="headerlink" title="5.按传输技术分"></a>5.按传输技术分</h2><h2 id="标准化"><a href="#标准化" class="headerlink" title="标准化"></a>标准化</h2><p>性能指标：<br>利用率 信道利用率<br>速率<br>带宽 理想条件下<br>吞吐量 1s能接受多少数据<br>时延 传播，传输过程<br>时延带宽积 传播时延带宽相乘</p>
+<h2 id="往返时间"><a href="#往返时间" class="headerlink" title="往返时间"></a>往返时间</h2><p>网络结构-分层结构：<br>协议[水平]：对等实体之间的功能的规定，规定他们之间可以做什么事情，有什么功能，所有是水平协议<br>协议的三个约定：语法(传输数据格式)，语义(完成的功能)，同步(数据报操作顺序)</p>
+<p>接口：上层使用下层的入口<br>    仅仅在相邻层直接有接口，为上层提供接口，屏蔽细节</p>
+<p>服务[垂直]：下层为相邻上层提供功能调用<br>    每一个中间层次都是为上层提供服务，用下层所有层次的服务总和</p>
+<hr>
+<p>ISO/OSI参考模型</p>
+<h2 id="理论成功，市场失败"><a href="#理论成功，市场失败" class="headerlink" title="理论成功，市场失败"></a>理论成功，市场失败</h2><h2 id="TCP-IP模型-和-五层参考模型"><a href="#TCP-IP模型-和-五层参考模型" class="headerlink" title="TCP/IP模型 和 五层参考模型"></a>TCP/IP模型 和 五层参考模型</h2><h4 id="王道考研-第二章-物理层"><a href="#王道考研-第二章-物理层" class="headerlink" title="王道考研 第二章 物理层"></a>王道考研 第二章 物理层</h4>
+    </div>
+
+    
+    
+    
+        
+      
+        <div id="reward-container">
+  <div>我这么可爱不给我投个币嘛~~ 有帮助的话可以打赏路路噢~~</div>
+  <button id="reward-button" disable="enable" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+        
+      
+      <div style="display: inline-block">
+        <img src="/images/wechatpay.jpg" alt="Lucifinil 微信支付">
+        <p>微信支付</p>
+      </div>
+        
+      
+      <div style="display: inline-block">
+        <img src="/images/alipay.jpg" alt="Lucifinil 支付宝">
+        <p>支付宝</p>
+      </div>
+
+  </div>
+</div>
+
+      
+
+      <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+              
+                <a href="/2020/09/07/INT201-决策计算与语言/" rel="next" title="INT201 决策计算与语言(编译原理)">
+                  <i class="fa fa-chevron-left"></i> INT201 决策计算与语言(编译原理)
+                </a>
+              
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+              
+                <a href="/2020/09/07/CPT203-软件工程1/" rel="prev" title="CPT203 软件工程1">
+                  CPT203 软件工程1 <i class="fa fa-chevron-right"></i>
+                </a>
+              
+            </div>
+          </div>
+        
+      </footer>
+    
+  </div>
+  
+  
+  
+  </article>
+
+  </div>
+
+
+          </div>
+          
+    
+    <div class="comments" id="comments"></div>
+  
+
+        </div>
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+        
+        
+        
+        
+      
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#作业"><span class="nav-number">1.</span> <span class="nav-text">作业</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#handbook"><span class="nav-number">2.</span> <span class="nav-text">handbook</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#lab"><span class="nav-number">3.</span> <span class="nav-text">lab</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#syllabus课程安排"><span class="nav-number">4.</span> <span class="nav-text">syllabus课程安排</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#lecture"><span class="nav-number">5.</span> <span class="nav-text">lecture</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#w1-networking基础理论"><span class="nav-number">5.1.</span> <span class="nav-text">w1 networking基础理论</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#学校lecture"><span class="nav-number">5.1.1.</span> <span class="nav-text">学校lecture</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#王道考研-第一章"><span class="nav-number">5.1.2.</span> <span class="nav-text">王道考研 第一章</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-按传输技术分"><span class="nav-number">6.</span> <span class="nav-text">5.按传输技术分</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#标准化"><span class="nav-number">7.</span> <span class="nav-text">标准化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#往返时间"><span class="nav-number">8.</span> <span class="nav-text">往返时间</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#理论成功，市场失败"><span class="nav-number">9.</span> <span class="nav-text">理论成功，市场失败</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TCP-IP模型-和-五层参考模型"><span class="nav-number">10.</span> <span class="nav-text">TCP/IP模型 和 五层参考模型</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#王道考研-第二章-物理层"><span class="nav-number">10.0.1.</span> <span class="nav-text">王道考研 第二章 物理层</span></a></li></ol></li></ol></li></ol></div>
+        
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image"
+      src="/images/touxiang1.jpg"
+      alt="Lucifinil">
+  <p class="site-author-name" itemprop="name">Lucifinil</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+  <nav class="site-state motion-element">
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">43</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
+          
+            <a href="/categories/">
+          
+        
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">分类</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-tags">
+        
+          
+            <a href="/tags/">
+          
+        
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">标签</span>
+        </a>
+      </div>
+    
+  </nav>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="https://github.com/Lucifinil-x" title="GitHub &rarr; https://github.com/Lucifinil-x" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+    
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="https://weibo.com/2890499315/profile?rightmod=1&wvr=6&mod=personinfo&is_all=1" title="weibo &rarr; https://weibo.com/2890499315/profile?rightmod=1&wvr=6&mod=personinfo&is_all=1" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>weibo</a>
+      </span>
+    
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title">
+      <i class="fa fa-fw fa-link"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="http://Lucifinil.com/" title="http://Lucifinil.com/" rel="noopener" target="_blank">Lucifinil</a>
+        </li>
+      
+    </ul>
+  </div>
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+      
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Lucifinil</span>
+</div>
+
+<!--
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0</div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.4.0</div>-->
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-user"></i>
+    </span>
+    <span class="site-uv" title="总访客量">
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+    <span class="post-meta-divider">|</span>
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-eye"></i>
+    </span>
+    <span class="site-pv" title="总访问量">
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+
+
+  <script src="/lib/anime.min.js?v=3.1.0"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+<script src="/js/utils.js?v=7.4.0"></script><script src="/js/motion.js?v=7.4.0"></script>
+<script src="/js/schemes/pisces.js?v=7.4.0"></script>
+<script src="/js/next-boot.js?v=7.4.0"></script>
+
+    
+  
+    
+  
+
+  <script>
+  (function() {
+    window.addEventListener('DOMContentLoaded', () => {
+      let script = document.createElement('script');
+      script.src = '/lib/three/three.min.js';
+      document.body.appendChild(script);
+    });
+    let styles = ['/lib/three/three-waves.min.js', '', '/lib/three/canvas_sphere.min.js'];
+    window.addEventListener('load', () => {
+      styles.forEach(item => {
+        if (item !== '') {
+          let script = document.createElement('script');
+          script.src = item;
+          document.body.appendChild(script);
+        }
+      });
+    });
+  })();
+  </script>
+
+
+  
+
+
+
+
+
+
+
+
+  <script src="/js/local-search.js?v=7.4.0"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+
+<script>
+NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail,link';
+  guest = guest.split(',').filter(item => {
+    return GUEST.includes(item);
+  });
+  new Valine({
+    el: '#comments',
+    verify: false,
+    notify: false,
+    appId: 'oDY3PgVcs4KquzU5ExfpRIvL-gzGzoHsz',
+    appKey: 'TfeAqOOA3dvfY8DgjnBCdFUI',
+    placeholder: 'Just go go',
+    avatar: 'mm',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: false,
+    lang: '' || 'zh-cn',
+    path: location.pathname
+  });
+}, window.Valine);
+</script>
+
+</body>
+</html>
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/clicklove.js"></script>
