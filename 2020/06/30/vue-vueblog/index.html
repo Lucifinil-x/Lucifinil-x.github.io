@@ -57,17 +57,17 @@
   };
 </script>
 
-  <meta name="description" content="启动vue项目 cmd到项目路径 d: cd D:\vue博客项目\vueblog然后 npm run serve">
+  <meta name="description" content="启动vue项目 cmd到项目路径 d: cd D:\vue博客项目\vueblog然后 npm run serve 或者：idea中打开vue的项目文件夹，ALT + F12  在idea里面打开terminal(cmd的终端)，会自动定位到当前项目目录，然后 npm run serve">
 <meta property="og:type" content="article">
 <meta property="og:title" content="vue-vueblog">
 <meta property="og:url" content="https://lucifinil-x.github.io/2020/06/30/vue-vueblog/index.html">
 <meta property="og:site_name" content="Sanctuary">
-<meta property="og:description" content="启动vue项目 cmd到项目路径 d: cd D:\vue博客项目\vueblog然后 npm run serve">
+<meta property="og:description" content="启动vue项目 cmd到项目路径 d: cd D:\vue博客项目\vueblog然后 npm run serve 或者：idea中打开vue的项目文件夹，ALT + F12  在idea里面打开terminal(cmd的终端)，会自动定位到当前项目目录，然后 npm run serve">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-10-15T04:11:01.894Z">
+<meta property="og:updated_time" content="2020-11-09T07:45:09.638Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="vue-vueblog">
-<meta name="twitter:description" content="启动vue项目 cmd到项目路径 d: cd D:\vue博客项目\vueblog然后 npm run serve">
+<meta name="twitter:description" content="启动vue项目 cmd到项目路径 d: cd D:\vue博客项目\vueblog然后 npm run serve 或者：idea中打开vue的项目文件夹，ALT + F12  在idea里面打开terminal(cmd的终端)，会自动定位到当前项目目录，然后 npm run serve">
   <link rel="canonical" href="https://lucifinil-x.github.io/2020/06/30/vue-vueblog/">
 
 
@@ -281,7 +281,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-10-15 12:11:01" itemprop="dateModified" datetime="2020-10-15T12:11:01+08:00">2020-10-15</time>
+                <time title="修改时间：2020-11-09 15:45:09" itemprop="dateModified" datetime="2020-11-09T15:45:09+08:00">2020-11-09</time>
               </span>
             
           
@@ -321,18 +321,19 @@
       
         <h2 id="启动vue项目"><a href="#启动vue项目" class="headerlink" title="启动vue项目"></a>启动vue项目</h2><ul>
 <li>cmd到项目路径 d: cd D:\vue博客项目\vueblog<br>然后 npm run serve</li>
+<li>或者：idea中打开vue的项目文件夹，ALT + F12  在idea里面打开terminal(cmd的终端)，会自动定位到当前项目目录，然后 npm run serve</li>
 </ul><a id="more"></a>
 <h2 id="启动顺序"><a href="#启动顺序" class="headerlink" title="启动顺序"></a>启动顺序</h2><ol>
 <li>vueblog后端springbootapp</li>
-<li>cmd1命令行 启动vue前端项目(上面启动命令行)</li>
-<li>cmd2(新的cmd)命令行 cd C:\redis 然后运行 redis-server.exe redis.windows.conf (两行全部复制不要复制漏了)</li>
-<li>cmd3(新的cmd)命令行 cd C:\redis 然后运行 redis-cli.exe -h 127.0.0.1 -p 6379 就能连接到redis远程服务端127.0.0.1:6379<br>(注意是两个cmd! cmd23要一直打开)</li>
+<li>cmd1命令行 启动vue前端项目(上面启动命令行/idea中命令行/右键+powershell)</li>
+<li>cmd2(新的cmd)命令行 cd C:\redis<br>然后运行 redis-server.exe redis.windows.conf (两行全部复制不要复制漏了)</li>
+<li>cmd3(新的cmd)命令行 cd C:\redis<br>然后运行 redis-cli.exe -h 127.0.0.1 -p 6379<br>就能连接到redis远程服务端127.0.0.1:6379<br>(注意是两个cmd! cmd23要一直打开)</li>
 </ol>
 <h2 id="安装位置相关"><a href="#安装位置相关" class="headerlink" title="安装位置相关"></a>安装位置相关</h2><ul>
 <li>element-ui: vue项目的根目录</li>
 <li>mavon-editor: vue项目的根目录</li>
-<li>node.js: d盘</li>
-<li>redis: d盘</li>
+<li>node.js: d盘安装包 c盘安装位置 搜索运行<pre><code>C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Node.js</code></pre></li>
+<li>redis: d盘安装包 c盘安装位置</li>
 <li>lombok插件jar包： eclipse.exe的根目录，附带ini最后两行</li>
 <li>md样式插件： vue项目的根目录</li>
 <li>windows powershell: c盘</li>
@@ -362,8 +363,9 @@
 </ul>
 <h3 id="element-ui安装"><a href="#element-ui安装" class="headerlink" title="element-ui安装"></a>element-ui安装</h3><ul>
 <li>控制台vue项目文件夹路径下cnpm install element-ui –save</li>
-<li>项目中main.js 导入依赖之后就可以在项目中全局复制使用elementui的组件代码</li>
+<li>项目中main.js 导入依赖之后就可以在项目中全局复制使用elementui的组件代码。<br>main.js 导入依赖：import Element from ‘element-ui’<br>main.js 导入element-ui的css样式：import “element-ui/lib/theme-chalk/index.css”<br>main.js 声明使用: Vue.use(Element);</li>
 </ul>
+<p>(安装SASS加载器，没有用 cnpm install sass-loader node-sass –save-dev)</p>
 <h2 id="vue主要写的东西是些什么"><a href="#vue主要写的东西是些什么" class="headerlink" title="vue主要写的东西是些什么"></a>vue主要写的东西是些什么</h2><ul>
 <li><p>components 页面html 公共区域需要抽取出来的</p>
 </li>
@@ -435,7 +437,57 @@
 </li>
 </ul>
 <p>后端需要删除token信息和清除state状态信息，调用后端的REMOVE_INFO方法。然后用router跳转到/login界面。<br>清除之后要创建新的用户信息，写方法created():如果用户名不为空的时候，进行用户名、头像、登录状态的回写。</p>
-<h2 id="blog-vue"><a href="#blog-vue" class="headerlink" title="blog.vue"></a>blog.vue</h2>
+<h2 id="blog-vue"><a href="#blog-vue" class="headerlink" title="blog.vue"></a>blog.vue</h2><h2 id="vuelog博客思路"><a href="#vuelog博客思路" class="headerlink" title="vuelog博客思路"></a>vuelog博客思路</h2><h3 id="技术栈"><a href="#技术栈" class="headerlink" title="技术栈"></a>技术栈</h3><ul>
+<li>后端： SpringBoot Mybatis Plus shiro redis hibernate validator jwt</li>
+<li>前端：vue element-ui axios</li>
+</ul>
+<h3 id="博客功能"><a href="#博客功能" class="headerlink" title="博客功能"></a>博客功能</h3><ul>
+<li>用户登录</li>
+<li>用户退出</li>
+<li>blog主页列表(element-ui样式)</li>
+<li>blog详情页(md格式展示)</li>
+<li>blog编辑/发表(markdown格式mavon-editor编辑器)</li>
+</ul>
+<h3 id="技术对应作用"><a href="#技术对应作用" class="headerlink" title="技术对应作用"></a>技术对应作用</h3><ul>
+<li><p>SpringBoot：基础框架，在未来易拓展，适合微服务化体系</p>
+</li>
+<li><p>Mybatis Plus：让项目能完成基本的增删改查操作，节省大量时间</p>
+</li>
+<li><p>Shiro：作为权限(验证)，使用简单配置简单</p>
+</li>
+<li><p>Redis: 会话等信息需要共享,Redis是现在主流的缓存中间件，适合项目</p>
+</li>
+<li><p>jwt: json web token因为前后端分离，所以使用jwt作为用户身份凭证</p>
+</li>
+<li><p>devtools：项目的热加载重启插件</p>
+</li>
+<li><p>lombok：简化代码的插件工具<br>vue<br>element-ui<br>axios<br>mavon-editor<br>markdown-it<br>github-markdown-css</p>
+</li>
+</ul>
+<h3 id="vue前端"><a href="#vue前端" class="headerlink" title="vue前端"></a>vue前端</h3><ul>
+<li>vue整合element-ui axios(命令行安装)</li>
+<li>页面：登录页面，博客列表页面，博客详情页面，博客编辑页面</li>
+</ul>
+<h2 id="前端"><a href="#前端" class="headerlink" title="前端"></a>前端</h2><h3 id="路由权限拦截"><a href="#路由权限拦截" class="headerlink" title="路由权限拦截"></a>路由权限拦截</h3><ol>
+<li>判断哪些路由需要权限（/add /edit）<br>meta: {<br>   requireAuth: true<br>},</li>
+<li>路由前置拦截<br>axios在发起请求之前有一个前置拦截<br>判断该路由的meta里信息如果是true的话就需要权限，然后判定有无token。<br>如果有Token就跳转到下一个路由 next（）；<br>如果没有token-&gt;跳转到login界面 但是项目中没有用跳转用的是禁止，直接访问没有跳转到login</li>
+</ol>
+<p>为了让这个错误弹窗能运用到所有的地方，所以我对axios做了个后置拦截器，就是返回数据时候，如果结果的code或者status不正常，那么就有对应的弹窗提示。</p>
+<h3 id="登录页面-登录逻辑"><a href="#登录页面-登录逻辑" class="headerlink" title="登录页面-登录逻辑"></a>登录页面-登录逻辑</h3><ol>
+<li>前端页面提示需要输入用户名和密码</li>
+<li>前端页面提交时axios发起请求(axios发起请求的时候都会有一个域名/当前页面url)</li>
+<li>后端进行密码校验，如果正常，生成jwt，返回给用户</li>
+<li>从返回的结果请求头中获取到token的信息，然后使用store提交token和用户信息的状态。完成操作之后，我们跳转到到了/blogs路由，即博客列表页面。</li>
+<li>存储token，用的是localStorage; 存储用户信息，我们用的是sessionStorage。</li>
+</ol>
+<h3 id="博客列表页面"><a href="#博客列表页面" class="headerlink" title="博客列表页面"></a>博客列表页面</h3><ol>
+<li>页面头部我们需要把用户的信息展示出来，因为很多地方都用到这个模块，所以我们把页面头部的用户信息单独抽取出来作为一个组件。</li>
+<li>头部的用户信息，应该包含三部分信息：id，头像、用户名，而这些信息我们是在登录之后就已经存在了sessionStorage。因此，我们可以通过store的getters获取到用户信息。</li>
+<li>上面代码created()中初始化用户的信息，通过hasLogin的状态来控制登录和退出按钮的切换，以及发表文章链接的disabled，这样用户的信息就能展示出来了。</li>
+<li>退出逻辑：在methods中有个logout()方法，逻辑比较简单，直接访问/logout，因为之前axios.js中我们已经设置axios请求的baseURL，所以这里我们不再需要链接的前缀了哈。因为是登录之后才能访问的受限资源，所以在header中带上了Authorization。返回结果清除store中的用户信息和token信息，跳转到登录页面。</li>
+</ol>
+<h2 id="项目综述"><a href="#项目综述" class="headerlink" title="项目综述"></a>项目综述</h2><p>SpringBoot+vue的博客项目<br>基本功能：用户登录页面，用户退出，blog主页列表(element-ui样式)， blog详情页(markdown格式展示)，blog编辑/发表(markdown格式mavon-editor编辑器)<br>使用技术：SpringBoot作为基础框架，Mybatis Plus：让项目能完成基本的增删改查操作，省去自己写mapper、service, Shiro：权限校验、登录认证，Redis: 储存shiro的权限数据和会话信，jwt: 作为前后端分离的用户身份凭证；<br>vue项目使用：element-ui，axios，mavon-editor，markdown-it，github-markdown-css<br>功能逻辑：使用用户名密码登录axios发起请求，后端进行密码校验，如果正常，生成jwt，返回给用户。从返回的结果请求头中获取并提交token的信息跳转到blog主页列表。如果异常，全局异常捕获，页面弹窗异常信息。Blog主页做了页面头部将用户的信息展示出来，element-ui时间线样式做列表，还有分页。Blog详情页使用插件markdown-it将markdown格式的内容渲染展示出来。使用mavon-editor编辑器进行blog的编辑，点击按钮提交表单。</p>
+
     </div>
 
     
@@ -538,7 +590,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#启动vue项目"><span class="nav-number">1.</span> <span class="nav-text">启动vue项目</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#启动顺序"><span class="nav-number">2.</span> <span class="nav-text">启动顺序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装位置相关"><span class="nav-number">3.</span> <span class="nav-text">安装位置相关</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#前期准备"><span class="nav-number">4.</span> <span class="nav-text">前期准备</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#当前文件夹中打开windows-powershellc窗口"><span class="nav-number">4.1.</span> <span class="nav-text">当前文件夹中打开windows powershellc窗口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#eclipse中加入vue插件"><span class="nav-number">4.2.</span> <span class="nav-text">eclipse中加入vue插件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#eclipse导入已经创建好的vue项目"><span class="nav-number">4.3.</span> <span class="nav-text">eclipse导入已经创建好的vue项目</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#element-ui安装"><span class="nav-number">4.4.</span> <span class="nav-text">element-ui安装</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#vue主要写的东西是些什么"><span class="nav-number">5.</span> <span class="nav-text">vue主要写的东西是些什么</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#vue文件"><span class="nav-number">6.</span> <span class="nav-text">.vue文件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#标签-直接写标签显示不出来"><span class="nav-number">6.1.</span> <span class="nav-text">标签(直接写标签显示不出来)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#注释"><span class="nav-number">6.2.</span> <span class="nav-text">注释</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#router"><span class="nav-number">7.</span> <span class="nav-text">router</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#import-所有页面组件"><span class="nav-number">7.1.</span> <span class="nav-text">import 所有页面组件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#path细节"><span class="nav-number">7.2.</span> <span class="nav-text">path细节</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#写-vue页面"><span class="nav-number">8.</span> <span class="nav-text">写.vue页面</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Login-vue"><span class="nav-number">8.1.</span> <span class="nav-text">Login.vue</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Header-vue"><span class="nav-number">9.</span> <span class="nav-text">Header.vue</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#最上面"><span class="nav-number">9.1.</span> <span class="nav-text">最上面</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#头像下面的三个能跳转的链接"><span class="nav-number">9.2.</span> <span class="nav-text">头像下面的三个能跳转的链接</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#script"><span class="nav-number">9.3.</span> <span class="nav-text">script</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#methods"><span class="nav-number">9.3.1.</span> <span class="nav-text">methods</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#blog-vue"><span class="nav-number">10.</span> <span class="nav-text">blog.vue</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#启动vue项目"><span class="nav-number">1.</span> <span class="nav-text">启动vue项目</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#启动顺序"><span class="nav-number">2.</span> <span class="nav-text">启动顺序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装位置相关"><span class="nav-number">3.</span> <span class="nav-text">安装位置相关</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#前期准备"><span class="nav-number">4.</span> <span class="nav-text">前期准备</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#当前文件夹中打开windows-powershellc窗口"><span class="nav-number">4.1.</span> <span class="nav-text">当前文件夹中打开windows powershellc窗口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#eclipse中加入vue插件"><span class="nav-number">4.2.</span> <span class="nav-text">eclipse中加入vue插件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#eclipse导入已经创建好的vue项目"><span class="nav-number">4.3.</span> <span class="nav-text">eclipse导入已经创建好的vue项目</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#element-ui安装"><span class="nav-number">4.4.</span> <span class="nav-text">element-ui安装</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#vue主要写的东西是些什么"><span class="nav-number">5.</span> <span class="nav-text">vue主要写的东西是些什么</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#vue文件"><span class="nav-number">6.</span> <span class="nav-text">.vue文件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#标签-直接写标签显示不出来"><span class="nav-number">6.1.</span> <span class="nav-text">标签(直接写标签显示不出来)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#注释"><span class="nav-number">6.2.</span> <span class="nav-text">注释</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#router"><span class="nav-number">7.</span> <span class="nav-text">router</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#import-所有页面组件"><span class="nav-number">7.1.</span> <span class="nav-text">import 所有页面组件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#path细节"><span class="nav-number">7.2.</span> <span class="nav-text">path细节</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#写-vue页面"><span class="nav-number">8.</span> <span class="nav-text">写.vue页面</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Login-vue"><span class="nav-number">8.1.</span> <span class="nav-text">Login.vue</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Header-vue"><span class="nav-number">9.</span> <span class="nav-text">Header.vue</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#最上面"><span class="nav-number">9.1.</span> <span class="nav-text">最上面</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#头像下面的三个能跳转的链接"><span class="nav-number">9.2.</span> <span class="nav-text">头像下面的三个能跳转的链接</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#script"><span class="nav-number">9.3.</span> <span class="nav-text">script</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#methods"><span class="nav-number">9.3.1.</span> <span class="nav-text">methods</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#blog-vue"><span class="nav-number">10.</span> <span class="nav-text">blog.vue</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#vuelog博客思路"><span class="nav-number">11.</span> <span class="nav-text">vuelog博客思路</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#技术栈"><span class="nav-number">11.1.</span> <span class="nav-text">技术栈</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#博客功能"><span class="nav-number">11.2.</span> <span class="nav-text">博客功能</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#技术对应作用"><span class="nav-number">11.3.</span> <span class="nav-text">技术对应作用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#vue前端"><span class="nav-number">11.4.</span> <span class="nav-text">vue前端</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#前端"><span class="nav-number">12.</span> <span class="nav-text">前端</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#路由权限拦截"><span class="nav-number">12.1.</span> <span class="nav-text">路由权限拦截</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#登录页面-登录逻辑"><span class="nav-number">12.2.</span> <span class="nav-text">登录页面-登录逻辑</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#博客列表页面"><span class="nav-number">12.3.</span> <span class="nav-text">博客列表页面</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#项目综述"><span class="nav-number">13.</span> <span class="nav-text">项目综述</span></a></li></ol></div>
         
       </div>
       <!--/noindex-->
@@ -556,7 +608,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">48</span>
+          <span class="site-state-item-count">64</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -644,7 +696,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
   <span class="with-love" id="animate">
     <i class="fa fa-user"></i>
   </span>

@@ -57,17 +57,17 @@
   };
 </script>
 
-  <meta name="description" content="String判断指向地址or值 只要记住一点！编译期决定 -&amp;gt; 一定指向常量池运行时决定(且不是intern()) -&amp;gt; 一定指向堆== 判断地址是否相同  编译期进入常量池： String a = “123”; “1”+”2”+”3”;运行期堆上分配： String b = new String(“123”); a+a+a;a==b判断的是指向的对象的地址，虽然a b对象的值相同，但">
+  <meta name="description" content="String判断指向地址or值 只要记住一点！1.编译期决定 -&amp;gt; 一定指向常量池2.运行时决定(且不是intern()) -&amp;gt; 一定指向堆3.== 判断地址是否相同  编译期进入常量池： String a = “123”; “1”+”2”+”3”;运行期堆上分配： String b = new String(“123”); a+a+a;a==b判断的是指向的对象的地址，虽然a b对象">
 <meta property="og:type" content="article">
 <meta property="og:title" content="面试准备-java">
 <meta property="og:url" content="https://lucifinil-x.github.io/2020/06/23/面试准备-java/index.html">
 <meta property="og:site_name" content="Sanctuary">
-<meta property="og:description" content="String判断指向地址or值 只要记住一点！编译期决定 -&amp;gt; 一定指向常量池运行时决定(且不是intern()) -&amp;gt; 一定指向堆== 判断地址是否相同  编译期进入常量池： String a = “123”; “1”+”2”+”3”;运行期堆上分配： String b = new String(“123”); a+a+a;a==b判断的是指向的对象的地址，虽然a b对象的值相同，但">
+<meta property="og:description" content="String判断指向地址or值 只要记住一点！1.编译期决定 -&amp;gt; 一定指向常量池2.运行时决定(且不是intern()) -&amp;gt; 一定指向堆3.== 判断地址是否相同  编译期进入常量池： String a = “123”; “1”+”2”+”3”;运行期堆上分配： String b = new String(“123”); a+a+a;a==b判断的是指向的对象的地址，虽然a b对象">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-09-14T10:27:50.343Z">
+<meta property="og:updated_time" content="2021-03-16T06:08:03.798Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="面试准备-java">
-<meta name="twitter:description" content="String判断指向地址or值 只要记住一点！编译期决定 -&amp;gt; 一定指向常量池运行时决定(且不是intern()) -&amp;gt; 一定指向堆== 判断地址是否相同  编译期进入常量池： String a = “123”; “1”+”2”+”3”;运行期堆上分配： String b = new String(“123”); a+a+a;a==b判断的是指向的对象的地址，虽然a b对象的值相同，但">
+<meta name="twitter:description" content="String判断指向地址or值 只要记住一点！1.编译期决定 -&amp;gt; 一定指向常量池2.运行时决定(且不是intern()) -&amp;gt; 一定指向堆3.== 判断地址是否相同  编译期进入常量池： String a = “123”; “1”+”2”+”3”;运行期堆上分配： String b = new String(“123”); a+a+a;a==b判断的是指向的对象的地址，虽然a b对象">
   <link rel="canonical" href="https://lucifinil-x.github.io/2020/06/23/面试准备-java/">
 
 
@@ -281,7 +281,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-09-14 18:27:50" itemprop="dateModified" datetime="2020-09-14T18:27:50+08:00">2020-09-14</time>
+                <time title="修改时间：2021-03-16 14:08:03" itemprop="dateModified" datetime="2021-03-16T14:08:03+08:00">2021-03-16</time>
               </span>
             
           
@@ -333,7 +333,7 @@
 
       
         <h2 id="String"><a href="#String" class="headerlink" title="String"></a>String</h2><h3 id="判断指向地址or值"><a href="#判断指向地址or值" class="headerlink" title="判断指向地址or值"></a>判断指向地址or值</h3><ul>
-<li><p>只要记住一点！<br>编译期决定 -&gt; 一定指向常量池<br>运行时决定(且不是intern()) -&gt; 一定指向堆<br>== 判断地址是否相同</p>
+<li><p>只要记住一点！<br>1.编译期决定 -&gt; 一定指向常量池<br>2.运行时决定(且不是intern()) -&gt; 一定指向堆<br>3.== 判断地址是否相同</p>
 </li>
 <li><p>编译期进入常量池： String a = “123”; “1”+”2”+”3”;<br>运行期堆上分配： String b = new String(“123”); a+a+a;<br>a==b判断的是指向的对象的地址，虽然a b对象的值相同，但是a指向常量池中对象的地址，b指向堆内存上对象的地址。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">System.out.println(a == b); //false</span><br><span class="line">System.out.println(a ==&quot;1&quot;+&quot;2&quot;+&quot;3&quot;);//true</span><br><span class="line">String s1=&quot;1&quot;;</span><br><span class="line">String s2=&quot;2&quot;;</span><br><span class="line">String s3=&quot;3&quot;;</span><br><span class="line">System.out.println(a ==s1+s2+s3);//false a在常量池，s1+s2+s3是运行时堆上分配</span><br></pre></td></tr></table></figure>
@@ -349,6 +349,8 @@
 <h2 id="Validate验证器"><a href="#Validate验证器" class="headerlink" title="Validate验证器"></a>Validate验证器</h2><h2 id="闲话"><a href="#闲话" class="headerlink" title="闲话"></a>闲话</h2><ol>
 <li>我认为我现在面对的是各个主体之间错综复杂的关系。我需要用逻辑去找到各个主体之间的联系与怎样联系。再找到主体之间的起始通路与终点。<br>就像是容器中的组件，一个连接另一个，一个注入另一个。<br>好的文章通过(作者的逻辑)带着我们从始到终，解释个体之间的联系。</li>
 </ol>
+<h3 id="equals-和"><a href="#equals-和" class="headerlink" title="equals 和 =="></a>equals 和 ==</h3><p>== 比较的索引地址。<br>equals比较值</p>
+<p>“string” == “string”; //true<br>String x = “string”;<br>String z = new String(“string”);<br>x == z; //false</p>
 <h2 id="HashMap"><a href="#HashMap" class="headerlink" title="HashMap"></a>HashMap</h2><ol>
 <li>hashmap在jdk1.7和jdk1.8版本的区别</li>
 </ol>
@@ -650,6 +652,12 @@
 <p>简单来说，Spring是一个轻量级的控制反转（IoC）和面向切面编程（AOP）的容器框架</p>
 <p>IOC:控制反转，简单点说，就是创建对象的控制权，被反转到了Spring框架上。<br>通常，我们实例化一个对象时，都是使用类的构造方法来new一个对象，这个过程是由我们自己来控制的，而控制反转就把new对象的工作交给了Spring容器。</p>
 <p>AOP:AOP把所有共用代码都剥离出来，单独放置到某个类中进行集中管理，在具体运行时，由容器进行动态织入这些公共代码。</p>
+<h2 id="同步异步"><a href="#同步异步" class="headerlink" title="同步异步"></a>同步异步</h2><p>同步异步 ， 举个例子来说，一家餐厅吧来了5个客人，同步的意思就是说，来第一个点菜，点了个鱼，好， 厨师去捉鱼杀鱼，过了半小时鱼好了给第一位客人，开始下位一位客人，就这样一个一个来，按顺序来</p>
+<p>相同， 异步呢，异步的意思就是来第一位客人，点什么，点鱼，给它一个牌子，让他去一边等吧，下一位客人接着点菜，点完接着点让厨师做去吧，哪个的菜先好就先端出来，</p>
+<p>同步的优点是：同步是按照顺序一个一个来，不会乱掉，更不会出现上面代码没有执行完就执行下面的代码， 缺点：是解析的速度没有异步的快；</p>
+<p>异步的优点是：异步是接取一个任务，直接给后台，在接下一个任务，一直一直这样，谁的先读取完先执行谁的， 缺点：没有顺序 ，谁先读取完先执行谁的 ，会出现上面的代码还没出来下面的就已经出来了，会报错；</p>
+<h2 id="java基础选择题"><a href="#java基础选择题" class="headerlink" title="java基础选择题"></a>java基础选择题</h2><p>A、 由高向低分别是：()、!、算术运算符、关系运算符、逻辑运算符、赋值运算符；</p>
+<p>a = 6;System.out.print(a++); 答案为6</p>
 
     </div>
 
@@ -753,7 +761,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#String"><span class="nav-number">1.</span> <span class="nav-text">String</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#判断指向地址or值"><span class="nav-number">1.1.</span> <span class="nav-text">判断指向地址or值</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Validate验证器"><span class="nav-number">2.</span> <span class="nav-text">Validate验证器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#闲话"><span class="nav-number">3.</span> <span class="nav-text">闲话</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HashMap"><span class="nav-number">4.</span> <span class="nav-text">HashMap</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#同步"><span class="nav-number">5.</span> <span class="nav-text">同步</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#redis"><span class="nav-number">6.</span> <span class="nav-text">redis</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#apache-shiro"><span class="nav-number">7.</span> <span class="nav-text">apache shiro</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#用户登录信息-Session-shiro-redis"><span class="nav-number">8.</span> <span class="nav-text">用户登录信息-Session-shiro-redis</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#jwt"><span class="nav-number">9.</span> <span class="nav-text">jwt</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Cookie和Session"><span class="nav-number">10.</span> <span class="nav-text">Cookie和Session</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#mybatis-mybatisplus"><span class="nav-number">11.</span> <span class="nav-text">mybatis mybatisplus</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MySQL"><span class="nav-number">12.</span> <span class="nav-text">MySQL</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#java"><span class="nav-number">13.</span> <span class="nav-text">java</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#操作系统"><span class="nav-number">14.</span> <span class="nav-text">操作系统</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#网络"><span class="nav-number">15.</span> <span class="nav-text">网络</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#spring"><span class="nav-number">16.</span> <span class="nav-text">spring</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#String"><span class="nav-number">1.</span> <span class="nav-text">String</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#判断指向地址or值"><span class="nav-number">1.1.</span> <span class="nav-text">判断指向地址or值</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Validate验证器"><span class="nav-number">2.</span> <span class="nav-text">Validate验证器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#闲话"><span class="nav-number">3.</span> <span class="nav-text">闲话</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#equals-和"><span class="nav-number">3.1.</span> <span class="nav-text">equals 和 ==</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HashMap"><span class="nav-number">4.</span> <span class="nav-text">HashMap</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#同步"><span class="nav-number">5.</span> <span class="nav-text">同步</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#redis"><span class="nav-number">6.</span> <span class="nav-text">redis</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#apache-shiro"><span class="nav-number">7.</span> <span class="nav-text">apache shiro</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#用户登录信息-Session-shiro-redis"><span class="nav-number">8.</span> <span class="nav-text">用户登录信息-Session-shiro-redis</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#jwt"><span class="nav-number">9.</span> <span class="nav-text">jwt</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Cookie和Session"><span class="nav-number">10.</span> <span class="nav-text">Cookie和Session</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#mybatis-mybatisplus"><span class="nav-number">11.</span> <span class="nav-text">mybatis mybatisplus</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MySQL"><span class="nav-number">12.</span> <span class="nav-text">MySQL</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#java"><span class="nav-number">13.</span> <span class="nav-text">java</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#操作系统"><span class="nav-number">14.</span> <span class="nav-text">操作系统</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#网络"><span class="nav-number">15.</span> <span class="nav-text">网络</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#spring"><span class="nav-number">16.</span> <span class="nav-text">spring</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#同步异步"><span class="nav-number">17.</span> <span class="nav-text">同步异步</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#java基础选择题"><span class="nav-number">18.</span> <span class="nav-text">java基础选择题</span></a></li></ol></div>
         
       </div>
       <!--/noindex-->
@@ -771,7 +779,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">48</span>
+          <span class="site-state-item-count">64</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -859,7 +867,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
   <span class="with-love" id="animate">
     <i class="fa fa-user"></i>
   </span>

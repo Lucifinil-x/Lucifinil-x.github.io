@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.9.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.4.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.4.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.4.0">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.4.0" color="#222">
+
+<link rel="stylesheet" href="/css/main.css?v=7.4.0">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-corner-indicator.min.css?v=1.0.2">
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.4.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":true,"scrollpercent":true},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
+    },
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="安装1.安装RabbitMQhttps://www.cnblogs.com/saryli/p/9729591.html出错了就卸载重新装了，访问http://localhost:15672默认用户名和密码都是guest，登陆即可。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="小说网站">
+<meta property="og:url" content="https://lucifinil-x.github.io/2020/11/06/小说网站/index.html">
+<meta property="og:site_name" content="Sanctuary">
+<meta property="og:description" content="安装1.安装RabbitMQhttps://www.cnblogs.com/saryli/p/9729591.html出错了就卸载重新装了，访问http://localhost:15672默认用户名和密码都是guest，登陆即可。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2020-12-23T19:13:32.711Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="小说网站">
+<meta name="twitter:description" content="安装1.安装RabbitMQhttps://www.cnblogs.com/saryli/p/9729591.html出错了就卸载重新装了，访问http://localhost:15672默认用户名和密码都是guest，登陆即可。">
+  <link rel="canonical" href="https://lucifinil-x.github.io/2020/11/06/小说网站/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>小说网站 | Sanctuary</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Sanctuary</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+      
+      
+      
+        
+        <li class="menu-item menu-item-home">
+      
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-tags">
+      
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-categories">
+      
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-archives">
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a href="javascript:;" class="popup-trigger">
+        
+          <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+      </li>
+    
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="搜索..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+            
+
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+      <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block post">
+    <link itemprop="mainEntityOfPage" href="https://lucifinil-x.github.io/2020/11/06/小说网站/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Lucifinil">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/touxiang1.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Sanctuary">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">小说网站
+
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2020-11-06 17:03:36" itemprop="dateCreated datePublished" datetime="2020-11-06T17:03:36+08:00">2020-11-06</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-12-24 03:13:32" itemprop="dateModified" datetime="2020-12-24T03:13:32+08:00">2020-12-24</time>
+              </span>
+            
+          
+
+          
+            <span class="post-meta-item" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+        
+      
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2020/11/06/小说网站/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2020/11/06/小说网站/" itemprop="commentCount"></span></a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p>1.安装RabbitMQ<br><a href="https://www.cnblogs.com/saryli/p/9729591.html" target="_blank" rel="noopener">https://www.cnblogs.com/saryli/p/9729591.html</a><br>出错了就卸载重新装了，访问<a href="http://localhost:15672" target="_blank" rel="noopener">http://localhost:15672</a><br>默认用户名和密码都是guest，登陆即可。</p><a id="more"></a>
+<p>运行它：<br>    1.打开 D:\RabbitMQ安装\rabbitmq_server-3.8.9\sbin目录，双击rabbitmq-server.bat<br>    2.访问<a href="http://localhost:15672" target="_blank" rel="noopener">http://localhost:15672</a><br>    3.输入用户名和密码都是guest</p>
+<p>2.mongodb<br><a href="https://blog.csdn.net/weixin_41466575/article/details/105326230" target="_blank" rel="noopener">https://blog.csdn.net/weixin_41466575/article/details/105326230</a></p>
+<h2 id="https-blog-csdn-net-qq-15980721-article-details-102586518"><a href="#https-blog-csdn-net-qq-15980721-article-details-102586518" class="headerlink" title="https://blog.csdn.net/qq_15980721/article/details/102586518"></a><a href="https://blog.csdn.net/qq_15980721/article/details/102586518" target="_blank" rel="noopener">https://blog.csdn.net/qq_15980721/article/details/102586518</a></h2><p>3.python的库pika<br><a href="https://www.imooc.com/article/17327" target="_blank" rel="noopener">https://www.imooc.com/article/17327</a><br>pycharm中打开项目，命令行pip install pika -i <a href="https://pypi.douban.com/simple/" target="_blank" rel="noopener">https://pypi.douban.com/simple/</a><br>提示让使用：pip install pika -i <a href="https://pypi.douban.com/simple/" target="_blank" rel="noopener">https://pypi.douban.com/simple/</a><br>python -m pip install –upgrade pip<br>然后Successfully installed pip-20.2.4<br>安装了pip 是python的软件管理包<br>然后再pip install pika -i <a href="https://pypi.douban.com/simple/" target="_blank" rel="noopener">https://pypi.douban.com/simple/</a><br>显示已经可以了Requirement already satisfied: pika in d:\python3.7.2\lib\site-packages (1.1.0)</p>
+<h2 id="py文件中不报红就可以了"><a href="#py文件中不报红就可以了" class="headerlink" title="py文件中不报红就可以了"></a>py文件中不报红就可以了</h2><p>4.python的库PyMySQL</p>
+<h2 id="命令行pip-install-PyMySQL"><a href="#命令行pip-install-PyMySQL" class="headerlink" title="命令行pip install PyMySQL"></a>命令行pip install PyMySQL</h2><p>5.python的库scrapy</p>
+<h2 id="pip-install-scrapy"><a href="#pip-install-scrapy" class="headerlink" title="pip install scrapy"></a>pip install scrapy</h2><p>6.python的库redis</p>
+<h2 id="pip3-install-redis"><a href="#pip3-install-redis" class="headerlink" title="pip3 install redis"></a>pip3 install redis</h2><p>7.python的库pymongo<br>pip install pymongo</p>
+<h3 id="导入springboot项目-java"><a href="#导入springboot项目-java" class="headerlink" title="导入springboot项目-java"></a>导入springboot项目-java</h3><p>file-open-项目文件夹 是他本来的文件夹！然后maven自己导入依赖<br>能够运行的文件位置：D:\vue学习练习\vueNovelWeb\NovelWebGit\javaPro</p>
+<h3 id="导入vue项目"><a href="#导入vue项目" class="headerlink" title="导入vue项目"></a>导入vue项目</h3><p>1.进入vue项目文件夹(根目录)<br>2.直接shift+右键<br>3.npm install </p>
+<h2 id="4-npm-run-dev"><a href="#4-npm-run-dev" class="headerlink" title="4.npm run dev"></a>4.npm run dev</h2><p>注意：npm install 时候报错不用管直接运行就可以了。<br>found 1226 vulnerabilities (1185 low, 16 moderate, 25 high)<br>  run <code>npm audit fix</code> to fix them, or <code>npm audit</code> for details</p>
+<h3 id="运行"><a href="#运行" class="headerlink" title="运行"></a>运行</h3><p><a href="https://gitee.com/liupengss/novel" target="_blank" rel="noopener">https://gitee.com/liupengss/novel</a><br>1.运行RabbitMQ<br>    1.打开 D:\RabbitMQ安装\rabbitmq_server-3.8.9\sbin目录，双击rabbitmq-server.bat<br>    2.访问<a href="http://localhost:15672" target="_blank" rel="noopener">http://localhost:15672</a><br>    3.输入用户名和密码都是guest</p>
+<p>2.mongodb<br>启动：<a href="https://blog.csdn.net/rentian1/article/details/70213463" target="_blank" rel="noopener">https://blog.csdn.net/rentian1/article/details/70213463</a><br>启动之后创建用户：<a href="https://www.jianshu.com/p/62736bff7e2e" target="_blank" rel="noopener">https://www.jianshu.com/p/62736bff7e2e</a><br>    1.启动: cmd: d: cd D:\mongodb安装\bin<br>      执行mongod.exe –dbpath D:\mongodb安装\data\db<br>      启动mongod之后再启动springboot<br>    2.点击打开D:\mongodb安装\bin 里面的mongo.exe<br>      执行show dbs显示所有的数据库<br>      执行use local切换到local数据库</p>
+<p>3.运行redis<br>    1.cmd1命令行 cd C:\redis 然后运行 redis-server.exe redis.windows.conf (两行全部复制不要复制漏了)<br>    2. cmd2命令行 cd C:\redis 然后运行 redis-cli.exe -h 127.0.0.1 -p 6379 </p>
+<p>4.springboot idea启动</p>
+<p>5.运行两个vue<br>    1.进入vue项目文件夹(根目录)<br>    2.直接shift+右键<br>    3.npm run dev<br>    或者<br>    1.idea中打开vue项目文件夹<br>    2.alt+f12<br>    3.npm run dev</p>
+<p>6.运行python<br>    1.cmd: d: cd D:\vue学习练习\vueNovelWeb\NovelWebGit\pythonPro\novel-spider\novel\spiders<br>    2.执行python test.py<br>    —<br>    1.打开pycharm D:\vue学习练习\vueNovelWeb\NovelWebGit\pythonPro\novel-spider\novel 是novel<br>    2.open </p>
+<p>6.进入网页<br>    <a href="http://localhost:1113/" target="_blank" rel="noopener">http://localhost:1113/</a> 进入前端页面<br>    <a href="http://localhost:9528/" target="_blank" rel="noopener">http://localhost:9528/</a> 进入后端管理页面<br>    测试账号 admin1/123456</p>
+<h3 id="修改的地方"><a href="#修改的地方" class="headerlink" title="修改的地方"></a>修改的地方</h3><p>1.java项目-resources-application.yml 和dev-yml:<br>host都为127.0.0.1<br>(因为报错rabbitmq，原因时两个rabbitmq的host不一致)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">rabbitmq:</span><br><span class="line">  host: 127.0.0.1 # rabbitmq的连接地址</span><br><span class="line">  port: 5672 # rabbitmq的连接端口号</span><br><span class="line">  virtual-host: /novel # rabbitmq的虚拟host</span><br><span class="line">  username: guest # rabbitmq的用户名</span><br><span class="line">  password: guest # rabbitmq的密码</span><br><span class="line">  publisher-confirms: true #如果对异步消息需要回调必须设置为trues</span><br><span class="line">rabbitmq:</span><br><span class="line">  host: 127.0.0.1 # rabbitmq的连接地址</span><br><span class="line">  port: 5672 # rabbitmq的连接端口号</span><br><span class="line">  virtual-host: /novel # rabbitmq的虚拟host</span><br><span class="line">  username: guest # rabbitmq的用户名</span><br><span class="line">  password: guest # rabbitmq的密码</span><br><span class="line">  publisher-confirms: true #如果对异步消息需要回调必须设置为trues</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p>2.java项目-resources-application.yml 和dev-yml:<br>host: 127.0.0.1</p>
+<p>(因为报错连接不到redis)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">redis:</span><br><span class="line">    #host: redis # Redis服务器地址</span><br><span class="line">    host: 127.0.0.1</span><br><span class="line">    database: 0 # Redis数据库索引（默认为0）</span><br><span class="line">    port: 6379 # Redis服务器连接端口</span><br><span class="line">    password: # Redis服务器连接密码（默认为空）</span><br><span class="line">    timeout: 3000ms # 连接超时时间（毫秒）</span><br><span class="line">redis:</span><br><span class="line">    #host: dev # Redis服务器地址</span><br><span class="line">    host: 127.0.0.1</span><br><span class="line">    database: 0 # Redis数据库索引（默认为0）</span><br><span class="line">    port: 6379 # Redis服务器连接端口</span><br><span class="line">    password: # Redis服务器连接密码（默认为空）</span><br><span class="line">    timeout: 3000ms # 连接超时时间（毫秒）</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p>3.mysql<br>(因为报错ERROR 6720 — [eate-1953120246] com.alibaba.druid.pool.DruidDataSource   : create connection SQLException, url: jdbc:mysql://mysql:3306/novel?useUnicode=true&amp;characterEncoding=utf-8&amp;serverTimezone=Asia/Shanghai, errorCode 0, state 08S01)<br>改成：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">datasource:</span><br><span class="line">    url: jdbc:mysql://localhost:3306/novel?useUnicode=true&amp;useSSL=false&amp;characterEncoding=utf8&amp;serverTimezone=Asia/Shanghai</span><br><span class="line">    username: root</span><br><span class="line">    password: zhangcaiyun</span><br></pre></td></tr></table></figure>
+
+<p>原代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">-dev的：</span><br><span class="line">  datasource:</span><br><span class="line">    url: jdbc:mysql://dev:3306/novel?useUnicode=true&amp;characterEncoding=utf-8&amp;serverTimezone=Asia/Shanghai</span><br><span class="line">    username: root</span><br><span class="line">    password: root</span><br><span class="line"></span><br><span class="line">datasource:</span><br><span class="line">    url: jdbc:mysql://mysql:3306/novel?useUnicode=true&amp;characterEncoding=utf-8&amp;serverTimezone=Asia/Shanghai</span><br><span class="line">    username: root</span><br><span class="line">    password: root</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p>4.python spiders里的import 把novel全删了<br>改</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pool = redis.ConnectionPool(host=&apos;cloud-redis&apos;, port=6379, decode_responses=True)</span><br><span class="line">db = pymysql.connect(&apos;127.0.0.1&apos;, &apos;root&apos;, &apos;zhangcaiyun&apos;, &apos;novel&apos;)</span><br></pre></td></tr></table></figure>
+
+
+    </div>
+
+    
+    
+    
+        
+      
+        <div id="reward-container">
+  <div>我这么可爱不给我投个币嘛~~ 有帮助的话可以打赏路路噢~~</div>
+  <button id="reward-button" disable="enable" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+        
+      
+      <div style="display: inline-block">
+        <img src="/images/wechatpay.jpg" alt="Lucifinil 微信支付">
+        <p>微信支付</p>
+      </div>
+        
+      
+      <div style="display: inline-block">
+        <img src="/images/alipay.jpg" alt="Lucifinil 支付宝">
+        <p>支付宝</p>
+      </div>
+
+  </div>
+</div>
+
+      
+
+      <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+              
+                <a href="/2020/11/02/element-ui/" rel="next" title="element-ui">
+                  <i class="fa fa-chevron-left"></i> element-ui
+                </a>
+              
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+              
+                <a href="/2020/11/09/电影网站/" rel="prev" title="电影网站">
+                  电影网站 <i class="fa fa-chevron-right"></i>
+                </a>
+              
+            </div>
+          </div>
+        
+      </footer>
+    
+  </div>
+  
+  
+  
+  </article>
+
+  </div>
+
+
+          </div>
+          
+    
+    <div class="comments" id="comments"></div>
+  
+
+        </div>
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+        
+        
+        
+        
+      
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装"><span class="nav-number">1.</span> <span class="nav-text">安装</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#https-blog-csdn-net-qq-15980721-article-details-102586518"><span class="nav-number"></span> <span class="nav-text">https://blog.csdn.net/qq_15980721/article/details/102586518</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#py文件中不报红就可以了"><span class="nav-number"></span> <span class="nav-text">py文件中不报红就可以了</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#命令行pip-install-PyMySQL"><span class="nav-number"></span> <span class="nav-text">命令行pip install PyMySQL</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#pip-install-scrapy"><span class="nav-number"></span> <span class="nav-text">pip install scrapy</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#pip3-install-redis"><span class="nav-number"></span> <span class="nav-text">pip3 install redis</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#导入springboot项目-java"><span class="nav-number">1.</span> <span class="nav-text">导入springboot项目-java</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#导入vue项目"><span class="nav-number">2.</span> <span class="nav-text">导入vue项目</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-npm-run-dev"><span class="nav-number"></span> <span class="nav-text">4.npm run dev</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#运行"><span class="nav-number">1.</span> <span class="nav-text">运行</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#修改的地方"><span class="nav-number">2.</span> <span class="nav-text">修改的地方</span></a></li></ol></div>
+        
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image"
+      src="/images/touxiang1.jpg"
+      alt="Lucifinil">
+  <p class="site-author-name" itemprop="name">Lucifinil</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+  <nav class="site-state motion-element">
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">64</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
+          
+            <a href="/categories/">
+          
+        
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">分类</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-tags">
+        
+          
+            <a href="/tags/">
+          
+        
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">标签</span>
+        </a>
+      </div>
+    
+  </nav>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="https://github.com/Lucifinil-x" title="GitHub &rarr; https://github.com/Lucifinil-x" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+    
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="https://weibo.com/2890499315/profile?rightmod=1&wvr=6&mod=personinfo&is_all=1" title="weibo &rarr; https://weibo.com/2890499315/profile?rightmod=1&wvr=6&mod=personinfo&is_all=1" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>weibo</a>
+      </span>
+    
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title">
+      <i class="fa fa-fw fa-link"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="http://Lucifinil.com/" title="http://Lucifinil.com/" rel="noopener" target="_blank">Lucifinil</a>
+        </li>
+      
+    </ul>
+  </div>
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+      
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Lucifinil</span>
+</div>
+
+<!--
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0</div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.4.0</div>-->
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-user"></i>
+    </span>
+    <span class="site-uv" title="总访客量">
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+    <span class="post-meta-divider">|</span>
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-eye"></i>
+    </span>
+    <span class="site-pv" title="总访问量">
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+
+
+  <script src="/lib/anime.min.js?v=3.1.0"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+<script src="/js/utils.js?v=7.4.0"></script><script src="/js/motion.js?v=7.4.0"></script>
+<script src="/js/schemes/pisces.js?v=7.4.0"></script>
+<script src="/js/next-boot.js?v=7.4.0"></script>
+
+    
+  
+    
+  
+
+  <script>
+  (function() {
+    window.addEventListener('DOMContentLoaded', () => {
+      let script = document.createElement('script');
+      script.src = '/lib/three/three.min.js';
+      document.body.appendChild(script);
+    });
+    let styles = ['/lib/three/three-waves.min.js', '', '/lib/three/canvas_sphere.min.js'];
+    window.addEventListener('load', () => {
+      styles.forEach(item => {
+        if (item !== '') {
+          let script = document.createElement('script');
+          script.src = item;
+          document.body.appendChild(script);
+        }
+      });
+    });
+  })();
+  </script>
+
+
+  
+
+
+
+
+
+
+
+
+  <script src="/js/local-search.js?v=7.4.0"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+
+<script>
+NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail,link';
+  guest = guest.split(',').filter(item => {
+    return GUEST.includes(item);
+  });
+  new Valine({
+    el: '#comments',
+    verify: false,
+    notify: false,
+    appId: 'oDY3PgVcs4KquzU5ExfpRIvL-gzGzoHsz',
+    appKey: 'TfeAqOOA3dvfY8DgjnBCdFUI',
+    placeholder: 'Just go go',
+    avatar: 'mm',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: false,
+    lang: '' || 'zh-cn',
+    path: location.pathname
+  });
+}, window.Valine);
+</script>
+
+</body>
+</html>
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/clicklove.js"></script>

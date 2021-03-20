@@ -1,0 +1,974 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.9.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.4.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.4.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.4.0">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.4.0" color="#222">
+
+<link rel="stylesheet" href="/css/main.css?v=7.4.0">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-corner-indicator.min.css?v=1.0.2">
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.4.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":true,"scrollpercent":true},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
+    },
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="项目讲解1.跨域前端后端端口号不一样是存在跨域的，对于post,get,put,delete,options的请求虽然可以在controller进行处理，但是他是用@Configuration 做了一个全局的配置类。只放行8080端口的请求">
+<meta property="og:type" content="article">
+<meta property="og:title" content="健康平台项目">
+<meta property="og:url" content="https://lucifinil-x.github.io/2020/11/10/健康平台项目/index.html">
+<meta property="og:site_name" content="Sanctuary">
+<meta property="og:description" content="项目讲解1.跨域前端后端端口号不一样是存在跨域的，对于post,get,put,delete,options的请求虽然可以在controller进行处理，但是他是用@Configuration 做了一个全局的配置类。只放行8080端口的请求">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2021-03-15T07:55:16.488Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="健康平台项目">
+<meta name="twitter:description" content="项目讲解1.跨域前端后端端口号不一样是存在跨域的，对于post,get,put,delete,options的请求虽然可以在controller进行处理，但是他是用@Configuration 做了一个全局的配置类。只放行8080端口的请求">
+  <link rel="canonical" href="https://lucifinil-x.github.io/2020/11/10/健康平台项目/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>健康平台项目 | Sanctuary</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Sanctuary</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+      
+      
+      
+        
+        <li class="menu-item menu-item-home">
+      
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-tags">
+      
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-categories">
+      
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-archives">
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a href="javascript:;" class="popup-trigger">
+        
+          <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+      </li>
+    
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="搜索..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+            
+
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+      <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block post">
+    <link itemprop="mainEntityOfPage" href="https://lucifinil-x.github.io/2020/11/10/健康平台项目/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Lucifinil">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/touxiang1.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Sanctuary">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">健康平台项目
+
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2020-11-10 18:11:20" itemprop="dateCreated datePublished" datetime="2020-11-10T18:11:20+08:00">2020-11-10</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-03-15 15:55:16" itemprop="dateModified" datetime="2021-03-15T15:55:16+08:00">2021-03-15</time>
+              </span>
+            
+          
+
+          
+            <span class="post-meta-item" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+        
+      
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2020/11/10/健康平台项目/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2020/11/10/健康平台项目/" itemprop="commentCount"></span></a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="项目讲解"><a href="#项目讲解" class="headerlink" title="项目讲解"></a>项目讲解</h2><p>1.跨域<br>前端后端端口号不一样是存在跨域的，<br>对于post,get,put,delete,options的请求虽然可以在controller进行处理，<br>但是他是用@Configuration 做了一个全局的配置类。<br>只放行8080端口的请求</p><a id="more"></a>
+<p>2.登录login<br>controller中传一个(vue给我们封装好的User)</p>
+<p>3.用户信息的分页<br>element-ui的组件完成</p>
+<p>4.mybatis封装 一级缓存</p>
+<p>5.前台多个api接口</p>
+<h2 id="开始做"><a href="#开始做" class="headerlink" title="开始做"></a>开始做</h2><h3 id="1-vue配置"><a href="#1-vue配置" class="headerlink" title="1.vue配置"></a>1.vue配置</h3><p>1.element-ui命令行安装，配置见vue那一篇。<br>注意：element-ui的组件html中有绑定数据的必须把js复制完/写完才会显示出来。<br>不显示也不是因为配置有问题</p>
+<h3 id="2-login页面"><a href="#2-login页面" class="headerlink" title="2.login页面"></a>2.login页面</h3><h4 id="页面详细过程"><a href="#页面详细过程" class="headerlink" title="页面详细过程"></a>页面详细过程</h4><ul>
+<li><p>1.表单格式<br>一级标签：el-form<br>二级标签：el-form-item 表单组件<br>三级标签：el-input，el-button 按钮/行放在二级标签组件中，v-model绑定值</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&lt;div&gt;</span><br><span class="line">&lt;!--            ref=给他起的类名，model数据绑定到数据loginForm对象,class类选择器写css,--&gt;</span><br><span class="line">            &lt;el-form  ref=&quot;loginFormRef&quot; v-model=&quot;loginForm&quot; label-width=&quot;80px&quot; class=&quot;login_form&quot;&gt;</span><br><span class="line">&lt;!--                用户名，input标签绑定username--&gt;</span><br><span class="line">                &lt;el-form-item &gt;</span><br><span class="line">                    &lt;el-input v-model=&quot;loginForm.username&quot;&gt;&lt;/el-input&gt;</span><br><span class="line">                &lt;/el-form-item&gt;</span><br><span class="line">&lt;!--                密码，input标签绑定loginForm对象中的密码--&gt;</span><br><span class="line">                &lt;el-form-item &gt;</span><br><span class="line">                    &lt;el-input v-model=&quot;loginForm.password&quot;&gt;&lt;/el-input&gt;</span><br><span class="line">                &lt;/el-form-item&gt;</span><br><span class="line">&lt;!--                按钮组件，都放在el-form-item标签里面，加一个选择器好改样式--&gt;</span><br><span class="line">                &lt;el-form-item class=&quot;btns&quot;&gt;</span><br><span class="line">                    &lt;el-button type=&quot;primary&quot; round&gt;提交&lt;/el-button&gt;</span><br><span class="line">                    &lt;el-button type=&quot;warning&quot; round&gt;重置信息&lt;/el-button&gt;</span><br><span class="line">                &lt;/el-form-item&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">            &lt;/el-form&gt;</span><br><span class="line">        &lt;/div&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>2.表单样式居中，长度，图片位置，背景大小</p>
+</li>
+<li><p>3.表单验证<br>官方介绍：<br>Form 组件提供了表单验证的功能，只需要通过 rules 属性传入约定的验证规则，并将 Form-Item 的 prop 属性设置为需校验的字段名即可。校验规则参见 async-validator</p>
+</li>
+</ul>
+<hr>
+<p>el-form标签里面用:rules=”loginRules”绑定data里的校验规则对象；</p>
+<h2 id="用-model-”loginForm”双向绑定data里的表单数据对象"><a href="#用-model-”loginForm”双向绑定data里的表单数据对象" class="headerlink" title="用:model=”loginForm”双向绑定data里的表单数据对象"></a>用:model=”loginForm”双向绑定data里的表单数据对象</h2><p>【高亮！】element-ui的主标签el-form绑定v-model只能写：model=”表单对象”</p>
+<p>使用element-ui时报错element-ui.common.js?5c96:22906 [Element Warn][Form]model is required for resetFields to work.<br>原因：绑定的model属性可能写成了v-model，这样而且你会发现做校验做不了，因为你没有传正确的model属性过去，所以它们没有收到你输入的值</p>
+<p>解决：使用el-form的时候绑定的model属性应该写成 ：model，而不是v-model</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"> &lt;el-form  ref=&quot;loginFormRef&quot; :rules=&quot;loginRules&quot; v-model=&quot;loginForm&quot; label-width=&quot;80px&quot; class=&quot;login_form&quot;&gt;</span><br><span class="line">&lt;!--                用户名，input标签绑定username数据；item标签用prop绑定校验规则username:[]--&gt;</span><br><span class="line"></span><br><span class="line">//校验规则对象</span><br><span class="line">                loginRules:&#123;</span><br><span class="line">                //    校验用户名，是data里面的数据校验；</span><br><span class="line">                    username: [</span><br><span class="line">                        &#123; required: true, message: &apos;请输入用户名称&apos;, trigger: &apos;blur&apos; &#125;, //必填项验证</span><br><span class="line">                        &#123; min: 3, max: 10, message: &apos;长度在 3 到 10 个字符&apos;, trigger: &apos;blur&apos; &#125;//长度验证</span><br><span class="line">                    ],</span><br><span class="line">                    password:[</span><br><span class="line">                        &#123; required: true, message: &apos;请输入用户密码&apos;, trigger: &apos;blur&apos; &#125;, //必填项验证</span><br><span class="line">                        &#123; min: 3, max: 10, message: &apos;长度在 3 到 10 个字符&apos;, trigger: &apos;blur&apos; &#125;//长度验证</span><br><span class="line">                    ]</span><br><span class="line">                &#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>4.重置按钮绑定自定义方法<br>【高亮！】element-ui的主标签el-form绑定v-model只能写：model<br>不然重置没有用</li>
+</ul>
+<hr>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;el-button type=&quot;warning&quot; round v-on:click=&quot;resetLoginForm&quot;&gt;重置信息&lt;/el-button&gt;</span><br><span class="line"></span><br><span class="line"> methods:&#123;</span><br><span class="line">            //绑定上面重置按钮的重置表单方法</span><br><span class="line">            resetLoginForm()&#123;</span><br><span class="line">                //链式函数 this对象的 $refs的loginFormRef这个方法提示找不到但是绑定好了还是有效果</span><br><span class="line">                this.$refs.loginFormRef.resetFields();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>5.登录按钮绑定方法<br>【高亮！】对于方法this.$refs.loginFormRef.resetFields();this.$http.post(“test”);点不出来和报错TypeError: Cannot read property ‘post’ of undefined的情况：<br>解决：</li>
+</ul>
+<p>1.main.js里面删掉Vue.prototype.$axios = axios<br>2.main.js里面加上+安装VueAxios(另外，重新装了c盘里的npm)<br>npm install axios –save</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">import axios from &apos;axios&apos;</span><br><span class="line">import VueAxios from &apos;vue-axios&apos;</span><br><span class="line">Vue.use(VueAxios,axios) //这里前后顺序不能错</span><br></pre></td></tr></table></figure>
+
+<h2 id="这样就没有灰色波浪线了"><a href="#这样就没有灰色波浪线了" class="headerlink" title="这样就没有灰色波浪线了"></a>这样就没有灰色波浪线了</h2><p>1.main.js里<br>//设置访问根路径,这里是设置请求跨域<br>axios.defaults.baseURL= “<a href="http://localhost:9000&quot;" target="_blank" rel="noopener">http://localhost:9000&quot;</a><br>2.login.vue里绑定方法和写方法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">&lt;el-button type=&quot;warning&quot; round v-on:click=&quot;resetLoginForm&quot;&gt;重置信息&lt;/el-button&gt;</span><br><span class="line"></span><br><span class="line">login()&#123;</span><br><span class="line">                //箭头函数 属性=&gt;&#123;响应&#125;</span><br><span class="line">                //valid属性为true/false; 是上面的表单验证规则来判断几个值符不符合</span><br><span class="line">                this.$refs.loginFormRef.validate(async valid =&gt;&#123;</span><br><span class="line">                    console.log(valid);</span><br><span class="line">                    if(!valid) return; //如果前端表单校验false方法终止</span><br><span class="line"></span><br><span class="line">                    // async和await都要一起写；http发给后端 /test链接</span><br><span class="line">                    //全局定义一个data叫res接收后端&quot;/test&quot;controller里return的字符串ok；</span><br><span class="line">                    const &#123;data:res&#125; = await this.$http.post(&quot;test&quot;);</span><br><span class="line">                    //如果后端传过来的res是ok就会页面提示操作成功</span><br><span class="line">                    if(res == &quot;ok&quot;)&#123;</span><br><span class="line">                        this.$message.success(&quot;操作成功&quot;);</span><br><span class="line">                    &#125;</span><br><span class="line">                    else&#123;</span><br><span class="line">                        this.$message.error(&quot;操作失败&quot;);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;)</span><br><span class="line">            &#125;,</span><br></pre></td></tr></table></figure>
+
+<p>3.java后端</p>
+<h2 id="写一个接收url”-test”的controller。函数里return的字符串ok；"><a href="#写一个接收url”-test”的controller。函数里return的字符串ok；" class="headerlink" title="写一个接收url”/test”的controller。函数里return的字符串ok；"></a>写一个接收url”/test”的controller。函数里return的字符串ok；</h2><h4 id="完整代码"><a href="#完整代码" class="headerlink" title="完整代码"></a>完整代码</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">        &lt;div class=&quot;login_container&quot;&gt;</span><br><span class="line">            &lt;div class=&quot;login_box&quot;&gt;</span><br><span class="line">                &lt;div class=&quot;avatar_box&quot;&gt;</span><br><span class="line">                    &lt;!--头像--&gt;</span><br><span class="line">                    &lt;img src=&quot;../assets/logo.jpg&quot; alt /&gt;</span><br><span class="line">                &lt;/div&gt;</span><br><span class="line">&lt;!--                表单--&gt;</span><br><span class="line">        &lt;div&gt;</span><br><span class="line">&lt;!--            ref=给他起的类名，model数据双向绑定到数据loginForm对象,class类选择器写css,--&gt;</span><br><span class="line">            &lt;el-form  ref=&quot;loginFormRef&quot; :rules=&quot;loginRules&quot; :model=&quot;loginForm&quot; label-width=&quot;80px&quot; class=&quot;login_form&quot;&gt;</span><br><span class="line">&lt;!--                用户名，input标签绑定username数据；item标签用prop绑定校验规则username:[]--&gt;</span><br><span class="line">                &lt;el-form-item prop=&quot;username&quot;&gt;</span><br><span class="line">                    &lt;span&gt;用户名：&lt;/span&gt;&lt;el-input v-model=&quot;loginForm.username&quot; &gt;&lt;/el-input&gt;</span><br><span class="line">                &lt;/el-form-item&gt;</span><br><span class="line">&lt;!--                密码，input标签绑定loginForm对象中的密码--&gt;</span><br><span class="line">                &lt;el-form-item prop=&quot;password&quot;&gt;</span><br><span class="line">                    密码：&lt;el-input v-model=&quot;loginForm.password&quot; type=&quot;password&quot;&gt;&lt;/el-input&gt;</span><br><span class="line">                &lt;/el-form-item&gt;</span><br><span class="line">&lt;!--                按钮组件，都放在el-form-item标签里面，加一个选择器好改样式--&gt;</span><br><span class="line">                &lt;el-form-item class=&quot;btns&quot;&gt;</span><br><span class="line">                    &lt;el-button type=&quot;primary&quot; round v-on:click=&quot;login&quot;&gt;登录&lt;/el-button&gt;</span><br><span class="line">                    &lt;el-button type=&quot;warning&quot; round v-on:click=&quot;resetLoginForm&quot;&gt;重置信息&lt;/el-button&gt;</span><br><span class="line">                &lt;/el-form-item&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">            &lt;/el-form&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">          &lt;/div&gt;</span><br><span class="line">         &lt;/div&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line"></span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">    export default &#123;</span><br><span class="line">        data()&#123;</span><br><span class="line">            return&#123;</span><br><span class="line">                //表单数据对象:&#123; , , &#125;</span><br><span class="line">                //el-form 标签里面双向绑定到v-model=&quot;loginForm&quot;数据对象，才会更新</span><br><span class="line">                loginForm:&#123;</span><br><span class="line">                    username:&quot;admin&quot;,</span><br><span class="line">                    password:&quot;123456&quot;</span><br><span class="line">                &#125;,</span><br><span class="line">                //校验规则对象</span><br><span class="line">                loginRules:&#123;</span><br><span class="line">                    /*校验*/</span><br><span class="line">                    /*name: [</span><br><span class="line">                        &#123; required: true, message: &apos;请输入活动名称&apos;, trigger: &apos;blur&apos; &#125;,</span><br><span class="line">                        &#123; min: 3, max: 5, message: &apos;长度在 3 到 5 个字符&apos;, trigger: &apos;blur&apos; &#125;</span><br><span class="line">                    ],*/</span><br><span class="line">                //    校验用户名，是data里面的数据校验；</span><br><span class="line">                    username: [</span><br><span class="line">                        &#123; required: true, message: &apos;请输入用户名称&apos;, trigger: &apos;blur&apos; &#125;, //必填项验证</span><br><span class="line">                        &#123; min: 3, max: 10, message: &apos;长度在 3 到 10 个字符&apos;, trigger: &apos;blur&apos; &#125;//长度验证</span><br><span class="line">                    ],</span><br><span class="line">                    password:[</span><br><span class="line">                        &#123; required: true, message: &apos;请输入用户密码&apos;, trigger: &apos;blur&apos; &#125;, //必填项验证</span><br><span class="line">                        &#123; min: 3, max: 10, message: &apos;长度在 3 到 10 个字符&apos;, trigger: &apos;blur&apos; &#125;//长度验证</span><br><span class="line">                    ]</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;;</span><br><span class="line">        &#125;,</span><br><span class="line"></span><br><span class="line">        methods:&#123;</span><br><span class="line">            //绑定上面重置按钮的重置表单方法</span><br><span class="line">            resetLoginForm()&#123;</span><br><span class="line">                //链式函数 this对象的 $refs的loginFormRef</span><br><span class="line">                this.$refs.loginFormRef.resetFields();</span><br><span class="line">            &#125;,</span><br><span class="line">            login()&#123;</span><br><span class="line">                //1.验证校验规则</span><br><span class="line">                //箭头函数 属性=&gt;&#123;响应&#125;</span><br><span class="line">                //valid属性为true/false; 是上面的表单验证规则来判断几个值符不符合</span><br><span class="line">                this.$refs.loginFormRef.validate(async valid =&gt;&#123;</span><br><span class="line">                    console.log(valid);</span><br><span class="line">                    //2.前端验证失败返回</span><br><span class="line">                    if(!valid) return; //如果前端表单校验false方法终止</span><br><span class="line"></span><br><span class="line">                    //3.前端验证成功，把前端表单数据post给后端接口test,后端返回给前端一个res(这里是字符串)</span><br><span class="line">                    // async和await都要一起写；http发给后端 /test链接</span><br><span class="line">                    //全局定义一个data叫res接收后端&quot;/test&quot;controller里return的字符串ok；</span><br><span class="line">                    const &#123;data:res&#125; = await this.$http.post(&quot;test&quot;);</span><br><span class="line">                    //4.如果后端传过来的res是ok就会页面提示操作成功，并且前端进行路由跳转。</span><br><span class="line">                    //不是ok就提示操作失败</span><br><span class="line">                    if(res == &quot;ok&quot;)&#123;</span><br><span class="line">                        this.$message.success(&quot;操作成功&quot;);</span><br><span class="line">                        await this.$router.push(&#123;path: &quot;/home&quot;&#125;);</span><br><span class="line">                    &#125;</span><br><span class="line">                    else&#123;</span><br><span class="line">                        this.$message.error(&quot;操作失败&quot;);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;)</span><br><span class="line">            &#125;,</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;style scoped&gt;</span><br><span class="line">/*根节点样式*/</span><br><span class="line">    .login_container&#123;</span><br><span class="line">        background-color: #2b4b6b;</span><br><span class="line">        height: 100%;</span><br><span class="line">    &#125;</span><br><span class="line">/*背景+表单*/</span><br><span class="line">    .login_box&#123;</span><br><span class="line">        /*表单居中，输入框长度*/</span><br><span class="line">        max-width: 600px;</span><br><span class="line">        margin: 0 auto;</span><br><span class="line"></span><br><span class="line">        margin-top: 0px;</span><br><span class="line">        text-align: center;</span><br><span class="line">        line-height: 160px;</span><br><span class="line">        width: 850px;</span><br><span class="line">        /*和图片一致*/</span><br><span class="line">        height: 720px;</span><br><span class="line">    &#125;</span><br><span class="line">    /*表单框*/</span><br><span class="line">    .login_form&#123;</span><br><span class="line">        /*相对定位移动*/</span><br><span class="line">        position: relative;</span><br><span class="line">        top: 300px;</span><br><span class="line">        left: 0px;</span><br><span class="line">        border-radius: 5px;</span><br><span class="line">    &#125;</span><br><span class="line">    /*图片*/</span><br><span class="line">    .avatar_box&#123;</span><br><span class="line">        /*height: 1000%;*/</span><br><span class="line">    /*图片透明度*/</span><br><span class="line">        filter:alpha(opacity=20);</span><br><span class="line">        position: absolute;</span><br><span class="line">        left: 10%;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
+
+<h4 id="心得总结"><a href="#心得总结" class="headerlink" title="心得总结"></a>心得总结</h4><p>到这里完成一个前后端分离。<br>前端自行拦截验证，前端提交表单到后端controller接口，后端接口return数据给前端，前端用接收到的数据判断并且进行前端的路由页面跳转。<br>注意：要在前端main.js中设置请求跨域到后端的port</p>
+<h3 id="3-Home首页"><a href="#3-Home首页" class="headerlink" title="3.Home首页"></a>3.Home首页</h3><p>p10  19:41<br>1.配置路由</p>
+<p>2.在login页面的login()方法中进行路由跳转</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">if(res == &quot;ok&quot;)&#123;</span><br><span class="line">                        this.$message.success(&quot;操作成功&quot;);</span><br><span class="line">                        await this.$router.push(&#123;path: &quot;/home&quot;&#125;);</span><br><span class="line">                    &#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-完善后台-连接数据库进行真正的用户校验"><a href="#4-完善后台-连接数据库进行真正的用户校验" class="headerlink" title="4.完善后台-连接数据库进行真正的用户校验"></a>4.完善后台-连接数据库进行真正的用户校验</h3><h4 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h4><p>在javaEE里面具有封装功能的实体叫entity实体类/bean pojo实体类</p>
+<h4 id="4-1创建user实体类"><a href="#4-1创建user实体类" class="headerlink" title="4.1创建user实体类"></a>4.1创建user实体类</h4><p>下面看看结构-1234</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">//用户实体类-</span><br><span class="line">public class User &#123;</span><br><span class="line"></span><br><span class="line">    //1.对应数据库表中的每一列</span><br><span class="line">    private int id; //自增主键</span><br><span class="line">    private String username;</span><br><span class="line">    private String password;</span><br><span class="line">    private String email;</span><br><span class="line">    private String role; //角色</span><br><span class="line">    private boolean state; //状态</span><br><span class="line"></span><br><span class="line">    ///2.pojo实体类要有一个空构造。spring自动完成初始化。</span><br><span class="line">    public User()&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    //3.(自增的)主键不需要赋值，传值的构造函数里不放它</span><br><span class="line">    public User(String username, String password, String email, String role, boolean state) &#123;</span><br><span class="line">        this.username = username;</span><br><span class="line">        this.password = password;</span><br><span class="line">        this.email = email;</span><br><span class="line">        this.role = role;</span><br><span class="line">        this.state = state;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    //4.getter setter方法</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="4-2登录验证在loginController完成"><a href="#4-2登录验证在loginController完成" class="headerlink" title="4.2登录验证在loginController完成"></a>4.2登录验证在loginController完成</h4><p>1.loginController</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">//@RestController规定返回字符串</span><br><span class="line">@RestController</span><br><span class="line">public class LoginController &#123;</span><br><span class="line"></span><br><span class="line">    //login方法接收前端传递给后端的数据并封装user对象中</span><br><span class="line">    // @RequestBody主要用来接收前端传递给后端的json字符串中的数据的(请求体中的数据的);加上这个前端post的loginform才会被封装到user</span><br><span class="line">    @RequestMapping(&quot;/login&quot;)</span><br><span class="line">    public String login(@RequestBody User user)&#123;</span><br><span class="line">        System.out.println(&quot;user:&quot;+user);</span><br><span class="line">        //user:User&#123;id=0, username=&apos;admin&apos;, password=&apos;123456&apos;, email=&apos;null&apos;, role=&apos;null&apos;, state=false&#125;</span><br><span class="line">        return &quot;ok&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>2.login.vue<br>修改post: post到”login” 带上表单</p>
+<h4 id="4-3dao层接口！！！interface"><a href="#4-3dao层接口！！！interface" class="headerlink" title="4.3dao层接口！！！interface"></a>4.3dao层接口！！！interface</h4><p>是interface ！不是类！</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">//@Repository用在持久层的接口上，这个注解是将接口的一个实现类交给spring管理。</span><br><span class="line">@Repository</span><br><span class="line">public interface UserDao &#123;</span><br><span class="line">    //用用户名和密码拿到user </span><br><span class="line">    //@Param注解的作用是给参数命名,参数命名后就能根据名字得到参数值,正确的将参数传入sql语句中（一般通过#&#123;&#125;的方式，$&#123;&#125;会有sql注入的问题）。</span><br><span class="line">    public User getUserByMassage(@Param(&quot;username&quot;) String username, @Param(&quot;password&quot;) String password) ;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="4-4mapper中实现接口的函数-sql"><a href="#4-4mapper中实现接口的函数-sql" class="headerlink" title="4.4mapper中实现接口的函数-sql"></a>4.4mapper中实现接口的函数-sql</h4><p>【高亮！】之前一直报错找不到id=”getUserByMassage”。解决办法剪切xml内容,删除xml文件重新建立一个xml粘贴过去就好了。妈的气死了</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; ?&gt;</span><br><span class="line">&lt;!DOCTYPE mapper  PUBLIC &quot;-//mybatis.org//DTD Mapper 3.0//EN&quot;</span><br><span class="line">        &quot;http://mybatis.org/dtd/mybatis-3-mapper.dtd&quot;&gt;</span><br><span class="line"></span><br><span class="line">&lt;!--namespace命名空间对应dao文件root path路径(复制reffrence),是resultType！</span><br><span class="line">实现dao中的方法-sql语句</span><br><span class="line">#&#123;&#125; 来传入dao中的 @param</span><br><span class="line">--&gt;</span><br><span class="line">&lt;mapper namespace=&quot;com.example.demo.dao.UserDao&quot;&gt;</span><br><span class="line">    &lt;select id=&quot;getUserByMassage&quot; resultType=&quot;com.example.demo.bean.User&quot;&gt;</span><br><span class="line">        SELECT * FROM easyuser WHERE</span><br><span class="line">        username=#&#123;username&#125; AND password=#&#123;password&#125; AND state=1</span><br><span class="line">    &lt;/select&gt;</span><br><span class="line">&lt;/mapper&gt;</span><br></pre></td></tr></table></figure>
+
+<h4 id="4-5loginController中用dao拿到user对象"><a href="#4-5loginController中用dao拿到user对象" class="headerlink" title="4.5loginController中用dao拿到user对象"></a>4.5loginController中用dao拿到user对象</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">//@RestController规定返回字符串</span><br><span class="line">@RestController</span><br><span class="line">public class LoginController &#123;</span><br><span class="line">    @Autowired //注入dao</span><br><span class="line">    UserDao userDao;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    //login方法接收前端传递给后端的数据并封装user对象中</span><br><span class="line">    // @RequestBody(请求体中放数据)主要用来接收前端传递给后端的json字符串中的数据的(请求体中的数据的);加上这个前端post的loginform才会被封装到user</span><br><span class="line">    @RequestMapping(&quot;/login&quot;)</span><br><span class="line">    public String login(@RequestBody User user)&#123;</span><br><span class="line">        System.out.println(&quot;user:&quot;+user);</span><br><span class="line">        //用dao的函数拿 user对象</span><br><span class="line">        User user1 = userDao.getUserByMassage(user.getUsername(),user.getPassword());</span><br><span class="line">        System.out.println(&quot;user1&quot;+user1);</span><br><span class="line">        return &quot;ok&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="4-6启动类扫描dao层的包名"><a href="#4-6启动类扫描dao层的包名" class="headerlink" title="4.6启动类扫描dao层的包名"></a>4.6启动类扫描dao层的包名</h4><p>@MapperScan(“com.example.demo.dao”)</p>
+<h4 id="4-7loginController中并且把集合res转换成JSON字符串返回给前端"><a href="#4-7loginController中并且把集合res转换成JSON字符串返回给前端" class="headerlink" title="4.7loginController中并且把集合res转换成JSON字符串返回给前端"></a>4.7loginController中并且把集合res转换成JSON字符串返回给前端</h4><p>pom里加fastjson依赖</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">@RequestMapping(&quot;/login&quot;)</span><br><span class="line">    public String login(@RequestBody User user)&#123;</span><br><span class="line">        String flag = &quot;error&quot;;</span><br><span class="line">        //这个user里面只有名字密码</span><br><span class="line">        System.out.println(&quot;user:&quot;+user);</span><br><span class="line"></span><br><span class="line">        //用dao的函数拿 user对象,这里面有user所有信息</span><br><span class="line">        User user1 = userDao.getUserByMassage(user.getUsername(),user.getPassword());</span><br><span class="line">        System.out.println(&quot;user1&quot;+user1);</span><br><span class="line"></span><br><span class="line">        //后端前端接口都是JSON,json键/值都是字符串</span><br><span class="line">        //HashMap集合res中放两个键值对：有无user; user对象</span><br><span class="line">        HashMap&lt;String, Object&gt; res = new HashMap&lt;String, Object&gt;();</span><br><span class="line">        //数据库中有这个user，flag = &quot;ok&quot;</span><br><span class="line">        if(user1 !=null)&#123;</span><br><span class="line">            flag = &quot;ok&quot;;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        res.put(&quot;flag&quot;, flag);</span><br><span class="line">        res.put(&quot;user&quot;, user);</span><br><span class="line"></span><br><span class="line">        //把res集合对象转换成json字符串，json返回给前端</span><br><span class="line">        String res_json = JSON.toJSONString(res);</span><br><span class="line">        return res_json;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="4-8vue修改拿到的res"><a href="#4-8vue修改拿到的res" class="headerlink" title="4.8vue修改拿到的res"></a>4.8vue修改拿到的res</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">if(res.flag == &quot;ok&quot;)&#123;</span><br><span class="line">                        this.$message.success(&quot;操作成功&quot;);</span><br><span class="line">                        await this.$router.push(&#123;path: &quot;/home&quot;&#125;);</span><br><span class="line">                        console.log(res.user);//&#123;id: 0, password: &quot;123456&quot;, state: false, username: &quot;admin&quot;&#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                    else&#123;</span><br><span class="line">                        this.$message.error(&quot;操作失败&quot;);</span><br><span class="line">                    &#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="心得总结-1"><a href="#心得总结-1" class="headerlink" title="心得总结"></a>心得总结</h4><p>以上步奏完成了接收前端的表单信息，查找用户，拿到对象，返回结果<br>1.从前端接收的表单数据封装到实体类user中，包括用户名和密码<br>2.编写dao和mapper实现了 用用户名和密码去数据库中查找对应的user对象 的方法。<br>(dao方法接口；mapper方法实现)<br>3.在controller中注入dao，并且调用dao的方法，这样拿到了用户名和密码对应的user对象<br>4.在controller中【返回值封装】<br>把两个信息(是否有user; user对象;)装到HashMap集合res中,并且把集合res转换成JSON字符串返回给前端。<br>5.在vue的login()中【解析返回值】<br>现在前端是接收后端的res的json字符串，里面有两个信息，flag是ok；user是用户对象；取出res中的信息进行验证跳转路由。</p>
+<h3 id="5-存用户session-路由守卫"><a href="#5-存用户session-路由守卫" class="headerlink" title="5.存用户session/路由守卫"></a>5.存用户session/路由守卫</h3><p>存用户session：window.sessionStorage.setItem(“user”, res.user);</p>
+<h2 id="路由守卫：必须登录有session信息才能访问其他的页面，不然会被打回login页面"><a href="#路由守卫：必须登录有session信息才能访问其他的页面，不然会被打回login页面" class="headerlink" title="路由守卫：必须登录有session信息才能访问其他的页面，不然会被打回login页面"></a>路由守卫：必须登录有session信息才能访问其他的页面，不然会被打回login页面</h2><p>【高亮！】先存session,再跳转，不然跳转不了<br>login:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">if(res.flag == &quot;ok&quot;)&#123;</span><br><span class="line">                        this.$message.success(&quot;操作成功&quot;);</span><br><span class="line">                        //console.log(res.user);//&#123;id: 0, password: &quot;123456&quot;, state: false, username: &quot;admin&quot;&#125;</span><br><span class="line">                        //存储user对象 session，然后跳转</span><br><span class="line">                        window.sessionStorage.setItem(&quot;user&quot;, res.user);</span><br><span class="line">                        await this.$router.push(&#123;path: &quot;/home&quot;&#125;);</span><br><span class="line">                    &#125;</span><br><span class="line">                    else&#123;</span><br><span class="line">                        this.$message.error(&quot;操作失败&quot;);</span><br><span class="line">                    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>router index.js:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">//挂载路由导航守卫:必须登录有session信息才能访问其他的页面，不然会被打回login页面</span><br><span class="line">//三个参数： 将要访问哪,从哪来，将要干什么 next()放行</span><br><span class="line">router.beforeEach((to,from,next)=&gt;&#123;</span><br><span class="line">  //访问首页，放行</span><br><span class="line">  if(to.path==&apos;/login&apos;)</span><br><span class="line">    return next();</span><br><span class="line">  //取出user</span><br><span class="line">  const userFlag = window.sessionStorage.getItem(&quot;user&quot;);</span><br><span class="line">  //如果无值，返回登录页</span><br><span class="line">  if(!userFlag)</span><br><span class="line">    return next(&apos;/login&apos;);</span><br><span class="line">  //有值，放行</span><br><span class="line">  else next();</span><br><span class="line"></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>清除session(home里面安全退出函数)：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">logout()&#123;</span><br><span class="line">                //退出的时候清除session(用户对象信息)，再回到首页</span><br><span class="line">                window.sessionStorage.clear();</span><br><span class="line">                this.$router.push(&quot;/login&quot;);</span><br><span class="line">            &#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="6-home页面"><a href="#6-home页面" class="headerlink" title="6. home页面"></a>6. home页面</h3><h4 id="6-1-vuehtml结构"><a href="#6-1-vuehtml结构" class="headerlink" title="6.1. vuehtml结构"></a>6.1. vuehtml结构</h4><p>1.container布局<br>2.加侧边栏<br>3.侧边栏里面的菜单列表是在数据库里查询的，在created()里添加method把菜单列表信息渲染上去</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">// 类似onload</span><br><span class="line"> created() &#123;</span><br><span class="line">     this.getMenuList();</span><br><span class="line"> &#125;,</span><br><span class="line">methods里面     </span><br><span class="line"> // 获取所有的导航菜单</span><br><span class="line">   async getMenuList()&#123;</span><br><span class="line">     const &#123;data:res&#125; = await this.$http.get(&quot;menus&quot;);</span><br><span class="line">     console.log(res.data);</span><br><span class="line">     if( res.status != 200) return this.$message.error(&quot;操作失败！！！&quot;);</span><br><span class="line">     this.menuList = res.data;</span><br><span class="line">   &#125;,</span><br></pre></td></tr></table></figure>
+
+<h4 id="6-2-java里写对应数据库两张mune表的bean实体类和接口和查询xml"><a href="#6-2-java里写对应数据库两张mune表的bean实体类和接口和查询xml" class="headerlink" title="6.2. java里写对应数据库两张mune表的bean实体类和接口和查询xml"></a>6.2. java里写对应数据库两张mune表的bean实体类和接口和查询xml</h4><p>1.实体类<br>主菜单</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">private int id;</span><br><span class="line">private String title;</span><br><span class="line">private String path;</span><br><span class="line">//list集合里放submenu的每一行一共7行,main的id主键是sub的外键</span><br><span class="line">private List&lt;SubMenu&gt; sList;</span><br></pre></td></tr></table></figure>
+
+<p>子菜单</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">private int id;</span><br><span class="line">private String title;</span><br><span class="line">private String path; // /use /admin</span><br></pre></td></tr></table></figure>
+
+<p>2.dao.MenuDao<br>查询拿到所有主菜单行装到list集合中，xml里返回type是MainMenu</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">public interface MenuDao &#123;</span><br><span class="line">    </span><br><span class="line">    public List&lt;MainMenu&gt; getMenus();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>3.mapper/MenuMapping.xml<br>mainmenu 一对多 submenu 要创建关系映射,用关系映射来描述main对sub一对多的关系.<br>select语句查出来有六行 三个main 三个sub ；sub放在mian的List<submenu> sList里，这是main的第四个属性.</submenu></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">&lt;mapper namespace=&quot;com.example.demo.dao.MenuDao&quot;&gt;</span><br><span class="line">    &lt;resultMap id=&quot;menuMap&quot; type=&quot;com.example.demo.bean.MainMenu&quot;&gt;</span><br><span class="line">        &lt;id column=&quot;id&quot; property=&quot;id&quot;&gt;&lt;/id&gt;</span><br><span class="line">        &lt;result column=&quot;title&quot; property=&quot;title&quot;&gt;&lt;/result&gt;</span><br><span class="line">        &lt;result column=&quot;path&quot; property=&quot;path&quot;&gt;&lt;/result&gt;</span><br><span class="line">&lt;!--        这个要封装 ofType:容器里面的东西是什么。 然后把前面三个粘贴进来，改名字--&gt;</span><br><span class="line">        &lt;collection property=&quot;sList&quot; ofType=&quot;com.example.demo.bean.SubMenu&quot;&gt;</span><br><span class="line">            &lt;id column=&quot;sid&quot; property=&quot;id&quot;&gt;&lt;/id&gt;</span><br><span class="line">            &lt;result column=&quot;stitle&quot; property=&quot;title&quot;&gt;&lt;/result&gt;</span><br><span class="line">            &lt;result column=&quot;spath&quot; property=&quot;path&quot;&gt;&lt;/result&gt;</span><br><span class="line">        &lt;/collection&gt;</span><br><span class="line"></span><br><span class="line">    &lt;/resultMap&gt;</span><br><span class="line"></span><br><span class="line">    &lt;select id=&quot;getMenus&quot; resultMap=&quot;menuMap&quot;&gt;</span><br><span class="line">        SELECT mm.*,sm.`id` AS sid,  sm.`title` AS stitle, sm.`path` AS spath</span><br><span class="line">        FROM mainmenu mm, submenu sm</span><br><span class="line">        WHERE mm.id = sm.`mid`</span><br><span class="line"></span><br><span class="line">    &lt;/select&gt;</span><br><span class="line">&lt;/mapper&gt;</span><br></pre></td></tr></table></figure>
+
+<h4 id="6-3-MenuController"><a href="#6-3-MenuController" class="headerlink" title="6.3. MenuController"></a>6.3. MenuController</h4><p>业务功能：把menu查出来，如果查出来了就吧mune和状态码200放到hashmap里，如果查不出来就放状态码404到hashmap里。最后把hashmap转成json字符串给前端。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">@RestController</span><br><span class="line">public class MenuController &#123;</span><br><span class="line">    @Autowired</span><br><span class="line">    MenuDao menuDao;</span><br><span class="line"></span><br><span class="line">    public String getAllMenus()&#123;</span><br><span class="line">        //map里放查询结果 和 状态码</span><br><span class="line">        HashMap&lt;String,Object&gt; data = new HashMap&lt;&gt;();</span><br><span class="line"></span><br><span class="line">        int status = 404; //错误码404，成功码200</span><br><span class="line">        //调用dao的方法把menu查出来 放到集合menus</span><br><span class="line">        List&lt;MainMenu&gt; menus =  menuDao.getMenus();</span><br><span class="line">        //munes里有内容，就把munes放到hashmap data里，还有成功状态码</span><br><span class="line">        if(menus != null)&#123;</span><br><span class="line">            data.put(&quot;menus&quot;, menus);</span><br><span class="line">            data.put(&quot;flag&quot;, 200);</span><br><span class="line">        &#125;else&#123;</span><br><span class="line">            data.put(&quot;flag&quot;, 404);</span><br><span class="line">        &#125;</span><br><span class="line">        //把hashmap转成json发给前端</span><br><span class="line">        String stringJSON = JSON.toJSONString(data);</span><br><span class="line">        return stringJSON;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="6-4-改home页面测试后端能不能拿得到数据"><a href="#6-4-改home页面测试后端能不能拿得到数据" class="headerlink" title="6.4. 改home页面测试后端能不能拿得到数据"></a>6.4. 改home页面测试后端能不能拿得到数据</h4><p>async和await关键字，作为处理异步请求的一种解决方案，实际上是一个语法糖，在ES6中已经可以用生成器语法完成同样的操作，<br>但是async/await的出现使得用这样的方式处理异步请求更加简单和明白。<br>async 方法名(){<br>    await 异步函数();<br>}</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">created() &#123;</span><br><span class="line">            //启动的时候就调用getMenuList()</span><br><span class="line">            this.getMenuList();</span><br><span class="line">        &#125;,</span><br><span class="line">methods:&#123;</span><br><span class="line">    //获取导航菜单</span><br><span class="line">    async getMenuList()&#123;</span><br><span class="line">        console.log(&quot;发生了。&quot;);</span><br><span class="line">        //用$http.get提交访问后台接口url,就可以拿到数据</span><br><span class="line">        //然后解析后台接口返回的json,存到res变量</span><br><span class="line">        const &#123;data:res&#125; = await this.$http.get(&quot;menu&quot;);</span><br><span class="line">        //home页面打印</span><br><span class="line">        console.log(res);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="6-5-home页面展示数据"><a href="#6-5-home页面展示数据" class="headerlink" title="6.5 home页面展示数据"></a>6.5 home页面展示数据</h4><p>展示效果：<br> [ { “id”: 100, “path”: “/admin”, “sList”: [ { “id”: 101, “path”: “/user”, “title”: “用户列表” }, { “id”: 102, “path”: “/rights”, “title”: “修改权限” }, { “id”: 103, “path”: “/sport”, “title”: “ 运动模块” }, { “id”: 104, “path”: “/goods”, “title”: “商品模块” } ], “title”: “权限管理” }, { “id”: 200, “path”: “/use”, “sList”: [ { “id”: 201, “path”: “/Introduction”, “title”: “运动科普” }, { “id”: 202, “path”: “/calories”, “title”: “卡路里” }, { “id”: 203, “path”: “/food”, “title”: “营养配餐” } ], “title”: “运动平台” } ]<br> 解释：<br> 最外面的[] 是data的，<br>{},{}是res.menus从hashmap里取出来的mainmenu的两个对象,<br>“sList”: [{},{},{}]是mainmenu对象的list属性,<br>几个{}是submenu的对象。</p>
+<p>“”: …, 对应key: value, key是xml中的property=”key名”</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">data里：</span><br><span class="line"> menuList:[],</span><br><span class="line"></span><br><span class="line">接上面的method</span><br><span class="line">if(res.flag !=200)</span><br><span class="line">    return this.$message.error(&quot;获取列表失败&quot;);</span><br><span class="line">//访问成功，数据回填到menuList</span><br><span class="line">this.menuList = res.menus;</span><br></pre></td></tr></table></figure>
+
+<h4 id="6-6-home页把数据遍历出来"><a href="#6-6-home页把数据遍历出来" class="headerlink" title="6.6. home页把数据遍历出来"></a>6.6. home页把数据遍历出来</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- mainmenu v-for遍历--&gt;</span><br><span class="line">&lt;el-submenu index=&quot;1&quot; v-for=&quot;item in menuList&quot; v-bind:key=&quot;item.id&quot;&gt;</span><br><span class="line">    &lt;template slot=&quot;title&quot;&gt;</span><br><span class="line">        &lt;i class=&quot;el-icon-location&quot;&gt;&lt;/i&gt;</span><br><span class="line">        &lt;span&gt;导航一&#123;&#123;item.title&#125;&#125;&lt;/span&gt;</span><br><span class="line">    &lt;/template&gt;</span><br><span class="line">&lt;!--submenu v-for遍历 从mainmenu的item里面取sList, 再遍历--&gt;</span><br><span class="line">&lt;el-menu-item index=&quot;1-1&quot; v-for=&quot;subitem in item.sList&quot; v-bind:key=&quot;subitem.id&quot;&gt;</span><br><span class="line">    &lt;template slot=&quot;title&quot;&gt;</span><br><span class="line">    &lt;i class=&quot;el-icon-location&quot;&gt;&lt;/i&gt;</span><br><span class="line">    &lt;span&gt;&#123;&#123;subitem.title&#125;&#125;&lt;/span&gt;</span><br><span class="line">    &lt;/template&gt;</span><br><span class="line">&lt;/el-menu-item&gt;</span><br></pre></td></tr></table></figure>
+
+<h4 id="6-7-没有做导航栏伸缩-p23"><a href="#6-7-没有做导航栏伸缩-p23" class="headerlink" title="6.7. 没有做导航栏伸缩 p23"></a>6.7. 没有做导航栏伸缩 p23</h4><h4 id="6-8-home-el-main容器里插入welcome页面"><a href="#6-8-home-el-main容器里插入welcome页面" class="headerlink" title="6.8. home-el-main容器里插入welcome页面"></a>6.8. home-el-main容器里插入welcome页面</h4><p>1.el-main</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;el-main&gt;</span><br><span class="line">    &lt;router-view&gt;&lt;/router-view&gt;</span><br><span class="line">&lt;/el-main&gt;</span><br></pre></td></tr></table></figure>
+
+<p>2.改路由<br>import Welcome from ‘../views/Welcome’</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    path: &apos;/home&apos;,</span><br><span class="line">    name: &apos;Home&apos;,</span><br><span class="line">    component: Home,</span><br><span class="line">    redirect: &apos;/welcome&apos;,//先到home页面再重定向到子组件</span><br><span class="line">    children:[</span><br><span class="line">      &#123;</span><br><span class="line">        path: &apos;/welcome&apos;,</span><br><span class="line">        name: &apos;welcome&apos;,</span><br><span class="line">        component: Welcome</span><br><span class="line">      &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="6-9-侧边栏里子导航菜单的点击跳转"><a href="#6-9-侧边栏里子导航菜单的点击跳转" class="headerlink" title="6.9. 侧边栏里子导航菜单的点击跳转"></a>6.9. 侧边栏里子导航菜单的点击跳转</h4><p>1.el-menu 里加v-bind:router=”true”<br>2.el-menu-item里用v-bind:index赋值跳转的url。<br>:index=”url” 这样el-menu点击就能跳转路由。<br>【高亮！】v-bind:index=”subitem.path”一直跳转不到 取值的url,<br>解决：删掉手打一遍。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;el-menu-item v-bind:index=&quot;subitem.path&quot; v-for=&quot;subitem in item.sList&quot; v-bind:key=&quot;subitem.id&quot;&gt;</span><br></pre></td></tr></table></figure>
+
+<h4 id="6-10-点击跳转的路径保存到session"><a href="#6-10-点击跳转的路径保存到session" class="headerlink" title="6.10. 点击跳转的路径保存到session"></a>6.10. 点击跳转的路径保存到session</h4><p>效果：在点开了子菜单之后，点刷，新导航栏就会有记忆的展开到点击过的子菜单</p>
+<p>1.设置保存/url的data，并且和el-menu 用v-bind:双向绑定</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">el-menu里v-bind:default-active=&quot;activePath&quot;</span><br><span class="line">data里:activePath:&apos;/welcome&apos;,//默认路径，双向绑定</span><br></pre></td></tr></table></figure>
+
+<p>2.el-menu-item里添加点击保存/url到session和data事件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">el-menu-item里v-on:click=&quot;saveNavState(subitem.path)&quot;</span><br><span class="line">methods:</span><br><span class="line">//保存路径到activePath</span><br><span class="line">    saveNavState(activePath)&#123;</span><br><span class="line">        //把跳转路径放到sesson里面</span><br><span class="line">        window.sessionStorage.setItem(&apos;activePath&apos;, activePath);</span><br><span class="line">        this.activePath = activePath;</span><br><span class="line">    &#125;,</span><br></pre></td></tr></table></figure>
+
+<p>3.刷新启动的时候之前点击跳转的路径拿出来，动态修改activePath</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">created() &#123;</span><br><span class="line">            //启动的时候就调用getMenuList()</span><br><span class="line">            this.getMenuList();</span><br><span class="line">            //刷新启动的时候之前点击跳转的路径拿出来，动态修改activePath</span><br><span class="line">            this.activePath = window.sessionStorage.getItem(&apos;activePath&apos;);</span><br><span class="line">        &#125;,</span><br></pre></td></tr></table></figure>
+
+<h3 id="7-user页面"><a href="#7-user页面" class="headerlink" title="7. /user页面"></a>7. /user页面</h3><h4 id="7-1-大概vue页面框架"><a href="#7-1-大概vue页面框架" class="headerlink" title="7.1 大概vue页面框架"></a>7.1 大概vue页面框架</h4><p>【问题】搜索框很大是因为home页面里的el-main加了样式，删掉</p>
+<p>1.面包屑导航栏</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;el-breadcrumb separator-class=&quot;el-icon-arrow-right&quot;&gt;</span><br><span class="line">    &lt;el-breadcrumb-item :to=&quot;&#123; path: &apos;/home&apos; &#125;&quot;&gt;首页&lt;/el-breadcrumb-item&gt;</span><br><span class="line">    &lt;el-breadcrumb-item&gt;权限管理&lt;/el-breadcrumb-item&gt;</span><br><span class="line">    &lt;el-breadcrumb-item&gt;用户列表&lt;/el-breadcrumb-item&gt;</span><br><span class="line">&lt;/el-breadcrumb&gt;</span><br></pre></td></tr></table></figure>
+
+<p>样式：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">.el-breadcrumb&#123;</span><br><span class="line">        margin-bottom: 15px;</span><br><span class="line">        font-size: 18px;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>2.搜索框+搜索按钮<br>el-row :gutter=”25” 让搜索框和按钮之间间隙25；<br>el-col :span=”10” 包裹每个组件，设置组件的长度；</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- 卡片视图区 --&gt;</span><br><span class="line">        &lt;el-card&gt;</span><br><span class="line">&lt;!--            --&gt;</span><br><span class="line">            &lt;el-row :gutter=&quot;25&quot;&gt;</span><br><span class="line">                &lt;!--            搜索区域--&gt;</span><br><span class="line">                &lt;el-col :span=&quot;10&quot;&gt;</span><br><span class="line">                &lt;el-input placeholder=&quot;请输入搜索内容&quot; &gt;</span><br><span class="line">                    &lt;el-button slot=&quot;append&quot; icon=&quot;el-icon-search&quot;&gt;&lt;/el-button&gt;</span><br><span class="line">                &lt;/el-input&gt;</span><br><span class="line">                &lt;/el-col&gt;</span><br><span class="line"></span><br><span class="line">                &lt;el-col :span=&quot;4&quot;&gt;</span><br><span class="line">                &lt;el-button type=&quot;primary&quot; @click=&quot;addDialogVisible = true&quot;&gt;添加用户&lt;/el-button&gt;</span><br><span class="line">                &lt;/el-col&gt;</span><br><span class="line">            &lt;/el-row&gt;</span><br><span class="line"></span><br><span class="line">        &lt;/el-card&gt;</span><br></pre></td></tr></table></figure>
+
+<p>卡片样式：框阴影</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">/* 卡片区域  !important 提高样式级别 */</span><br><span class="line">    .el-card&#123;</span><br><span class="line">        box-shadow: 0 1px 1px rgba(0, 8, 10, 0.15) !important;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>3.获取所有用户，弄到data里面<br>大概页面框架</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">created() &#123;</span><br><span class="line">            this.getUserList();</span><br><span class="line">        &#125;,</span><br><span class="line">        data()&#123;</span><br><span class="line">            return&#123;</span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;,</span><br><span class="line">        methods:&#123;</span><br><span class="line">            //获取所有用户，弄到data里面</span><br><span class="line">            async getUserList() &#123;</span><br><span class="line">                // 调用post请求</span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="7-2-回到java写接口UserDao"><a href="#7-2-回到java写接口UserDao" class="headerlink" title="7.2 回到java写接口UserDao"></a>7.2 回到java写接口UserDao</h4><p>getAllUser List<user><br>getUserCounts int</user></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">//有模糊查询 limit分页 开始页，每页多少条数据-</span><br><span class="line">    //拿到所有user装到list (用户名，每页最大存放，页面大小)</span><br><span class="line">    public List&lt;User&gt; getAllUser(@Param(&quot;username&quot;) String username, @Param(&quot;pageStart&quot;) int pageStart, @Param(&quot;pageSize&quot;) String pageSize);</span><br><span class="line"></span><br><span class="line">    //根据用户名获取用户个数</span><br><span class="line">    public int getUserCounts(@Param(&quot;username&quot;) String username);</span><br></pre></td></tr></table></figure>
+
+<h4 id="7-3-UserDao对应的xml"><a href="#7-3-UserDao对应的xml" class="headerlink" title="7.3 UserDao对应的xml"></a>7.3 UserDao对应的xml</h4><p>分页+模糊查询<br>模糊查询</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--    if是非必须的，如果username不为null就会查询where,模糊查询 limit分页 开始页，每页多少条数据--&gt;</span><br><span class="line">    &lt;select id=&quot;getAllUser&quot; resultType=&quot;com.example.demo.bean.User&quot;&gt;</span><br><span class="line">        SELECT * FROM easyuser</span><br><span class="line">        &lt;if test=&quot;username !=null&quot;&gt;</span><br><span class="line">            WHERE username like #&#123;username&#125;</span><br><span class="line">        &lt;/if&gt;</span><br><span class="line">        LIMIT #&#123;pageStart&#125;, #&#123;pageSize&#125;</span><br><span class="line">    &lt;/select&gt;</span><br><span class="line"></span><br><span class="line">    &lt;select id=&quot;getUserCounts&quot; resultType=&quot;java.lang.Integer&quot;&gt;</span><br><span class="line">        SELECT count(*) FROM easyuser</span><br><span class="line">        &lt;if test=&quot;username !=null&quot;&gt;</span><br><span class="line">            WHERE username like #&#123;username&#125;</span><br><span class="line">        &lt;/if&gt;</span><br><span class="line">    &lt;/select&gt;</span><br></pre></td></tr></table></figure>
+
+<h4 id="7-4-UserController调用上面两个方法查出来数据并且返回"><a href="#7-4-UserController调用上面两个方法查出来数据并且返回" class="headerlink" title="7.4 UserController调用上面两个方法查出来数据并且返回"></a>7.4 UserController调用上面两个方法查出来数据并且返回</h4><p>getUserCounts 直接查到用户数量 -&gt;”numbers”, numbers<br>getAllUser 直接查到用户对象到List<user> allUser -&gt;”data”, allUser</user></p>
+<p>模糊查询的语法 “%username% “ 这一部分是在controller调用函数的时候作为参数传递过去的。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">@RestController</span><br><span class="line">public class UserController &#123;</span><br><span class="line">    @Autowired</span><br><span class="line">    UserDao userDao;</span><br><span class="line"></span><br><span class="line">    //把模糊查询的信息封装到实体类，从实体类调用方法拿到信息</span><br><span class="line">    //返回两个信息：查询的所有user,用户总数</span><br><span class="line">    @RequestMapping(&quot;/alluser&quot;)</span><br><span class="line">    public String getUserList(QueryInfo queryInfo)&#123;</span><br><span class="line">        int numbers = userDao.getUserCounts(&quot;%&quot;+queryInfo.getQuery()+&quot;%&quot;); //有模糊查询,查出用户数量</span><br><span class="line">        int pageStart = (queryInfo.getPageNum() -1 )* queryInfo.getPageSize(); //从哪条数据开始</span><br><span class="line">        //拿到所有user存到list</span><br><span class="line">        List&lt;User&gt; allUser = userDao.getAllUser(&quot;%&quot;+queryInfo.getQuery()+&quot;%&quot;, pageStart, queryInfo.getPageSize());</span><br><span class="line">        HashMap&lt;String, Object&gt; res = new HashMap&lt;&gt;();</span><br><span class="line">        res.put(&quot;numbers&quot;, numbers);</span><br><span class="line">        res.put(&quot;data&quot;, allUser);</span><br><span class="line">        String jsonString = JSON.toJSONString(res);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">         return jsonString;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="7-5-userlist页面传递请求，拿到返回数据"><a href="#7-5-userlist页面传递请求，拿到返回数据" class="headerlink" title="7.5 userlist页面传递请求，拿到返回数据"></a>7.5 userlist页面传递请求，拿到返回数据</h4><p>1.三个数据：queryInfo给后端发请求的参数对象；userList后端数据解析出来的所有用户列表；total后端数据解析出来的记录条数。<br>2.用get发送请求，解析返回数据给data.<br>调用get请求格式 (“url”, {params: 带上的数据});<br>3.created()里调用method,之前写了就不写了。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">name: &quot;&quot;,</span><br><span class="line">created() &#123;</span><br><span class="line">    this.getUserList();</span><br><span class="line">&#125;,</span><br><span class="line">data()&#123;</span><br><span class="line">    return&#123;</span><br><span class="line">        //对应post给接口的三个参数(和后台封装的实体对象queryInfo一致)，写在对象里面</span><br><span class="line">        queryInfo:&#123;</span><br><span class="line">            query:&quot;&quot;, //搜索信息</span><br><span class="line">            pageNum: 1, //当前页码</span><br><span class="line">            pageSize: 5 //每页最大条数</span><br><span class="line">        &#125;,</span><br><span class="line">        //拿到返回的数据</span><br><span class="line">        userList: [], //用户列表</span><br><span class="line">        total: 0, //总记录数</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;,</span><br><span class="line">methods:&#123;</span><br><span class="line">    //获取所有用户，弄到data里面</span><br><span class="line">    async getUserList() &#123;</span><br><span class="line">        // 调用get请求格式 (&quot;url&quot;, &#123;params: 带上的数据&#125;); 同样是异步</span><br><span class="line">        const &#123;data:res&#125; = await this.$http.get(&quot;alluser&quot;, &#123;params: this.queryInfo&#125;);</span><br><span class="line">        //数据取出来填到上面data</span><br><span class="line">        this.total = res.numbers;</span><br><span class="line">        this.userList = res.data;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="7-6把data渲染到el-table展示"><a href="#7-6把data渲染到el-table展示" class="headerlink" title="7.6把data渲染到el-table展示"></a>7.6把data渲染到el-table展示</h4><p>用element-ui绘制一张表格，一个作用域插槽,<br>还没有做几个操作的函数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- 卡片视图区 --&gt;</span><br><span class="line">        &lt;el-card&gt;</span><br><span class="line">&lt;!--            --&gt;</span><br><span class="line">            &lt;el-row :gutter=&quot;25&quot;&gt;</span><br><span class="line">                &lt;!--            搜索区域--&gt;</span><br><span class="line">                &lt;el-col :span=&quot;10&quot;&gt;</span><br><span class="line">                &lt;el-input placeholder=&quot;请输入搜索内容&quot; &gt;</span><br><span class="line">                    &lt;el-button slot=&quot;append&quot; icon=&quot;el-icon-search&quot;&gt;&lt;/el-button&gt;</span><br><span class="line">                &lt;/el-input&gt;</span><br><span class="line">                &lt;/el-col&gt;</span><br><span class="line"></span><br><span class="line">                &lt;el-col :span=&quot;4&quot;&gt;</span><br><span class="line">                &lt;el-button type=&quot;primary&quot; @click=&quot;addDialogVisible = true&quot;&gt;添加用户&lt;/el-button&gt;</span><br><span class="line">                &lt;/el-col&gt;</span><br><span class="line">            &lt;/el-row&gt;</span><br><span class="line"></span><br><span class="line">&lt;!--            用户列表 绑定数据data border边框 stripe隔行变色--&gt;</span><br><span class="line">            &lt;el-table v-bind:data=&quot;userList&quot; border stripe&gt;</span><br><span class="line">&lt;!--                索引列,每一行的index自增--&gt;</span><br><span class="line">                &lt;el-table-column type=&quot;index&quot;&gt;&lt;/el-table-column&gt;</span><br><span class="line">&lt;!--                对应列名--&gt;</span><br><span class="line">                &lt;el-table-column label=&quot;用户名&quot; prop=&quot;username&quot;&gt;&lt;/el-table-column&gt;</span><br><span class="line">                &lt;el-table-column label=&quot;密码&quot; prop=&quot;password&quot;&gt;&lt;/el-table-column&gt;</span><br><span class="line">                &lt;el-table-column label=&quot;邮箱&quot; prop=&quot;email&quot;&gt;&lt;/el-table-column&gt;</span><br><span class="line">                &lt;el-table-column label=&quot;角色&quot; prop=&quot;role&quot;&gt;&lt;/el-table-column&gt;</span><br><span class="line">                &lt;el-table-column label=&quot;状态&quot; prop=&quot;state&quot;&gt;</span><br><span class="line">                &lt;!--状态列：作用域插槽 scope.row element-ui决定 存储了当前行的信息 --&gt;</span><br><span class="line">                &lt;template slot-scope=&quot;scope&quot;&gt;&lt;!--数据模板，数据state添加到scope域内--&gt;</span><br><span class="line">                    &lt;el-switch v-model=&quot;scope.row.state&quot;&gt;&lt;/el-switch&gt;</span><br><span class="line">                &lt;/template&gt;</span><br><span class="line">                &lt;/el-table-column&gt;</span><br><span class="line">                &lt;!--自定义插槽--&gt;</span><br><span class="line">&lt;!--                操作不是属性，不对应data--&gt;</span><br><span class="line">                &lt;el-table-column label=&quot;操作&quot;&gt;</span><br><span class="line">&lt;!--                    每一行都有数据存储，全部操作放在template里面--&gt;</span><br><span class="line">                    &lt;template &gt;</span><br><span class="line">                        &lt;!-- 修改 --&gt;</span><br><span class="line">                        &lt;el-button type=&quot;primary&quot; icon=&quot;el-icon-edit&quot; size=&quot;mini&quot; &gt;&lt;/el-button&gt;</span><br><span class="line">                        &lt;!-- 删除 --&gt;</span><br><span class="line">                        &lt;el-button type=&quot;danger&quot; icon=&quot;el-icon-delete&quot; size=&quot;mini&quot; &gt;&lt;/el-button&gt;</span><br><span class="line">                        &lt;!-- 权限 --&gt;</span><br><span class="line">                        &lt;el-tooltip effect=&quot;dark&quot; content=&quot;分配权限&quot; placement=&quot;top-start&quot; :enterable=&quot;false&quot;&gt;&lt;!--文字提示 enterable 隐藏--&gt;</span><br><span class="line">                            &lt;el-button type=&quot;warning&quot; icon=&quot;el-icon-setting&quot; size=&quot;mini&quot;&gt;&lt;/el-button&gt;</span><br><span class="line">                        &lt;/el-tooltip&gt;</span><br><span class="line">                    &lt;/template&gt;</span><br><span class="line">                &lt;/el-table-column&gt;</span><br><span class="line">            &lt;/el-table&gt;</span><br><span class="line"></span><br><span class="line">            &lt;span&gt;&#123;&#123;userList&#125;&#125;&lt;/span&gt;</span><br><span class="line">        &lt;/el-card&gt;</span><br></pre></td></tr></table></figure>
+
+<h4 id="7-7-分页组件"><a href="#7-7-分页组件" class="headerlink" title="7.7 分页组件"></a>7.7 分页组件</h4><p>element-ui 提供了分页组件el-pagination<br>几个属性：</p>
+<ul>
+<li>page-sizes：数组，提供多选框选择每页展示的记录条数</li>
+<li>page-size：绑定data里的pageSize，每页的记录条数</li>
+<li>total: 数据库记录总条数<br>动态方法(@element-ui提供的方法)：</li>
+<li>@size-change=”handleSizeChange”：获取并修改当前的pageSize</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--            分页组件:size-change每页最大记录条数变化(写方法)，current-change页码变化(写方法)，layout功能组件--&gt;</span><br><span class="line">&lt;div&gt;</span><br><span class="line">    &lt;el-pagination</span><br><span class="line"></span><br><span class="line">            @size-change=&quot;handleSizeChange&quot;</span><br><span class="line">            @current-change=&quot;handleCurrentChange&quot;</span><br><span class="line">            :current-page=&quot;currentPage4&quot;</span><br><span class="line">            :page-sizes=&quot;[1, 2, 5, 100]&quot;</span><br><span class="line">            :page-size=&quot;queryInfo.pageSize&quot;</span><br><span class="line">            layout=&quot;total, sizes, prev, pager, next, jumper&quot;</span><br><span class="line">            :total=&quot;total&quot;&gt;</span><br><span class="line">    &lt;/el-pagination&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+
+<p>方法：<br>触发方法：1.获取新值，2.改变data,3.获取所有用户列表userList: []<br>最后必须要this.getUserList();不然页面不能更新数据。因为userList所有的user对象，对象里封装了用户的所有属性。<br>用户表格是绑定userList，列数据是绑定userList里面的属性的</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">methods:&#123;</span><br><span class="line">            //获取所有用户，弄到data里面</span><br><span class="line">            async getUserList() &#123;</span><br><span class="line">                // 调用get请求格式 (&quot;url&quot;, &#123;params: 带上的数据&#125;); 同样是异步</span><br><span class="line">                const &#123;data:res&#125; = await this.$http.get(&quot;alluser&quot;, &#123;params: this.queryInfo&#125;);</span><br><span class="line">                //数据取出来填到上面data</span><br><span class="line">                this.total = res.numbers;</span><br><span class="line">                this.userList = res.data;</span><br><span class="line">            &#125;,</span><br><span class="line">            //size-change每页最大变化 pageSize触发功能</span><br><span class="line">            handleSizeChange(newSize)&#123;</span><br><span class="line">                //改当前的pageSize</span><br><span class="line">                this.queryInfo.pageSize = newSize;</span><br><span class="line">                this.getUserList();</span><br><span class="line">            &#125;,</span><br><span class="line">            //current-change当前最大变化 pagenum的触发功能</span><br><span class="line">            handleCurrentChange(newPage)&#123;</span><br><span class="line">                //改当前的pageNum</span><br><span class="line">                this.queryInfo.pageNum = newPage;</span><br><span class="line">                this.getUserList();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p>总结：使用element-ui提供的分页组件，自己写触发页数变化以及触发记录数变化的函数</p>
+<h4 id="7-8-状态switch按钮对应后台修改数据库"><a href="#7-8-状态switch按钮对应后台修改数据库" class="headerlink" title="7.8 状态switch按钮对应后台修改数据库"></a>7.8 状态switch按钮对应后台修改数据库</h4><p>1.UserDao定义方法<br>根据用户id和state的boolean值(前端可以改变)去更新数据库中的数据；返回int</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">public int updateState(Integer id,Boolean state);</span><br></pre></td></tr></table></figure>
+
+<p>2.usermapping实现方法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;select id=&quot;updateState&quot; resultType=&quot;java.lang.Integer&quot;&gt;</span><br><span class="line">         UPDATE easyuser SET state = #&#123;state&#125; WHERE id = #&#123;id&#125;</span><br><span class="line">&lt;/select&gt;</span><br></pre></td></tr></table></figure>
+
+<p>3.usercontroller调用dao方法，返回修改成功与否</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"> //调用dao层方法,返回是否成功</span><br><span class="line">@RequestMapping(&quot;/updateUserState&quot;)</span><br><span class="line">public String updataUserState(@RequestParam(&quot;id&quot;) Integer id, @RequestParam(&quot;state&quot;) Boolean state)&#123;</span><br><span class="line">    //updateState返回值int,成功就有返回值1？</span><br><span class="line">    int successFlag = userDao.updateState(id,state);</span><br><span class="line">    return successFlag &gt;0 ? &quot;success&quot; : &quot;error&quot;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>4.vue页面加方法<br>@change=”userStateChanged(scope.row)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;template slot-scope=&quot;scope&quot;&gt;</span><br><span class="line">                        &lt;el-switch v-model=&quot;scope.row.state&quot; @change=&quot;userStateChanged(scope.row)&quot;&gt;&lt;/el-switch&gt;</span><br><span class="line">                    &lt;/template&gt;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">// 修改用户状态</span><br><span class="line">async userStateChanged(userinfo) &#123;</span><br><span class="line">    const &#123; data: res &#125; = await this.$http.put(</span><br><span class="line">        `userState?id=$&#123;userinfo.id&#125;&amp;state=$&#123;userinfo.state&#125;`</span><br><span class="line">    );</span><br><span class="line">    if (res != &quot;success&quot;) &#123;</span><br><span class="line">        userinfo.state = !userinfo.state;</span><br><span class="line">        return this.$message.error(&quot;操作失败！！！&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">    this.$message.success(&quot;操作成功！！！&quot;);</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p>5.存在问题：前端500报错，后端报错空指针。但是能够修改数据库中的状态！<br>原因：UserDao.updateState attempted to return null from a method with a primitive return type (int).<br>不管了。。。<br>解决！！！：xml里面update语句是update标签不是select，没有返回类型</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;update id=&quot;updateState&quot; &gt;</span><br><span class="line">     UPDATE easyuser SET state = #&#123;state&#125; WHERE id = #&#123;id&#125;</span><br><span class="line">&lt;/update&gt;</span><br></pre></td></tr></table></figure>
+
+<h4 id="7-9-vue查询图标绑定事件"><a href="#7-9-vue查询图标绑定事件" class="headerlink" title="7.9 vue查询图标绑定事件"></a>7.9 vue查询图标绑定事件</h4><p>修改:绑定搜索信息，清除图标组件：点击之后展示所有列表;搜索点击模糊查询出列表</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;el-input placeholder=&quot;请输入搜索内容&quot; v-model=&quot;queryInfo.query&quot; clearable @clear=&quot;getUserList&quot;&gt;</span><br><span class="line">    &lt;el-button slot=&quot;append&quot; icon=&quot;el-icon-search&quot; @click=&quot;getUserList&quot;&gt;&lt;/el-button&gt;</span><br><span class="line">&lt;/el-input&gt;</span><br></pre></td></tr></table></figure>
+
+<h4 id="7-10-添加用户后台实现"><a href="#7-10-添加用户后台实现" class="headerlink" title="7.10 添加用户后台实现"></a>7.10 添加用户后台实现</h4><p>1.userDao<br>public int addUser(User user);<br>2.xml<br>VALUE (#{username}, #{password},#{email},#{role},#{state})<br>这些带#号的变量要和user实体对象一一对应</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--insert标签！！！，没有返回类型--&gt;</span><br><span class="line">   &lt;insert id=&quot;addUser&quot; &gt;</span><br><span class="line">        INSERT INTO easyuser (username,PASSWORD,email,role,state)</span><br><span class="line">       VALUE (#&#123;username&#125;, #&#123;password&#125;,#&#123;email&#125;,#&#123;role&#125;,#&#123;state&#125;)</span><br><span class="line">   &lt;/insert&gt;</span><br></pre></td></tr></table></figure>
+
+<p>3.controller</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"> //前端的数据封装在user对象里面.前端传username,PASSWORD,email，controller里面设置Role，State</span><br><span class="line">@RequestMapping(&quot;/addUser&quot;)</span><br><span class="line">public String addUser(@RequestBody User user)&#123;</span><br><span class="line">    user.setRole(&quot;普通用户&quot;);</span><br><span class="line">    user.setState(false);</span><br><span class="line">    int i = userDao.addUser(user); //insert语句会返回更新的条数</span><br><span class="line">    return i&gt;0 ? &quot;success&quot;:&quot;error&quot;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="7-11-添加用户vue页面实现"><a href="#7-11-添加用户vue页面实现" class="headerlink" title="7.11 添加用户vue页面实现"></a>7.11 添加用户vue页面实现</h4><p>点击 添加用户 出现表单， 提交<br>【高亮】一个标签里面不能写两个@click=””,不然会报错而且整个页面都不会显示出来</p>
+<p>1.绘制用户添加的表单<br>:visible.sync=”addDialogVisible”是v-bind指令，只有v-bind指令才能缩写为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--        添加用户表单--&gt;</span><br><span class="line">&lt;!--        :model=&quot;表单对象&quot;;:visible.sync=&quot;addDialogVisible&quot;绑定出现消失对应属性；@click=&quot;addDialogVisible = false&quot;点击事件改变属性--&gt;</span><br><span class="line">        &lt;el-dialog title=&quot;添加用户&quot; :visible.sync=&quot;addDialogVisible&quot; width=&quot;50%&quot; @close=&quot;addDialogClosed&quot;&gt;</span><br><span class="line">            &lt;el-form :model=&quot;addForm&quot; :rules=&quot;addFormRules&quot; ref=&quot;addFormRef&quot; label-width=&quot;70px&quot;&gt;</span><br><span class="line">                &lt;el-form-item prop=&quot;username&quot;&gt;</span><br><span class="line">                    &lt;span&gt;用户名：&lt;/span&gt;&lt;el-input v-model=&quot;addForm.username&quot; &gt;&lt;/el-input&gt;</span><br><span class="line">                &lt;/el-form-item&gt;</span><br><span class="line">                &lt;!--                密码，input标签绑定loginForm对象中的密码--&gt;</span><br><span class="line">                &lt;el-form-item prop=&quot;password&quot;&gt;</span><br><span class="line">                    密码：&lt;el-input v-model=&quot;addForm.password&quot; type=&quot;password&quot;&gt;&lt;/el-input&gt;</span><br><span class="line">                &lt;/el-form-item&gt;</span><br><span class="line">                &lt;el-form-item prop=&quot;email&quot;&gt;</span><br><span class="line">                    邮箱：&lt;el-input v-model=&quot;addForm.email&quot; type=&quot;email&quot;&gt;&lt;/el-input&gt;</span><br><span class="line">                &lt;/el-form-item&gt;</span><br><span class="line">            &lt;/el-form&gt;</span><br><span class="line"></span><br><span class="line">&lt;!--            按钮，写在el-form外面,el-dialog里面--&gt;</span><br><span class="line">            &lt;span slot=&quot;footer&quot; class=&quot;dialog-footer&quot;&gt;</span><br><span class="line">                &lt;el-button type=&quot;primary&quot; @click=&quot;addUser&quot;&gt;确 定&lt;/el-button&gt;</span><br><span class="line">&lt;!--                取消，让这个表单不显示--&gt;</span><br><span class="line">                &lt;el-button @click=&quot;addDialogVisible = false&quot;&gt;取 消&lt;/el-button&gt;</span><br><span class="line">            &lt;/span&gt;</span><br><span class="line"></span><br><span class="line">        &lt;/el-dialog&gt;</span><br></pre></td></tr></table></figure>
+
+<p>2.添加用户按钮<br>@click=”addDialogVisible = true”点击事件改变属性,让表单显示</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;el-col :span=&quot;4&quot;&gt;</span><br><span class="line">    &lt;el-button type=&quot;primary&quot; @click=&quot;addDialogVisible = true&quot;&gt;添加用户&lt;/el-button&gt;</span><br><span class="line">&lt;/el-col&gt;</span><br><span class="line">```               </span><br><span class="line">3.data里添加这些绑定的属性</span><br></pre></td></tr></table></figure>
+
+<p>addDialogVisible: false, //对话框出现与否<br>//表单对象<br>addForm:{<br>    username:””,<br>    password:””,<br>    email:””<br>},<br>//校验规则<br>addFormRules:{<br>    username: [<br>        { required: true, message: ‘请输入用户名称’, trigger: ‘blur’ }, //必填项验证<br>        { min: 3, max: 10, message: ‘长度在 3 到 10 个字符’, trigger: ‘blur’ }//长度验证<br>    ],<br>    password:[<br>        { required: true, message: ‘请输入用户密码’, trigger: ‘blur’ }, //必填项验证<br>        { min: 3, max: 10, message: ‘长度在 3 到 10 个字符’, trigger: ‘blur’ }//长度验证<br>    ],<br>    email:[<br>        { required: true, message: ‘请输入邮箱’, trigger: ‘blur’ }, //必填项验证<br>        { min: 5, max: 20, message: ‘请输入正确邮箱’, trigger: ‘blur’ }//长度验证<br>    ]<br>},</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#### 7.12 写click绑定的方法</span><br><span class="line">成功与否都要拿到res</span><br></pre></td></tr></table></figure>
+
+<p>//监听添加用户，看表单是否关闭。<br>// 表单清零<br>addDialogClosed(){<br>    this.$refs.addFormRef.resetFields();<br>},<br>//添加用户表单校验和post表单和拿到返回值和把表单窗口隐藏掉和重新拉取用户数据<br>async addUser(){<br>    this.$refs.addFormRef.validate(async valid=&gt;{<br>        console.log(valid);<br>        if(!valid) return;<br>        //成功与否都要res<br>        const{data:res} = await this.$http.post(“addUser”, this.addForm);</p>
+<pre><code>    if(res !=&quot;success&quot;){
+        this.$message.error(&quot;添加用户失败！&quot;);
+        return;
+    }
+    else{
+        this.$message.success(&quot;添加用户成功！&quot;);
+        //把表单窗口隐藏掉
+        this.addDialogVisible = false;
+        this.getUserList(); //重新拉取用户数据
+    }
+
+})</code></pre><p>},</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">#### 7.13 删除用户后台</span><br><span class="line">1.dao</span><br><span class="line">//删除用户(通过主键删除用户)</span><br><span class="line">public int deleteUser(int id);</span><br><span class="line">2.xml</span><br></pre></td></tr></table></figure>
+
+<!--    delete标签,没有返回类型-->
+<delete id="deleteUser">
+    delete from easyuser
+    where id = #{id}
+</delete>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">3.controller</span><br></pre></td></tr></table></figure>
+
+<p>@RequestMapping(“/deleteUser”)<br>public String deleteUser(@RequestParam(“id”) Integer id){<br>    int i = userDao.deleteUser(id);<br>    return i&gt;0 ? “success”:”error”;<br>}</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#### 7.14 删除用户vue</span><br><span class="line">1.删除标签那里绑定method(传参id)</span><br></pre></td></tr></table></figure>
+
+<pre><code>&lt;el-table-column label=&quot;操作&quot;&gt;</code></pre><!--                    每一行都有数据存储，全部操作放在template里面-->
+<!--                    写删除用户传参数的时候在template这里加了slot-scope="scope"作用域插槽，scope中存储了当前行的信息,用scope取值id-->
+<template slot-scope="scope">
+    <!-- 修改 -->
+    <el-button type="primary" icon="el-icon-edit" size="mini"></el-button>
+    <!-- 删除@click="deleteUser(scope.row.id)" -->
+    <el-button type="danger" icon="el-icon-delete" size="mini" @click="deleteUser(scope.row.id)"></el-button>
+    <!-- 权限 -->
+    <el-tooltip effect="dark" content="分配权限" placement="top-start" :enterable="false"><!--文字提示 enterable 隐藏-->
+        <el-button type="warning" icon="el-icon-setting" size="mini"></el-button>
+    </el-tooltip>
+</template>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">2.方法</span><br></pre></td></tr></table></figure>
+
+<p>//根据主键删除用户<br>async deleteUser(id){<br>    //给用户一个提示信息<br>    const confirmResult = await this.$confirm(“此操作将永久删除用户，是否删除？”,”提示”,{<br>        //{}中写提示信息 确定按钮 取消按钮<br>        confirmButtonText: “确定”,<br>        cancelButtonText: “取消”,<br>        type: ‘warning’ //按钮类型<br>    }).catch(error =&gt; error);<br>    //取消删除 返回并提示信息<br>    if(confirmResult !=’confirm’){<br>        return this.$message.info(“已取消删除”);<br>    }<br>    //没有取消返回就delete<br>    const {data:res} = await this.$http.delete(“deleteUser?id=”+id);<br>    if(res !=”success”) return this.$message.error(“删除失败”);<br>    else{<br>        return this.$message.success(“删除成功”);<br>        this.getUserList(); //拉取用户信息，刷新table<br>    }<br>},</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">#### 7.15 修改用户信息后台</span><br><span class="line">注意：两个方法，写两个controller的方法都要返回给前端</span><br><span class="line">1.dao</span><br><span class="line">//修改用户信息</span><br><span class="line">//先用主键id获取到要修改的user对象</span><br><span class="line">public User getUpdateUser(int id);</span><br><span class="line">//再用user对象去数据库里修改信息</span><br><span class="line">public int editUser(User user);</span><br><span class="line"></span><br><span class="line">2.xml</span><br></pre></td></tr></table></figure>
+
+<!--    修改1.用id查出user对象-->
+<pre><code>&lt;select id=&quot;getUpdateUser&quot; resultType=&quot;com.example.demo.bean.User&quot;&gt;
+    select * from easyuser
+    where id = #{id}
+&lt;/select&gt;</code></pre><!--修改2.用user实体类信息修改数据库的信息-->
+<pre><code>&lt;update id=&quot;editUser&quot;&gt;
+    update easyuser set username = #{username}, password=#{password}, email=#{email}, role=#{role}, state=#{state}
+    where id = #{id}
+&lt;/update&gt;</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">3.controller</span><br></pre></td></tr></table></figure>
+
+<p>//springboot会把提交给前端页面的任何对象转换成json字符串，但是这里都是手动转了<br>//修改用户信息<br>@RequestMapping(“/getUpdateUser”)<br>public String getUpdateUser(@RequestParam(“id”) Integer id){<br>    User updateUser = userDao.getUpdateUser(id);<br>    //把查出来的user对象转成json字符串，返回给前端<br>    String jsonString = JSON.toJSONString(updateUser);</p>
+<pre><code>return jsonString;</code></pre><p>}<br>@RequestMapping(“/editUser”)<br>public String editUser(@RequestBody User editUser){<br>    int i = userDao.editUser(editUser);<br>    return i&gt;0 ? “success”:”error”;<br>}</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#### 7.16 修改用户信息vue</span><br><span class="line">1.修改按钮</span><br></pre></td></tr></table></figure>
+
+<!-- 修改 -->
+<p>&lt;el-button type=”primary” icon=”el-icon-edit” size=”mini” @click=”showEditDialog(scope.row.id)”&gt;</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">2.修改对话框表单</span><br></pre></td></tr></table></figure>
+
+<!--        修改用户信息对话框-->
+<pre><code>&lt;el-dialog title=&quot;编辑用户信息&quot; :visible.sync=&quot;editDialogVisible&quot; width=&quot;50%&quot; @close=&quot;editDialogClosed&quot;&gt;
+    &lt;el-form :model=&quot;editForm&quot; :rules=&quot;editFormRules&quot; ref=&quot;editFormRef&quot; label-width=&quot;70px&quot;&gt;</code></pre><!--                用户名信息只做展示，不能修改 disabled是写在input标签里面，不是加在item标签里面会报错-->
+<pre><code>        &lt;el-form-item prop=&quot;username&quot; &gt;
+            &lt;span&gt;用户名：&lt;/span&gt;&lt;el-input v-model=&quot;editForm.username&quot; disabled&gt;&lt;/el-input&gt;
+        &lt;/el-form-item&gt;
+        &lt;!--                密码，input标签绑定loginForm对象中的密码--&gt;
+        &lt;el-form-item prop=&quot;password&quot;&gt;
+            密码：&lt;el-input v-model=&quot;editForm.password&quot; type=&quot;password&quot;&gt;&lt;/el-input&gt;
+        &lt;/el-form-item&gt;
+        &lt;el-form-item prop=&quot;email&quot;&gt;
+            邮箱：&lt;el-input v-model=&quot;editForm.email&quot; type=&quot;email&quot;&gt;&lt;/el-input&gt;
+        &lt;/el-form-item&gt;
+    &lt;/el-form&gt;
+
+    &lt;!--            按钮，写在el-form外面,el-dialog里面--&gt;
+    &lt;span slot=&quot;footer&quot; class=&quot;dialog-footer&quot;&gt;
+        &lt;el-button type=&quot;primary&quot; @click=&quot;editUserInfo&quot;&gt;确 定&lt;/el-button&gt;
+        &lt;!--                取消，让这个表单不显示--&gt;
+        &lt;el-button @click=&quot;editDialogVisible = false&quot;&gt;取 消&lt;/el-button&gt;
+    &lt;/span&gt;
+&lt;/el-dialog&gt;</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">3.添加data</span><br></pre></td></tr></table></figure>
+
+<p>editDialogVisible: false, //修改用户表单出现与否<br>//添加用户表单对象<br>addForm:{<br>    username:””,<br>    password:””,<br>    email:””<br>},<br>//修改用户信息表单对象,后台传过来的对象<br>editForm:{},</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">4.添加method</span><br><span class="line">【高亮！！！】 res = await</span><br><span class="line">点击报错username undifined，后台没错能进入接口返回string,是因为这里没写await！！拿不到返回值！！</span><br></pre></td></tr></table></figure>
+
+<p>//点击修改按钮的时候就用id去后台拿这行id对应的user对象，并且让编辑对话框显示<br>async showEditDialog(id){<br>    //获取id对应的user对象,get和put都是 (“url?后端接收的参数”+前端参数)<br>    //点击报错username undifined，后台没错能进入接口返回string,是因为这里没写await！！拿不到返回值！！<br>    const {data: res} = await this.$http.get(“getUpdateUser?id=”+id);<br>    this.editForm = res; //后台给的user信息反填到editForm里<br>    this.editDialogVisible = true; //让编辑对话框显示<br>    //console.log(editForm);<br>},<br>//关闭对话框窗口<br>editDialogClosed(){<br>    this.$refs.editFormRef.resetFields();//重置对话框信息<br>},<br>//确认按钮<br>async editUserInfo(){<br>    this.$refs.editFormRef.validate(async valid =&gt; {<br>        //前端验证不成功<br>        if(!valid) return;<br>        //前端验证成功发起请求;<br>        const {data:res} = await this.$http.post(“editUser”, this.editForm);<br>        if(res !=”success”){<br>            return this.$message.error(“编辑用户失败”);<br>        }<br>        else{<br>            this.$message.success(“编辑用户成功”);<br>            //隐藏对话框<br>            this.editDialogVisible = false;<br>            //重新拉取加载用户table<br>            this.getUserList();<br>        }<br>    })<br>},</p>
+<pre><code>---
+### 视频完结-闲聊
+项目从大到小，从面到点，遇见什么去学什么。
+做得少了，不知道哪里薄弱哪里补。
+不能放弃数据结构和算法。
+自律晚做不如早做。</code></pre>
+    </div>
+
+    
+    
+    
+        
+      
+        <div id="reward-container">
+  <div>我这么可爱不给我投个币嘛~~ 有帮助的话可以打赏路路噢~~</div>
+  <button id="reward-button" disable="enable" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+        
+      
+      <div style="display: inline-block">
+        <img src="/images/wechatpay.jpg" alt="Lucifinil 微信支付">
+        <p>微信支付</p>
+      </div>
+        
+      
+      <div style="display: inline-block">
+        <img src="/images/alipay.jpg" alt="Lucifinil 支付宝">
+        <p>支付宝</p>
+      </div>
+
+  </div>
+</div>
+
+      
+
+      <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+              
+                <a href="/2020/11/09/电影网站/" rel="next" title="电影网站">
+                  <i class="fa fa-chevron-left"></i> 电影网站
+                </a>
+              
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+              
+                <a href="/2020/11/21/pycharm使用/" rel="prev" title="pycharm使用">
+                  pycharm使用 <i class="fa fa-chevron-right"></i>
+                </a>
+              
+            </div>
+          </div>
+        
+      </footer>
+    
+  </div>
+  
+  
+  
+  </article>
+
+  </div>
+
+
+          </div>
+          
+    
+    <div class="comments" id="comments"></div>
+  
+
+        </div>
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+        
+        
+        
+        
+      
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#项目讲解"><span class="nav-number">1.</span> <span class="nav-text">项目讲解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#开始做"><span class="nav-number">2.</span> <span class="nav-text">开始做</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-vue配置"><span class="nav-number">2.1.</span> <span class="nav-text">1.vue配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-login页面"><span class="nav-number">2.2.</span> <span class="nav-text">2.login页面</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#页面详细过程"><span class="nav-number">2.2.1.</span> <span class="nav-text">页面详细过程</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#用-model-”loginForm”双向绑定data里的表单数据对象"><span class="nav-number">3.</span> <span class="nav-text">用:model=”loginForm”双向绑定data里的表单数据对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#这样就没有灰色波浪线了"><span class="nav-number">4.</span> <span class="nav-text">这样就没有灰色波浪线了</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#写一个接收url”-test”的controller。函数里return的字符串ok；"><span class="nav-number">5.</span> <span class="nav-text">写一个接收url”/test”的controller。函数里return的字符串ok；</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#完整代码"><span class="nav-number">5.0.1.</span> <span class="nav-text">完整代码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#心得总结"><span class="nav-number">5.0.2.</span> <span class="nav-text">心得总结</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-Home首页"><span class="nav-number">5.1.</span> <span class="nav-text">3.Home首页</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-完善后台-连接数据库进行真正的用户校验"><span class="nav-number">5.2.</span> <span class="nav-text">4.完善后台-连接数据库进行真正的用户校验</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#介绍"><span class="nav-number">5.2.1.</span> <span class="nav-text">介绍</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-1创建user实体类"><span class="nav-number">5.2.2.</span> <span class="nav-text">4.1创建user实体类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-2登录验证在loginController完成"><span class="nav-number">5.2.3.</span> <span class="nav-text">4.2登录验证在loginController完成</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-3dao层接口！！！interface"><span class="nav-number">5.2.4.</span> <span class="nav-text">4.3dao层接口！！！interface</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-4mapper中实现接口的函数-sql"><span class="nav-number">5.2.5.</span> <span class="nav-text">4.4mapper中实现接口的函数-sql</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-5loginController中用dao拿到user对象"><span class="nav-number">5.2.6.</span> <span class="nav-text">4.5loginController中用dao拿到user对象</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-6启动类扫描dao层的包名"><span class="nav-number">5.2.7.</span> <span class="nav-text">4.6启动类扫描dao层的包名</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-7loginController中并且把集合res转换成JSON字符串返回给前端"><span class="nav-number">5.2.8.</span> <span class="nav-text">4.7loginController中并且把集合res转换成JSON字符串返回给前端</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-8vue修改拿到的res"><span class="nav-number">5.2.9.</span> <span class="nav-text">4.8vue修改拿到的res</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#心得总结-1"><span class="nav-number">5.2.10.</span> <span class="nav-text">心得总结</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-存用户session-路由守卫"><span class="nav-number">5.3.</span> <span class="nav-text">5.存用户session/路由守卫</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#路由守卫：必须登录有session信息才能访问其他的页面，不然会被打回login页面"><span class="nav-number">6.</span> <span class="nav-text">路由守卫：必须登录有session信息才能访问其他的页面，不然会被打回login页面</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#6-home页面"><span class="nav-number">6.1.</span> <span class="nav-text">6. home页面</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#6-1-vuehtml结构"><span class="nav-number">6.1.1.</span> <span class="nav-text">6.1. vuehtml结构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-2-java里写对应数据库两张mune表的bean实体类和接口和查询xml"><span class="nav-number">6.1.2.</span> <span class="nav-text">6.2. java里写对应数据库两张mune表的bean实体类和接口和查询xml</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-3-MenuController"><span class="nav-number">6.1.3.</span> <span class="nav-text">6.3. MenuController</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-4-改home页面测试后端能不能拿得到数据"><span class="nav-number">6.1.4.</span> <span class="nav-text">6.4. 改home页面测试后端能不能拿得到数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-5-home页面展示数据"><span class="nav-number">6.1.5.</span> <span class="nav-text">6.5 home页面展示数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-6-home页把数据遍历出来"><span class="nav-number">6.1.6.</span> <span class="nav-text">6.6. home页把数据遍历出来</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-7-没有做导航栏伸缩-p23"><span class="nav-number">6.1.7.</span> <span class="nav-text">6.7. 没有做导航栏伸缩 p23</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-8-home-el-main容器里插入welcome页面"><span class="nav-number">6.1.8.</span> <span class="nav-text">6.8. home-el-main容器里插入welcome页面</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-9-侧边栏里子导航菜单的点击跳转"><span class="nav-number">6.1.9.</span> <span class="nav-text">6.9. 侧边栏里子导航菜单的点击跳转</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-10-点击跳转的路径保存到session"><span class="nav-number">6.1.10.</span> <span class="nav-text">6.10. 点击跳转的路径保存到session</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-user页面"><span class="nav-number">6.2.</span> <span class="nav-text">7. /user页面</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#7-1-大概vue页面框架"><span class="nav-number">6.2.1.</span> <span class="nav-text">7.1 大概vue页面框架</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-2-回到java写接口UserDao"><span class="nav-number">6.2.2.</span> <span class="nav-text">7.2 回到java写接口UserDao</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-3-UserDao对应的xml"><span class="nav-number">6.2.3.</span> <span class="nav-text">7.3 UserDao对应的xml</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-4-UserController调用上面两个方法查出来数据并且返回"><span class="nav-number">6.2.4.</span> <span class="nav-text">7.4 UserController调用上面两个方法查出来数据并且返回</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-5-userlist页面传递请求，拿到返回数据"><span class="nav-number">6.2.5.</span> <span class="nav-text">7.5 userlist页面传递请求，拿到返回数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-6把data渲染到el-table展示"><span class="nav-number">6.2.6.</span> <span class="nav-text">7.6把data渲染到el-table展示</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-7-分页组件"><span class="nav-number">6.2.7.</span> <span class="nav-text">7.7 分页组件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-8-状态switch按钮对应后台修改数据库"><span class="nav-number">6.2.8.</span> <span class="nav-text">7.8 状态switch按钮对应后台修改数据库</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-9-vue查询图标绑定事件"><span class="nav-number">6.2.9.</span> <span class="nav-text">7.9 vue查询图标绑定事件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-10-添加用户后台实现"><span class="nav-number">6.2.10.</span> <span class="nav-text">7.10 添加用户后台实现</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-11-添加用户vue页面实现"><span class="nav-number">6.2.11.</span> <span class="nav-text">7.11 添加用户vue页面实现</span></a></li></ol></li></ol></li></ol></div>
+        
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image"
+      src="/images/touxiang1.jpg"
+      alt="Lucifinil">
+  <p class="site-author-name" itemprop="name">Lucifinil</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+  <nav class="site-state motion-element">
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">64</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
+          
+            <a href="/categories/">
+          
+        
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">分类</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-tags">
+        
+          
+            <a href="/tags/">
+          
+        
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">标签</span>
+        </a>
+      </div>
+    
+  </nav>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="https://github.com/Lucifinil-x" title="GitHub &rarr; https://github.com/Lucifinil-x" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+    
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="https://weibo.com/2890499315/profile?rightmod=1&wvr=6&mod=personinfo&is_all=1" title="weibo &rarr; https://weibo.com/2890499315/profile?rightmod=1&wvr=6&mod=personinfo&is_all=1" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>weibo</a>
+      </span>
+    
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title">
+      <i class="fa fa-fw fa-link"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="http://Lucifinil.com/" title="http://Lucifinil.com/" rel="noopener" target="_blank">Lucifinil</a>
+        </li>
+      
+    </ul>
+  </div>
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+      
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Lucifinil</span>
+</div>
+
+<!--
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0</div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.4.0</div>-->
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-user"></i>
+    </span>
+    <span class="site-uv" title="总访客量">
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+    <span class="post-meta-divider">|</span>
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-eye"></i>
+    </span>
+    <span class="site-pv" title="总访问量">
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+
+
+  <script src="/lib/anime.min.js?v=3.1.0"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+<script src="/js/utils.js?v=7.4.0"></script><script src="/js/motion.js?v=7.4.0"></script>
+<script src="/js/schemes/pisces.js?v=7.4.0"></script>
+<script src="/js/next-boot.js?v=7.4.0"></script>
+
+    
+  
+    
+  
+
+  <script>
+  (function() {
+    window.addEventListener('DOMContentLoaded', () => {
+      let script = document.createElement('script');
+      script.src = '/lib/three/three.min.js';
+      document.body.appendChild(script);
+    });
+    let styles = ['/lib/three/three-waves.min.js', '', '/lib/three/canvas_sphere.min.js'];
+    window.addEventListener('load', () => {
+      styles.forEach(item => {
+        if (item !== '') {
+          let script = document.createElement('script');
+          script.src = item;
+          document.body.appendChild(script);
+        }
+      });
+    });
+  })();
+  </script>
+
+
+  
+
+
+
+
+
+
+
+
+  <script src="/js/local-search.js?v=7.4.0"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+
+<script>
+NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail,link';
+  guest = guest.split(',').filter(item => {
+    return GUEST.includes(item);
+  });
+  new Valine({
+    el: '#comments',
+    verify: false,
+    notify: false,
+    appId: 'oDY3PgVcs4KquzU5ExfpRIvL-gzGzoHsz',
+    appKey: 'TfeAqOOA3dvfY8DgjnBCdFUI',
+    placeholder: 'Just go go',
+    avatar: 'mm',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: false,
+    lang: '' || 'zh-cn',
+    path: location.pathname
+  });
+}, window.Valine);
+</script>
+
+</body>
+</html>
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/clicklove.js"></script>

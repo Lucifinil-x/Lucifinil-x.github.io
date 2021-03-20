@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.9.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.4.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.4.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.4.0">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.4.0" color="#222">
+
+<link rel="stylesheet" href="/css/main.css?v=7.4.0">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-corner-indicator.min.css?v=1.0.2">
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.4.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":true,"scrollpercent":true},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
+    },
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="环境配置maven:3.6.1储存位置：D:\maven仓库\apache-maven-3.6.1pom.xml">
+<meta property="og:type" content="article">
+<meta property="og:title" content="音乐网站项目sp+vue">
+<meta property="og:url" content="https://lucifinil-x.github.io/2021/01/27/音乐网站项目sp-vue/index.html">
+<meta property="og:site_name" content="Sanctuary">
+<meta property="og:description" content="环境配置maven:3.6.1储存位置：D:\maven仓库\apache-maven-3.6.1pom.xml">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2021-03-12T01:57:06.920Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="音乐网站项目sp+vue">
+<meta name="twitter:description" content="环境配置maven:3.6.1储存位置：D:\maven仓库\apache-maven-3.6.1pom.xml">
+  <link rel="canonical" href="https://lucifinil-x.github.io/2021/01/27/音乐网站项目sp-vue/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>音乐网站项目sp+vue | Sanctuary</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Sanctuary</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+      
+      
+      
+        
+        <li class="menu-item menu-item-home">
+      
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-tags">
+      
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-categories">
+      
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-archives">
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a href="javascript:;" class="popup-trigger">
+        
+          <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+      </li>
+    
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="搜索..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+            
+
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+      <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block post">
+    <link itemprop="mainEntityOfPage" href="https://lucifinil-x.github.io/2021/01/27/音乐网站项目sp-vue/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Lucifinil">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/touxiang1.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Sanctuary">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">音乐网站项目sp+vue
+
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2021-01-27 19:00:09" itemprop="dateCreated datePublished" datetime="2021-01-27T19:00:09+08:00">2021-01-27</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-03-12 09:57:06" itemprop="dateModified" datetime="2021-03-12T09:57:06+08:00">2021-03-12</time>
+              </span>
+            
+          
+
+          
+            <span class="post-meta-item" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+        
+      
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2021/01/27/音乐网站项目sp-vue/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2021/01/27/音乐网站项目sp-vue/" itemprop="commentCount"></span></a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="环境配置"><a href="#环境配置" class="headerlink" title="环境配置"></a>环境配置</h2><h3 id="maven-3-6-1"><a href="#maven-3-6-1" class="headerlink" title="maven:3.6.1"></a>maven:3.6.1</h3><p>储存位置：D:\maven仓库\apache-maven-3.6.1</p><h3 id="pom-xml"><a href="#pom-xml" class="headerlink" title="pom.xml"></a>pom.xml</h3><a id="more"></a>
+<p>前言：pom.xml中的maven依赖是指向D:\maven仓库\apache-maven-3.6.1里面的。如果版本过高，这里面没有，就会一直爆红。</p>
+<ul>
+<li>druid:<br>druid是什么:<br>是jdbc组件，包括<br>1）DruidDriver 代理Driver，能够提供基于Filter－Chain模式的插件体系。<br>2）DruidDataSource 高效可管理的数据库连接池。<br>3）SQLParser </li>
+</ul>
+<p>Druid可以做什么：<br>1) 可以监控数据库访问性能，Druid内置提供了一个功能强大的StatFilter插件，能够详细统计SQL的执行性能，这对于线上分析数据库访问性能有帮助。<br>2) 替换DBCP和C3P0。Druid提供了一个高效、功能强大、可扩展性好的数据库连接池。<br>3) 数据库密码加密。直接把数据库密码写在配置文件中，这是不好的行为，容易导致安全问题。DruidDruiver和DruidDataSource都支持PasswordCallback。<br>4) SQL执行日志，Druid提供了不同的LogFilter，能够支持Common-Logging、Log4j和JdkLog，你可以按需要选择相应的LogFilter，监控你应用的数据库访问情况。 </p>
+<ul>
+<li><p>commons-lang3<br>提供几个工具类，类中的函数可以处理字符串，处理数字，处理数组，处理日期。<br>需要处理的世界就调用类中的函数。<br>所有方法-&gt;<a href="https://www.jianshu.com/p/1886903ed14c" target="_blank" rel="noopener">https://www.jianshu.com/p/1886903ed14c</a></p>
+</li>
+<li><p>fastjson<br>1)java后端和vue前端的数据传输是通过json字符串。(把对象转成json再传输)<br>2)Fastjson 是一个 Java 库，可以将 Java 对象转换为 JSON 格式，当然它也可以将 JSON 字符串转换为 Java 对象。<br>3)Fastjson 可以操作任何 Java 对象，即使是一些预先存在的没有源码的对象。</p>
+</li>
+<li><p>热加载模式</p>
+</li>
+</ul>
+<p>1.fork标签:true<br>2.ctrl+shift+a 搜索registry…<br>3.勾选complier.automake.allow.app.running<br>4.java后端改完代码之后ctrl+F9 就可以热更新<br>5.只适用于在方法内部修改的时候。如果新增了方法需要重启。</p>
+<h3 id="application-properties"><a href="#application-properties" class="headerlink" title="application.properties"></a>application.properties</h3><ul>
+<li>spring.datasource.url<br>  useSSL=false 不使用ssl加密(HTTPS协议使用SSL在发送方把原始数据进行加密，然后在接受方进行解密，加密和解密需要发送方和接受方通过交换共知的密钥来实现，因此，所传送的数据不容易被网络黑客截获和解密。)</li>
+<li>type-aliases-package<br>  在Mybatis的mapper.xml文件中resultType的type或者paramterType会返回自定义entity,此时可以用全类名名来指定这些实体。</li>
+</ul>
+<h3 id="java配置中的问题"><a href="#java配置中的问题" class="headerlink" title="java配置中的问题"></a>java配置中的问题</h3><p>按照视频里的启动会出现mybatis找不到的问题。解决：按照以前的创建项目的方法重建项目。</p>
+<h3 id="vue环境配置"><a href="#vue环境配置" class="headerlink" title="vue环境配置"></a>vue环境配置</h3><p>用的是D:\vue学习练习\音乐网站源码\分章节源码\music01 初始化\music-client<br>的vue基础项目，再cmd里到项目根目录，命令行npm install,启动npm run dev。<br>所以这个vue项目没有从零开始配置。</p>
+<h2 id="数据库建表"><a href="#数据库建表" class="headerlink" title="数据库建表"></a>数据库建表</h2><h3 id="先建立表名"><a href="#先建立表名" class="headerlink" title="先建立表名"></a>先建立表名</h3><p>都先只加一列主键和表名<br>1.管理员表admin<br>2.歌单和歌曲收藏表collect<br>3.评论表comment<br>4.前端用户表consumer<br>5.歌单包含的歌曲列表list_song<br>6.歌单排序表rank<br>有一个没有在创建的时候体现<br>UNIQUE KEY <code>consumer_id</code> (<code>song_list_id</code>,<code>consumer_id</code>) USING BTREE<br>7.歌手表singer<br>8.歌曲表song<br>9.歌单介绍表song_list</p>
+<h2 id="vue项目"><a href="#vue项目" class="headerlink" title="vue项目"></a>vue项目</h2><p>启动：npm run dev<br>后台管理：music-manage-vue<br>前台展示：music-client-vue</p>
+<h2 id="后端结构"><a href="#后端结构" class="headerlink" title="后端结构"></a>后端结构</h2><p>domain(数据库字段对应java对象)-dao(定义java对象进行操作的方法接口)-service(定义方法接口)-serviceImplement(调用dao中接口方法，实现service接口中的方法)-controller(调用service接口的方法)</p>
+<h3 id="domain-java对象和getter-setter"><a href="#domain-java对象和getter-setter" class="headerlink" title="domain(java对象和getter setter)"></a>domain(java对象和getter setter)</h3><p>每个类对应数据库表<br>属性对应表的列<br>类实现序列化</p>
+<p>关于序列化：<br>1.Java序列化就是指把Java对象转换为字节序列的过程<br>2.Java反序列化就是指把字节序列恢复为Java对象的过程。<br>3.序列化最重要的作用：在传递和保存对象时.保证对象的完整性和可传递性。对象转换为有序字节流,以便在网络上传输或者保存在本地文件中。<br>反序列化的最重要的作用：根据字节流中保存的对象状态及描述信息，通过反序列化重建对象。<br>4.总结：核心作用就是对象状态的保存和重建。（整个过程核心点就是字节流中所保存的对象状态及描述信息）</p>
+<p>json/xml的数据传递：</p>
+<p>在数据传输(也可称为网络传输)前，先通过序列化工具类将Java对象序列化为json/xml文件。<br>在数据传输(也可称为网络传输)后，再将json/xml文件反序列化为对应语言的对象</p>
+<h3 id="dao-接口"><a href="#dao-接口" class="headerlink" title="dao(接口)"></a>dao(接口)</h3><h3 id="service-接口"><a href="#service-接口" class="headerlink" title="service(接口)"></a>service(接口)</h3><h3 id="serviceImplement-类"><a href="#serviceImplement-类" class="headerlink" title="serviceImplement(类)"></a>serviceImplement(类)</h3><p>@Service</p>
+<h3 id="controller-类"><a href="#controller-类" class="headerlink" title="controller(类)"></a>controller(类)</h3><h3 id="utils-工具类"><a href="#utils-工具类" class="headerlink" title="utils(工具类)"></a>utils(工具类)</h3><h2 id="解决跨域"><a href="#解决跨域" class="headerlink" title="解决跨域"></a>解决跨域</h2><p>1.java后端写一个类继承WebMvcConfigurerAdapter(一样的)<br>2.vue中src-api-http.js中定义访问跨域、拦截器、响应头、get/post<br>3.vue中src-api-index.js中定义业务相关的</p>
+<ul>
+<li>Content-Type：<br>axios 使用 post 发送数据时，默认是直接把 json 放到请求体中提交到后端的。也就是说，我们的 Content-Type 变成了 application/json;charset=utf-8 ,这是axios默认的请求头content-type类型。但是实际我们后端要求的 ‘Content-Type’: ‘application/x-www-form-urlencoded’ 为多见，这就与我们不符合。所以很多同学会在这里犯错误，导致请求数据获取不到。明明自己的请求地址和参数都对了却得不到数据。</li>
+</ul>
+<p>我们现在来说说post请求常见的数据格式（content-type）</p>
+<p>Content-Type: application/json ： 请求体中的数据会以json字符串的形式发送到后端<br>Content-Type: application/x-www-form-urlencoded：请求体中的数据会以普通表单形式（键值对）发送到后端<br>Content-Type: multipart/form-data： 它会将请求体的数据处理为一条消息，以标签为单元，用分隔符分开。既可以上传键值对，也可以上传文件。</p>
+<ul>
+<li>Promise框架：成功执行resolve(),失败执行rejected().</li>
+</ul>
+<h3 id="登录跨域bug"><a href="#登录跨域bug" class="headerlink" title="登录跨域bug"></a>登录跨域bug</h3><p>1.前端登录时<br>前端页面<br>Access to XMLHttpRequest at ‘<a href="http://localhost:8888/admin/login/status&#39;" target="_blank" rel="noopener">http://localhost:8888/admin/login/status&#39;</a> from origin ‘<a href="http://localhost:8080&#39;" target="_blank" rel="noopener">http://localhost:8080&#39;</a> has been blocked by CORS policy: No ‘Access-Control-Allow-Origin’ header is present on the requested resource.<br>xhr.js?ec6c:172 POST <a href="http://localhost:8888/admin/login/status" target="_blank" rel="noopener">http://localhost:8888/admin/login/status</a> net::ERR_FAILED</p>
+<p>后端控制台<br>When allowCredentials is true, allowedOrigins cannot contain the special value “ * “since that cannot be set on the “Access-Control-Allow-Origin” response header.</p>
+<p>解决：后端webmvcconfig<br>.allowedOrigins(“ * “)<br>改成.allowedOrigins(“Http://localhost:8080”,”null”) //请求来源</p>
+<p>2.登录post500<br>后端控制台：<br>username不存在</p>
+<p>解决：后端mapper<br>public int verifyPassword(String username, String password);<br>改成public int verifyPassword(@Param(“username”) String username, @Param(“password”) String password);</p>
+<h2 id="Home页面结构"><a href="#Home页面结构" class="headerlink" title="Home页面结构"></a>Home页面结构</h2><p>1.Home页面切换子页面，配置router<br>于以往不同的是，没有import,而是component: resolve =&gt; require([‘../pages/Login.vue’], resolve);<br>home的router里写children[].</p>
+<p>2.Home页面中的script中import子页面vue.</p>
+<p>3.home页面布局：上面header,左边aside,右下角子页面</p>
+<p>4.login登录中验证成功push到info页面</p>
+<p>5.home页面-子页面(info)</p>
+<p>6.home页面导入头/左侧页面/view-router所有在router里配置的home的children页面</p>
+<h3 id="左侧菜单theAside"><a href="#左侧菜单theAside" class="headerlink" title="左侧菜单theAside"></a>左侧菜单theAside</h3><p>1.样式：<br>左侧菜单框需要给上方的header留一部分空间</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">.sidebar&#123;</span><br><span class="line">  /*块状显示；绝对定位随浏览器移动；定位到左边0；距离顶部70；距离底部0;背景颜色；y轴超出范围让他上下滚动；*/</span><br><span class="line">  display: block;</span><br><span class="line">  position: absolute;</span><br><span class="line">  left: 0;</span><br><span class="line">  top: 70px;</span><br><span class="line">  bottom: 0;</span><br><span class="line">  background-color: #334256;</span><br><span class="line">  overflow-y: scroll;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>2.框里放一个表单在script里写属性和图标</p>
+<p>3.框用el-menu标签，配属性<br>注意：<br>v-bind:key=”value(data中的值)”；缩写为:key=”value”用于绑定键值对。<br>v-model=””是用于把data的数据与标签上输入的值进行绑定。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--   default-active默认点击=绑定的值;折叠=绑定的值;  router是点击哪一栏就能够跳转到那一栏的index值的router；--&gt;</span><br><span class="line">&lt;el-menu class=&quot;sidebar-el-menu&quot; :default-active=&quot;onRoutes&quot; :collapse=&quot;collapse&quot;</span><br><span class="line">         background-color=&quot;#334356&quot; text-color=&quot;#ffffff&quot; active-text-color=&quot;#20a0ff&quot; router&gt;</span><br></pre></td></tr></table></figure>
+
+<p>4.el-menu中遍历出数据进行每一行的信息展示<br>template是自定义的标签名。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--      整个循环是一个template标签，遍历出的每一项也是template标签。每一项用el-menu-item标签要绑定属性。里面展示图标和文字--&gt;</span><br><span class="line">&lt;template v-for=&quot;item in items&quot;&gt;</span><br><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;el-menu-item :index=&quot;item.index&quot; :key=&quot;item.index&quot;&gt;</span><br><span class="line">    &lt;i :class=&quot;item.icon&quot;&gt;&lt;/i&gt;</span><br><span class="line">    &#123;&#123;item.title&#125;&#125;</span><br><span class="line">  &lt;/el-menu-item&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line">&lt;/template&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="头部栏theHeader"><a href="#头部栏theHeader" class="headerlink" title="头部栏theHeader"></a>头部栏theHeader</h3><h4 id="头部栏theHeader-折叠侧边栏"><a href="#头部栏theHeader-折叠侧边栏" class="headerlink" title="头部栏theHeader-折叠侧边栏"></a>头部栏theHeader-折叠侧边栏</h4><p>1.整体框样式<br>2.el-icon-menu图标样式<br>3.点击图标，折叠侧边栏<br>vue中的bus事件机制，文件在js/bus.js已有const bus = new Vue()。<br>在theAside中script中import.<br>通过bus进行组件(两个页面vue)之间的通信来折叠侧边栏.点击header中的图标折叠aside.<br>3.1 theAside中接收theHeader中发送的信息，改变其中的collaspse值。<br>先import bus,</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">created()&#123;//创建页面完成就执行</span><br><span class="line">      //通过bus进行组件(两个页面vue)之间的通信来折叠侧边栏.点击header中的图标折叠aside.</span><br><span class="line">      //js公式$(selector).action()</span><br><span class="line">      //接收header里发送过来的信息collapse(msg),执行=&gt;&#123;让aside的collaspse属性发生变化&#125;</span><br><span class="line">      bus.$on(&apos;collapse&apos;, msg =&gt;&#123;</span><br><span class="line">        this.collapse = msg;</span><br><span class="line">      &#125;)</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>3.2 theHeader中发送消息<br>图标标签中加点击事件collaspseChange,<br>先import bus,</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">data()&#123;</span><br><span class="line">      return&#123;</span><br><span class="line">        collapse: false, //默认是false,在方法中点击反向true-&gt;false,false-&gt;true.</span><br><span class="line">        // 如果默认为true,点一次图标，true-&gt;false,再把msg=false传给theAside,它里面赋值为false是不折叠。所以点两次才会折叠。</span><br><span class="line">        //因此这里默认是false,点一次就折叠</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    methods:&#123;</span><br><span class="line">      collaspseChange()&#123;</span><br><span class="line">        this.collapse = !this.collapse;</span><br><span class="line">        bus.$emit(&apos;collapse&apos;, this.collapse);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>3.3 theAside中根据属性collapse改变样式实现折叠效果,以及滚动条和瑕疵处理。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">/*侧边栏如果超出范围，有滚动条*/</span><br><span class="line">.sidebar::-webkit-scrollbar&#123;</span><br><span class="line">  width: 0;</span><br><span class="line">&#125;</span><br><span class="line">/*只有el-menu标签的collapse属性为false时样式才起作用 双false=true*/</span><br><span class="line">.sidebar-el-menu:not(.el-menu--collapse)&#123;</span><br><span class="line">  width: 150px;</span><br><span class="line">&#125;</span><br><span class="line">/*  侧边栏的一行的宽度，下面没有字的比上面有字的宽，这里解决。ul无序列表,&gt;子选择器，第一代*/</span><br><span class="line">.sidebar &gt;ul&#123;</span><br><span class="line">  height: 100%;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="头部栏theHeader-全屏页面-取消全屏"><a href="#头部栏theHeader-全屏页面-取消全屏" class="headerlink" title="头部栏theHeader-全屏页面/取消全屏"></a>头部栏theHeader-全屏页面/取消全屏</h4><p>1.header框中设置图标位置，点击提示，点击事件,绑定变量data。<br>2.写点击事件方法。<br>用浏览器对象document中的函数完成全屏展示/退出。<br>(if else)区别不同浏览器的全屏方法，达到代码兼容目的。然后改变变量data</p>
+<h4 id="头部栏theHeader-用户头像-名字展示-退出登录"><a href="#头部栏theHeader-用户头像-名字展示-退出登录" class="headerlink" title="头部栏theHeader-用户头像/名字展示/退出登录"></a>头部栏theHeader-用户头像/名字展示/退出登录</h4><p>1.头像就是图片加参数样式，与叉叉展开图标同级。<br>2.el-dropdown做点击用户名，出现下拉菜单，点击选项，退出登录。<br>2.1 login.vue中登录成功后，前端信息存入缓存。用localStorage,这是html5的一个特性，把数据像map一样放在里面。<br>2.2 theHeader.vue中computed中取出缓存中数据。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">computed:&#123;</span><br><span class="line">    //  在login页面存localstorage缓存，在这里取。构造函数。</span><br><span class="line">      userName()&#123;</span><br><span class="line">        return localStorage.getItem(&apos;userName&apos;);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;,</span><br></pre></td></tr></table></figure>
+
+<p>2.3 el-dropdown触发事件：点击；绑定退出登录函数(清除缓存，路由页面到登录页)。<br>el-dropdown-menu里退出登录选项参数logout作为退出登录函数的传入参数。</p>
+<h3 id="主体页Home"><a href="#主体页Home" class="headerlink" title="主体页Home"></a>主体页Home</h3><h4 id="主体页Home-主题页样式"><a href="#主体页Home-主题页样式" class="headerlink" title="主体页Home-主题页样式"></a>主体页Home-主题页样式</h4><p>1.router-view是子页面的路由填充展示<br>2.用div标签包裹router-view，用于管理css.<br>3.首先默认的css为content-box,content-box在main.css,main.js中已经引入了main.css。<br>4.后面v-bind:class=”{‘content-collapse’:collapse}是vue的动态绑定css,根据collapse的值进行绑定。<br>5.data中加入collapse: false。<br>6.created()和theAside一样。<br>7.获取header发送的collapse的值对这里的data进行修改。vue动态绑定的css根据collapse变量值，加入css样式content-collapse。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--    content-box在main.css,main.js中已经引入了main.css。--&gt;</span><br><span class="line">&lt;!--    用一个div把content-box包裹起来--&gt;</span><br><span class="line">&lt;!--    首先默认的css为content-box。后面v-bind:class=&quot;&#123;&apos;content-collapse&apos;:collapse&#125;是vue的动态绑定css,根据collapse的值进行绑定。--&gt;</span><br><span class="line">    &lt;div class=&quot;content-box&quot; v-bind:class=&quot;&#123;&apos;content-collapse&apos;:collapse&#125;&quot;&gt;</span><br><span class="line">      &lt;!--    让内容填充整个页面--&gt;</span><br><span class="line">      &lt;router-view&gt;&lt;/router-view&gt;</span><br><span class="line">    &lt;/div&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="歌手管理"><a href="#歌手管理" class="headerlink" title="歌手管理"></a>歌手管理</h2><h3 id="歌手管理-domain层-java实体对象Singer"><a href="#歌手管理-domain层-java实体对象Singer" class="headerlink" title="歌手管理-domain层(java实体对象Singer)"></a>歌手管理-domain层(java实体对象Singer)</h3><p>根据数据库表中的字段写domain-Singer.<br>1.仿照Admin,自己写。同样要实现序列化接口。<br>2.属性。<br>注意下面的mysql数据类型和java类型的转换</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">private Byte sex; //tinyint-Byte</span><br><span class="line">private String pic;</span><br><span class="line">private Date birth;//datetime-Date</span><br></pre></td></tr></table></figure>
+
+<p>3.getter+setter</p>
+<h3 id="歌手管理-dao层-定义java对象进行增删改查操作的方法接口"><a href="#歌手管理-dao层-定义java对象进行增删改查操作的方法接口" class="headerlink" title="歌手管理-dao层(定义java对象进行增删改查操作的方法接口)"></a>歌手管理-dao层(定义java对象进行增删改查操作的方法接口)</h3><p>1.@Repository用在持久层的接口上，这个注解是将接口的一个实现类交给spring管理。<br>2.定义增删改查(3中查询)接口<br>写前端的时候不够再加</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">public interface SingerMapper &#123;</span><br><span class="line">   //增加 歌手 :传入singer实体，返回int</span><br><span class="line">    public int insert(Singer singer);</span><br><span class="line">    //修改 : 传入singer实体，返回int</span><br><span class="line">    public int update(Singer singer);</span><br><span class="line">    //删除 歌手: 传入主键id,返回int</span><br><span class="line">    public int delete(Integer id);</span><br><span class="line">    //查询1 根据主键查询整个singer对象： 传入主键id,返回singer实体类对象。</span><br><span class="line">    public Singer selectByPrimaryKey(Integer id);</span><br><span class="line">    //查询2 查询所有歌手：无传入参数，返回list&lt;Singer&gt;</span><br><span class="line">    public List&lt;Singer&gt; allSinger();</span><br><span class="line">    //查询3 根据歌手名字模糊查询出歌手列表: 传入名字string, 返回list&lt;Singer&gt;</span><br><span class="line">    public List&lt;Singer&gt; singerOfName(String name);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="歌手管理-mapper-xml层-xml查询语句"><a href="#歌手管理-mapper-xml层-xml查询语句" class="headerlink" title="歌手管理-mapper.xml层(xml查询语句)"></a>歌手管理-mapper.xml层(xml查询语句)</h3><p>1.写resultMap<br>  1.mapper-namespace对应dao层接口<br>  2.resultMap-type对应domain层java实体类<br>  3.result-column对应数据库列名；jdbcType对应数据库数据类型(大写)；property对应属性名(都与列名一致)。<br>2.和dao层接口对应写sql查询语句<br>去项目中看</p>
+<h3 id="歌手管理-service层-定义方法成功返回接口"><a href="#歌手管理-service层-定义方法成功返回接口" class="headerlink" title="歌手管理-service层(定义方法成功返回接口)"></a>歌手管理-service层(定义方法成功返回接口)</h3><p>1.把dao层接口复制过来修改返回类型<br>例如：<br>int改为boolean,看是否操作成功。<br>Singer，List<singer>返回类型不修改</singer></p>
+<h3 id="歌手管理-serviceImpl层-调用mapper方法实现service层接口的返回值"><a href="#歌手管理-serviceImpl层-调用mapper方法实现service层接口的返回值" class="headerlink" title="歌手管理-serviceImpl层(调用mapper方法实现service层接口的返回值)"></a>歌手管理-serviceImpl层(调用mapper方法实现service层接口的返回值)</h3><p>1.自动引入mapper接口<br>2.return mapper接口中的函数对应返回类型。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">public boolean delete(Integer id) &#123;</span><br><span class="line">        return singerMapper.delete(id)&gt;0;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public Singer selectByPrimaryKey(Integer id) &#123;</span><br><span class="line">        return singerMapper.selectByPrimaryKey(id);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="歌手管理-controller层"><a href="#歌手管理-controller层" class="headerlink" title="歌手管理-controller层"></a>歌手管理-controller层</h3>
+    </div>
+
+    
+    
+    
+        
+      
+        <div id="reward-container">
+  <div>我这么可爱不给我投个币嘛~~ 有帮助的话可以打赏路路噢~~</div>
+  <button id="reward-button" disable="enable" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+        
+      
+      <div style="display: inline-block">
+        <img src="/images/wechatpay.jpg" alt="Lucifinil 微信支付">
+        <p>微信支付</p>
+      </div>
+        
+      
+      <div style="display: inline-block">
+        <img src="/images/alipay.jpg" alt="Lucifinil 支付宝">
+        <p>支付宝</p>
+      </div>
+
+  </div>
+</div>
+
+      
+
+      <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+              
+                <a href="/2020/12/25/mongodb使用学习/" rel="next" title="mongodb使用学习">
+                  <i class="fa fa-chevron-left"></i> mongodb使用学习
+                </a>
+              
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+              
+                <a href="/2021/01/31/草稿箱/" rel="prev" title="草稿箱">
+                  草稿箱 <i class="fa fa-chevron-right"></i>
+                </a>
+              
+            </div>
+          </div>
+        
+      </footer>
+    
+  </div>
+  
+  
+  
+  </article>
+
+  </div>
+
+
+          </div>
+          
+    
+    <div class="comments" id="comments"></div>
+  
+
+        </div>
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+        
+        
+        
+        
+      
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#环境配置"><span class="nav-number">1.</span> <span class="nav-text">环境配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#maven-3-6-1"><span class="nav-number">1.1.</span> <span class="nav-text">maven:3.6.1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#pom-xml"><span class="nav-number">1.2.</span> <span class="nav-text">pom.xml</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#application-properties"><span class="nav-number">1.3.</span> <span class="nav-text">application.properties</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#java配置中的问题"><span class="nav-number">1.4.</span> <span class="nav-text">java配置中的问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#vue环境配置"><span class="nav-number">1.5.</span> <span class="nav-text">vue环境配置</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据库建表"><span class="nav-number">2.</span> <span class="nav-text">数据库建表</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#先建立表名"><span class="nav-number">2.1.</span> <span class="nav-text">先建立表名</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#vue项目"><span class="nav-number">3.</span> <span class="nav-text">vue项目</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#后端结构"><span class="nav-number">4.</span> <span class="nav-text">后端结构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#domain-java对象和getter-setter"><span class="nav-number">4.1.</span> <span class="nav-text">domain(java对象和getter setter)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#dao-接口"><span class="nav-number">4.2.</span> <span class="nav-text">dao(接口)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#service-接口"><span class="nav-number">4.3.</span> <span class="nav-text">service(接口)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#serviceImplement-类"><span class="nav-number">4.4.</span> <span class="nav-text">serviceImplement(类)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#controller-类"><span class="nav-number">4.5.</span> <span class="nav-text">controller(类)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#utils-工具类"><span class="nav-number">4.6.</span> <span class="nav-text">utils(工具类)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解决跨域"><span class="nav-number">5.</span> <span class="nav-text">解决跨域</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#登录跨域bug"><span class="nav-number">5.1.</span> <span class="nav-text">登录跨域bug</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Home页面结构"><span class="nav-number">6.</span> <span class="nav-text">Home页面结构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#左侧菜单theAside"><span class="nav-number">6.1.</span> <span class="nav-text">左侧菜单theAside</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#头部栏theHeader"><span class="nav-number">6.2.</span> <span class="nav-text">头部栏theHeader</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#头部栏theHeader-折叠侧边栏"><span class="nav-number">6.2.1.</span> <span class="nav-text">头部栏theHeader-折叠侧边栏</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#头部栏theHeader-全屏页面-取消全屏"><span class="nav-number">6.2.2.</span> <span class="nav-text">头部栏theHeader-全屏页面/取消全屏</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#头部栏theHeader-用户头像-名字展示-退出登录"><span class="nav-number">6.2.3.</span> <span class="nav-text">头部栏theHeader-用户头像/名字展示/退出登录</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#主体页Home"><span class="nav-number">6.3.</span> <span class="nav-text">主体页Home</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#主体页Home-主题页样式"><span class="nav-number">6.3.1.</span> <span class="nav-text">主体页Home-主题页样式</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#歌手管理"><span class="nav-number">7.</span> <span class="nav-text">歌手管理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#歌手管理-domain层-java实体对象Singer"><span class="nav-number">7.1.</span> <span class="nav-text">歌手管理-domain层(java实体对象Singer)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#歌手管理-dao层-定义java对象进行增删改查操作的方法接口"><span class="nav-number">7.2.</span> <span class="nav-text">歌手管理-dao层(定义java对象进行增删改查操作的方法接口)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#歌手管理-mapper-xml层-xml查询语句"><span class="nav-number">7.3.</span> <span class="nav-text">歌手管理-mapper.xml层(xml查询语句)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#歌手管理-service层-定义方法成功返回接口"><span class="nav-number">7.4.</span> <span class="nav-text">歌手管理-service层(定义方法成功返回接口)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#歌手管理-serviceImpl层-调用mapper方法实现service层接口的返回值"><span class="nav-number">7.5.</span> <span class="nav-text">歌手管理-serviceImpl层(调用mapper方法实现service层接口的返回值)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#歌手管理-controller层"><span class="nav-number">7.6.</span> <span class="nav-text">歌手管理-controller层</span></a></li></ol></li></ol></div>
+        
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image"
+      src="/images/touxiang1.jpg"
+      alt="Lucifinil">
+  <p class="site-author-name" itemprop="name">Lucifinil</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+  <nav class="site-state motion-element">
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">64</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
+          
+            <a href="/categories/">
+          
+        
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">分类</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-tags">
+        
+          
+            <a href="/tags/">
+          
+        
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">标签</span>
+        </a>
+      </div>
+    
+  </nav>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="https://github.com/Lucifinil-x" title="GitHub &rarr; https://github.com/Lucifinil-x" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+    
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="https://weibo.com/2890499315/profile?rightmod=1&wvr=6&mod=personinfo&is_all=1" title="weibo &rarr; https://weibo.com/2890499315/profile?rightmod=1&wvr=6&mod=personinfo&is_all=1" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>weibo</a>
+      </span>
+    
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title">
+      <i class="fa fa-fw fa-link"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="http://Lucifinil.com/" title="http://Lucifinil.com/" rel="noopener" target="_blank">Lucifinil</a>
+        </li>
+      
+    </ul>
+  </div>
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+      
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Lucifinil</span>
+</div>
+
+<!--
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0</div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.4.0</div>-->
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-user"></i>
+    </span>
+    <span class="site-uv" title="总访客量">
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+    <span class="post-meta-divider">|</span>
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-eye"></i>
+    </span>
+    <span class="site-pv" title="总访问量">
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+
+
+  <script src="/lib/anime.min.js?v=3.1.0"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+<script src="/js/utils.js?v=7.4.0"></script><script src="/js/motion.js?v=7.4.0"></script>
+<script src="/js/schemes/pisces.js?v=7.4.0"></script>
+<script src="/js/next-boot.js?v=7.4.0"></script>
+
+    
+  
+    
+  
+
+  <script>
+  (function() {
+    window.addEventListener('DOMContentLoaded', () => {
+      let script = document.createElement('script');
+      script.src = '/lib/three/three.min.js';
+      document.body.appendChild(script);
+    });
+    let styles = ['/lib/three/three-waves.min.js', '', '/lib/three/canvas_sphere.min.js'];
+    window.addEventListener('load', () => {
+      styles.forEach(item => {
+        if (item !== '') {
+          let script = document.createElement('script');
+          script.src = item;
+          document.body.appendChild(script);
+        }
+      });
+    });
+  })();
+  </script>
+
+
+  
+
+
+
+
+
+
+
+
+  <script src="/js/local-search.js?v=7.4.0"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+
+<script>
+NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail,link';
+  guest = guest.split(',').filter(item => {
+    return GUEST.includes(item);
+  });
+  new Valine({
+    el: '#comments',
+    verify: false,
+    notify: false,
+    appId: 'oDY3PgVcs4KquzU5ExfpRIvL-gzGzoHsz',
+    appKey: 'TfeAqOOA3dvfY8DgjnBCdFUI',
+    placeholder: 'Just go go',
+    avatar: 'mm',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: false,
+    lang: '' || 'zh-cn',
+    path: location.pathname
+  });
+}, window.Valine);
+</script>
+
+</body>
+</html>
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/clicklove.js"></script>
