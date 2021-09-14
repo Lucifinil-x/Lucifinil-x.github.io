@@ -57,18 +57,22 @@
   };
 </script>
 
-  <meta name="description" content="分数组成1.最后一节lab写算法50%2.期末考试50%lecture-quizweek31.int n = 5;if (n){}java里if()必须是true/false，必须是判断句。所以这是错误的用法，直接会被编译器检测出来。">
+  <meta name="description" content="分数组成1.最后一节lab写算法50%2.期末考试50%lecture-quizweek21.final gives you static checking for immutable references.">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CPT204-java数据结构">
 <meta property="og:url" content="https://lucifinil-x.github.io/2021/03/08/CPT204-java数据结构/index.html">
 <meta property="og:site_name" content="Sanctuary">
-<meta property="og:description" content="分数组成1.最后一节lab写算法50%2.期末考试50%lecture-quizweek31.int n = 5;if (n){}java里if()必须是true/false，必须是判断句。所以这是错误的用法，直接会被编译器检测出来。">
+<meta property="og:description" content="分数组成1.最后一节lab写算法50%2.期末考试50%lecture-quizweek21.final gives you static checking for immutable references.">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://lucifinil-x.github.io/.io//D:%5Cblog%E5%A4%87%E4%BB%BD%E8%B5%84%E6%96%99%5C%E5%9B%BE%E7%89%87%5Ccpt204%5Carraylist1.png">
-<meta property="og:updated_time" content="2021-04-27T06:59:36.833Z">
+<meta property="og:image" content="https://lucifinil-x.github.io/.io//C:%5CUsers%5CA%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20210601001411514.png">
+<meta property="og:image" content="https://lucifinil-x.github.io/.io//C:%5CUsers%5CA%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20210601001511452.png">
+<meta property="og:image" content="https://www.yht7.com/upload/image/20200607/image-20200607160112438.png">
+<meta property="og:image" content="https://www.yht7.com/upload/image/20200607/image-20200607164534516.png">
+<meta property="og:updated_time" content="2021-06-06T09:49:00.451Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CPT204-java数据结构">
-<meta name="twitter:description" content="分数组成1.最后一节lab写算法50%2.期末考试50%lecture-quizweek31.int n = 5;if (n){}java里if()必须是true/false，必须是判断句。所以这是错误的用法，直接会被编译器检测出来。">
+<meta name="twitter:description" content="分数组成1.最后一节lab写算法50%2.期末考试50%lecture-quizweek21.final gives you static checking for immutable references.">
 <meta name="twitter:image" content="https://lucifinil-x.github.io/.io//D:%5Cblog%E5%A4%87%E4%BB%BD%E8%B5%84%E6%96%99%5C%E5%9B%BE%E7%89%87%5Ccpt204%5Carraylist1.png">
   <link rel="canonical" href="https://lucifinil-x.github.io/2021/03/08/CPT204-java数据结构/">
 
@@ -283,7 +287,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-04-27 14:59:36" itemprop="dateModified" datetime="2021-04-27T14:59:36+08:00">2021-04-27</time>
+                <time title="修改时间：2021-06-06 17:49:00" itemprop="dateModified" datetime="2021-06-06T17:49:00+08:00">2021-06-06</time>
               </span>
             
           
@@ -321,10 +325,30 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="分数组成"><a href="#分数组成" class="headerlink" title="分数组成"></a>分数组成</h2><p>1.最后一节lab写算法50%<br>2.期末考试50%</p><h2 id="lecture-quiz"><a href="#lecture-quiz" class="headerlink" title="lecture-quiz"></a>lecture-quiz</h2><h3 id="week3"><a href="#week3" class="headerlink" title="week3"></a>week3</h3><p>1.int n = 5;if (n){}<br>java里if()必须是true/false，必须是判断句。<br>所以这是错误的用法，直接会被编译器检测出来。</p><a id="more"></a>
+        <h2 id="分数组成"><a href="#分数组成" class="headerlink" title="分数组成"></a>分数组成</h2><p>1.最后一节lab写算法50%<br>2.期末考试50%</p><h2 id="lecture-quiz"><a href="#lecture-quiz" class="headerlink" title="lecture-quiz"></a>lecture-quiz</h2><h3 id="week2"><a href="#week2" class="headerlink" title="week2"></a>week2</h3><p>1.final gives you static checking for immutable references.</p><a id="more"></a>
 
+<p>2.declaring the parameters of a method and  local variables。方法的参数和局部变量都可以声明为final.</p>
+<p>而且方法参数最好声明为final</p>
+<h3 id="week3"><a href="#week3" class="headerlink" title="week3"></a>week3</h3><p>1.int n = 5;if (n){}<br>java里if()必须是true/false，必须是判断句。<br>所以这是错误的用法，直接会被编译器检测出来。</p>
 <p>2.int bigNum = 200000;        // bigNum is 200,000<br>bigNum = bigNum * bigNum;<br>超了，不报错，输出错误</p>
+<p>3.全局变量被声明为public static：public修饰符使其任何地方都可以访问，静态意味着变量只有一个实例</p>
+<p>● 通常，将全局变量更改为参数和返回值，或者</p>
+<p>在调用方法的对象内部（使其成为实例/局部变量）</p>
+<p>4.@param x is a nonnegative integer</p>
+<ul>
+<li>@return nearest integer to the square root of x</li>
+<li>/<br>public static int intSqrt(int x)</li>
+<li>Which one is a good partition?</li>
+<li>○ Partition: x is a perfect square and x is an integer &gt; 0 but not a perfect square</li>
+</ul>
+<p>5.boundary values= “”,null，最大最小值，第一个和最后一个元素。</p>
+<p>6.test case要满足@param的条件。</p>
+<p>7.递归：1.Base Case 2.Recursive Step</p>
 <h3 id="week4"><a href="#week4" class="headerlink" title="week4"></a>week4</h3><p>1.原因是一个未被发现的控制软件错误,导致火箭发射失败损失10亿。<br>这说明了：与许多物理工程系统不同，软件表现出不连续的行为。</p>
+<p> 详尽的测试是不可行的</p>
+<p>可能的测试用例的空间通常太大，无法完全覆盖。</p>
+<p>想象一下，详尽地测试一个32位浮点乘法运算a*b。</p>
+<p>有264个测试用例</p>
 <p>2.java全局变量加什么变成常量？<br>final</p>
 <p>3.non-null String<br>这个String的长度可以为0，比如： “”</p>
 <p>4.Covering the Partitions<br>(要完全覆盖每个部分有 1.笛卡尔积 2.覆盖每个部分)<br>The full cartesian approach may not be the best because it could produce too many and redundant test cases.<br>完全笛卡尔方法可能不是最好的，因为它可能会产生太多冗余的测试用例。<br>The cover each part approach may not be the best because the function may behave differently for a certain combination of inputs.<br>覆盖每个部分的方法可能不是最好的，因为函数对于特定的输入组合可能表现不同。<br>For the max example, using full Cartesian approach, we can choose less than 75 test cases because not all combinations are possible.<br>对于max示例，使用完全笛卡尔方法，我们可以选择少于75个测试用例，因为并非所有的组合都是可能的。</p>
@@ -332,11 +356,76 @@
 <p>6.add test cases one-by-one<br>答案：Statement coverage</p>
 <p>7.one test case x fail,<br>you need to rerun all your JUnit tests, not just test case x.</p>
 <p>8.follows the principle of regression testing<br>答案： Changes should be tested against all inputs that induced bugs in earlier versions of the code</p>
-<p>9.Which of these techniques are useful for choosing test cases in test-first programming, before  any code is written?<br>答案：Boundaries</p>
+<p>9.Which of these techniques are useful for choosing test cases in test-first programming, before  any code is written?<br>答案：Partitioning, Boundaries, Black box</p>
 <p>10.A regression test case comes from the discovery of a bug</p>
+<p>回归测试用例来自于一个bug的发现</p>
+<p>11.六种白盒子White box测试方法：语句覆盖、断定覆盖、条件覆盖、断定条件覆盖、条件组合覆盖、路径覆盖。Coverage</p>
+<p>12.</p>
+<p>单元测试和存根</p>
+<p>● 如果我们写存根，隔离像makeIndex（）这样的高级模块是可能的</p>
+<p>它调用的模块的版本</p>
+<p>○ 例如，getWebPage（）的存根根本无法访问internet，</p>
+<p>但不管URL是什么，都会返回模拟网页内容</p>
+<p>传递给它</p>
+<p>● 类的存根通常称为模拟对象</p>
+<p>● 存根是构建大型系统时的一项重要技术</p>
+<p>作为尚未开发的方法的临时替代，您可以编写代码来模拟该方法的功能。</p>
+<p>然后，您要测试的另一个方法可以调用该方法。</p>
+<p>这种方法称为a/an stub 存根</p>
+<p>As a temporary substitute for a method that is not yet to be developed, you write a code to simulate the method’s functionality.<br>The method can then be called by another method that you want to test.</p>
+<p>Such method is called a/an stub</p>
+<p>13.Which button to click to get the Java Visualizer run the next line of your code and show the subsequent visualization?</p>
+<p>Step Into</p>
+<p>14.Write one line of Java code that <em>declares</em> a MyList pointer named <strong>p</strong> and <em>initializes</em> it to the current MyList object.</p>
+<p>Do not forget to end it with a semicolon.</p>
+<p>MyList p = this; current对象就是this.</p>
+<p>15.黑盒测试</p>
+<p>Black-box testing means choosing test cases only from the specification, not the implementation of the method</p>
+<p>黑盒测试意味着只从规范中选择测试用例，<br>不是方法的实现</p>
+<p>16.白盒测试</p>
+<p>White-box testing (also called glass box testing) means choosing test cases with knowledge of how the method is actually implemented</p>
+<p>白盒测试（也称为玻璃盒测试）是指在选择测试用例时，要了解方法是如何实际实现的</p>
+<p>17.coverage覆盖率</p>
+<p>● One way to judge a test suite is to ask how thoroughly it exercises the program<br>● This notion is called coverage</p>
+<p>● 判断一个测试套件的一种方法是询问它对程序的执行有多彻底<br>● 这个概念叫做覆盖率</p>
+<p>● 有三种常见的覆盖范围：</p>
+<p>○ 语句覆盖率：是否每个语句都由某个测试用例运行？</p>
+<p>○ 分支覆盖率：对于程序中的每个if或while语句，都是</p>
+<p>某个测试用例所采取的正确和错误方向？</p>
+<p>○ 路径覆盖：是每一个分支的可能组合-每一条路径通过</p>
+<p>某个测试用例执行的程序？</p>
+<p>18.回归测试Regression Testing</p>
+<p>○ 在每次更改后运行所有测试称为回归测试</p>
+<p>● 每当您发现并修复一个bug时，获取引发bug的输入并将其添加到</p>
+<p>您的自动化测试套件作为测试用例，称为回归测试</p>
+<p>在实践中，自动化测试和回归测试这两种思想几乎是完全不同的，总是组合使用</p>
+<p>19.Which of the following are good times to re-run all your JUnit tests?<br> after rewriting a correct method to make it faster<br> when using a code coverage tool<br> after an attempt to fix a bug<br> before submitting your code to LM Autograder</p>
 <h3 id="week5"><a href="#week5" class="headerlink" title="week5"></a>week5</h3><p>1.precondition前置条件可以与方法参数的描述相关,在方法执行前必须为真</p>
 <p>2.postcondition后置条件将描述方法返回的值</p>
-<h3 id="week6"><a href="#week6" class="headerlink" title="week6"></a>week6</h3><h4 id="lecture"><a href="#lecture" class="headerlink" title="lecture"></a>lecture</h4><h5 id="检查异常-非检查异常"><a href="#检查异常-非检查异常" class="headerlink" title="检查异常/非检查异常"></a>检查异常/非检查异常</h5><ul>
+<p>3.restrictions on used data types不在specification里声明。</p>
+<p>4.What is a condition that must be preserved and guaranteed to be true during a method’s execution called ?<br>invariant<br>在调用方法的执行过程中，必须保留并保证为真的条件是什么？<br>不变量</p>
+<p>5.specification contract acts as a firewall between the client and the implementer</p>
+<p>规范契约充当客户端和实现者之间的防火墙。</p>
+<p>客户不能知道实现细节，只能知道里面能怎么用。</p>
+<p>6.行为等价性</p>
+<p>为了确定行为等价性，我们的问题是我们是否可以</p>
+<p>用一个实现替换另一个实现</p>
+<p>● 等价的概念在旁观者的眼中，也就是客户的眼中<br>○ 为了能够用一种实现方式代替另一种实现方式，<br>为了知道什么时候这是可以接受的，我们需要一个说明<br>客户到底依赖什么<br>○ 在这种情况下，我们的规范可能是：<br>静态int find（int[]arr，int val）<br>要求：val在arr中正好发生一次<br>效果：返回索引i，使arr[i]==val</p>
+<p>7.前置条件 后置条件</p>
+<p>○ a precondition, indicated by the keyword requires<br>○ a postcondition, indicated by the keyword effects</p>
+<p>8.To allow types such as Integer, String, and user-defined types to be a parameter to methods, classes, and interfaces, we use ？</p>
+<p>Using it, we can create classes that work with different data types.</p>
+<p>答案generics</p>
+<p>9.要implement 一个方法:如果满足前置条件，那么后置条件就需要被满足才行。如果不满足前置条件，那么就与这个函数无关了，怎么样的实现都行，实现能做任何事情，无所谓。</p>
+<p>When the precondition is <strong>not</strong> satisfied, the implementation is free to do anything.！！！</p>
+<h3 id="week6"><a href="#week6" class="headerlink" title="week6"></a>week6</h3><h4 id="lecture"><a href="#lecture" class="headerlink" title="lecture"></a>lecture</h4><p>1.基本数据类型不能为null值，只有对象 大写字母开头的对象 才能为null.</p>
+<p>2.If we want to construct a different object with the same values as the input object, we use a/an <strong>copy constructor</strong></p>
+<p>that performs a/an <strong>deep copy</strong> instead of a shallow copy.</p>
+<p>3.When we throw an <code>IllegalArgumentException</code> object within a method, that method must advertise it in the method signature.</p>
+<p>false. throw了新对象不需要在方法上声明。</p>
+<p>4.被static检查了就不会被动态检查，因为根本不能运行。</p>
+<p>5.catch (Exception NotFoundException) NotFoundException是变量名字。。</p>
+<h5 id="检查异常-非检查异常"><a href="#检查异常-非检查异常" class="headerlink" title="检查异常/非检查异常"></a>检查异常/非检查异常</h5><ul>
 <li><p>error:Error错误一般不是由于你编写的代码出现问题，而是由于JVM运行你这段代码出现了问题，比如堆溢出，配置文件出错等，这些你是无法人为的在你代码里可以保证的，必须要额外的去操作，重新配置虚拟机，修改配置文件等等。</p>
 </li>
 <li><p>Exception（异常）:是程序本身可以处理的异常。也就是你常见的空指针异常（NullPointerException），数组超出范围异常（IndexOutOfBoundsException）等等。</p>
@@ -364,6 +453,8 @@
 </ul>
 <h5 id="super-super-a-b"><a href="#super-super-a-b" class="headerlink" title="super()/super(a,b)"></a>super()/super(a,b)</h5><p>super(),调用父类的无参构造方法，只要继承了父类就不需要写，子类一定会执行父类的无参构造方法。</p>
 <p>super(a,b),调用父类的指定的有参构造方法，子类必须写出，才能执行父类的对应的有参构造方法</p>
+<h5 id="lecture-exercise"><a href="#lecture-exercise" class="headerlink" title="lecture exercise"></a>lecture exercise</h5><p>1.maybe go past the end of a list，而且catch (AnalysisException ae)可能会导致三个异常<br>IndexOutOfBoundsException, NullPointerException, OutOfMemoryError</p>
+<p>2.IllegalArgumentException object within a method, that method must advertise it in the method signature.<br>false.在函数内throw过，不用在函数名后加throws.</p>
 <h3 id="week8"><a href="#week8" class="headerlink" title="week8"></a>week8</h3><h4 id="lecture-1"><a href="#lecture-1" class="headerlink" title="lecture"></a>lecture</h4><p>当前置和后置 Specifications 都比对方 强，或者都比对方 弱。<br>那么这两个Specifications不可比较。</p>
 <p>specification不能特别强，也不能特别弱。<br>specification的实现可以用不同的算法。</p>
 <p>the specification is making use of the reader’s knowledge of the implementation。这是错的，跟reader无关。</p>
@@ -372,13 +463,243 @@
 <p>resize array:要把数组size增加时，无法直接扩容。方法是，新建一个更大size的数组，把原来的数组里的值复制到新的大的数组里。<br>然后把新数组的引用（数组地址）赋值给原数组的引用。</p>
 <p>他这个结构的实现是在不变数组之上加入了头 尾指针(int),指向数组的索引。</p>
 <p><img src="/.io//D:%5Cblog%E5%A4%87%E4%BB%BD%E8%B5%84%E6%96%99%5C%E5%9B%BE%E7%89%87%5Ccpt204%5Carraylist1.png" alt="arraylist1"></p>
+<h4 id="lecture-quiz-1"><a href="#lecture-quiz-1" class="headerlink" title="lecture quiz"></a>lecture quiz</h4><p>1.哪个输入证明了函数没有满足spec：<br>就是输入用例的返回值与没有满足spec的要求。</p>
+<p>2.前置可以比较强弱，后置没有完全重叠部分无法比较后置，他们切确强弱关系，圆圈交叉无包含。<br> static int find^OneOrMore,FirstIndex(int[] a, int val)<br>  requires: val occurs at least once in a<br>  effects:  returns lowest index i such that a[i] == val<br>static int find^CanBeMissing(int[] a, int val)<br>  requires: nothing<br>  effects:  returns index i such that a[i] == val,<br>            or -1 if no such i</p>
+<p>3.Which of the following is a sign of a good specification?</p>
+<p>​    the specification is declarative</p>
+<p>​    the implementation is allowed to use different algorithms depending on the arguments</p>
+<p>4.When a specification is strengthened :</p>
+<p>fewer implementations satisfy it, and more clients can use it</p>
+<p>5.In our ARList implementation, we use a technique called <strong>array doubling</strong>(标答)/Risizing Array(我的) that doubles the size of the array whenever it is full.</p>
+<p>6.T[] elements = (T[]) <strong>new</strong> Object[numOfElements];</p>
+<p>Write the annotation that you need to write before the constructor or the method:</p>
+<p>@SuppressWarnings(“unchecked”)</p>
 <h3 id="week9"><a href="#week9" class="headerlink" title="week9"></a>week9</h3><h4 id="lecture-2"><a href="#lecture-2" class="headerlink" title="lecture"></a>lecture</h4><p>Union<br><a href="https://www.cnblogs.com/sunliyuan/p/10746822.html" target="_blank" rel="noopener">https://www.cnblogs.com/sunliyuan/p/10746822.html</a></p>
 <p>集合里{0,1,2,4} -&gt; 数组中索引[0][1][2][4]取出的int数字是相同的。</p>
 <p>这个集合里0作为树的根，值=-1，它的子节点值=0，子节点的子节点值=1…依次类推，子节点的值比父节点+1.<br>单独的不在树结构中的{6},也当做根，[6]的值=-1。<br>同一层的节点值相同。</p>
-<p>Weighted Quick Union里，<br>根节点的值=-6，-&gt;这个数里一共有6个结点。<br>怎么判断2和7有没有相连。找到2的父节点和7的父节点。两个父节点值不同，说明2 7在不同的树中，所以不相连。</p>
+<p><img src="/.io//C:%5CUsers%5CA%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20210601001411514.png" alt="image-20210601001411514"></p>
+<p><img src="/.io//C:%5CUsers%5CA%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20210601001511452.png" alt="image-20210601001511452">Weighted Quick Union里，<br>//记住！ []索引=结点值， 数组[]值=结点的父节点的索引<br>//每个结点都要用parent(结点自己的索引)去找他的parent,<br>//parent[]是一个数组，结点的值是数组的索引，数组[结点值]的值是这个节点的父节点的索引<br>//那么这是一个一直迭代的过程，直到找不到父节点。<br>// 什么情况会找不到父节点呢？ parent[]=-1时，因为没有结点的值为-1</p>
+<p>根节点的值=-6，-&gt;这个数里一共有6个结点。<br>怎么判断2和7有没有相连。找到2的父节点和7的父节点。两个父节点值不同，说明2 7在不同的树中，所以不相连。</p>
 <p>一共四种实现，不同的复杂度</p>
+<p>编译器error就是编译器红色波浪线。<br>无编译器error = legal Java。</p>
+<p>如果final修饰一个引用类型时，表示该引用类型不能再指向其他对象了，但该引用所指向的对象的内容是可以发生变化的。<br>final的数组是可以对数组[n]里的索引对应元素赋值的，final的list也可以。</p>
+<p>static修饰的属性强调它们只有一个，final修饰的属性表明是一个常数（创建后不能被修改）。static final修饰的属性表示一旦给值，就不可修改，并且可以通过类名访问。</p>
+<p>static final也可以修饰方法，表示该方法不能重写，可以在不new对象的情况下调用。</p>
+<p>assert关键字语法很简单，有两种用法：</p>
+<p>1、assert boolean表达式<br>如果boolean表达式为true，则程序继续执行。<br>如果为false，则程序抛出AssertionError，并终止执行。</p>
+<p>2、assert boolean表达式: &lt;错误信息表达式&gt;<br>如果boolean表达式为true，则程序继续执行。<br>如果为false，则程序抛出java.lang.AssertionError，并输入&lt;错误信息表达式&gt;。</p>
+<p>assert.xxx 他写的是什么 什么就是通过继续执行的条件。<br>assert a != 0;</p>
+<h4 id="lecture-quiz-2"><a href="#lecture-quiz-2" class="headerlink" title="lecture-quiz"></a>lecture-quiz</h4><p>1.第四题：求二次方程的根后验证assert roots.size() &lt;= 2;</p>
+<p>2.开发的时候一般都会把大家都会有的变量设为不可变(immutable)=final.<br>而且最好用向上转型声明已有的数据结构，这样调用方法时必须是父类定义的方法名，保持一致？<br>final Set<person> roommates;<br>this.roommates = new HashSet<person>();</person></person></p>
+<p>3.第九题：<br>对变量一个圈=可变，两个圈=不可变(可以理解为final，不可以被修改的).<br>变量指向变量两条线=这两个变量不可变。<br>the references between “petStore” and the “Gecko”有两个引用list和Gecko,其中Gecko不可变。</p>
+<p>4.第十题：<br>对public String next()，What is the type of the input to next?<br>虽然对next()没有直接输入但是迭代器使用是<br>MyIterator.next()这么调用。<br>所以input为MyIterator。</p>
+<p>5.第11题：<br>What is the type of the output to next?<br>就是MyIterator.next()的return值，是String类型。</p>
+<p>6.第12题：<br>next has the precondition requires: hasNext() returns true.<br>Which input to next is constrained by the precondition?<br>受到hasNext()=true的约束必然要能调用他，xxx.hasNext().<br>只有this能。(就是MyIterator对象)</p>
+<p>7.第15题：<br>Another part of the postcondition of next is modifies: this iterator to advance it to the element following the returned element.</p>
+<p>What is constrained by that postcondition?<br>修改：此迭代器将其推进到元素</p>
+<ul>
+<li>在返回的元素后面。<br>也是 this,就是MyIterator</li>
+</ul>
+<h4 id="lab"><a href="#lab" class="headerlink" title="lab"></a>lab</h4><ul>
+<li>WeightedQuickUnionDS:<br>//记住！ []索引=结点值， 数组[]值=结点的父节点的索引<br>//每个结点都要用parent(结点自己的索引)去找他的parent,<br>//parent[]是一个数组，结点的值是数组的索引，数组[结点值]的值是这个节点的父节点的索引<br>//那么这是一个一直迭代的过程，直到找不到父节点。<br>// 什么情况会找不到父节点呢(无父节点)？ parent[]=-1时，因为没有结点的值为-1</li>
+</ul>
+<h3 id="week10"><a href="#week10" class="headerlink" title="week10"></a>week10</h3><h4 id="lecture-3"><a href="#lecture-3" class="headerlink" title="lecture"></a>lecture</h4><ul>
+<li><p>抽象数据类型是描述数据结构的一种理论工具。<br>抽象数据类型包括定义和实现两个方面，其中定义是独立于实现的。抽象数据类型的定<br>义仅取决于它的逻辑特性，而与其在计算机内部的实现无关，即无论它的内部结构如何变化，<br>只要它的逻辑特性不变，都不会影响到它的使用。</p>
+</li>
+<li><p>ADT<br>一个ADT是一个仅由保存的数据类型和可能在这个数据类型上进行的操作定义的。开发者们只能通过ADT的操作方法来访问ADT的属性，而且他们不会知道这个数据类型内部各种操作是如何实现的。</p>
+</li>
+</ul>
+<p>在Java中，我们常常使用一个接口来给出一个操作集合而不需要透露这些操作实现的细节。记住一个接口定义了一个方法集而Java类必须实现这个集合以便满足它的强制性条件或者实现这个接口的一个实例。</p>
+<p>线性表，堆栈和队列的内部结构可以用许多方式实现。例如，我们可以使用一个有序数组或者一个链表来实现每个结构。关键的一点是不论你如何实现其内部结构，它对外的接口总是不变的。这使得你能够修改或者升级底层的实现过程而不需要改变公共接口部分。
+　　</p>
+<p>要考 很大一部分：<br>抽象类型的操作分类如下：<br>● 创造者创造这种类型的新对象；<br>创建者可以将对象作为参数，但不能将其类型的对象作为参数<br>构建<br>● 生产者从该类型的旧对象创建新对象；<br>例如，String的concat方法是一个生产者：它接受两个字符串和<br>生成一个新的表示它们的连接<br>● 观察者获取抽象类型的对象并返回不同类型的对象；<br>例如，List的size方法返回一个int<br>● 变异体改变物体；<br>例如，List的add方法通过在末尾添加元素来改变列表</p>
+<p>○ creator : t* → T<br>○ producer : T+, t* → T(用T/t返回T)<br>○ observer : T+, t* → t(用T/t返回t)<br>○ mutator : T+, t* → void | t | T<br>它们非正式地显示了不同类中操作的签名的形状<br>○ 每个T本身就是抽象类型；每个t都是另一种类型<br>○ +标记表示该类型可能在该部分中出现一次或多次<br>签名<br>○ 而 * 标记表示它出现了零次或多次<br>○ | 表示或<br>List（是T） → int(是t)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Set&lt;k&gt; keySet() 是observer,他不旧类型从创造新类型 Set不是新类型，也不改变Set，更没有创造新类型</span><br></pre></td></tr></table></figure>
+
+<p>The type may be generic: a list or a set, or a graph, for example<br>○ or it may be domain-specific: a street map, an employee database, a phone<br>book, etc<br>但是generic通用类型不能和特定领域的类型混合，他们是分别的。</p>
+<p>p25 的是自建的抽象数据类型<br>MyString 的creator:用旧类型生成MyString对象。<br>observer:用旧类型返回旧类型。<br>producer：用旧类型返回MyString对象。</p>
+<p>向上转型方法与作用<br>父类名 引用变量名= new 子类名()。<br>编译看左边(必须是父类定义的方法名)，运行看右边(执行的是子类实现的方法代码)。</p>
+<p>编译期compile-time type = static type<br>运行期run-time type = dynamic type<br>编译看左边static type = Animal, 运行看右边dynamic type = Pig</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Animal animal;</span><br><span class="line">animal = new Dog();</span><br><span class="line">animal = new Pig();</span><br></pre></td></tr></table></figure>
+
+<p>向上转型后，引用变量调用方法，调用的是子类覆盖或继承的方法，并非原先父类的方法。<br>但向上转型后，无法通过引用变量调用子类特有的方法，即便是父类中有同名抽象方法也不行。</p>
+<p>list1,只能调用ListIF接口中定义，SLList中实现的方法。<br>不能调用SLList中自建的方法。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">public static void main(String[] args) &#123;</span><br><span class="line">ListIF&lt;String&gt; list1 = new SLList&lt;String&gt;();</span><br><span class="line">list.addLast(&quot;a&quot;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>对于a.hello(d);<br>d没有重写Animal中的方法hello，<br>但是！接口中的方法是default，并不会导致编译报错，在子类没有重写这个方法时，运行时会执行接口中的default方法。</p>
+</li>
+<li><p>对于a.cool(d);<br>编译期：Animal, 运行期：Dog<br>重点！Dog类没有重写Animal中的cool(Animal a)方法！<br>Dog里是cool(Dog d)，是重载！<br>运行时，Dog没有重写cool方法，而Animal中是default方法，则运行Animal中的方法，print(“cool animal”);<br>如果不是default，子类又没有重写，就报错。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">public interface Animal &#123;</span><br><span class="line">default void hello(Animal a) &#123;</span><br><span class="line">print(&quot;hello animal&quot;); &#125;</span><br><span class="line">default void sniff(Animal a) &#123;</span><br><span class="line">print(&quot;sniff animal&quot;); &#125;</span><br><span class="line">default void cool(Animal a) &#123;</span><br><span class="line">print(&quot;cool animal&quot;); &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public class Dog implements Animal &#123;</span><br><span class="line">void sniff(Animal a) &#123;</span><br><span class="line">print(&quot;sniff dog&quot;); &#125;</span><br><span class="line">void cool(Dog d) &#123;</span><br><span class="line">print(&quot;cool dog&quot;); &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Animal a = new Dog();</span><br><span class="line">Dog d = new Dog();</span><br><span class="line">a.hello(d);</span><br><span class="line">a.cool(d);</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<p>@override注解，如果重写父类/接口的方法名拼写错误，就会报错。</p>
+<p>java不支持多继承，支持多实现。</p>
+<p>representations:陈述<br> public Set<person> people;这叫Family’s representation</person></p>
+<p>？能不能这么做，有无报错？没有 可以 copy constructor.<br>public Set<person> people;<br>new ArrayList&lt;&gt;(people);</person></p>
+<h4 id="lecture-quiz-3"><a href="#lecture-quiz-3" class="headerlink" title="lecture-quiz"></a>lecture-quiz</h4><p>1.creator的特征：可以为构造函数或静态函数，而静态函数又被称为工厂方法，例如：<br>String.valueOf(Object obj)以及与其相对的 Object.toString()<br>Integer.valueOf()<br>[重点！ 都是从基本数据结构-&gt;新对象; 是通过类名调用的静态函数！]</p>
+<p>2.mutator的特征：通常返回void，意味其改变了对象的某些内部状态。<br>也可能不为void<br>List.addAll() boolean addAll(Collection&lt;? extends E&gt; c) 改变list内部结构</p>
+<p>BufferedReader.readLine()是Mutator!记住！反正字节流改变了可能。<br>Collections.sort</p>
+<p>3.producers（生产器），从旧的对象中创造新的对象</p>
+<p>BigInteger.mod() BigInteger mod(BigInteger m)<br>[从对象BigInteger返回BigInteger，是通过类名调用的静态函数,但绝不是creator，因为creator只接收基本数据类型]</p>
+<p>Collections.unmodifiableList() public static <t> List<t> unmodifiableList(List&lt;? extends T&gt; list)<br>传入旧对象返回新对象。</t></t></p>
+<p>String.toUpperCase() public String toUpperCase()<br>[String旧对象产生String的新对象]</p>
+<p>4.observers（观察器），获得对象中的各种属性<br>Set.contains() 无改变结构，无产生对象</p>
+<p>6.representations是数据类型的定义<br> // the people in the family, sorted from oldest to youngest, with no duplicates.<br>private List<person> people;&lt;-representations</person></p>
+<p>5.set不是按照顺序存的，没有get()方法，都是用iterator遍历的。set.get 就会a static error。</p>
+<p>set.size();这个方法是有的。<br>I depends on xxx’s rep:I的代码里有和xxx rep数据类型相关的方法。<br>xxx的rep是xxx底层声明的数据<br>所以：<br> client1 depends on Family’s representation, and the dependency would be caught as a static error.</p>
+<p>7.implementations是representations的赋值。<br>return people;</p>
+<p>8.接口中Default类型方法不必须被子类重写。</p>
+<h3 id="week11"><a href="#week11" class="headerlink" title="week11"></a>week11</h3><p><a href="https://www.cnblogs.com/siren27/p/9188695.html" target="_blank" rel="noopener">https://www.cnblogs.com/siren27/p/9188695.html</a><br>我们先来介绍两种类型空间的值：</p>
+<p>一、 Space of representation values （表示空间） R</p>
+<p>表示空间由事实上实现的实体值构成。换句话说，由不同的、对抽象类型的实现的对象相应表示（Representation）的值组成。</p>
+<p>二、 Space of abstract values (抽象空间） A</p>
+<p>抽象空间由抽象类型设计支持的类型组成。直观来说，就是抽象类型中设计的域或者说是支持变量。它们不是实际存在的实体，但是我们透过它们来理解抽象类型的元素。</p>
+<ul>
+<li><p>quiz1：<br>{s[i]…s[i+1]} for each adjacent pair<br>Which of the following does AF(“acfg”) map to?<br>abcdefg<br>ac之间：abc; fg之间：fg<br>所以答案是o {a,b,c,f,g}</p>
+</li>
+<li><p>quiz2:<br>Rep invariant:<br>s.length() is even<br>Abstraction function：<br>{s[i]…s[i+1]} for each adjacent pair<br>Which of these values does the abstraction function map to the same abstract value as it maps “tv”?<br>哪一个（？？？）的映射到AF是和tv是一样的。<br>答案：R（tv）-&gt;AF(tuv)<br>那么，ttuuvv和ttuv都和tv是一样的。而tuv不满足RI所以没有映射。</p>
+</li>
+</ul>
+<p>编译期看左边有无那个函数，没有就编译报错。<br>运行时，运行右边里重写的那个函数，如果没有重写就运行报错。如果没有重写但父类中有deflaut标识，就会运行父类中的方法不报错。</p>
+<p>子 = 父;编译器报错。子 = (子)父;编译器不报错。</p>
+<ul>
+<li>quals方法实现了等价关系,重载时要遵守的通用约定:<br>a.自反性(reflexive)　　对于任何非null的引用值x, x.equals(x)必须返回true。<br>b.对称性(symmetric)  对于任何非null的引用值x和y,当且仅当y.equals(x)返回true时，x.equals(y)必须返回true<br>c.传递性(transitive)  　对于任何非null的引用值x,y和z，如果x.equals(y)返回true，并且y.equals(z)返回true，那么x.equals(z)返回true</li>
+</ul>
+<p>1.Which of the following does AF(“acfg”) map to?</p>
+<p>{a,b,c,f,g}</p>
+<p>Rep invariant: s.length() is even</p>
+<p>Abstraction function: represents the union of the ranges，{s[i]…s[i+1]} for each adjacent pair of characters in s</p>
+<p>RI是”acfg”需要满足的，是偶数。</p>
+<p>AF包含一个range的相邻点a-c和f-g：abc和fg</p>
+<p>2.接上面Which of these values does the abstraction function map to the same abstract value as it maps “tv”?</p>
+<p>“ttuuvv” “ttuv”满足，”tuv”不满足。</p>
+<p>“???”这是AF方程的参数需要满足RI(偶数长度)</p>
+<h4 id="week11-quiz"><a href="#week11-quiz" class="headerlink" title="week11 quiz"></a>week11 quiz</h4><p>1.should not be known (visible and documented) to the client of an abstract data type<br>对于ADT客户端不应该知道：rep invariant<br>应该知道：abstract value space；creators；observers</p>
+<p>2.对于ADT维护者应该知道<br>abstract value space<br>creators<br>observers<br>abstraction function<br>rep<br>rep invariant</p>
+<p>3.rep invariant 对这个类里的所有方法，表示都为true<br>比如说s.length() == t.length()</p>
+<h3 id="week12"><a href="#week12" class="headerlink" title="week12"></a>week12</h3><ul>
+<li>quiz1<br>List<string> list = new ArrayList&lt;&gt;();<br>list.add(“a”);<br>Set&lt;List<string>&gt; set = new HashSet&lt;List<string>&gt;();<br>set.add(list);<br>set.contains(list) → true<br>● But now we mutate the list:<br>list.add(“goodbye”);<br>● What is the output of :<br>set.contains(list) → [false]<br>● And, what is the output of:<br>for (List<string> l : set) {<br>set.contains(l) → [true]<br>}<br>第一个是看set里面有没有这一个list的hashcode.<br>而这个list添加了元素之后，这个hashcode改变了，在set里找不到这个hashcode.</string></string></string></string></li>
+</ul>
+<p>第二个是把set里的元素拿来遍历出来看，里面的元素的hashcode，set里有没有这个hashcode.本来这些都是set里的元素，set里是一定有这个元素的hashcode的。（从set里取出来的东西，一定包含在set里）</p>
+<p>● 发生什么事？<br>● List<string>是一个可变对象，在collection的标准Java实现中<br>像List这样的类，突变会影响equals（）和hashCode（）的结果<br>● 当列表第一次放入HashSet时，它被存储在与其对应的hash bucket中<br>此时的hashCode（）结果<br>● 当列表随后发生变化时，它的hashCode（）会发生变化，但HashSet没有意识到<br>应该移到另一个桶里<br>○ 所以再也找不到了<br>● 当equals（）和hashCode（）可能受到变异的影响时，我们可以打破rep不变量<br>使用该对象作为键的哈希表<br>● 下面是java.util.Set规范中的一句话：<br>注意：如果可变对象用作集合元素，则必须非常小心。行为<br>如果对象的值以影响equals的方式更改，则不指定集合的值<br>对象是集合中的元素时的比较</string></p>
+<p>不幸的是，Java库对equals（）的解释不一致<br>对于可变类<br>○ 像List、Set和Map这样的集合使用观察等式，但是其他的<br>像StringBuilder和数组这样的可变类使用行为相等<br>● 我们应该从这个例子中得到的教训是equals（）应该实现<br>可变对象的行为等式<br>○ 一般来说，这意味着两个引用应该是equals（），当且仅当<br>它们是同一对象的别名<br>○ 所以可变对象应该从对象继承equals（）和hashCode（）<br>● 对于需要观察相等概念的客户（两个是否可变）<br>对象在当前状态下“看起来”相同），最好定义一个新方法，<br>e、 g.，相似（）</p>
+<p>对于不可变类型：<br>○ equals（）应该比较抽象值<br>■ 这与说equals（）应该提供行为相等是一样的<br>○ hashCode（）应该将抽象值映射为整数<br>● 所以不可变类型必须重写equals（）和hashCode（）</p>
+<p>对于可变类型：<br>○ equals（）应该比较引用，就像==<br>■ 同样，这与说equals（）应该提供行为<br>平等<br>○ hashCode（）应将引用映射为整数<br>● 所以可变类型根本不应该重写equals（）和hashCode（），而应该<br>只需使用Object提供的默认实现<br>● 不幸的是，Java在其集合中没有遵循这个规则，这导致了陷阱<br>我们在上面看到的</p>
+<ul>
+<li><p>observational equality观察相等<br>调用 observer, producer, and creator方法看两个可变对象是否表现一致。</p>
+</li>
+<li><p>behavioral equality行为相等<br>当用观察相等的方法无法区分两个可变对象时，用对象中的任何方法来两个可变对象是否表现一致，包括mutator方法。</p>
+</li>
+<li><p>对于不可变类型对象，观察相等=行为相等<br>因为没有mutator方法</p>
+</li>
+<li><p>对基本数据类型<br>==是行为相等，完全一致(地址和值)！</p>
+</li>
+<li><p>INTSet数据类型<br>底层是boolean数组，初始化时数组中的值都为False.<br>加入一个int元素，比如说add(5).<br>5作为数组的索引，对应的值改为true.<br>使用contains(5)方法就很快-O(1)</p>
+</li>
+<li><p>ENGSet数据结构<br>底层是boolean数组，初始化时数组中的值都为False.<br>加入一个String元素，比如说add(“cat”).<br>用自定义算法把string转为0-一个范围的int作为索引，<br>对应的值改为true.<br>使用contains(“cat”)方法就很快-O(1)</p>
+</li>
+<li><p>Handling Collision处理hash冲突<br>使用bucket桶，可以是任何能进行搜索和迭代的数据结构。<br>这种想法叫做separate chaining，在数组的每个坑里添加桶，解决hash冲突。</p>
+</li>
+<li><p>自定义的 底层是boolean数组模仿hashset的数组。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">public class ENGSet &#123;</span><br><span class="line">private boolean[] items;</span><br><span class="line">public ENGSet() &#123;</span><br><span class="line">items = new boolean[2000000000];</span><br><span class="line">&#125;</span><br><span class="line">//加一个单词的时候，把单词进行运算成一个int数字。</span><br><span class="line">//boolean数组里的对应的索引的值-&gt;true.</span><br><span class="line">public void add(String s) &#123;</span><br><span class="line">items[englishToInt(s)] = true;</span><br><span class="line">&#125;</span><br><span class="line">//判断是否有这个单词的时候，把单词进行运算成一个int数字、</span><br><span class="line">//boolean数组里的对应的索引的值-&gt;是否存在这个单词</span><br><span class="line">public boolean contains(String s) &#123;</span><br><span class="line">return items[englishToInt(s)];</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>当hash数组中放入的 元素个数/数组长度 &gt;=一个值1.5时，<br>进行数组扩容，扩容之后会重新计算数组中每个元素的hashcode！(因为计算hashcode的函数与数组长度有关，hashcode需要改变)</p>
+</li>
+<li><p>even distribution均匀分配<br>元素的是否均匀分配在数组的每个格子里是一个判断hash table是否好的标准。<br>因为，如果所有元素挤在一个桶里，查询效率很低。</p>
+</li>
+</ul>
+<p>数组长度都是2的幂次方，为了让数组空间均匀分配。</p>
+<ul>
+<li>resize操作时间复杂度是常数的条件<br>Resizing Hash Table operations are on average constant time if:</li>
+</ul>
+<ol>
+<li>we double M to ensure constant average bucket length</li>
+<li>items are evenly distributed</li>
+</ol>
+<ul>
+<li><p>自定义hashtable  p87 一定要会，重点！</p>
+</li>
+<li><p>hash code base is a small prime使用质数的原因<br>质数可以有效的减少hash冲突</p>
+</li>
+</ul>
+<p>为什么是prime？<br>○ 不用偶数：避免溢出问题<br>○ 产生的哈希码与桶数的关系不良的可能性较低，例如哈希码是桶数的倍数<br>● 为什么small？<br>○ 计算成本更低</p>
+<ul>
+<li><p>哈希表（HASet）：<br>○ 使用良好的hashCode方法将项转换为哈希代码<br>○ 然后将哈希代码缩减为有效索引<br>○ 然后，该项被存储在与该索引相对应的bucket中<br>● 调整哈希表大小（针对您的HAMap）：<br>○ 当负载系数N/M超过某个常数时，例如1.5或0.75时，加倍<br>○ 如果项目分布得很好，则平均运行时间为O（1）</p>
+</li>
+<li><p>hash bucket哈希桶<br>哈希表(一个数组)中一个索引位里放的一个数组/链表/树<br>交哈希桶</p>
+</li>
+<li><p>自定义hashtable<br>● Hash table (HASet):<br>○ Item is converted into a hash code using good hashCode method<br>○ The hash code is then reduced to a valid index<br>○ Item is then stored in a bucket corresponding to that index<br>● Resizing hash table (for your HAMap):<br>○ Double when load factor N/M exceeds some constant, say 1.5 or 0.75<br>○ If items are spread out nicely, you get O(1) average runtime</p>
+</li>
+</ul>
+<ul>
+<li><p>hashcode<br>==相等的对象的hashcode一定相同。<br>在重写Object的equals方法时，记得重写hashCode()方法。</p>
+</li>
+<li><p>加入桶之后，查询的复杂度变成O(n),对hash table进行改进<br>lab12的HAMap思想<br>M 数组长度， N所有元素个数<br>Idea: When N/M is ≥ 1.5, then double M<br>○ when it gets too full, double the buckets!<br>○ we call this process of increasing M resizing<br>○ N/M is often called the load factor<br>○ it represents how full the hash table is</p>
+</li>
+<li><p>自动装箱是指通过类型转换(隐式或显式)从值类型中获取引用类型，这部分工作是编译器帮我们来完成的。</p>
+</li>
+</ul>
+<p>我们看一个常见的例子，比如我们创建一个int类型的ArrayList（因为ArrayList的泛型是不允许基本类型的，这里只能使用它们包装类），我们给ArrayList添加元素，再从里面获取元素，一般是这么写的:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// int类型的自动装箱和拆箱</span><br><span class="line">ArrayList&lt;Integer&gt; integerArrayList = new ArrayList&lt;&gt;();</span><br><span class="line">integerArrayList.add(1);</span><br><span class="line">int i = integerArrayList.get(0);</span><br></pre></td></tr></table></figure>
+
+<p>这里分别触发了自动装箱和自动拆箱，这里的add操作触发了一次自动装箱操作，将int转化为Integer；接着从ArrayList里面获取元素，由于我们的目标变量类型是基本类型int，但获取到的元素类型是Integer，所以编译器在这里帮我们做了拆箱的操作。</p>
+<ul>
+<li><p>Comparator<t>-compare(T o1, T o2)方法<br>  子类比较器实现方法compare，自定义比较规则。<br>  new了这个比较器对象，就能调用里面的compare方法比较两个对象T。</t></p>
+</li>
+<li><p>Comparable-o1.compareTo(Object o2)方法</p>
+</li>
+<li><p>concurrent model=消息传递+分享内存空间</p>
+</li>
+<li><p>Time-slicing时间切片<br>当线程多于处理器时，<br>并发是通过时间切片来模拟的，<br>这意味着处理器在线程之间切换。</p>
+</li>
+</ul>
+<p>时间切片让线程能并发执行，让多线程能够随时暂停或恢复的执行。</p>
+<ul>
+<li><p>匿名内部类启动线程<br>要把一个实现了Runnable接口的类实现对象(run函数)加到Thread中启动。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">public static void main(String[] args) &#123;</span><br><span class="line">new Thread(new Runnable() &#123;</span><br><span class="line">public void run() &#123;</span><br><span class="line">System.out.println(&quot;Hello! It&apos;s me, a thread!&quot;);</span><br><span class="line">&#125;</span><br><span class="line">&#125;).start();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>匿名类<br>好处：减少代码，只使用一次。</p>
+</li>
+<li><p>并发test hard</p>
+</li>
+</ul>
+<h4 id="quiz12"><a href="#quiz12" class="headerlink" title="quiz12"></a>quiz12</h4><p>1.<br>编译期130是int;<br>a.put(“c”, 130);之后,运行期130在map里是Integer;<br>a.get(“c”);编译期拿到的是Integer;<br>int i = a.get(“c”);赋值给i，自动拆箱为int.</p>
+<p>Autoboxing : when an int 130 is put into the map,<br>it is automatically boxed up into a new Integer object</p>
+<p>Autounboxing : get() return an Integer object representing 130,<br>but after that, if we assign the get() result to an int variable,<br>the assignment automatically unboxes the Integer object into int value 130</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Map&lt;String, Integer&gt; a = new HashMap&lt;&gt;(), b = new HashMap&lt;&gt;();</span><br><span class="line">a.put(&quot;c&quot;, 130); // put ints into the map</span><br><span class="line">b.put(&quot;c&quot;, 130);</span><br><span class="line">int i = a.get(&quot;c&quot;)</span><br></pre></td></tr></table></figure>
+
+<p>2.线程开启时事件发生的顺序</p>
+<ol>
+<li>[a Runnable object is created]</li>
+<li>[a Thread object is created]</li>
+<li>[start() is called]</li>
+<li>[run() is called]</li>
+<li>[“Hello! It’s me, a thread!” is printed]</li>
+<li>[run() returns]<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">new Thread(new Runnable() &#123;</span><br><span class="line">    public void run() &#123;</span><br><span class="line">     System.out.println(&quot;Hello! It&apos;s me, a thread!&quot;);</span><br><span class="line">     &#125;</span><br><span class="line">     &#125;).start();</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<p>3.判断当前有几个线程<br>new Thread(new Runnable(){run()}).就是一个新线程。<br>+一个主线程。<br>注：必须是Thread用实现Runnable的类对象创建，才叫一个线程。</p>
+<p>4.判断当前有几个线程在运行<br>Thread对象.start()个数+一个主线程</p>
+<p>5.决不要对线程或为线程创建的Runnable调用run（）。相反，总是用Runnable的实例创建一个新的Thread（），<br>并调用线程上的start（）来启动它。线程将负责从新线程调用Runnable上的run（）。</p>
+<p>Thread对象.run()会调用对象中实现的run()方法，但不开启线程。</p>
+<p>6.sequentially顺序执行，concurrently同步/并发的执行。<br>interleave arbitrarily交错任意的<br>并发/同步执行 不仅仅是代码的顺序交错，所有非原子操作的代码都会发生race condition使得赋值时值被重新覆盖导致掉值的问题。</p>
+<h3 id="week13"><a href="#week13" class="headerlink" title="week13"></a>week13</h3><p>堆排序-下沉、上浮<br>堆删除最小，插入。</p>
+<p>线程安全<br>Iterator不是线程安全的。<br>HashMap不是线程安全的</p>
+<p>策略一：禁闭（1）<br>● 线程限制是一个简单的想法：在可重新分配的引用上避免争用<br>通过将数据限制在一个线程中<br>○ 不要给任何其他线程直接读写数据的能力<br>● 由于共享的可变数据是竞争条件的根本原因，限制通过不共享可变数据来解决<br>策略1：禁闭（2）<br>● 局部变量总是线程受限的<br>○ 局部变量存储在堆栈中，每个线程都有自己的堆栈<br>○ 一次可能会有多个方法调用（以不同的方式）<br>线程，甚至在单个线程堆栈的不同级别（如果方法是递归的），<br>○ 但是这些调用中的每一个都有自己的私有变量副本，因此变量本身是受限的<br>● 但是要小心-变量是线程限制的，但是如果它是对象引用，还需要检查它指向的对象<br>○ 如果对象是可变的，那么我们要检查对象是否也是受限的<br>-不能从任何其他线程访问对它的引用</p>
+<p>final private int red; 这个是不可变对象</p>
+<p>死锁p54<br>Now, each must acquire the lock on their “to” account:<br>so A is waiting for B to release the account 2 lock,<br>and B is waiting for A to release the account 1 lock</p>
+<p>synchronized (lock) { }<br>就是这个代码块拿到lock这个对象资源，别的线程没有这个资源。</p>
+<p>要把对象定义为线程安全对象，就把操作insert delete方法都加上synchronized (this)锁。<br>或者把synchronized加在方法上(默认是this锁)。<br>然后从加锁(传入的要操作的对象)synchronized (buf) </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">public static boolean findReplace(EditBuffer buf, </span><br><span class="line">synchronized (buf) &#123;</span><br><span class="line">int i = buf.toString().indexOf(s);</span><br><span class="line">if (i == -1) &#123;</span><br><span class="line">return false;</span><br><span class="line">&#125;</span><br><span class="line">buf.delete(i, s.length());</span><br><span class="line">buf.insert(i, t);</span><br><span class="line">return true;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>方法锁是this对象。<br>harry.friend(snape); 时<br>harry调用friend方法就是获得了harry对象锁。<br>snape.friend(harry);时<br>snape调用friend方法就是获得了snape对象锁。</p>
+<p>对harry,that.friend(this);时，<br>snape调用friend方法需要snape锁，但是snape在snape手里。<br>死锁</p>
+<p>public synchronized void friend(Wizard that) {<br>if (friends.add(that)) {<br>that.friend(this);<br>}<br>}<br>while(true) {           while(true) {<br>harry.friend(snape);        snape.friend(harry);<br>harry.defriend(snape);      snape.defriend(harry);<br>}                       } </p>
 <h2 id="lab-exercise"><a href="#lab-exercise" class="headerlink" title="lab-exercise"></a>lab-exercise</h2><h3 id="week1"><a href="#week1" class="headerlink" title="week1"></a>week1</h3><p>java+javaTest类文件夹+jar包文件夹<br>1.用idea打开java文件夹<br>2.project structure-library-加号-选择jar包文件夹路径-ok<br>3.红色时钟-project structure-module-选择javasource<br>4.project-project language level 11-SDK 11.0.5<br>5.debug运行</p>
-<h3 id="week2"><a href="#week2" class="headerlink" title="week2"></a>week2</h3><p>1.只有用project-project language level 11-SDK 11.0.5才不会爆红<br>2.debug</p>
+<h3 id="week2-1"><a href="#week2-1" class="headerlink" title="week2"></a>week2</h3><p>1.只有用project-project language level 11-SDK 11.0.5才不会爆红<br>2.debug</p>
 <h3 id="week4-1"><a href="#week4-1" class="headerlink" title="week4"></a>week4</h3><h4 id="lab4-3"><a href="#lab4-3" class="headerlink" title="lab4.3"></a>lab4.3</h4><p>这道题教会了如何循环一个链表，把值赋值给另外一个新链表<br>1.新链表temp创建头结点<br>2.重点！！！！ 声明新链表real 指向新链表temp(real = temp).<br>这样的时候新链表real指向了temp的头结点。遍历完成之后给的链表和temp都会到最后一个结点，而且无法返回<br>如果遍历完成返回temp,之后返回最后一个链表结点，而不是整个链表<br>这时返回新链表real就是从头结点开始的链表！！<br>3.循环给的链表，每个结点的值给新链表temp<br>4.return real;<br>隐藏：最先判断空链表，直接返回null</p>
 <p>用while循环</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">public static MyList iterSquareList(MyList list) &#123;</span><br><span class="line">       //隐藏测试：list为空</span><br><span class="line">       if(list == null) return null;</span><br><span class="line">       int length = list.iterSize();</span><br><span class="line">       //初始化头结点</span><br><span class="line">       MyList result = new MyList(list.value * list.value,null);</span><br><span class="line">       MyList relRes;</span><br><span class="line">       relRes = result;</span><br><span class="line">       //在倒数第二个结点的时候，赋值的是最后一个结点的值</span><br><span class="line">       while (list.next !=null)&#123;</span><br><span class="line">           list = list.next;</span><br><span class="line">           result.next = new MyList(list.value *list.value,null);</span><br><span class="line">           result = result.next;</span><br><span class="line">       &#125;</span><br><span class="line">	return relRes;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
@@ -395,6 +716,257 @@
 
 <p>递归：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">public static MyList recCatList(MyList listA, MyList listB) &#123;</span><br><span class="line">    if(listA == null)&#123;</span><br><span class="line">        //A空不能连接B,直接返回B.放在最前面</span><br><span class="line">        return listB;</span><br><span class="line">    &#125;</span><br><span class="line">    //用递归赋值新的链表</span><br><span class="line">    // base case：传入的listA到最后一个结点</span><br><span class="line">    MyList A2 = new MyList(listA.value,null);</span><br><span class="line">    if(listA.next == null)&#123;</span><br><span class="line">        A2.next = listB;</span><br><span class="line">        return A2;</span><br><span class="line">    &#125;</span><br><span class="line">    // recursive step:用新指针传入递归函数，让A到下一个节点，不动原始A</span><br><span class="line">    else&#123;</span><br><span class="line">        MyList A3 = listA.next;</span><br><span class="line">        A2.next = recCatList(A3,listB);</span><br><span class="line">        return A2;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="完全总结-必看"><a href="#完全总结-必看" class="headerlink" title="完全总结 必看"></a>完全总结 必看</h2><p><a href="https://blog.csdn.net/qq_45657992/article/details/107187135" target="_blank" rel="noopener">https://blog.csdn.net/qq_45657992/article/details/107187135</a></p>
+<p><a href="https://blog.csdn.net/qq_45657992/article/details/107190354?spm=1001.2014.3001.5501" target="_blank" rel="noopener">https://blog.csdn.net/qq_45657992/article/details/107190354?spm=1001.2014.3001.5501</a></p>
+<p>RI AF<br><a href="https://blog.csdn.net/qq_45657992/article/details/106673730?spm=1001.2014.3001.5501" target="_blank" rel="noopener">https://blog.csdn.net/qq_45657992/article/details/106673730?spm=1001.2014.3001.5501</a></p>
+<h2 id="stanley"><a href="#stanley" class="headerlink" title="stanley"></a>stanley</h2><h2 id="Testing"><a href="#Testing" class="headerlink" title="Testing"></a>Testing</h2><h3 id="Test-Driven-Development-and-Corner-Cases"><a href="#Test-Driven-Development-and-Corner-Cases" class="headerlink" title="Test Driven Development and Corner Cases"></a>Test Driven Development and Corner Cases</h3><p>In Test Driven Development (TDD), you start by writing the test code first even before writing the implementation code.</p>
+<p>Always create test cases for the corner cases ○ For example: empty list, singleton list (list with just one element), smallest list with answer equals zero/non zero or false/true.</p>
+<h3 id="regression-testing"><a href="#regression-testing" class="headerlink" title="regression testing"></a>regression testing</h3><p>Rerun tests when you modify your code. A regression test case comes from the discovery of a bug, which means when you find and fix a bug, you should take the input that elicited the bug and add it to your automated test suite as a test case.</p>
+<h3 id="automated-regression-testing"><a href="#automated-regression-testing" class="headerlink" title="automated regression testing"></a>automated regression testing</h3><p>automated regression testing is a best practice of modern software engineering.</p>
+<h3 id="unit-testing"><a href="#unit-testing" class="headerlink" title="unit testing"></a>unit testing</h3><p>unit testing, the idea that we should write tests of each module of our program in isolation. A good unit test is focused on just a single specification.</p>
+<h2 id="Specification"><a href="#Specification" class="headerlink" title="Specification"></a>Specification</h2><h3 id="Specification-Structure"><a href="#Specification-Structure" class="headerlink" title="Specification Structure"></a>Specification Structure</h3><p>A specification of a method consists of two clauses: ○ a <strong><em>precondition</em></strong>, indicated by the keyword requires ○ a <strong><em>postcondition</em></strong>, indicated by the keyword effects</p>
+<p>● The overall structure is a logical implication: if the precondition holds when the method is called, then the postcondition must hold when the method completes</p>
+<p>● If the precondition does not hold when the method is called, the implementation is not bound by the postcondition ○ It is free to do anything , including not terminating, throwing an exception, returning arbitrary results, making arbitrary modifications, etc</p>
+<h3 id="Three-Dimensions-for-Comparing-Specs"><a href="#Three-Dimensions-for-Comparing-Specs" class="headerlink" title="Three Dimensions for Comparing Specs"></a>Three Dimensions for Comparing Specs</h3><p>deterministic: it is: does the spec define only a <strong><em>single possible output</em></strong> (deterministic) for a given input, or does it allow the implementor to choose from a <strong><em>set of legal outputs</em></strong> (underdetermined) declarative: it is: does the spec just <strong><em>characterize what the output should be</em></strong> (Declarative), or does it <strong><em>explicitly say how to compute the output</em></strong> (Operational) strong: it is: does the spec have a <strong><em>small set of legal implementations</em></strong>, or a <strong><em>large set</em></strong></p>
+<p>A specification S2 is stronger than or equal to a specification S1 if ○ S2’s precondition is weaker than or equal to S1’s, and ○ S2’s postcondition is stronger than or equal to S1’s for the states that satisfy S1’s precondition</p>
+<p>otherwise, they are incomparable.</p>
+<p>if S2 stronger than S1:</p>
+<p>![S2 stronger than S1](D:\Files\Learning Materials\Y3\Semester-2\CPT204\note\S2 stronger than S1.png)</p>
+<p>If this is the case, then an implementation that satisfies S2 can be used to satisfy S1 as well, and it’s safe to replace S1 with S2 in your program.</p>
+<p>These two rules embody several ideas: they tell you that you can always weaken the precondition ; placing fewer demands on a client will never upset them; and you can always strengthen the postcondition , which means making more promises.</p>
+<h2 id="invariant"><a href="#invariant" class="headerlink" title="invariant"></a>invariant</h2><p>An invariant is a condition that is guaranteed to be true during code execution.</p>
+<p>For example, SLList with Sentinel Node has the following invariants: ○ sentinel instance variable always points to a sentinel node ○ the first node, if it exists, is always at sentinel.next ○ size instance variable is always the total number of items added</p>
+<p>Invariants make it easier to reason about code: ○ can assume they are true to simplify code, e.g., addLast does not need to worry about the null case ○ must ensure that the methods preserve invariants</p>
+<h2 id="Exception"><a href="#Exception" class="headerlink" title="Exception"></a>Exception</h2><h3 id="Checked-and-Unchecked-Exceptions"><a href="#Checked-and-Unchecked-Exceptions" class="headerlink" title="Checked and Unchecked Exceptions"></a>Checked and Unchecked Exceptions</h3><p>checked exceptions to signal special results. unchecked exceptions to signal bugs.</p>
+<p>![Java Expection Hierarchy](D:\Files\Learning Materials\Y3\Semester-2\CPT204\note\Java Expection Hierarchy.png)</p>
+<p>![checked](D:\Files\Learning Materials\Y3\Semester-2\CPT204\note\checked.png)</p>
+<p>![throw](D:\Files\Learning Materials\Y3\Semester-2\CPT204\note\throw.png)</p>
+<p>![Exception](D:\Files\Learning Materials\Y3\Semester-2\CPT204\note\Exception.png)</p>
+<h2 id="Assertions"><a href="#Assertions" class="headerlink" title="Assertions"></a>Assertions</h2><h3 id="defensive-programming"><a href="#defensive-programming" class="headerlink" title="defensive programming"></a>defensive programming</h3><p>Defensive programming offers a way to mitigate the effects of bugs even if you don’t know where they are. example: Checking preconditions</p>
+<h3 id="assert"><a href="#assert" class="headerlink" title="assert"></a>assert</h3><p>Note that the Java assert statement is a different mechanism than the JUnit methods assertTrue()assertTrue(), assertEquals()assertEquals(), etc. They all assert a predicate about your code, but are designed for use in different contexts. The assert statement should be used in implementation code for defensive checks inside the implementation. JUnit assert…() methods should be used in JUnit tests to check the result of a test.</p>
+<h2 id="Modularity"><a href="#Modularity" class="headerlink" title="Modularity"></a>Modularity</h2><p><strong><em>Modularity</em></strong> means dividing up a system into components, or modules, each of which can be designed, implemented, tested, reasoned about, and reused separately from the rest of the system.</p>
+<p>The opposite of a modular system is a <strong><em>monolithic</em></strong> system - big and with all of its pieces tangled up and dependent on each other.</p>
+<p><strong><em>Encapsulation</em></strong> means building walls around a module (a hard shell or capsule) so that the module is responsible for its own internal behavior and bugs in other parts of the system can’t damage its integrity.</p>
+<p>One kind of encapsulation is <strong><em>access control</em></strong> : using public and private to control the visibility and accessibility of your variables and methods.</p>
+<p>Another kind of encapsulation comes from <strong><em>variable scope</em></strong></p>
+<h2 id="期末试卷"><a href="#期末试卷" class="headerlink" title="期末试卷"></a>期末试卷</h2><h3 id="自定义异常类"><a href="#自定义异常类" class="headerlink" title="自定义异常类"></a>自定义异常类</h3><p>1、自定义异常类继承Exception类</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * 自定义异常类</span><br><span class="line"> */</span><br><span class="line">public class MyException extends Exception &#123;</span><br><span class="line">    //异常信息</span><br><span class="line">    private String message;</span><br><span class="line"></span><br><span class="line">// 提供无参数的构造方法</span><br><span class="line">  public MyException() &#123; </span><br><span class="line">    super();</span><br><span class="line">  &#125; </span><br><span class="line">    //构造函数</span><br><span class="line">    public MyException(String message)&#123;</span><br><span class="line">        super(message);</span><br><span class="line">        this.message = message;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    //获取异常信息,由于构造函数调用了super(message),不用重写此方法</span><br><span class="line">    //public String getMessage()&#123;</span><br><span class="line">    //    return message;</span><br><span class="line">    //&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>2、在要抛出异常的函数使用throws关键字</p>
+<p>写函数的人只用抛出throw new MyException(),不需要throws MyException处理，当然写了这个没关系。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * 在需要抛出异常的地方使用异常类。仅抛出不处理异常</span><br><span class="line"> */</span><br><span class="line">public class UseMyException &#123;</span><br><span class="line">    private String name;</span><br><span class="line">    private String password;</span><br><span class="line"></span><br><span class="line">    public UseMyException(String name,String password)&#123;</span><br><span class="line">        this.name = name;</span><br><span class="line">        this.password = password;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void throwException(String password) throws MyException&#123;</span><br><span class="line">        if (!this.password.equals(password))&#123;</span><br><span class="line">            throw new MyException(&quot;密码不正确!&quot;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>3、测试，调用者使用try-catch处理异常; 或不处理方法名上throws声明异常抛出</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * 测试异常</span><br><span class="line"> */</span><br><span class="line">public class TestException &#123;</span><br><span class="line"></span><br><span class="line">    @org.junit.Test</span><br><span class="line">    public void test()&#123;</span><br><span class="line">        UseMyException ex = new UseMyException(&quot;admin&quot;,&quot;123&quot;);</span><br><span class="line">        try&#123;</span><br><span class="line">            ex.throwException(&quot;1234&quot;);</span><br><span class="line">        &#125;catch (MyException me)&#123;</span><br><span class="line">            System.out.println(&quot;MyException:&quot;+me.getMessage());</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>4.<br>第一种：throw异常对象，cry catch进行异常处理<br>第二种：throw异常对象，不处理异常，throws声明异常</p>
+<h2 id="复习"><a href="#复习" class="headerlink" title="复习"></a>复习</h2><h3 id="泛型接口，泛型类，泛型方法"><a href="#泛型接口，泛型类，泛型方法" class="headerlink" title="泛型接口，泛型类，泛型方法"></a>泛型接口，泛型类，泛型方法</h3><ul>
+<li>见17final五个类<br><a href="https://www.cnblogs.com/JokerShi/p/8117556.html" target="_blank" rel="noopener">https://www.cnblogs.com/JokerShi/p/8117556.html</a></li>
+</ul>
+<p>1.接口里需要几种抽象类型就分别在&lt;&gt;中定义，在接口的函数中使用。<br>&lt;&gt;里的抽象类型都是extends Object,也就是说都是大写的对象，不能用8种基本类型。</p>
+<p>2.abstract抽象类实现未定义泛型类接口时，一般不会写死泛型，是由抽象类的继承类来写死泛型。<br>所以说抽象类&lt;A,B&gt;还是得写上。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">public interface Function&lt;A,B&gt;</span><br><span class="line">abstract class AbstractFunction&lt;A,B&gt; implements Function&lt;A,B&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="ADT和抽象类"><a href="#ADT和抽象类" class="headerlink" title="ADT和抽象类"></a>ADT和抽象类</h3><p><a href="https://segmentfault.com/a/1190000015368035" target="_blank" rel="noopener">https://segmentfault.com/a/1190000015368035</a></p>
+<h3 id="死锁"><a href="#死锁" class="headerlink" title="死锁"></a>死锁</h3><p>死锁是这样一种情形：多个线程同时被阻塞，它们中的一个或者全部都在等待某个资源被释放。由于线程被无限期地阻塞，因此程序不可能正常终止。</p>
+<p>java 死锁产生的四个必要条件：</p>
+<ul>
+<li>1、互斥使用，即当资源被一个线程使用(占有)时，别的线程不能使用</li>
+<li>2、不可抢占，资源请求者不能强制从资源占有者手中夺取资源，资源只能由资源占有者主动释放。</li>
+<li>3、请求和保持，即当资源请求者在请求其他的资源的同时保持对原有资源的占有。</li>
+<li>4、循环等待，即存在一个等待队列：P1占有P2的资源，P2占有P3的资源，P3占有P1的资源。这样就形成了一个等待环路。</li>
+</ul>
+<p>当上述四个条件都成立的时候，便形成死锁。当然，死锁的情况下如果打破上述任何一个条件，便可让死锁消失。下面用java代码来模拟一下死锁的产生。</p>
+<p>解决死锁问题的方法是：一种是用synchronized，一种是用Lock显式锁实现。</p>
+<p>为了解决这个问题，我们不使用显示的去锁，我们用信号量去控制。</p>
+<p>信号量可以控制资源能被多少线程访问，这里我们指定只能被一个线程访问，就做到了类似锁住。而信号量可以指定去获取的超时时间，我们可以根据这个超时时间，去做一个额外处理。</p>
+<p>对于无法成功获取的情况，一般就是重复尝试，或指定尝试的次数，也可以马上退出。</p>
+<p>Deadlock is a situation in which multiple threads are blocked at the same time, and one or all of them are waiting for a resource to be released. Because the thread is blocked indefinitely, it is impossible for the program to terminate normally.<br>There are four necessary conditions for Java deadlock<br>-1. Mutually exclusive use, that is, when a resource is used (occupied) by one thread, other threads cannot use it<br>-2. It can’t be preempted. The resource requester can’t forcibly seize the resource from the resource possessor. The resource can only be released by the resource possessor.<br>-3. Request and keep, that is, when a resource requester requests other resources, he keeps possession of the original resources.<br>-4. Circular waiting, that is, there is a waiting queue: P1 occupies the resources of P2, P2 occupies the resources of P3, and P3 occupies the resources of P1. This creates a waiting loop.<br>When the above four conditions are true, a deadlock is formed. Of course, in the case of deadlock, if you break any of the above conditions, you can make the deadlock disappear. Next, use java code to simulate the generation of deadlock.<br>The way to solve the deadlock problem is: one is to use synchronized, the other is to use lock explicit lock.<br>In order to solve this problem, we do not use the display to lock, we use the semaphore to control.<br>Semaphores can control how many threads can access resources. Here, we specify that only one thread can access resources, which is similar to locking. The semaphore can specify the time-out time for acquisition, and we can do an additional processing according to the time-out time.<br>In the case of unsuccessful acquisition, it is generally repeated attempts or specified number of attempts, or you can exit immediately.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line">public class UnLockTest &#123;</span><br><span class="line">   public static String obj1 = &quot;obj1&quot;;</span><br><span class="line">   public static final Semaphore a1 = new Semaphore(1);</span><br><span class="line">   public static String obj2 = &quot;obj2&quot;;</span><br><span class="line">   public static final Semaphore a2 = new Semaphore(1);</span><br><span class="line"> </span><br><span class="line">   public static void main(String[] args) &#123;</span><br><span class="line">      LockAa la = new LockAa();</span><br><span class="line">      new Thread(la).start();</span><br><span class="line">      LockBb lb = new LockBb();</span><br><span class="line">      new Thread(lb).start();</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br><span class="line">class LockAa implements Runnable &#123;</span><br><span class="line">   public void run() &#123;</span><br><span class="line">      try &#123;</span><br><span class="line">         System.out.println(new Date().toString() + &quot; LockA 开始执行&quot;);</span><br><span class="line">         while (true) &#123;</span><br><span class="line">            if (UnLockTest.a1.tryAcquire(1, TimeUnit.SECONDS)) &#123;</span><br><span class="line">               System.out.println(new Date().toString() + &quot; LockA 锁住 obj1&quot;);</span><br><span class="line">               if (UnLockTest.a2.tryAcquire(1, TimeUnit.SECONDS)) &#123;</span><br><span class="line">                  System.out.println(new Date().toString() + &quot; LockA 锁住 obj2&quot;);</span><br><span class="line">                  Thread.sleep(60 * 1000); // do something</span><br><span class="line">               &#125;else&#123;</span><br><span class="line">                  System.out.println(new Date().toString() + &quot;LockA 锁 obj2 失败&quot;);</span><br><span class="line">               &#125;</span><br><span class="line">            &#125;else&#123;</span><br><span class="line">               System.out.println(new Date().toString() + &quot;LockA 锁 obj1 失败&quot;);</span><br><span class="line">            &#125;</span><br><span class="line">            UnLockTest.a1.release(); // 释放</span><br><span class="line">            UnLockTest.a2.release();</span><br><span class="line">            Thread.sleep(1000); // 马上进行尝试，现实情况下do something是不确定的</span><br><span class="line">         &#125;</span><br><span class="line">      &#125; catch (Exception e) &#123;</span><br><span class="line">         e.printStackTrace();</span><br><span class="line">      &#125;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br><span class="line">class LockBb implements Runnable &#123;</span><br><span class="line">   public void run() &#123;</span><br><span class="line">      try &#123;</span><br><span class="line">         System.out.println(new Date().toString() + &quot; LockB 开始执行&quot;);</span><br><span class="line">         while (true) &#123;</span><br><span class="line">            if (UnLockTest.a2.tryAcquire(1, TimeUnit.SECONDS)) &#123;</span><br><span class="line">               System.out.println(new Date().toString() + &quot; LockB 锁住 obj2&quot;);</span><br><span class="line">               if (UnLockTest.a1.tryAcquire(1, TimeUnit.SECONDS)) &#123;</span><br><span class="line">                  System.out.println(new Date().toString() + &quot; LockB 锁住 obj1&quot;);</span><br><span class="line">                  Thread.sleep(60 * 1000); // do something</span><br><span class="line">               &#125;else&#123;</span><br><span class="line">                  System.out.println(new Date().toString() + &quot;LockB 锁 obj1 失败&quot;);</span><br><span class="line">               &#125;</span><br><span class="line">            &#125;else&#123;</span><br><span class="line">               System.out.println(new Date().toString() + &quot;LockB 锁 obj2 失败&quot;);</span><br><span class="line">            &#125;</span><br><span class="line">            UnLockTest.a1.release(); // 释放</span><br><span class="line">            UnLockTest.a2.release();</span><br><span class="line">            Thread.sleep(10 * 1000); // 这里只是为了演示，所以tryAcquire只用1秒，而且B要给A让出能执行的时间，否则两个永远是死锁</span><br><span class="line">         &#125;</span><br><span class="line">      &#125; catch (Exception e) &#123;</span><br><span class="line">         e.printStackTrace();</span><br><span class="line">      &#125;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="HashMap"><a href="#HashMap" class="headerlink" title="HashMap"></a>HashMap</h2><p>hashmap是基于hash表的map实现。<br>允许null值和null键。<br>键唯一。<br>存取不保证顺序。<br>线程不安全，但效率高。<br>临界值&gt;8并且数组长度&gt;64,才将链表转换成红黑树，变成红黑树是为了提高查询效率。<br>临界值&gt;8并且数组长度&lt;64,数组是扩容(2倍，重新计算hash值)。</p>
+<p>size&gt;这个临界值就数组resize扩容,两倍。</p>
+<p>size:hashmap中键值对的实时数量总量，不是数组长度,不是桶数量。<br>threshold(临界值)=capacity(数组容量) * loadFactor(加载因子)。<br>当size&gt;这个临界值就数组resize扩容,两倍。</p>
+<p>(学校里的)当size/数组长度&gt;0.75时，就数组resize扩容,两倍。</p>
+<p>数组长度length都是2 ^ n为了减少hash碰撞，可以让数组空间均匀分配。<br>计算出元素所在索引的与运算算法：hash&amp;(length-1)。<br>位运算的算法必须要2的n次幂，其他算法不一定。</p>
+<p>如果这个length不是2的n次幂，很容易计算出相同的索引，形成hash碰撞，导致数组空间很多空间没有存储数据，链表或红黑树过长，降低效率。</p>
+<p>初始化hashmap的初始数组容量initialCapacity时，会自动改成最小的2的n次幂。<br>下面给10，底层算法会改成最小的2的n次幂16.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">HashMap&lt;String,Integer&gt; map = new HashMap&lt;&gt;(10);</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p>hashmap有四个构造函数<br>HashMap()<br>构造一个具有默认初始容量 (16) 和默认加载因子 (0.75) 的空 HashMap。<br>不知道存多少个就用这个构造函数。</p>
+<p>HashMap(int initialCapacity)<br>构造一个带指定初始容量和默认加载因子 (0.75) 的空 HashMap。<br>知道存多少个就用这个构造函数。尽量少扩容。</p>
+<p>HashMap(int initialCapacity, float loadFactor)<br>构造一个带指定初始容量和加载因子的空 HashMap。 </p>
+<p>HashMap(Map&lt;? extends K,? extends V&gt; m) </p>
+<p>构造一个映射关系与指定 Map 相同的新 HashMap。 </p>
+<p>加载因子loadFactor = 0.75</p>
+<h3 id="HashMap的底层数据结构？"><a href="#HashMap的底层数据结构？" class="headerlink" title="HashMap的底层数据结构？"></a>HashMap的底层数据结构？</h3><p>JDK1.8 之前 HashMap 底层是 <strong>数组和链表</strong> 结合在一起使用。</p>
+<p>HashMap 通过 key 的 hashCode 经过扰动函数处理过后得到 hash 值，然后通过 (n - 1) &amp; hash 判断当前元素存放的位置（这里的 n 指的是数组的 长度），如果当前位置存在元素的话，就判断该元素与要存入的元素的 hash 值以及 key 是否相同，如果相同的话，直接覆盖，不相同就通过拉链法解决冲突。</p>
+<blockquote>
+<p>所谓扰动函数指的就是 HashMap 的 hash 方法。使用 hash 方法也就是扰动函数是为了防止一些实现比较差的 hashCode() 方法 换句话说使用扰动函数之后可以减少碰撞。</p>
+</blockquote>
+<p>JDK1.8之后在解决哈希冲突时有了较大的变化，当链表长度大于阈值8时，将链表转化为红黑树，以减少搜索时间。</p>
+<p><img src="https://www.yht7.com/upload/image/20200607/image-20200607160112438.png" alt="image-20200607160112438"></p>
+<h3 id="HashMap的存取原理？"><a href="#HashMap的存取原理？" class="headerlink" title="HashMap的存取原理？"></a>HashMap的存取原理？</h3><p>1）存方法：put(Object key, Object value)</p>
+<p>执行流程如下：</p>
+<ul>
+<li>对 key 进行 hash 操作，计算存储 index；</li>
+<li>判断是否有哈希碰撞，如果没碰撞直接放到哈希桶里，如果有碰撞则以链表的形式存储；</li>
+<li>判断已有元素的类型，决定是追加树还是追加链表，当链表大于等于 8 时，把链表转换成红黑树；</li>
+<li>如果节点已经存在就替换旧值；</li>
+<li>判断是否超过阀值，如果超过就要扩容。</li>
+</ul>
+<p>2）取方法：get(Object key)</p>
+<p>执行流程如下：</p>
+<ul>
+<li>首先比对首节点，如果首节点的 hash 值和 key 的 hash 值相同，并且首节点的键对象和 key 相同（地址相同或 equals 相等），则返回该节点；</li>
+<li>如果首节点比对不相同、那么看看是否存在下一个节点，如果存在的话，可以继续比对，如果不存在就意味着 key 没有匹配的键值对。</li>
+</ul>
+<h3 id="Java7和Java8中HashMap的区别"><a href="#Java7和Java8中HashMap的区别" class="headerlink" title="Java7和Java8中HashMap的区别"></a>Java7和Java8中HashMap的区别</h3><p>HashMap 在 JDK 7 和 JDK 8 的主要区别如下。</p>
+<ul>
+<li>存储结构：JDK 7 使用的是数组 + 链表；JDK 8 使用的是数组 + 链表 + 红黑树。</li>
+<li>存放数据的规则：JDK 7 无冲突时，存放数组；冲突时，存放链表；JDK 8 在没有冲突的情况下直接存放数组，有冲突时，当链表长度小于 8 时，存放在单链表结构中，当链表长度大于 8 时，树化并存放至红黑树的数据结构中。</li>
+<li>插入数据方式：JDK 7 使用的是头插法（先将原位置的数据移到后 1 位，再插入数据到该位置）；JDK 8 使用的是尾插法（直接插入到链表尾部/红黑树）。</li>
+</ul>
+<h3 id="为什么HashMap线程不安全"><a href="#为什么HashMap线程不安全" class="headerlink" title="为什么HashMap线程不安全"></a>为什么HashMap线程不安全</h3><ul>
+<li>多线程put的时候导致数据不一致</li>
+<li>可能会因为扩容引起死循环</li>
+</ul>
+<p>HashMap 在并发场景中可能出现死循环的问题，这是因为 HashMap 在扩容的时候会对链表进行一次倒序处理，假设两个线程同时执行扩容操作，第一个线程正在执行 B→A 的时候，第二个线程又执行了 A→B ，这个时候就会出现 B→A→B 的问题，造成死循环。</p>
+<h3 id="有什么线程安全的类代替吗"><a href="#有什么线程安全的类代替吗" class="headerlink" title="有什么线程安全的类代替吗"></a>有什么线程安全的类代替吗</h3><p>Hashtable或ConcurrentHashMap</p>
+<h3 id="默认初始化大小是多少？为啥是这么多？为啥大小都是2的幂？"><a href="#默认初始化大小是多少？为啥是这么多？为啥大小都是2的幂？" class="headerlink" title="默认初始化大小是多少？为啥是这么多？为啥大小都是2的幂？"></a>默认初始化大小是多少？为啥是这么多？为啥大小都是2的幂？</h3><ul>
+<li>默认初始大小是16</li>
+<li>这样是为了位运算的方便，<strong>位与运算比算数计算的效率高了很多</strong>，之所以选择16，是为了服务将Key映射到index的算法。</li>
+<li>为了存取高效，减少碰撞，把数据分配均匀</li>
+</ul>
+<h3 id="HashMap的扩容方式？负载因子是多少？为什么是这么多？"><a href="#HashMap的扩容方式？负载因子是多少？为什么是这么多？" class="headerlink" title="HashMap的扩容方式？负载因子是多少？为什么是这么多？"></a>HashMap的扩容方式？负载因子是多少？为什么是这么多？</h3><p>当hashmap中的元素个数超过<code>负载因子×当前大小</code>时，就会进行数组扩容，负载因子的默认值为0.75，也就是说，默认情况下，数组大小为16，那么当hashmap中元素个数超过12的时候，就把数组的大小扩展为32，即扩大一倍，然后重新计算每个元素在数组中的位置。</p>
+<h3 id="HashMap的主要参数都有哪些？"><a href="#HashMap的主要参数都有哪些？" class="headerlink" title="HashMap的主要参数都有哪些？"></a>HashMap的主要参数都有哪些？</h3><p>HashMap 有两个重要的参数：容量（Capacity）和负载因子（LoadFactor）。</p>
+<ul>
+<li>容量（Capacity）：是指 HashMap 中桶的数量，默认的初始值为 16。</li>
+<li>负载因子（LoadFactor）：也被称为装载因子，LoadFactor 是用来判定 HashMap 是否扩容的依据，默认值为 0.75f，装载因子的计算公式 = HashMap 存放的 KV 总和（size）/ Capacity。</li>
+</ul>
+<h3 id="HashMap是怎么处理hash碰撞的？"><a href="#HashMap是怎么处理hash碰撞的？" class="headerlink" title="HashMap是怎么处理hash碰撞的？"></a>HashMap是怎么处理hash碰撞的？</h3><blockquote>
+<p>Tips：当输入两个不同值，根据同一散列函数计算出相同的散列值的现象，我们就把它叫做碰撞（哈希碰撞）</p>
+</blockquote>
+<p>HashMap 使用链表和红黑树来解决哈希冲突</p>
+<h3 id="HashMap-和-Hashtable-有什么区别？"><a href="#HashMap-和-Hashtable-有什么区别？" class="headerlink" title="HashMap 和 Hashtable 有什么区别？"></a>HashMap 和 Hashtable 有什么区别？</h3><p>HashMap 和 Hashtable 区别如下：</p>
+<ul>
+<li>Hashtable 使用了 synchronized 关键字来保障线程安全，而 HashMap 是非线程安全的；</li>
+<li>HashMap 允许 K/V 都为 null，而 Hashtable K/V 都不允许 null；</li>
+<li>初始容量大小和每次扩充容量大小的不同。创建时如果不指定容量初始值，Hashtable 默认的初始大小为 11，之后每次扩充，容量变为原来的2n+1。HashMap 默认的初始化大小为16。之后每次扩充，容量变为原来 的2倍。</li>
+<li>JDK1.8 以后的 HashMap 在解决哈希冲突时有了较大的变化，当链表长度大于阈值（默认为 8）时，将链表转化为红黑树，以减少搜索时间。Hashtable 没有这样的机制。</li>
+</ul>
+<h3 id="为什么重写-equals-时一定要重写-hashCode-？"><a href="#为什么重写-equals-时一定要重写-hashCode-？" class="headerlink" title="为什么重写 equals() 时一定要重写 hashCode()？"></a>为什么重写 equals() 时一定要重写 hashCode()？</h3><p>因为 Java 规定，如果两个对象 equals 比较相等（结果为 true），那么调用 hashCode 也必须相等。如果重写了 equals() 但没有重写 hashCode()，就会与规定相违背。</p>
+<h3 id="HashMap-和HashSet区别"><a href="#HashMap-和HashSet区别" class="headerlink" title="HashMap 和HashSet区别"></a>HashMap 和HashSet区别</h3><p><img src="https://www.yht7.com/upload/image/20200607/image-20200607164534516.png" alt="image-20200607164534516"></p>
+<h3 id="ConcurrentHashMap线程安全的具体实现方式-底层具体实现"><a href="#ConcurrentHashMap线程安全的具体实现方式-底层具体实现" class="headerlink" title="ConcurrentHashMap线程安全的具体实现方式/底层具体实现"></a>ConcurrentHashMap线程安全的具体实现方式/底层具体实现</h3><p>首先将数据分为一段一段的存储，然后给每一段数据配一把锁，当一个线程占用锁访问其中一个段数据时，其他段的数据也能被其他线程访问。 ConcurrentHashMap 是由 Segment 数组结构和 HashEntry 数组结构组成。</p>
+<p>Segment 实现了 ReentrantLock,所以 Segment 是一种可重入锁，扮演锁的角色。HashEntry 用于存储键值对数 据。</p>
+<h2 id="java多线程，并发"><a href="#java多线程，并发" class="headerlink" title="java多线程，并发"></a>java多线程，并发</h2><p>JAVA多线程和并发基础面试问答<br>原文链接  译文连接 作者：Pankaj  译者：郑旭东  校对：方腾飞</p>
+<p>多线程和并发问题是Java技术面试中面试官比较喜欢问的问题之一。在这里，从面试的角度列出了大部分重要的问题，但是你仍然应该牢固的掌握Java多线程基础知识来对应日后碰到的问题。（校对注：非常赞同这个观点）</p>
+<p>Java多线程面试问题</p>
+<ol>
+<li><p>进程和线程之间有什么不同？<br>一个进程是一个独立(self contained)的运行环境，它可以被看作一个程序或者一个应用。而线程是在进程中执行的一个任务。Java运行环境是一个包含了不同的类和程序的单一进程。线程可以被称为轻量级进程。线程需要较少的资源来创建和驻留在进程中，并且可以共享进程中的资源。</p>
+</li>
+<li><p>多线程编程的好处是什么？<br>在多线程程序中，多个线程被并发的执行以提高程序的效率，CPU不会因为某个线程需要等待资源而进入空闲状态。多个线程共享堆内存(heap memory)，因此创建多个线程去执行一些任务会比创建多个进程更好。举个例子，Servlets比CGI更好，是因为Servlets支持多线程而CGI不支持。</p>
+</li>
+<li><p>用户线程和守护线程有什么区别？<br>当我们在Java程序中创建一个线程，它就被称为用户线程。一个守护线程是在后台执行并且不会阻止JVM终止的线程。当没有用户线程在运行的时候，JVM关闭程序并且退出。一个守护线程创建的子线程依然是守护线程。</p>
+</li>
+<li><p>我们如何创建一个线程？<br>有两种创建线程的方法：一是实现Runnable接口，然后将它传递给Thread的构造函数，创建一个Thread对象；二是直接继承Thread类。若想了解更多可以阅读这篇关于如何在Java中创建线程的文章。</p>
+</li>
+<li><p>有哪些不同的线程生命周期？<br>当我们在Java程序中新建一个线程时，它的状态是New。当我们调用线程的start()方法时，状态被改变为Runnable。线程调度器会为Runnable线程池中的线程分配CPU时间并且讲它们的状态改变为Running。其他的线程状态还有Waiting，Blocked 和Dead。读这篇文章可以了解更多关于线程生命周期的知识。</p>
+</li>
+<li><p>可以直接调用Thread类的run()方法么？<br>当然可以，但是如果我们调用了Thread的run()方法，它的行为就会和普通的方法一样，为了在新的线程中执行我们的代码，必须使用Thread.start()方法。</p>
+</li>
+<li><p>如何让正在运行的线程暂停一段时间？<br>我们可以使用Thread类的Sleep()方法让线程暂停一段时间。需要注意的是，这并不会让线程终止，一旦从休眠中唤醒线程，线程的状态将会被改变为Runnable，并且根据线程调度，它将得到执行。</p>
+</li>
+<li><p>你对线程优先级的理解是什么？<br>每一个线程都是有优先级的，一般来说，高优先级的线程在运行时会具有优先权，但这依赖于线程调度的实现，这个实现是和操作系统相关的(OS dependent)。我们可以定义线程的优先级，但是这并不能保证高优先级的线程会在低优先级的线程前执行。线程优先级是一个int变量(从1-10)，1代表最低优先级，10代表最高优先级。</p>
+</li>
+<li><p>什么是线程调度器(Thread Scheduler)和时间分片(Time Slicing)？<br>线程调度器是一个操作系统服务，它负责为Runnable状态的线程分配CPU时间。一旦我们创建一个线程并启动它，它的执行便依赖于线程调度器的实现。时间分片是指将可用的CPU时间分配给可用的Runnable线程的过程。分配CPU时间可以基于线程优先级或者线程等待的时间。线程调度并不受到Java虚拟机控制，所以由应用程序来控制它是更好的选择（也就是说不要让你的程序依赖于线程的优先级）。</p>
+</li>
+<li><p>在多线程中，什么是上下文切换(context-switching)？<br>上下文切换是存储和恢复CPU状态的过程，它使得线程执行能够从中断点恢复执行。上下文切换是多任务操作系统和多线程环境的基本特征。</p>
+</li>
+<li><p>你如何确保main()方法所在的线程是Java程序最后结束的线程？<br>我们可以使用Thread类的joint()方法来确保所有程序创建的线程在main()方法退出前结束。这里有一篇文章关于Thread类的joint()方法。</p>
+</li>
+</ol>
+<p>12.线程之间是如何通信的？<br>当线程间是可以共享资源时，线程间通信是协调它们的重要的手段。Object类中wait()\notify()\notifyAll()方法可以用于线程间通信关于资源的锁的状态。点击这里有更多关于线程wait, notify和notifyAll.</p>
+<p>13.为什么线程通信的方法wait(), notify()和notifyAll()被定义在Object类里？<br>Java的每个对象中都有一个锁(monitor，也可以成为监视器) 并且wait()，notify()等方法用于等待对象的锁或者通知其他线程对象的监视器可用。在Java的线程中并没有可供任何对象使用的锁和同步器。这就是为什么这些方法是Object类的一部分，这样Java的每一个类都有用于线程间通信的基本方法</p>
+<ol start="14">
+<li><p>为什么wait(), notify()和notifyAll()必须在同步方法或者同步块中被调用？<br>当一个线程需要调用对象的wait()方法的时候，这个线程必须拥有该对象的锁，接着它就会释放这个对象锁并进入等待状态直到其他线程调用这个对象上的notify()方法。同样的，当一个线程需要调用对象的notify()方法时，它会释放这个对象的锁，以便其他在等待的线程就可以得到这个对象锁。由于所有的这些方法都需要线程持有对象的锁，这样就只能通过同步来实现，所以他们只能在同步方法或者同步块中被调用。</p>
+</li>
+<li><p>为什么Thread类的sleep()和yield()方法是静态的？<br>Thread类的sleep()和yield()方法将在当前正在执行的线程上运行。所以在其他处于等待状态的线程上调用这些方法是没有意义的。这就是为什么这些方法是静态的。它们可以在当前正在执行的线程中工作，并避免程序员错误的认为可以在其他非运行线程调用这些方法。</p>
+</li>
+</ol>
+<p>16.如何确保线程安全？<br>在Java中可以有很多方法来保证线程安全——同步，使用原子类(atomic concurrent classes)，实现并发锁，使用volatile关键字，使用不变类和线程安全类。在线程安全教程中，你可以学到更多。</p>
+<ol start="17">
+<li><p>volatile关键字在Java中有什么作用？<br>当我们使用volatile关键字去修饰变量的时候，所以线程都会直接读取该变量并且不缓存它。这就确保了线程读取到的变量是同内存中是一致的。</p>
+</li>
+<li><p>同步方法和同步块，哪个是更好的选择？<br>同步块是更好的选择，因为它不会锁住整个对象（当然你也可以让它锁住整个对象）。同步方法会锁住整个对象，哪怕这个类中有多个不相关联的同步块，这通常会导致他们停止执行并需要等待获得这个对象上的锁。</p>
+</li>
+</ol>
+<p>19.如何创建守护线程？<br>使用Thread类的setDaemon(true)方法可以将线程设置为守护线程，需要注意的是，需要在调用start()方法前调用这个方法，否则会抛出IllegalThreadStateException异常。</p>
+<ol start="20">
+<li>什么是ThreadLocal?<br>ThreadLocal用于创建线程的本地变量，我们知道一个对象的所有线程会共享它的全局变量，所以这些变量不是线程安全的，我们可以使用同步技术。但是当我们不想使用同步的时候，我们可以选择ThreadLocal变量。</li>
+</ol>
+<p>每个线程都会拥有他们自己的Thread变量，它们可以使用get()\set()方法去获取他们的默认值或者在线程内部改变他们的值。ThreadLocal实例通常是希望它们同线程状态关联起来是private static属性。在ThreadLocal例子这篇文章中你可以看到一个关于ThreadLocal的小程序。</p>
+<ol start="21">
+<li>什么是Thread Group？为什么建议使用它？<br>ThreadGroup是一个类，它的目的是提供关于线程组的信息。</li>
+</ol>
+<p>ThreadGroup API比较薄弱，它并没有比Thread提供了更多的功能。它有两个主要的功能：一是获取线程组中处于活跃状态线程的列表；二是设置为线程设置未捕获异常处理器(ncaught exception handler)。但在Java 1.5中Thread类也添加了setUncaughtExceptionHandler(UncaughtExceptionHandler eh) 方法，所以ThreadGroup是已经过时的，不建议继续使用。</p>
+<ol start="22">
+<li><p>什么是Java线程转储(Thread Dump)，如何得到它？<br>线程转储是一个JVM活动线程的列表，它对于分析系统瓶颈和死锁非常有用。有很多方法可以获取线程转储——使用Profiler，Kill -3命令，jstack工具等等。我更喜欢jstack工具，因为它容易使用并且是JDK自带的。由于它是一个基于终端的工具，所以我们可以编写一些脚本去定时的产生线程转储以待分析。读这篇文档可以了解更多关于产生线程转储的知识。</p>
+</li>
+<li><p>什么是死锁(Deadlock)？如何分析和避免死锁？<br>死锁是指两个以上的线程永远阻塞的情况，这种情况产生至少需要两个以上的线程和两个以上的资源。</p>
+</li>
+</ol>
+<p>分析死锁，我们需要查看Java应用程序的线程转储。我们需要找出那些状态为BLOCKED的线程和他们等待的资源。每个资源都有一个唯一的id，用这个id我们可以找出哪些线程已经拥有了它的对象锁。</p>
+<p>避免嵌套锁，避免嵌套的且反序的锁，只在需要的地方使用锁和避免无限期等待是避免死锁的通常办法。</p>
+<ol start="24">
+<li>什么是Java Timer类？如何创建一个有特定时间间隔的任务？<br>java.util.Timer是一个工具类，可以用于安排一个线程在未来的某个特定时间执行。Timer类可以用安排一次性任务或者周期任务。</li>
+</ol>
+<p>java.util.TimerTask是一个实现了Runnable接口的抽象类，我们需要去继承这个类来创建我们自己的定时任务并使用Timer去安排它的执行。</p>
+<p>这里有关于java Timer的例子。</p>
+<ol start="25">
+<li>什么是线程池？如何创建一个Java线程池？<br>一个线程池管理了一组工作线程，同时它还包括了一个用于放置等待执行的任务的队列。</li>
+</ol>
+<p>java.util.concurrent.Executors提供了一个 java.util.concurrent.Executor接口的实现用于创建线程池。线程池例子展现了如何创建和使用线程池，或者阅读ScheduledThreadPoolExecutor例子，了解如何创建一个周期任务。</p>
+<p>Java并发面试问题</p>
+<ol>
+<li>什么是原子操作？在Java Concurrency API中有哪些原子类(atomic classes)？<br>原子操作是指一个不受其他操作影响的操作任务单元。原子操作是在多线程环境下避免数据不一致必须的手段。</li>
+</ol>
+<p>int++并不是一个原子操作，所以当一个线程读取它的值并加1时，另外一个线程有可能会读到之前的值，这就会引发错误。</p>
+<p>为了解决这个问题，必须保证增加操作是原子的，在JDK1.5之前我们可以使用同步技术来做到这一点。到JDK1.5，java.util.concurrent.atomic包提供了int和long类型的装类，它们可以自动的保证对于他们的操作是原子的并且不需要使用同步。可以阅读这篇文章来了解Java的atomic类。</p>
+<ol start="2">
+<li>Java Concurrency API中的Lock接口(Lock interface)是什么？对比同步它有什么优势？<br>Lock接口比同步方法和同步块提供了更具扩展性的锁操作。他们允许更灵活的结构，可以具有完全不同的性质，并且可以支持多个相关类的条件对象。</li>
+</ol>
+<p>它的优势有：</p>
+<p>可以使锁更公平<br>可以使线程在等待锁的时候响应中断<br>可以让线程尝试获取锁，并在无法获取锁的时候立即返回或者等待一段时间<br>可以在不同的范围，以不同的顺序获取和释放锁<br>阅读更多关于锁的例子</p>
+<ol start="3">
+<li>什么是Executors框架？<br>Executor框架同java.util.concurrent.Executor 接口在Java 5中被引入。Executor框架是一个根据一组执行策略调用，调度，执行和控制的异步任务的框架。</li>
+</ol>
+<p>无限制的创建线程会引起应用程序内存溢出。所以创建一个线程池是个更好的的解决方案，因为可以限制线程的数量并且可以回收再利用这些线程。利用Executors框架可以非常方便的创建一个线程池，阅读这篇文章可以了解如何使用Executor框架创建一个线程池。</p>
+<ol start="4">
+<li>什么是阻塞队列？如何使用阻塞队列来实现生产者-消费者模型？<br>java.util.concurrent.BlockingQueue的特性是：当队列是空的时，从队列中获取或删除元素的操作将会被阻塞，或者当队列是满时，往队列里添加元素的操作会被阻塞。</li>
+</ol>
+<p>阻塞队列不接受空值，当你尝试向队列中添加空值的时候，它会抛出NullPointerException。</p>
+<p>阻塞队列的实现都是线程安全的，所有的查询方法都是原子的并且使用了内部锁或者其他形式的并发控制。</p>
+<p>BlockingQueue 接口是java collections框架的一部分，它主要用于实现生产者-消费者问题。</p>
+<p>阅读这篇文章了解如何使用阻塞队列实现生产者-消费者问题。</p>
+<ol start="5">
+<li>什么是Callable和Future?<br>Java 5在concurrency包中引入了java.util.concurrent.Callable 接口，它和Runnable接口很相似，但它可以返回一个对象或者抛出一个异常。</li>
+</ol>
+<p>Callable接口使用泛型去定义它的返回类型。Executors类提供了一些有用的方法去在线程池中执行Callable内的任务。由于Callable任务是并行的，我们必须等待它返回的结果。java.util.concurrent.Future对象为我们解决了这个问题。在线程池提交Callable任务后返回了一个Future对象，使用它我们可以知道Callable任务的状态和得到Callable返回的执行结果。Future提供了get()方法让我们可以等待Callable结束并获取它的执行结果。</p>
+<p>阅读这篇文章了解更多关于Callable，Future的例子。</p>
+<ol start="6">
+<li>什么是FutureTask?<br>FutureTask是Future的一个基础实现，我们可以将它同Executors使用处理异步任务。通常我们不需要使用FutureTask类，单当我们打算重写Future接口的一些方法并保持原来基础的实现是，它就变得非常有用。我们可以仅仅继承于它并重写我们需要的方法。阅读Java FutureTask例子，学习如何使用它。</li>
+</ol>
+<p>7.什么是并发容器的实现？<br>Java集合类都是快速失败的，这就意味着当集合被改变且一个线程在使用迭代器遍历集合的时候，迭代器的next()方法将抛出ConcurrentModificationException异常。</p>
+<p>并发容器支持并发的遍历和并发的更新。</p>
+<p>主要的类有ConcurrentHashMap, CopyOnWriteArrayList 和CopyOnWriteArraySet，阅读这篇文章了解如何避免ConcurrentModificationException。</p>
+<ol start="8">
+<li>Executors类是什么？<br>Executors为Executor，ExecutorService，ScheduledExecutorService，ThreadFactory和Callable类提供了一些工具方法。</li>
+</ol>
+<p>Executors可以用于方便的创建线程池。</p>
+
     </div>
 
     
@@ -497,7 +1069,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#分数组成"><span class="nav-number">1.</span> <span class="nav-text">分数组成</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#lecture-quiz"><span class="nav-number">2.</span> <span class="nav-text">lecture-quiz</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#week3"><span class="nav-number">2.1.</span> <span class="nav-text">week3</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#week4"><span class="nav-number">2.2.</span> <span class="nav-text">week4</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#week5"><span class="nav-number">2.3.</span> <span class="nav-text">week5</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#week6"><span class="nav-number">2.4.</span> <span class="nav-text">week6</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#lecture"><span class="nav-number">2.4.1.</span> <span class="nav-text">lecture</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#检查异常-非检查异常"><span class="nav-number">2.4.1.1.</span> <span class="nav-text">检查异常/非检查异常</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#浅层复制构造器-深层复制构造器"><span class="nav-number">2.4.1.2.</span> <span class="nav-text">浅层复制构造器/深层复制构造器</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#super-super-a-b"><span class="nav-number">2.4.1.3.</span> <span class="nav-text">super()/super(a,b)</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#week8"><span class="nav-number">2.5.</span> <span class="nav-text">week8</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#lecture-1"><span class="nav-number">2.5.1.</span> <span class="nav-text">lecture</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#week9"><span class="nav-number">2.6.</span> <span class="nav-text">week9</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#lecture-2"><span class="nav-number">2.6.1.</span> <span class="nav-text">lecture</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#lab-exercise"><span class="nav-number">3.</span> <span class="nav-text">lab-exercise</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#week1"><span class="nav-number">3.1.</span> <span class="nav-text">week1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#week2"><span class="nav-number">3.2.</span> <span class="nav-text">week2</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#week4-1"><span class="nav-number">3.3.</span> <span class="nav-text">week4</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#lab4-3"><span class="nav-number">3.3.1.</span> <span class="nav-text">lab4.3</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#exercise-4-3"><span class="nav-number">3.3.2.</span> <span class="nav-text">exercise 4.3</span></a></li></ol></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#分数组成"><span class="nav-number">1.</span> <span class="nav-text">分数组成</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#lecture-quiz"><span class="nav-number">2.</span> <span class="nav-text">lecture-quiz</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#week2"><span class="nav-number">2.1.</span> <span class="nav-text">week2</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#week3"><span class="nav-number">2.2.</span> <span class="nav-text">week3</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#week4"><span class="nav-number">2.3.</span> <span class="nav-text">week4</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#week5"><span class="nav-number">2.4.</span> <span class="nav-text">week5</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#week6"><span class="nav-number">2.5.</span> <span class="nav-text">week6</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#lecture"><span class="nav-number">2.5.1.</span> <span class="nav-text">lecture</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#检查异常-非检查异常"><span class="nav-number">2.5.1.1.</span> <span class="nav-text">检查异常/非检查异常</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#浅层复制构造器-深层复制构造器"><span class="nav-number">2.5.1.2.</span> <span class="nav-text">浅层复制构造器/深层复制构造器</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#super-super-a-b"><span class="nav-number">2.5.1.3.</span> <span class="nav-text">super()/super(a,b)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#lecture-exercise"><span class="nav-number">2.5.1.4.</span> <span class="nav-text">lecture exercise</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#week8"><span class="nav-number">2.6.</span> <span class="nav-text">week8</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#lecture-1"><span class="nav-number">2.6.1.</span> <span class="nav-text">lecture</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#lecture-quiz-1"><span class="nav-number">2.6.2.</span> <span class="nav-text">lecture quiz</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#week9"><span class="nav-number">2.7.</span> <span class="nav-text">week9</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#lecture-2"><span class="nav-number">2.7.1.</span> <span class="nav-text">lecture</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#lecture-quiz-2"><span class="nav-number">2.7.2.</span> <span class="nav-text">lecture-quiz</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#lab"><span class="nav-number">2.7.3.</span> <span class="nav-text">lab</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#week10"><span class="nav-number">2.8.</span> <span class="nav-text">week10</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#lecture-3"><span class="nav-number">2.8.1.</span> <span class="nav-text">lecture</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#lecture-quiz-3"><span class="nav-number">2.8.2.</span> <span class="nav-text">lecture-quiz</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#week11"><span class="nav-number">2.9.</span> <span class="nav-text">week11</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#week11-quiz"><span class="nav-number">2.9.1.</span> <span class="nav-text">week11 quiz</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#week12"><span class="nav-number">2.10.</span> <span class="nav-text">week12</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#quiz12"><span class="nav-number">2.10.1.</span> <span class="nav-text">quiz12</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#week13"><span class="nav-number">2.11.</span> <span class="nav-text">week13</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#lab-exercise"><span class="nav-number">3.</span> <span class="nav-text">lab-exercise</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#week1"><span class="nav-number">3.1.</span> <span class="nav-text">week1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#week2-1"><span class="nav-number">3.2.</span> <span class="nav-text">week2</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#week4-1"><span class="nav-number">3.3.</span> <span class="nav-text">week4</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#lab4-3"><span class="nav-number">3.3.1.</span> <span class="nav-text">lab4.3</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#exercise-4-3"><span class="nav-number">3.3.2.</span> <span class="nav-text">exercise 4.3</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#完全总结-必看"><span class="nav-number">4.</span> <span class="nav-text">完全总结 必看</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#stanley"><span class="nav-number">5.</span> <span class="nav-text">stanley</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Testing"><span class="nav-number">6.</span> <span class="nav-text">Testing</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Test-Driven-Development-and-Corner-Cases"><span class="nav-number">6.1.</span> <span class="nav-text">Test Driven Development and Corner Cases</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#regression-testing"><span class="nav-number">6.2.</span> <span class="nav-text">regression testing</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#automated-regression-testing"><span class="nav-number">6.3.</span> <span class="nav-text">automated regression testing</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#unit-testing"><span class="nav-number">6.4.</span> <span class="nav-text">unit testing</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Specification"><span class="nav-number">7.</span> <span class="nav-text">Specification</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Specification-Structure"><span class="nav-number">7.1.</span> <span class="nav-text">Specification Structure</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Three-Dimensions-for-Comparing-Specs"><span class="nav-number">7.2.</span> <span class="nav-text">Three Dimensions for Comparing Specs</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#invariant"><span class="nav-number">8.</span> <span class="nav-text">invariant</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Exception"><span class="nav-number">9.</span> <span class="nav-text">Exception</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Checked-and-Unchecked-Exceptions"><span class="nav-number">9.1.</span> <span class="nav-text">Checked and Unchecked Exceptions</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Assertions"><span class="nav-number">10.</span> <span class="nav-text">Assertions</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#defensive-programming"><span class="nav-number">10.1.</span> <span class="nav-text">defensive programming</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#assert"><span class="nav-number">10.2.</span> <span class="nav-text">assert</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Modularity"><span class="nav-number">11.</span> <span class="nav-text">Modularity</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#期末试卷"><span class="nav-number">12.</span> <span class="nav-text">期末试卷</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#自定义异常类"><span class="nav-number">12.1.</span> <span class="nav-text">自定义异常类</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#复习"><span class="nav-number">13.</span> <span class="nav-text">复习</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#泛型接口，泛型类，泛型方法"><span class="nav-number">13.1.</span> <span class="nav-text">泛型接口，泛型类，泛型方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ADT和抽象类"><span class="nav-number">13.2.</span> <span class="nav-text">ADT和抽象类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#死锁"><span class="nav-number">13.3.</span> <span class="nav-text">死锁</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HashMap"><span class="nav-number">14.</span> <span class="nav-text">HashMap</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#HashMap的底层数据结构？"><span class="nav-number">14.1.</span> <span class="nav-text">HashMap的底层数据结构？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HashMap的存取原理？"><span class="nav-number">14.2.</span> <span class="nav-text">HashMap的存取原理？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Java7和Java8中HashMap的区别"><span class="nav-number">14.3.</span> <span class="nav-text">Java7和Java8中HashMap的区别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#为什么HashMap线程不安全"><span class="nav-number">14.4.</span> <span class="nav-text">为什么HashMap线程不安全</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#有什么线程安全的类代替吗"><span class="nav-number">14.5.</span> <span class="nav-text">有什么线程安全的类代替吗</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#默认初始化大小是多少？为啥是这么多？为啥大小都是2的幂？"><span class="nav-number">14.6.</span> <span class="nav-text">默认初始化大小是多少？为啥是这么多？为啥大小都是2的幂？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HashMap的扩容方式？负载因子是多少？为什么是这么多？"><span class="nav-number">14.7.</span> <span class="nav-text">HashMap的扩容方式？负载因子是多少？为什么是这么多？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HashMap的主要参数都有哪些？"><span class="nav-number">14.8.</span> <span class="nav-text">HashMap的主要参数都有哪些？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HashMap是怎么处理hash碰撞的？"><span class="nav-number">14.9.</span> <span class="nav-text">HashMap是怎么处理hash碰撞的？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HashMap-和-Hashtable-有什么区别？"><span class="nav-number">14.10.</span> <span class="nav-text">HashMap 和 Hashtable 有什么区别？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#为什么重写-equals-时一定要重写-hashCode-？"><span class="nav-number">14.11.</span> <span class="nav-text">为什么重写 equals() 时一定要重写 hashCode()？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HashMap-和HashSet区别"><span class="nav-number">14.12.</span> <span class="nav-text">HashMap 和HashSet区别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ConcurrentHashMap线程安全的具体实现方式-底层具体实现"><span class="nav-number">14.13.</span> <span class="nav-text">ConcurrentHashMap线程安全的具体实现方式/底层具体实现</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#java多线程，并发"><span class="nav-number">15.</span> <span class="nav-text">java多线程，并发</span></a></li></ol></div>
         
       </div>
       <!--/noindex-->
@@ -515,7 +1087,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">66</span>
+          <span class="site-state-item-count">67</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

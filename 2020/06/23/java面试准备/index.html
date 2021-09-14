@@ -1,0 +1,1013 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.9.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.4.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.4.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.4.0">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.4.0" color="#222">
+
+<link rel="stylesheet" href="/css/main.css?v=7.4.0">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-corner-indicator.min.css?v=1.0.2">
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.4.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":true,"scrollpercent":true},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
+    },
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="String判断指向地址or值 只要记住一点！1.编译期决定 -&amp;gt; 一定指向常量池2.运行时决定(且不是intern()) -&amp;gt; 一定指向堆3.== 判断地址是否相同  编译期进入常量池： String a = “123”; “1”+”2”+”3”;运行期堆上分配： String b = new String(“123”); a+a+a;a==b判断的是指向的对象的地址，虽然a b对象">
+<meta property="og:type" content="article">
+<meta property="og:title" content="面试准备-java">
+<meta property="og:url" content="https://lucifinil-x.github.io/2020/06/23/java面试准备/index.html">
+<meta property="og:site_name" content="Sanctuary">
+<meta property="og:description" content="String判断指向地址or值 只要记住一点！1.编译期决定 -&amp;gt; 一定指向常量池2.运行时决定(且不是intern()) -&amp;gt; 一定指向堆3.== 判断地址是否相同  编译期进入常量池： String a = “123”; “1”+”2”+”3”;运行期堆上分配： String b = new String(“123”); a+a+a;a==b判断的是指向的对象的地址，虽然a b对象">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2021-05-12T08:41:34.366Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="面试准备-java">
+<meta name="twitter:description" content="String判断指向地址or值 只要记住一点！1.编译期决定 -&amp;gt; 一定指向常量池2.运行时决定(且不是intern()) -&amp;gt; 一定指向堆3.== 判断地址是否相同  编译期进入常量池： String a = “123”; “1”+”2”+”3”;运行期堆上分配： String b = new String(“123”); a+a+a;a==b判断的是指向的对象的地址，虽然a b对象">
+  <link rel="canonical" href="https://lucifinil-x.github.io/2020/06/23/java面试准备/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>面试准备-java | Sanctuary</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Sanctuary</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+      
+      
+      
+        
+        <li class="menu-item menu-item-home">
+      
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-tags">
+      
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-categories">
+      
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-archives">
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a href="javascript:;" class="popup-trigger">
+        
+          <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+      </li>
+    
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="搜索..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+            
+
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+      <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block post">
+    <link itemprop="mainEntityOfPage" href="https://lucifinil-x.github.io/2020/06/23/java面试准备/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Lucifinil">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/touxiang1.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Sanctuary">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">面试准备-java
+
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2020-06-23 01:26:48" itemprop="dateCreated datePublished" datetime="2020-06-23T01:26:48+08:00">2020-06-23</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-05-12 16:41:34" itemprop="dateModified" datetime="2021-05-12T16:41:34+08:00">2021-05-12</time>
+              </span>
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/面试/" itemprop="url" rel="index"><span itemprop="name">面试</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            <span class="post-meta-item" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+        
+      
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2020/06/23/java面试准备/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2020/06/23/java面试准备/" itemprop="commentCount"></span></a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="String"><a href="#String" class="headerlink" title="String"></a>String</h2><h3 id="判断指向地址or值"><a href="#判断指向地址or值" class="headerlink" title="判断指向地址or值"></a>判断指向地址or值</h3><ul>
+<li><p>只要记住一点！<br>1.编译期决定 -&gt; 一定指向常量池<br>2.运行时决定(且不是intern()) -&gt; 一定指向堆<br>3.== 判断地址是否相同</p>
+</li>
+<li><p>编译期进入常量池： String a = “123”; “1”+”2”+”3”;<br>运行期堆上分配： String b = new String(“123”); a+a+a;<br>a==b判断的是指向的对象的地址，虽然a b对象的值相同，但是a指向常量池中对象的地址，b指向堆内存上对象的地址。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">System.out.println(a == b); //false</span><br><span class="line">System.out.println(a ==&quot;1&quot;+&quot;2&quot;+&quot;3&quot;);//true</span><br><span class="line">String s1=&quot;1&quot;;</span><br><span class="line">String s2=&quot;2&quot;;</span><br><span class="line">String s3=&quot;3&quot;;</span><br><span class="line">System.out.println(a ==s1+s2+s3);//false a在常量池，s1+s2+s3是运行时堆上分配</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>final Stirng s1 = “1”;<br>final是类可被继承(函数不能重写)，变量不可被修改；这时的编译期s1指向的就是常量池中的”1”.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">String s0=&quot;12&quot;;</span><br><span class="line">final String s1 = &quot;1&quot;; //常量池</span><br><span class="line">String s2=&quot;2&quot;+s1; //直接常量池</span><br><span class="line">System.out.println(s0 == s2);//true 常量池==常量池</span><br><span class="line">System.out.println(s0 == &quot;1&quot;+s1);//true</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>String s1 = new String(“abc”);<br>s1.intern()会去常量池中找相同值的对象，如果有返回常量池地址,没有a==b返回false.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">String a = &quot;123&quot;; //常量池</span><br><span class="line">String b = new String(&quot;123&quot;); //堆</span><br><span class="line">System.out.println(a == b); //false</span><br><span class="line">System.out.println(a == b.intern()); //true 常量池==常量池 b.intern()先去常量池中找123</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul><a id="more"></a>
+<h2 id="Validate验证器"><a href="#Validate验证器" class="headerlink" title="Validate验证器"></a>Validate验证器</h2><h2 id="闲话"><a href="#闲话" class="headerlink" title="闲话"></a>闲话</h2><ol>
+<li>我认为我现在面对的是各个主体之间错综复杂的关系。我需要用逻辑去找到各个主体之间的联系与怎样联系。再找到主体之间的起始通路与终点。<br>就像是容器中的组件，一个连接另一个，一个注入另一个。<br>好的文章通过(作者的逻辑)带着我们从始到终，解释个体之间的联系。</li>
+</ol>
+<h3 id="equals-和"><a href="#equals-和" class="headerlink" title="equals 和 =="></a>equals 和 ==</h3><p>== 比较的索引地址。<br>equals比较值</p>
+<p>“string” == “string”; //true<br>String x = “string”;<br>String z = new String(“string”);<br>x == z; //false</p>
+<h2 id="HashMap"><a href="#HashMap" class="headerlink" title="HashMap"></a>HashMap</h2><ol>
+<li>hashmap在jdk1.7和jdk1.8版本的区别</li>
+</ol>
+<ul>
+<li>数据结构不同：</li>
+</ul>
+<p>1.7中的HashMap是数组+链表的结构 1.8中的HashMap是数组+链表+红黑树的结构</p>
+<ul>
+<li>链表插入方式不同：</li>
+</ul>
+<p>1.7使用的是头插法,头插法在进行扩容时存在线程安全问题导致链表死循环</p>
+<p>1.8使用的是尾插法</p>
+<ul>
+<li>扩容后重新计算索引的方式不同：</li>
+</ul>
+<p>1.7将会使用扩容后的大小重新与hash计算索引</p>
+<p>1.8会判断之前hash中需要加入计算索引位置是0还是1，是0则保持原位，1则在现在索引的基础上加上新增的容量则是计算后的索引</p>
+<ol start="2">
+<li><p>什么时候创建数组？为什么？<br>数组是在map.put(key,value )的时候创建的。<br>数组并不是在new HashMap对象的时候创建的,因为创建对象就会在堆内存里占用连续的内存空间</p>
+</li>
+<li><p>数组+链表的结构怎么存放键值对数据？<br>Put进键值对时，是在hashmap的16格(0-15)中加入键值对，当新加入的键值对所在的数组格子位置里有值的时候，就会和格子里的键值对形成链表，这个叫做hash冲突。<br>数组查询时间复杂度是O(1),链表查询复杂度是O(n).<br>所以要提高查询效率，就要减少链表的长度，当数组容量使用超过16x0.75时，就会进行数组扩容，减少hash冲突，提高查询效率。</p>
+</li>
+</ol>
+<ol start="4">
+<li><p>什么时候引入红黑树？是为了什么？<br>当链表长度大于8时，如果数组容量超过64，数组格子里的链表结构转换为红黑树<br>如果数组容量小于64，只会进行数组扩容<br>引入红黑树为了增加查询效率<br>时间复杂度变成对数阶O(log2n)</p>
+</li>
+<li><p>怎么确定键值对在数组中的位置？<br>key的hash值与数组最大索引进行与运算</p>
+</li>
+<li><p>hashmap存储过程=hashmap的工作原理？</p>
+</li>
+</ol>
+<ul>
+<li>根据key计算一个hash值</li>
+<li>在put时判断数组是否存在，如果不存在调用resize()创建默认容量为16的数组</li>
+<li>key的hash值与数组最大索引进行位运算(与运算)，确定node在数组中的位置</li>
+<li>判断该位置是否有元素，如果没有元素，会新建一个node放在该位置；如果有元素，判断key是否完全相同，吧原来的node赋值给一个变量</li>
+<li>此时再判断该node的位置是红黑树还是链表</li>
+<li>如果是红黑树，以红黑树的方式将node放在红黑树上(特别的二叉树)</li>
+<li>如果是链表，尾插法：遍历链表，将node放在最后一位</li>
+<li>放完以后，就要判断当链表长度大于8时，如果数组容量超过64，数组格子里的链表结构转换为红黑树；如果数组容量小于64，只会进行数组扩容</li>
+<li>返回被覆盖的值</li>
+<li>判断整个数组是否需要扩容</li>
+</ul>
+<ol start="7">
+<li><p>hashmap的扩容为什么每次都是2次幂？<br>减少hash碰撞</p>
+</li>
+<li><p>hashmap的线程安全问题发生在哪个阶段？<br>线程安全问题产生的原因：多个线程访问同一个资源。<br>发生在put放值(链表/红黑树放结点)进行判断的时候，p.next=newNode().<br>多个线程都进来了，newNode()在赋值的时候就会漏点。</p>
+</li>
+<li><p>如何解决线程安全问题？<br>concurrentHashMap就是使用锁分段技术专门用来实现线程安全的<br>底层采用分段的数组+链表实现，线程安全。<br>ConcurrentHashMap是使用了锁分段技术来保证线程安全的。</p>
+</li>
+</ol>
+<p>锁分段技术：首先将数据分成一段一段的存储，然后给每一段数据配一把锁，当一个线程占用锁访问其中一个段数据的时候，其他段的数据也能被其他线程访问。</p>
+<ol start="10">
+<li>位运算有哪些？<br>左移 0011-&gt;0110<br>右移 0110-&gt;0011<br>或运算 一真则真<br>与运算 一假则假<br>按位取反 1变0<br>异或运算 相同为0 不同为1</li>
+</ol>
+<h2 id="同步"><a href="#同步" class="headerlink" title="同步"></a>同步</h2><ol>
+<li>cynchronized关键字保证同步，同步代码块和同步函数的区别？<br>同步函数: 用this作锁，因为函数必须被对象调用；线程任务只需要一个同步时可以用。<br>同步代码块： 任意对象作锁；线程任务需要多个同步 时，必须用不同的锁来区分。</li>
+</ol>
+<p>所以同步代码块比较常用。</p>
+<ol start="2">
+<li><p>饿汉式和懒汉式<br>饿汉式不会有多线程并发问题，在类创建的同时就已经创建好一个静态的对象供系统使用,以后不在改变。<br>懒汉式在线程任务中new对象，并发访问就有安全隐患，应该加入同步机制解决安全问题。</p>
+</li>
+<li><p>一个线程不能多次start，会报错.IllegalThreadStateException</p>
+</li>
+</ol>
+<h2 id="redis"><a href="#redis" class="headerlink" title="redis"></a>redis</h2><ol>
+<li>redis是什么？<br>redis是内存数据库(key-value 非关系型 没有SQL)，存放经常被访问的数据(热数据)。缓存中间件(有redisCacheManager)<br>单进程单线程模型的KV数据库。<br>value的类型：string,list,hash,set,sorted set.<br>但是规避set操作，会影响性能</li>
+</ol>
+<p>redis可以拦截一部分请求，降低接触mysql的频率</p>
+<ol start="2">
+<li>在你的项目中redis是如何运用的？</li>
+</ol>
+<ul>
+<li><p>目前我的项目里整合了shiro-redis，为之后的集群和负载均衡(mysql数据库系统不会因为单个崩溃而崩溃)做准备。但是目前项目很简单，数据量也比较少，还没有做集群和负载均衡。</p>
+</li>
+<li><p>现在是用redis来存储shiro的权限数据和会话信息(Session会话管理是shiro的作用之一，体现在ShiroConfig中的SessionManager函数)。</p>
+</li>
+</ul>
+<ol start="3">
+<li><p>磁盘寻址：毫秒级别，慢<br>内存寻址：纳秒级别，快<br>文件存储是线性的，文件读取就要把文件从头开始全部读一遍。<br>文件读取是全量IO,磁盘IO. 磁盘IO:百兆级别100mb</p>
+</li>
+<li><p>缓存击穿<br>请求缓存中没有但数据库中有的同一条数据（一般是缓存时间到期），这时由于并发用户特别多，同时读缓存没读到数据，又同时去数据库去取数据<br>解决：一般不解决</p>
+</li>
+<li><p>缓存穿透(击穿和雪崩的本质)<br>用户一直发起请求查找缓存(redis)和数据库中都没有的数据,导致每次请求都要mysql数据库中查找，流量大的时候mysql数据库就挂了<br>解决1：布隆过滤器，用一定的(拦截)错误率换取空间<br>解决2：查询的value返回null,存在redis中</p>
+</li>
+<li><p>缓存雪崩<br>redis缓存中不同数据大批量到过期时间，去数据库中查询，就崩了<br>解决：<br>缓存数据的过期时间设置随机，防止同一时间大量数据过期现象发生。<br>如果缓存数据库是分布式部署，将热点数据均匀分布在不同搞得缓存数据库中。<br>设置热点数据永远不过期。<br>二级缓存</p>
+</li>
+</ol>
+<h2 id="apache-shiro"><a href="#apache-shiro" class="headerlink" title="apache shiro"></a>apache shiro</h2><ol>
+<li><p>shiro是什么？<br>shiro是强大且易用的java安全框架，执行 身份验证(登录)、授权、会话管理、密码学。</p>
+</li>
+<li><p>shiro的六大作用是什么？</p>
+</li>
+</ol>
+<ul>
+<li>Authentication 认证 -用户登录</li>
+<li>Authorization 授权 -给用户哪些权限</li>
+<li>Cryptography 安全数据加密</li>
+<li>Session Managment 会话管理</li>
+<li>Web intergration web 系统集成</li>
+<li>Interations 集成其他的应用 -比如集成spring/缓存框架redis</li>
+</ul>
+<ol start="3">
+<li>shiro的核心API(接口/是都需要重写的函数！)都是什么？有什么作用？</li>
+</ol>
+<ul>
+<li>Subject: 用户主体 (把操作交给SecurityManager,要关联它)</li>
+<li>SecurityManager: 安全管理器 （关联Reaml）</li>
+<li>Realm: Shiro连接数据的桥梁,shiro想要查询数据库/配置文件获取用户信息，这些事情都要靠realm来完成。<br>realm中执行认证和授权。认证中具体实现用户名和密码匹配</li>
+</ul>
+<ol start="4">
+<li>以上shiro三个API之间的关系？ Subject关联SecurityManager,SecurityManager关联Realm</li>
+</ol>
+<p>SecurityManager关联Realm：<br>DefaultWebSecurityManager securityManager = new DefaultWebSecurityManager(accountRealm);</p>
+<p>SecurityManager关联Subject：<br>关联函数：A.setB 如：securityManager.setSubjectDAO(subjectDAO);</p>
+<ol start="5">
+<li>怎么整合shiro-redis-springboot?</li>
+</ol>
+<ul>
+<li>导shiro-redis-springboot依赖和jwt工具包和hutool工具包</li>
+<li>写shiro的配置类ShiroConfig：<ol>
+<li>让shiro的权限数据和会话信息存在redis中，引入了redisSessionDAO、redisCacheManager<br>securityManager.setSessionManager(sessionManager.setSessionDAO(<strong>redisSessionDAO</strong>));//简写<br>securityManager.setCacheManager(<strong>redisCacheManager</strong>);//配置redis缓存</li>
+<li>重写SessionManager和DefaultWebSecurityManager，关闭shiro自带的session方式，这样用户就不再能通过session方式登录shiro。后面将采用jwt凭证登录。<br>DefaultWebSecurityManager中Subject关联SecurityManager,SecurityManager关联Realm。</li>
+<li>所有的路由都需要经过JwtFilter这个过滤器，然后判断请求头中是否含有jwt的信息，有就登录，没有就跳过。跳过之后，有Controller中的shiro注解进行再次拦截，比如@RequiresAuthentication，这样控制权限访问。</li>
+</ol>
+</li>
+<li>写shiro进行登录或者权限校验的逻辑类AccountRealm：<br>重写3个方法，分别是：<br>supports：为了让realm支持jwt的凭证校验<br>doGetAuthorizationInfo：权限校验<br>doGetAuthenticationInfo：登录认证校验 -拿到需要验证的token，解析token拿到用户id,根据id去拿到用户对象，判断用户状态。将登陆成功的用户对象中的信息复制到profile对象中，然后返回一个登录成功(已认证)的用户信息载体对象SimpleAuthenticationInfo)(shiro里的)</li>
+</ul>
+<ol start="6">
+<li><h2 id="用户登录信息-Session-shiro-redis"><a href="#用户登录信息-Session-shiro-redis" class="headerlink" title="用户登录信息-Session-shiro-redis"></a>用户登录信息-Session-shiro-redis</h2><p>小小总结：用户登录信息存放在Session中；Session被shiro管理；shiro的信息(权限数据、会话管理信息)存放在redis中。</p>
+</li>
+</ol>
+<p>将shiro内部构建展示出来，上面这些连接变成了：<br>用户登录信息-Session-subject-securitymanager-redis-realm-mysql</p>
+<h2 id="jwt"><a href="#jwt" class="headerlink" title="jwt"></a>jwt</h2><ol>
+<li>jwt的构成 = 加密header+加密payload+加密signature 这三个拼在一起的字符串</li>
+</ol>
+<ul>
+<li>头部（header)：声明类型，这里是jwt；声明加密的算法。</li>
+<li>载荷（payload, 存放有效信息类似于飞机上承载的物品)：标准中注册的声明；公共的声明；私有的声明</li>
+<li>签证（signature)：用header中声明加密的算法对(加密后的header+加密后的payload+secret)组合加密</li>
+</ul>
+<ol start="2">
+<li><p>认为jwt=token</p>
+</li>
+<li><p>用户登录和请求的流程<br>用户使用用户名密码来请求服务器<br>服务器进行验证用户的信息<br>服务器通过验证发送给用户一个token<br>客户端存储token，并在每次请求时附送上这个token值<br>服务端验证token值，如果验证通过就会返回相应的资源(给接口)<br>这个token必须要在每次请求时传递给服务端，它应该保存在请求头里</p>
+</li>
+<li><p>项目中是用的jwt凭证登录。</p>
+</li>
+<li><p>jwt不需要在服务端保存会话信息Session, 用户信息ession保存在客户端  每次请求校验，通过服务端的私钥和过期时间(定义在yml里面)来校验合法性</p>
+</li>
+<li><p>项目中的jwtUtil是jwt的工具类。<br>四个注解：<br>@Slf4j -为类提供一个 属性名为log 的 log4j 日志对象，调用打印日志<br>@Data -提供类所有属性的 getting 和 setting 方法，此外还提供了equals、canEqual、hashCode、toString 方法<br>@Component -组件<br>@ConfigurationProperties(prefix = “example.demo.jwt”) -外部化配置，在配置文件/配置类外面写配置相关的。这里绑定和验证一些外部属性（.Properties文件中example.demo.jwt下面配置的三个属性）</p>
+</li>
+</ol>
+<p>三个属性：header expire secret.</p>
+<p>三个方法：</p>
+<ul>
+<li>生成jwttoken: 那三个组成拼起来的字符串</li>
+<li>获取jwttoken的信息： 解析jwt</li>
+<li>判断token是否过期： 过期时间before当前时间-&gt;过期-&gt;返回true</li>
+</ul>
+<ol start="7">
+<li>在AccountRealm中使用了工具类就是要先注入这个类@Autowired，就不用new对象了。</li>
+</ol>
+<h2 id="Cookie和Session"><a href="#Cookie和Session" class="headerlink" title="Cookie和Session"></a>Cookie和Session</h2><ol>
+<li><p>两个数据存放在哪里？<br>cookie数据存放在客户的浏览器上；session数据放在服务器上。</p>
+</li>
+<li><p>cookie的特点和限制是什么？</p>
+</li>
+</ol>
+<ul>
+<li>cookie不是很安全，因为别人可以分析存放在本地的COOKIE并进行COOKIE欺骗。</li>
+<li>单个cookie保存的数据不能超过4K，很多浏览器都限制一个站点最多保存20个cookie。</li>
+</ul>
+<ol start="3">
+<li><p>两个数据里能存什么？<br>cookie里只能存放字符串；session里能存放任何类型的数据，如字符串、集合、类、对象。</p>
+</li>
+<li><p>用户能看见吗？<br>cookie对用户可见；session对用户不可见(透明)</p>
+</li>
+<li><p>有效期的差别？ 比如浏览器上百度账号登录信息长期有效？<br>cookie可以容易的达到登录信息长期有效，只要把有效期设为很大的数字；<br>session不能长期有效，容易导致服务器的内存溢出。比如说我们项目使用jwt设置了有效期7天。</p>
+</li>
+<li><p>并发访问的用户多的时候，用哪个来追踪用户会话？<br>用cookie。<br>因为一个用户就会产生一个session/cookie. session存在服务器端，产生的session量过大会消耗大量的内存。 cookie存在客户端，不占用服务器端的资源，一个用户手里拿一个cookie。<br>所以像百度这种只能用cookie来存储用户的登录信息，用cookie来追踪用户会话。</p>
+</li>
+<li><p>为什么百度贴吧、百度云盘、百度搜索都可以共用我的登录信息呢(不用重复登录)？<br>因为cookie支持跨域名访问，以“.biaodianfu.com”为后缀的一切域名均能够访问该Cookie。<br>但是session就不支持跨域名访问，如果用session,都要重新登录。</p>
+</li>
+<li><p>session在服务器端由谁来管理？存在哪里？<br>session由shiro来管理，shiro六大作用之一就是Session会话管理。在ShiroConfig(shiro配置类)中就有会话管理对应的函数-SessionManager.</p>
+</li>
+<li><p>现在用cookie和session吗？<br>前后端没分离的时候用cookie和session来验证用户的真实性；<br>现在前后端分离了，我们使用shiro这个安全框架来规定用户的操作，使用token和jwt来验证用户的真实性。</p>
+</li>
+</ol>
+<h2 id="mybatis-mybatisplus"><a href="#mybatis-mybatisplus" class="headerlink" title="mybatis mybatisplus"></a>mybatis mybatisplus</h2><ol>
+<li>xml文件如何和接口进行绑定？<br>mapper.xml和mapper.java绑定通过xml中的namespace=”xxxx.xxxmapper”mapper.java的路径名</li>
+</ol>
+<h2 id="MySQL"><a href="#MySQL" class="headerlink" title="MySQL"></a>MySQL</h2><ol>
+<li><p>分布式数据库是什么？<br>分布式数据库是指数据在物理上分布而逻辑上集中管理的数据库系统。</p>
+</li>
+<li><p>MySQL 群集是什么？<br>MySQL 群集是一种技术。<br>MySQL群集技术在分布式数据库系统中为MySQL数据提供了冗余特性，增强了安全性，使得单个MySQL服务器故障不会对系统产生巨大的负面效应，系统的稳定性得到保障。</p>
+</li>
+<li><p>MySQL 群集作用白话：<br>MySQL群集技术让分布式数据库系统稳定性得到保障，(因为它为mysql数据增加安全性，)所以当单个mysql服务器故障时，分布式数据库系统不会产生巨大影响</p>
+</li>
+<li><p>MySQL 群集的三种结点有什么用？</p>
+</li>
+</ol>
+<ul>
+<li>管理结点：能对结点进行关闭启动等操作，能监视结点状态。</li>
+<li>数据结点：存数据。</li>
+<li>SQL结点： 对外提供SQL功能。</li>
+</ul>
+<ol start="5">
+<li><p>mysql的索引是什么？索引的数据结构是什么？<br>索引是数据结构，帮助数据库高效获取数据。<br>数据结构主要支持hash和B+tree.<br>hash不支持范围查询，B+tree支持范围查询。<br>MyISAM和InnoDB两种数据存储引擎都支持hash和B+tree.<br>(MySQL数据库支持多种索引类型，如BTree索引，哈希索引，全文索引等等。)</p>
+</li>
+<li><p>什么时候简历索引？<br>对应唯一性较高，经常作为查询或者过滤条件或者排序条件的字段，建立索引。<br>对应唯一性较差，频繁更改的字段，不建立索引。</p>
+</li>
+<li><p>每张表的建立索引的限制？<br>单张表最多对16个字段建立索引</p>
+</li>
+<li><p>sql语句使得索引失效的情况(索引无法使用)？<br>SARG (Searchable Arguments)操作，因为它通常是指一个特定的匹配，一个值得范围内的匹配或者两个以上条件的AND连接。<br>1、Like语句是否属于SARG取决于所使用的通配符的类型<br>如：name like ‘张%’ ，这就属于SARG<br>而：name like ‘%张’ ,就不属于SARG。<br>原因是通配符%在字符串的开通使得索引无法使用。<br>2、or 会引起全表扫描<br>　　Name=’张三’ and 价格&gt;5000 符号SARG，而：Name=’张三’ or 价格&gt;5000 则不符合SARG。使用or会引起全表扫描。<br>3、非操作符、函数引起的不满足SARG形式的语句<br>　　不满足SARG形式的语句最典型的情况就是包括非操作符的语句，如：NOT、!=、&lt;&gt;、!&lt;、!&gt;、NOT EXISTS、NOT IN、NOT LIKE等，另外还有函数。下面就是几个不满足SARG形式的例子：<br>ABS(价格)&lt;5000<br>Name like ‘%三’<br>有些表达式，如：<br>WHERE 价格*2&gt;5000<br>sql server也会认为是SARG，SQL SERVER会将此式转化为：<br>WHERE 价格&gt;2500/2<br>但我们不推荐这样使用，因为有时sql server不能保证这种转化与原始表达式是完全等价的。<br>4、IN 的作用相当与OR<br>语句：<br>Select * from table1 where tid in (2,3)<br>和<br>Select * from table1 where tid=2 or tid=3<br>是一样的，都会引起全表扫描，如果tid上有索引，其索引也会失效。<br>5、尽量少用NOT<br>6、exists 和 in 的执行效率是一样的</p>
+</li>
+<li><p>mysql怎么提高速度的？<br>用分治和索引。<br>分治:将数据分成一格一格的。<br>索引是一个排序的列表，在这个列表中存储着索引的值和包含这个值的数据所在行的物理地址。</p>
+</li>
+<li><p>mysql的索引类型？<br>1、主键索引：即主索引，根据主键pk_clolum（length）建立索引，不允许重复，不允许空值；<br>ALTER TABLE ‘table_name’ ADD PRIMARY KEY pk_index(‘col’)；</p>
+</li>
+</ol>
+<p>2、唯一索引：用来建立索引的列的值必须是唯一的，允许空值<br>ALTER TABLE ‘table_name’ ADD UNIQUE index_name(‘col’)；</p>
+<p>3、普通索引：用表中的普通列构建的索引，没有任何限制<br>ALTER TABLE ‘table_name’ ADD INDEX index_name(‘col’)；</p>
+<p>4、全文索引：用大文本对象的列构建的索引<br>ALTER TABLE ‘table_name’ ADD FULLTEXT INDEX ft_index(‘col’)；</p>
+<p>5、组合索引：用多个列组合构建的索引，这多个列中的值不允许有空值<br>ALTER TABLE ‘table_name’ ADD INDEX index_name(‘col1’,’col2’,’col3’)；</p>
+<ol start="8">
+<li>mysql用的存储引擎？<br>MyISAM和InnoDB数据存储引擎</li>
+</ol>
+<h2 id="java"><a href="#java" class="headerlink" title="java"></a>java</h2><ol>
+<li>面向过程和面向对象</li>
+</ol>
+<ul>
+<li><p>面向过程就是不断的使用函数。</p>
+</li>
+<li><p>现在将所有的功能/函数进行封装，我们面对的就是封装了功能的对象，这就是面向对象。<br>只要找到了对象，就可以使用对象中的功能。</p>
+</li>
+<li><p>所有我们在实践的时候，先找到对象以及对象的功能。 如果没有，就自己创建对象并将所需的功能定义到该对象中。</p>
+</li>
+</ul>
+<ol start="2">
+<li>面向对象的好处</li>
+</ol>
+<ul>
+<li>面向对象更符合人们思考的习惯。</li>
+<li>面向对象就像是指挥者，指挥对象做事情。</li>
+<li>面向对象将复杂的问题简单化。</li>
+<li>举例： 面试官您就是用面向对象的思想在思考问题。您本身就可以开发项目，但是如果项目比较大，开发周期长。为了提高效率，就需要更多具备能力的人帮助您做事情。这个人就是您需要的对象。您作为指挥者，只需要调用这个对象的开发功能就可以完成项目。</li>
+</ul>
+<ol start="3">
+<li>jvm回收机制<br>使用引用计数算法判断对象是否死亡是否应该对这个对象进行回收。(没有引用指向该对象时，对象死亡，计数器为0)<br>垃圾回收算法：标记清除，标记整理，复制算法，分代收集。</li>
+</ol>
+<p>标记清除/整理： 每个对象有一个标记位，标记对象存活或者死亡。 清除：清除死亡对象。 整理：整理存活对象，放到另一处空间，清除剩下对象。</p>
+<p>复制：内存分为两半，一半内存满了的时候，将存活的对象复制到另外一半内存，清空当前内存。</p>
+<ol start="4">
+<li><p>final<br>final关键字作用【修饰类不可继承，修饰方法不可重写，修饰对象无法重新赋值】</p>
+</li>
+<li><p>RuntimeException有哪些<br>1， ClassCastException类型强制转换异常<br>Object x = new Integer(0);<br>  System.out.println((String)x);<br>当试图将对象强制转换为不是实例的子类时，抛出该异常</p>
+</li>
+</ol>
+<p>2，ArithmeticException算术异常类<br>int a=5/0;<br>一个整数“除以零”时，抛出异常</p>
+<p>3, NullPointerException空指针异常类<br>String s=null;<br>int size=s.size();<br>当应用程序试图在需要对象的地方使用 null 时，抛出异常</p>
+<p>4, StringIndexOutOfBoundsException<br>“hello”.indexOf(-1);<br>指示索引或者为负，或者超出字符串的大小，抛出异常</p>
+<p>5，NegativeArraySizeException数组负下标异常<br>数组大小为负值异常。当使用负数大小值创建数组时抛出该异常<br>String[] ss=new String[-1];<br>如应用程序试图创建大小为负的数组，则抛出异常</p>
+<p>6，IllegalArgumentException参数异常<br>抛出的异常表明向方法传递了一个不合法或不正确的参数</p>
+<p>7，NumberFormatException数字格式异常<br>当试图将一个String转换为指定的数字类型，而该字符串确不满足数字类型要求的格式时，抛出该异常</p>
+<p>8，ArrayIndexOutOfBoundsException数组下标越界异常<br>当使用的数组下标超出数组允许范围时，抛出该异常</p>
+<p>9,ClassNotFoundException找不到类异常<br>当应用试图根据字符串形式的类名构造类，而在遍历CLASSPAH之后找不到对应名称的class文件时，抛出该异常</p>
+<p>10,ArrayStoreException数组存储异常<br>当向数组中存放非数组声明类型对象时抛出</p>
+<p>11，NoSuchMethodException 方法未找到异常</p>
+<p>12，FileNotFoundException 文件未找到异常</p>
+<h2 id="操作系统"><a href="#操作系统" class="headerlink" title="操作系统"></a>操作系统</h2><ol>
+<li>线程和进程的区别<br>进程是系统资源分配的基本单位，线程是cpu调度的基本单位。</li>
+</ol>
+<p>进程有独立的代码和数据空间，进程之间切换开销较大；<br>同一进程中的线程共享代码和数据空间，线程之间切换较小。</p>
+<p>系统在运行的时候会为每个进程分配不同的内存空间；<br>系统不会为线程分配内存，线程之间只能共享资源。</p>
+<p>线程是进程的一部分，线程被称为轻量级进程。</p>
+<ol start="2">
+<li><p>线程池是什么<br>线程池，其实就是一个容纳多个线程的容器，其中的线程可以反复使用，省去了频繁创建线程对象的操作，无需反复创建线程而消耗过多资源</p>
+</li>
+<li><p>乐观锁/悲观锁<br>乐观锁：总是假设最好的情况，每次去拿数据的时候都认为别人不会修改，所以不会上锁，但是在更新的时候会判断一下在此期间别人有没有去更新这个数据，可以使用版本号机制和CAS算法实现。<br>乐观锁适用于多读的应用类型，这样可以提高吞吐量，像数据库提供的类似于write_condition机制，其实都是提供的乐观锁。</p>
+</li>
+</ol>
+<p>悲观锁：总是假设最坏的情况，每次去拿数据的时候都认为别人会修改，所以每次在拿数据的时候都会上锁，这样别人想拿这个数据就会阻塞直到它拿到锁（共享资源每次只给一个线程使用，其它线程阻塞，用完后再把资源转让给其它线程）。<br>传统的关系型数据库里边就用到了很多这种锁机制，比如行锁，表锁等，读锁，写锁等，都是在做操作之前先上锁。</p>
+<p>CAS：即compare and swap（比较与交换），是一种有名的无锁算法。无锁编程，即不使用锁的情况下实现多线程之间的变量同步，也就是在没有线程被阻塞的情况下实现变量的同步，所以也叫非阻塞同步（Non-blocking Synchronization）。</p>
+<h2 id="网络"><a href="#网络" class="headerlink" title="网络"></a>网络</h2><ol>
+<li><p>get和post的区别<br>get是从服务器上获取数据，post是向服务器传送数据。<br>get的参数可以在url上面看到，post看不到<br>get安全性非常低，post安全性较高。<br>get请求比Post请求效率高，Post请求需要服务器返回100再发送数据处理，Get请求直接是通过URL。</p>
+</li>
+<li><p>@Getmapping<br>该注解将HTTP Get 映射到 特定的处理方法上</p>
+</li>
+<li><p>java实现HTTP请求的三种方式<br>java原生HttpURLConnection<br>apache HttpClient3.1<br>apache  httpClient4.5</p>
+</li>
+<li><p>TCP和UDP<br>TCP：面向连接的安全可靠的传输层协议。<br>客户和服务器交换数据前，必须现在双方之间建立一个TCP连接，之后才能传输数据。<br>并且提供超时重发，丢弃重复数据，检验数据，流量控制等功能，保证数据能从一端传到另一端。<br>在数据传递时，有确认、窗口、重传、拥塞控制机制，在数据传完后，还会断开连接用来节约系统资源。<br>慢，效率低。<br>UDP: 面向数据报的不可靠的传输层协议。<br>UDP在传输数据报前不用在客户端和服务器之间建立一个连接，且没有超时重发等机制，所以传输速度很快。只是把数据发送出去，不保证能够到达目的地。<br>快，效率高。</p>
+</li>
+</ol>
+<h2 id="spring"><a href="#spring" class="headerlink" title="spring"></a>spring</h2><ol>
+<li>IOC AOP<br>Spring拥有两大特性：IoC和AOP。IoC，英文全称Inversion of Control，意为控制反转。AOP，英文全称Aspect-Oriented Programming，意为面向切面编程。</li>
+</ol>
+<p>Spring核心容器的主要组件是Bean工厂（BeanFactory），Bean工厂使用控制反转（IoC）模式来降低程序代码之间的耦合度，并提供了面向切面编程（AOP）的实现。</p>
+<p>简单来说，Spring是一个轻量级的控制反转（IoC）和面向切面编程（AOP）的容器框架</p>
+<p>IOC:控制反转，简单点说，就是创建对象的控制权，被反转到了Spring框架上。<br>通常，我们实例化一个对象时，都是使用类的构造方法来new一个对象，这个过程是由我们自己来控制的，而控制反转就把new对象的工作交给了Spring容器。</p>
+<p>AOP:AOP把所有共用代码都剥离出来，单独放置到某个类中进行集中管理，在具体运行时，由容器进行动态织入这些公共代码。</p>
+<h2 id="同步异步"><a href="#同步异步" class="headerlink" title="同步异步"></a>同步异步</h2><p>同步异步 ， 举个例子来说，一家餐厅吧来了5个客人，同步的意思就是说，来第一个点菜，点了个鱼，好， 厨师去捉鱼杀鱼，过了半小时鱼好了给第一位客人，开始下位一位客人，就这样一个一个来，按顺序来</p>
+<p>相同， 异步呢，异步的意思就是来第一位客人，点什么，点鱼，给它一个牌子，让他去一边等吧，下一位客人接着点菜，点完接着点让厨师做去吧，哪个的菜先好就先端出来，</p>
+<p>同步的优点是：同步是按照顺序一个一个来，不会乱掉，更不会出现上面代码没有执行完就执行下面的代码， 缺点：是解析的速度没有异步的快；</p>
+<p>异步的优点是：异步是接取一个任务，直接给后台，在接下一个任务，一直一直这样，谁的先读取完先执行谁的， 缺点：没有顺序 ，谁先读取完先执行谁的 ，会出现上面的代码还没出来下面的就已经出来了，会报错；</p>
+<h2 id="java基础选择题"><a href="#java基础选择题" class="headerlink" title="java基础选择题"></a>java基础选择题</h2><p>A、 由高向低分别是：()、!、算术运算符、关系运算符、逻辑运算符、赋值运算符；</p>
+<p>a = 6;System.out.print(a++); 答案为6</p>
+
+    </div>
+
+    
+    
+    
+        
+      
+        <div id="reward-container">
+  <div>我这么可爱不给我投个币嘛~~ 有帮助的话可以打赏路路噢~~</div>
+  <button id="reward-button" disable="enable" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+        
+      
+      <div style="display: inline-block">
+        <img src="/images/wechatpay.jpg" alt="Lucifinil 微信支付">
+        <p>微信支付</p>
+      </div>
+        
+      
+      <div style="display: inline-block">
+        <img src="/images/alipay.jpg" alt="Lucifinil 支付宝">
+        <p>支付宝</p>
+      </div>
+
+  </div>
+</div>
+
+      
+
+      <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+              
+                <a href="/2020/06/07/文章更新更改备份日志/" rel="next" title="文章更新更改备份日志">
+                  <i class="fa fa-chevron-left"></i> 文章更新更改备份日志
+                </a>
+              
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+              
+                <a href="/2020/06/30/vue-vueblog/" rel="prev" title="vue-vueblog">
+                  vue-vueblog <i class="fa fa-chevron-right"></i>
+                </a>
+              
+            </div>
+          </div>
+        
+      </footer>
+    
+  </div>
+  
+  
+  
+  </article>
+
+  </div>
+
+
+          </div>
+          
+    
+    <div class="comments" id="comments"></div>
+  
+
+        </div>
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+        
+        
+        
+        
+      
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#String"><span class="nav-number">1.</span> <span class="nav-text">String</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#判断指向地址or值"><span class="nav-number">1.1.</span> <span class="nav-text">判断指向地址or值</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Validate验证器"><span class="nav-number">2.</span> <span class="nav-text">Validate验证器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#闲话"><span class="nav-number">3.</span> <span class="nav-text">闲话</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#equals-和"><span class="nav-number">3.1.</span> <span class="nav-text">equals 和 ==</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HashMap"><span class="nav-number">4.</span> <span class="nav-text">HashMap</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#同步"><span class="nav-number">5.</span> <span class="nav-text">同步</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#redis"><span class="nav-number">6.</span> <span class="nav-text">redis</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#apache-shiro"><span class="nav-number">7.</span> <span class="nav-text">apache shiro</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#用户登录信息-Session-shiro-redis"><span class="nav-number">8.</span> <span class="nav-text">用户登录信息-Session-shiro-redis</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#jwt"><span class="nav-number">9.</span> <span class="nav-text">jwt</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Cookie和Session"><span class="nav-number">10.</span> <span class="nav-text">Cookie和Session</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#mybatis-mybatisplus"><span class="nav-number">11.</span> <span class="nav-text">mybatis mybatisplus</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MySQL"><span class="nav-number">12.</span> <span class="nav-text">MySQL</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#java"><span class="nav-number">13.</span> <span class="nav-text">java</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#操作系统"><span class="nav-number">14.</span> <span class="nav-text">操作系统</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#网络"><span class="nav-number">15.</span> <span class="nav-text">网络</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#spring"><span class="nav-number">16.</span> <span class="nav-text">spring</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#同步异步"><span class="nav-number">17.</span> <span class="nav-text">同步异步</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#java基础选择题"><span class="nav-number">18.</span> <span class="nav-text">java基础选择题</span></a></li></ol></div>
+        
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image"
+      src="/images/touxiang1.jpg"
+      alt="Lucifinil">
+  <p class="site-author-name" itemprop="name">Lucifinil</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+  <nav class="site-state motion-element">
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">67</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
+          
+            <a href="/categories/">
+          
+        
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">分类</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-tags">
+        
+          
+            <a href="/tags/">
+          
+        
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">标签</span>
+        </a>
+      </div>
+    
+  </nav>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="https://github.com/Lucifinil-x" title="GitHub &rarr; https://github.com/Lucifinil-x" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+    
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="https://weibo.com/2890499315/profile?rightmod=1&wvr=6&mod=personinfo&is_all=1" title="weibo &rarr; https://weibo.com/2890499315/profile?rightmod=1&wvr=6&mod=personinfo&is_all=1" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>weibo</a>
+      </span>
+    
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title">
+      <i class="fa fa-fw fa-link"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="http://Lucifinil.com/" title="http://Lucifinil.com/" rel="noopener" target="_blank">Lucifinil</a>
+        </li>
+      
+    </ul>
+  </div>
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+      
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Lucifinil</span>
+</div>
+
+<!--
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0</div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.4.0</div>-->
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-user"></i>
+    </span>
+    <span class="site-uv" title="总访客量">
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+    <span class="post-meta-divider">|</span>
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-eye"></i>
+    </span>
+    <span class="site-pv" title="总访问量">
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+
+
+  <script src="/lib/anime.min.js?v=3.1.0"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+<script src="/js/utils.js?v=7.4.0"></script><script src="/js/motion.js?v=7.4.0"></script>
+<script src="/js/schemes/pisces.js?v=7.4.0"></script>
+<script src="/js/next-boot.js?v=7.4.0"></script>
+
+    
+  
+    
+  
+
+  <script>
+  (function() {
+    window.addEventListener('DOMContentLoaded', () => {
+      let script = document.createElement('script');
+      script.src = '/lib/three/three.min.js';
+      document.body.appendChild(script);
+    });
+    let styles = ['/lib/three/three-waves.min.js', '', '/lib/three/canvas_sphere.min.js'];
+    window.addEventListener('load', () => {
+      styles.forEach(item => {
+        if (item !== '') {
+          let script = document.createElement('script');
+          script.src = item;
+          document.body.appendChild(script);
+        }
+      });
+    });
+  })();
+  </script>
+
+
+  
+
+
+
+
+
+
+
+
+  <script src="/js/local-search.js?v=7.4.0"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+
+<script>
+NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail,link';
+  guest = guest.split(',').filter(item => {
+    return GUEST.includes(item);
+  });
+  new Valine({
+    el: '#comments',
+    verify: false,
+    notify: false,
+    appId: 'oDY3PgVcs4KquzU5ExfpRIvL-gzGzoHsz',
+    appKey: 'TfeAqOOA3dvfY8DgjnBCdFUI',
+    placeholder: 'Just go go',
+    avatar: 'mm',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: false,
+    lang: '' || 'zh-cn',
+    path: location.pathname
+  });
+}, window.Valine);
+</script>
+
+</body>
+</html>
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/clicklove.js"></script>
